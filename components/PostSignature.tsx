@@ -1,7 +1,7 @@
 "use client";
 
 import { SignatureLineIcon } from "@components/Icons/SignatureLineIcon.tsx";
-import { useInView } from "@components/useInView.ts";
+import { useInView } from "@hooks/useInView.ts";
 
 const SIGNATURE_THRESHOLD = 0.4;
 

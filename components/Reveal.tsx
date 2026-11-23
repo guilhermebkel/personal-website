@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties, ReactNode } from "react";
-import { useInView } from "@components/useInView.ts";
+import { useInView } from "@hooks/useInView.ts";
 
 type RevealProps = {
   children: ReactNode;

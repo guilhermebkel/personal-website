@@ -34,6 +34,12 @@
       "@components/*": [
         "./components/*"
       ],
+      "@hooks/*": [
+        "./hooks/*"
+      ],
+      "@styles/*": [
+        "./styles/*"
+      ],
       "@app/*": [
         "./app/*"
       ]
@@ -47,6 +53,8 @@
     "src",
     "app",
     "components",
+    "hooks",
+    "styles",
     "scripts",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"

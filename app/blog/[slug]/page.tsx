@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Cover } from "@components/Cover.tsx";
 import { Icon } from "@components/Icon.tsx";
-import { PAGE_X } from "@components/LayoutClasses.ts";
+import { PAGE_X } from "@styles/LayoutClasses.ts";
 import { PostCard } from "@components/PostCard.tsx";
 import { PostContent } from "@components/PostContent.tsx";
 import { PostInfo } from "@components/PostInfo.tsx";

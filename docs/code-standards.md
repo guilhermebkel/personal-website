@@ -8,7 +8,7 @@
 
 - **Layers (review, cycles fail `pnpm quality`).** In `src/`: `Protocols` (types only) < `Schemas` (Zod) < `Utils` (static helpers, no dependencies) < `Services` (dependencies through the constructor) < `Factories` (wiring of services) < `app/`. A layer imports only the ones below it. `components/` may import `Protocols` and `Utils`.
 - **Names say the folder (lint: `local/file-suffix`).** Every file in a mapped folder of `src/` ends its name with the folder's name, singular: `PostService.ts`, `PostSchema.ts`, `ReadingTimeUtil.ts`. Exempt: `index.ts(x)`, Next.js special files in `app/`, `components/`, `scripts/` and `e2e/`.
-- **Imports use `@/` (lint).** `@/Services/PostService.ts`, never `../`. `@components/` points to `components/`.
+- **Imports use `@/` (lint).** `@/Services/PostService.ts`, never `../`. `@components/`, `@hooks/` and `@styles/` point to `components/`, `hooks/` and `styles/`.
 - **Classes outside React (review).** Utils are classes with static methods only. Services are classes whose dependencies come in through the constructor. Constants of a class are `static readonly`.
 - **One class per file (lint).** `max-classes-per-file`.
 - **No `console` (review).** The scripts write with `process.stdout.write`; the site code logs nothing.
@@ -50,7 +50,7 @@ Before writing a component, in this order:
 
 1. **Look in `https://ui.shadcn.com/docs/components`.** Search by what the control does, not by its name.
 2. **If it exists, reuse it.** Install it as `docs/adding-shadcn-components.md` says into `components/ui/`, add its intermediate in `components/` and adapt it to our tokens there (ADR 0004). Do not rewrite a component that exists, and do not add a second one for the same job. A look two screens share is a variant of that component (`Button` has `primary`, `outline`, `ghost`, `link`), not a new class string.
-3. **If it does not exist, write our own with the composition pattern the library uses:** a root that owns the state and renders the frame, and one small component per part, assembled by the screen as children. One folder per component, `index.tsx` is the root and each part has its own file. A leaf with no parts stays a single file.
+3. **If it does not exist, write our own with the composition pattern the library uses:** a root that owns the state and renders the frame, and one small component per part, assembled by the screen as children. One folder per component: `index.tsx` is the root and calls the hook, `use<Name>.ts` holds the logic, `<Name>Context.ts` types the shared state and exports `use<Name>State()` (it throws, naming the root, when a part is used outside it), and each part has its own file named `<Name><Part>.tsx`. A leaf with no parts stays a single file. A hook or a class string used by more than one component goes to `hooks/` or `styles/`, not into a component's folder (ADR 0006).
 4. **The PR says what was checked:** the library components looked at and, for a hand-made one, why none fit.
 
 ## Dependencies

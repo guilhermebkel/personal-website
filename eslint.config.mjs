@@ -6,7 +6,7 @@ import nextPlugin from "@next/eslint-plugin-next";
 // Why: Oxlint (`.oxlintrc.json`) runs every other rule; this config holds only what Oxlint cannot run or runs differently (docs/adr/0002-oxlint-with-a-minimal-eslint.md).
 const BOOLEAN_PREFIXES = ["is", "has", "should", "can", "must", "was", "did"];
 const TEST_FILES = ["src/**/*.test.ts", "scripts/**/*.test.mjs", "*.test.mjs"];
-const COMPONENT_FILES = ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"];
+const COMPONENT_FILES = ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "hooks/**/*.{ts,tsx}", "styles/**/*.ts"];
 
 export default tseslint.config(
   { ignores: ["dist/", ".next/", "node_modules/", "coverage/", "next-env.d.ts", "test-results/", "out/", "components/ui/"] },

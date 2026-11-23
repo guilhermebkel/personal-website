@@ -780,7 +780,9 @@
     {
       "files": [
         "app/**/*.{ts,tsx}",
-        "components/**/*.{ts,tsx}"
+        "components/**/*.{ts,tsx}",
+        "hooks/**/*.{ts,tsx}",
+        "styles/**/*.ts"
       ],
       "rules": {
         "jsx-a11y/alt-text": "error",
@@ -1005,7 +1007,9 @@
     {
       "files": [
         "app/**/*.{ts,tsx}",
-        "components/**/*.{ts,tsx}"
+        "components/**/*.{ts,tsx}",
+        "hooks/**/*.{ts,tsx}",
+        "styles/**/*.ts"
       ],
       "rules": {
         "local/tokens-only": "error",

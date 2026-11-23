@@ -5,6 +5,8 @@ import { defineConfig } from "vitest/config";
 const alias = {
   "@": fileURLToPath(new URL("src", import.meta.url)),
   "@components": fileURLToPath(new URL("components", import.meta.url)),
+  "@hooks": fileURLToPath(new URL("hooks", import.meta.url)),
+  "@styles": fileURLToPath(new URL("styles", import.meta.url)),
 };
 
 // Why: the Playwright specs run under `playwright test`, not under vitest.

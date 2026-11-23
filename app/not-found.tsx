@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@components/Button.tsx";
 import { TraceMarkIcon } from "@components/Icons/TraceMarkIcon.tsx";
 import { Icon } from "@components/Icon.tsx";
-import { PAGE_X } from "@components/LayoutClasses.ts";
+import { PAGE_X } from "@styles/LayoutClasses.ts";
 import { Reveal } from "@components/Reveal.tsx";
 import { MotionUtil } from "@/Utils/MotionUtil.ts";
 

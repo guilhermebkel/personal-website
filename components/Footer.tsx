@@ -1,7 +1,7 @@
 import NextLink from "next/link";
 import { Icon } from "@components/Icon.tsx";
 import { LogoIcon } from "@components/Icons/LogoIcon.tsx";
-import { PAGE_X } from "@components/LayoutClasses.ts";
+import { PAGE_X } from "@styles/LayoutClasses.ts";
 
 export const Footer = () => {
   return (

@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
 import { Button as UiButton } from "@components/ui/button.tsx";
-import { BUTTON_VARIANT_TO_CLASS, type ButtonVariant } from "@components/ButtonClasses.ts";
+import { BUTTON_VARIANT_TO_CLASS, type ButtonVariant } from "@styles/ButtonClasses.ts";
 import { ClassNameUtil } from "@/Utils/ClassNameUtil.ts";
 
 type ButtonProps = Omit<ComponentProps<typeof UiButton>, "variant" | "size"> & { variant?: ButtonVariant };

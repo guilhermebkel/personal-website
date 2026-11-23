@@ -5,7 +5,8 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
 ## Layout
 
 - `app/`: routes, pages and layouts (Next.js App Router, static export to `out/`).
-- `components/`: UI components, one per file (or a folder with `index.tsx` when it has parts), named by what they show. `components/ui/` holds shadcn/ui's own files, used only through their intermediate.
+- `components/`: UI components, one per file, or a folder in the composition pattern when it has parts (`index.tsx` root, `use<Name>.ts`, `<Name>Context.ts`, one file per part), named by what they show. `components/ui/` holds shadcn/ui's own files, used only through their intermediate.
+- `hooks/`: hooks shared by more than one component. `styles/`: class strings shared by more than one component (ADR 0006).
 - `design/`: the design as code (`design/README.md`); `design/system/` has the tokens (`tokens.json`, generated `tokens.css`) and `DESIGN.md`.
 - `src/`: logic with no UI. Every file in a mapped folder ends its name with the folder's name, singular (`PostService.ts`). Layers, low to high: `Protocols` (types only) < `Schemas` (Zod) < `Utils` (static helpers) < `Services` (dependencies through the constructor) < `Factories` (wiring) < `app/`.
 - `content/posts/`: one Markdown file per post, with front-matter checked by `PostSchema`.

@@ -1,7 +1,7 @@
 import NextLink from "next/link";
 import type { ComponentProps } from "react";
 import { Icon } from "@components/Icon.tsx";
-import { LINK_CLASS } from "@components/LinkClasses.ts";
+import { LINK_CLASS } from "@styles/LinkClasses.ts";
 import { ClassNameUtil } from "@/Utils/ClassNameUtil.ts";
 
 type LinkProps = Omit<ComponentProps<"a">, "href"> & {

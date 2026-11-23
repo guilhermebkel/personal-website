@@ -12,7 +12,7 @@ Tokens and components of the graphite look: one dark theme, one purple, Ubuntu. 
 | Fonts (Ubuntu, Geist Mono, Caveat) | `@fontsource` packages, imported in `app/layout.tsx` |
 | Components (intermediates) | `components/` |
 | Library components (shadcn/ui, untouched) | `components/ui/` |
-| Variant classes of a control | `components/<Name>Classes.ts` (`ButtonClasses.ts`) |
+| Variant classes of a control | `styles/<Name>Classes.ts` (`ButtonClasses.ts`) |
 | Class merging | `src/Utils/ClassNameUtil.ts` |
 
 ## Regenerate the tokens

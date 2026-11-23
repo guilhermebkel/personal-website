@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { PAGE_X } from "@components/LayoutClasses.ts";
-import { PostBrowser } from "@components/PostBrowser.tsx";
+import { PAGE_X } from "@styles/LayoutClasses.ts";
+import { PostBrowser } from "@components/PostBrowser/index.tsx";
 import { SectionTitle } from "@components/SectionTitle.tsx";
 import { ContentFactory } from "@/Factories/ContentFactory.ts";
 

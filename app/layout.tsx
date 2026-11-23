@@ -10,7 +10,7 @@ import "@fontsource/geist-mono/400.css";
 import "./globals.css";
 import { ContoursIcon } from "@components/Icons/ContoursIcon.tsx";
 import { Footer } from "@components/Footer.tsx";
-import { Navbar } from "@components/Navbar.tsx";
+import { Navbar } from "@components/Navbar/index.tsx";
 import { SkipLink } from "@components/SkipLink.tsx";
 
 export const metadata: Metadata = {
