@@ -1,7 +1,7 @@
-// Why: brand marks from the approved prototype; the icon library has none of them. Decorative: the link next to it carries the name.
 type WhatsappIconProps = { className?: string };
 
 export const WhatsappIcon = ({ className }: WhatsappIconProps) => {
+  // Why: brand marks from the approved prototype; the icon library has none of them. Decorative: the link next to it carries the name.
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
       <path

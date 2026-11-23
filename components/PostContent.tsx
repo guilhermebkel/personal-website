@@ -23,7 +23,7 @@ export const PostContent = ({ markdown }: { markdown: string }) => (
   <div className={PROSE_CLASS}>
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
-      components={{ h2: ({ children }) => <h2 id={HeadingSlugUtil.toId(getText(children))}>{children}</h2> }}
+      components={{ h2: ({ children }) => <h2 id={HeadingSlugUtil.buildId(getText(children))}>{children}</h2> }}
     >
       {markdown}
     </ReactMarkdown>

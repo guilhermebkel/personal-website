@@ -21,15 +21,6 @@ Each finding is exactly one class; the class picks the fix.
 | Out of scope        | The cause is outside the harness                                                                                                                                             | A recommendation only                                                                          |
 
 - **A lint rule has its test.** A local rule in `scripts/eslint-local-rules.mjs` comes with a failing example in `scripts/eslint-local-rules.test.mjs`.
-- **Ported (lint).** Each one has failing and passing cases in `scripts/eslint-local-rules.test.mjs`, and the current code passes them all:
-  - `layer-imports`: a file imports only from its own layer or a lower one; `components/`, `hooks/` and `styles/` import only `src/Utils` and `src/Protocols`; a page imports anything.
-  - `class-matches-file`: a file holds one class, named like the file.
-  - `verb-function-name`: a function's name starts with a verb (or is a component, PascalCase, or a hook, `use…`).
-  - `schema-file`: a file in `src/Schemas/` exports a value named `…Schema`.
-  - `protocol-types-only`: a file in `src/Protocols/` exports types only.
-  - `error-location`: an error class lives in `src/Errors/`.
-  - `comment-marker`: a line comment starts with `Why:`, `@legacy:` or a tool directive.
-  - `one-component-per-file`: a component file exports one component.
-- **Not ported yet (lint).** `comment-placement`, `map-name`, `known-keys`, `no-bare-string-field`, `interface-for-contracts`, `no-inferred-type` and `literal-dispatch`. Their rules in `tocomevidencia` are not in this repository, so each would be written from a guess about what it checks; port one when the agent breaks its review rule, with its failing example.
+- **Ported (lint).** Every local rule of `tocomevidencia` that applies to a static site, as in its source, plus `layer-imports` (which the source does not have): `comment-marker`, `comment-placement`, `map-name`, `verb-function-name`, `arrow-function`, `known-keys`, `no-bare-string-field`, `schema-file`, `protocol-types-only`, `interface-for-contracts`, `no-inferred-type`, `error-location`, `literal-dispatch`, `class-matches-file`, `file-suffix`, `describe-target`, `one-component-per-file`, `tokens-only`, `no-inline-svg`, `e2e-tag`, `no-fixed-wait`, `no-test-retries`, and `layer-imports` (a file imports only from its own layer or a lower one; `components/`, `hooks/` and `styles/` import only `src/Utils` and `src/Protocols`). Each rule has its cases in `scripts/eslint-local-rules.test.mjs`. Per-folder overrides mirror the source's `.oxlintrc.json`.
 - **Not ported, by design.** The Tool rules (`tool-name`, `tool-port`, `tool-builder-only`, `no-message-content-in-logs`): this site has no tools. The docs catalog: this site has no `docs-to/` folder.
 - **Component render (`pnpm visual:component`).** Ported with Vitest browser mode and the Playwright provider, the same tool as `tocomevidencia`, because the components are React and need a real browser for their hover, focus and computed styles; the throwaway render files live in `test-results/visual-renders/` and are never committed.

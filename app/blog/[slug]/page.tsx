@@ -49,7 +49,7 @@ const PostPage = async ({ params }: PostPageProps) => {
           All posts
         </Link>
       </Reveal>
-      <Reveal delay={MotionUtil.delayFor(1)} className="mt-9">
+      <Reveal delay={MotionUtil.getStaggerDelay(1)} className="mt-9">
         <PostInfo
           date={post.date}
           readingMinutes={post.readingMinutes}
@@ -59,7 +59,7 @@ const PostPage = async ({ params }: PostPageProps) => {
           isLarge
         />
       </Reveal>
-      <Reveal delay={MotionUtil.delayFor(COVER_STEP)} className="mt-12">
+      <Reveal delay={MotionUtil.getStaggerDelay(COVER_STEP)} className="mt-12">
         <Cover className="h-105 rounded-lg max-md:h-50" />
       </Reveal>
       <Reveal className="mt-16 flex items-start gap-24">
@@ -79,7 +79,7 @@ const PostPage = async ({ params }: PostPageProps) => {
           </Reveal>
           <ul className="m-0 mt-10 grid list-none grid-cols-1 gap-x-8 gap-y-14 p-0 md:grid-cols-2">
             {others.map((other, index) => (
-              <Reveal key={other.slug} as="li" delay={MotionUtil.delayFor(index)} className="min-w-0">
+              <Reveal key={other.slug} as="li" delay={MotionUtil.getStaggerDelay(index)} className="min-w-0">
                 <PostCard
                   href={`/blog/${other.slug}/`}
                   date={other.date}

@@ -1,4 +1,3 @@
-// Why: the logo is our own mark (design/logo/logo.svg); the icon library does not have it. The body takes the text color so it also works on the white mobile menu.
 type LogoIconProps = { className?: string };
 
 const BODY_PATH =
@@ -7,6 +6,7 @@ const ACCENT_PATH =
   "M237.17 135.69 L238.55 134.96 L240.05 134.51 L240.83 134.40 L241.61 134.36 L243.17 134.52 L244.66 134.98 L245.37 135.32 L246.67 136.19 L247.25 136.72 L248.24 137.93 L248.97 139.31 L249.23 140.05 L249.54 141.58 L249.58 249.85 L249.64 250.87 L249.76 251.60 L250.20 253.02 L250.70 254.02 L251.10 254.64 L251.57 255.22 L252.28 255.94 L298.68 297.81 L299.68 298.47 L300.77 298.98 L301.92 299.31 L302.71 299.44 L303.91 299.48 L304.71 299.41 L305.50 299.25 L306.64 298.88 L307.71 298.34 L308.69 297.64 L309.55 296.80 L310.28 295.85 L310.86 294.80 L311.27 293.67 L311.51 292.49 L311.58 291.39 L311.58 15.12 L311.51 14.04 L311.28 12.88 L310.88 11.78 L310.53 11.07 L309.87 10.10 L309.36 9.50 L308.49 8.71 L307.51 8.06 L306.44 7.56 L305.70 7.31 L304.54 7.08 L303.36 7.03 L302.19 7.15 L301.05 7.44 L299.96 7.89 L299.03 8.43 L123.10 126.72 L122.27 127.36 L121.45 128.16 L120.98 128.76 L120.38 129.74 L120.06 130.44 L119.72 131.53 L119.57 132.28 L119.49 133.42 L119.58 134.57 L119.72 135.32 L120.23 136.76 L121.00 138.08 L121.47 138.68 L122.21 139.43 L163.98 176.94 L165.04 177.71 L165.75 178.10 L166.49 178.42 L167.66 178.75 L168.46 178.87 L169.26 178.91 L170.47 178.82 L171.65 178.54 L172.78 178.09 L173.74 177.54Z";
 
 export const LogoIcon = ({ className }: LogoIconProps) => {
+  // Why: the logo is our own mark (design/logo/logo.svg); the icon library does not have it. The body takes the text color so it also works on the white mobile menu.
   return (
     <svg viewBox="0 0 312 470" fill="none" aria-hidden="true" className={className}>
       <path d={BODY_PATH} fill="currentColor" />

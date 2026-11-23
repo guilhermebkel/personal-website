@@ -14,7 +14,6 @@ export type ContourTile = {
   lineCount: number;
 };
 
-// Why: the terrain lines behind the pages are a pattern that repeats, so the pages can be any height. Each line is the sum of two waves whose counts are whole numbers, so the line ends where it starts (it tiles sideways); a line is also drawn one tile above and below, so the tile tiles down too.
 export class ContourUtil {
   static buildPaths(tile: ContourTile): string[] {
     const spacing = tile.height / tile.lineCount;
@@ -33,14 +32,14 @@ export class ContourUtil {
     const points: string[] = [];
     for (let sample = 0; sample <= SAMPLES_PER_LINE; sample += 1) {
       const progress = sample / SAMPLES_PER_LINE;
-      const wave = ContourUtil.waveAt(progress, line, spacing);
+      const wave = ContourUtil.computeWave(progress, line, spacing);
       points.push(`${(progress * tile.width).toFixed(1)} ${(baseY + wave).toFixed(1)}`);
     }
     return `M${points.join(" L")}`;
   }
 
-  // Why: the phase moves a little from one line to the next, so neighbours run side by side like the lines of a map.
-  static waveAt(progress: number, line: number, spacing: number): number {
+  static computeWave(progress: number, line: number, spacing: number): number {
+    // Why: the phase moves a little from one line to the next, so neighbours run side by side like the lines of a map.
     const first = Math.sin(FULL_TURN * FIRST_WAVE_COUNT * progress + line * PHASE_STEP);
     const second = Math.sin(FULL_TURN * SECOND_WAVE_COUNT * progress + line * PHASE_STEP * FIRST_WAVE_COUNT);
     return spacing * (FIRST_AMPLITUDE_RATIO * first + SECOND_AMPLITUDE_RATIO * second);

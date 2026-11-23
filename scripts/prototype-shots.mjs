@@ -12,8 +12,8 @@ const FIRST_ARG_INDEX = 2;
 // Why: the boards' animations loop as demos; freezing them at their end state gives the final frame of each board.
 const FROZEN_CSS = "*,*::before,*::after{animation:none!important;transition:none!important;}";
 
-// Why: the board's own size is the viewport, so its PNG has the width and height of the board in canvas.json.
 export const captureBoard = async ({ browser, board, outputPath = captureFileName(board.name) }) => {
+  // Why: the board's own size is the viewport, so its PNG has the width and height of the board in canvas.json.
   const page = await browser.newPage({ viewport: { width: board.width, height: board.height } });
   try {
     await page.goto(pathToFileURL(resolve(BOARD_DIR, board.file)).href);

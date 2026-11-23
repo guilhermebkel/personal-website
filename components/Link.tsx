@@ -6,13 +6,21 @@ import { ClassNameUtil } from "@/Utils/ClassNameUtil.ts";
 
 type LinkProps = Omit<ComponentProps<"a">, "href"> & {
   href: string;
-  // Why: a link that leaves the site carries the arrow (docs/ui-ux-standards.md); a bare icon link names its target another way and turns it off.
   hasExternalIcon?: boolean;
 };
 
 const WEB_ADDRESS = /^https?:\/\//u;
 
+const getRel = (linkTarget: string | undefined) => {
+  // Why: only a link that opens a new tab needs the rel that stops the new page reaching back to this one.
+  if (linkTarget === "_blank") {
+    return "noopener noreferrer";
+  }
+  return undefined;
+};
+
 export const Link = ({ href, className, target, children, hasExternalIcon = true, ...props }: LinkProps) => {
+  // Why: a link that leaves the site carries the arrow (docs/ui-ux-standards.md); a bare icon link names its target another way and turns it off.
   const classes = ClassNameUtil.merge(LINK_CLASS, className);
   if (href.startsWith("/")) {
     return (
@@ -21,7 +29,7 @@ export const Link = ({ href, className, target, children, hasExternalIcon = true
       </NextLink>
     );
   }
-  const rel = target === "_blank" ? "noopener noreferrer" : undefined;
+  const rel = getRel(target);
   const showsArrow = hasExternalIcon && WEB_ADDRESS.test(href);
   return (
     <a href={href} target={target} rel={rel} className={classes} {...props}>

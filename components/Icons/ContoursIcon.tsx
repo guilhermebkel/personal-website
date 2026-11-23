@@ -1,11 +1,11 @@
-import { ContourUtil } from "@/Utils/ContourUtil.ts";
+import { ContourUtil, type ContourTile } from "@/Utils/ContourUtil.ts";
 
-const TILE = { width: 1440, height: 600, lineCount: 10 };
+const TILE: ContourTile = { width: 1440, height: 600, lineCount: 10 };
 const PATHS = ContourUtil.buildPaths(TILE);
 const PATTERN_ID = "contours";
 
-// Why: the faint terrain lines behind every page are one tile that repeats, so a page of any height has them. They are decoration, hidden from screen readers and from the pointer, and fade out toward the bottom with a mask.
 export const ContoursIcon = () => {
+  // Why: the faint terrain lines behind every page are one tile that repeats, so a page of any height has them. They are decoration, hidden from screen readers and from the pointer, and fade out toward the bottom with a mask.
   return (
     <svg
       aria-hidden="true"

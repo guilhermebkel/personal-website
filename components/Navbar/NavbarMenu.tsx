@@ -9,8 +9,8 @@ export const NAVBAR_MENU_ID = "mobile-menu";
 
 const NUMBER_WIDTH = 2;
 
-// Why: on a phone the menu is a light panel that drops from the top, with the items numbered like the sections of the home (prototype, MenuMobile).
 export const NavbarMenu = () => {
+  // Why: on a phone the menu is a light panel that drops from the top, with the items numbered like the sections of the home (prototype, MenuMobile).
   const { isOpen, closeMenu } = useNavbarState();
   if (!isOpen) {
     return null;

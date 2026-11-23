@@ -6,7 +6,10 @@ const PAGE_SIZE = 6;
 
 const sortPosts = (posts: Post[], order: PostOrder) => {
   const sorted = [...posts].sort((first, second) => second.date.localeCompare(first.date));
-  return order === "recent" ? sorted : sorted.reverse();
+  if (order === "recent") {
+    return sorted;
+  }
+  return sorted.reverse();
 };
 
 export const usePostBrowser = (posts: Post[]): PostBrowserState => {

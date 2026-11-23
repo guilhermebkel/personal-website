@@ -1,5 +1,5 @@
-// Why: the handwritten line under the signature is a drawn stroke from the prototype. Decoration only.
 export const SignatureLineIcon = ({ className }: { className?: string }) => {
+  // Why: the handwritten line under the signature is a drawn stroke from the prototype. Decoration only.
   return (
     <svg viewBox="0 0 520 24" fill="none" preserveAspectRatio="none" aria-hidden="true" className={className}>
       <path

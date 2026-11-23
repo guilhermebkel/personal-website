@@ -4,12 +4,10 @@ import { page, userEvent } from "vitest/browser";
 
 export type CaptureState = {
   name: string;
-  // Why: a state is forced on the element the render selected with `target`; the rest state has no action.
   act?: (target: HTMLElement) => Promise<void>;
 };
 
 export type CaptureOptions = {
-  // Why: the name becomes the PNG file name, so each component's captures stay apart in test-results/visual/.
   name: string;
   element: ReactElement;
   target: string;
@@ -30,8 +28,8 @@ const waitForPaint = () =>
     });
   });
 
-// Why: a state is compared with the others only when its fonts are loaded, so the capture waits for them.
 const mountRender = (element: ReactElement) => {
+  // Why: a state is compared with the others only when its fonts are loaded, so the capture waits for them.
   const container = document.createElement("div");
   container.id = "visual-root";
   document.body.append(container);
@@ -57,6 +55,8 @@ const waitForTarget = async (container: HTMLElement, target: string) => {
 };
 
 export const captureStates = async ({ name, element, target, states }: CaptureOptions): Promise<void> => {
+  // Why: the name becomes the PNG file name, so each component's captures stay apart in test-results/visual/.
+  // Why: a state is forced on the element the render selected with `target`; the rest state has no action, see the states below.
   const { container, root } = mountRender(element);
   await document.fonts.ready;
   for (const state of states) {
@@ -64,7 +64,7 @@ export const captureStates = async ({ name, element, target, states }: CaptureOp
     if (targetElement === null) {
       throw new Error(`No element matches "${target}" in the render of ${name}.`);
     }
-    // Why: the pointer goes back to the body first, so a hoverTarget from the previous state does not stay on.
+    // Why: the pointer goes back to the body first, so a moveOver from the previous state does not stay on.
     await userEvent.hover(document.body);
     await waitForPaint();
     await state.act?.(targetElement);
@@ -75,7 +75,7 @@ export const captureStates = async ({ name, element, target, states }: CaptureOp
   container.remove();
 };
 
-export const hoverTarget = async (target: HTMLElement) => {
+export const moveOver = async (target: HTMLElement) => {
   await userEvent.hover(target);
 };
 

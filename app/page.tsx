@@ -110,7 +110,7 @@ const HomePage = async () => {
         />
         <div className="mt-10 flex flex-col border-t-2 border-sunken">
           {posts.map((post, index) => (
-            <Reveal key={post.slug} delay={MotionUtil.delayFor(index)}>
+            <Reveal key={post.slug} delay={MotionUtil.getStaggerDelay(index)}>
               <PostRow
                 href={`/blog/${post.slug}/`}
                 date={post.date}
@@ -134,7 +134,7 @@ const HomePage = async () => {
         <SectionTitle headingId="contact-title" eyebrow="04 — Contact" title="Let's talk" />
         <ul className="m-0 mt-14 flex list-none flex-wrap gap-4 p-0">
           {ContactUtil.ALL.map((contact, index) => (
-            <Reveal key={contact.name} as="li" delay={MotionUtil.delayFor(index)} className="max-md:w-full">
+            <Reveal key={contact.name} as="li" delay={MotionUtil.getStaggerDelay(index)} className="max-md:w-full">
               <ContactLink contact={contact} />
             </Reveal>
           ))}

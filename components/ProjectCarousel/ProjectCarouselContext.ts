@@ -12,7 +12,6 @@ export type ProjectCarouselState = {
   trackRef: RefObject<HTMLUListElement | null>;
   canScrollBack: boolean;
   canScrollForward: boolean;
-  // Why: how far the track is scrolled, from 0 (start) to 1 (end); the thumb under the cards follows it.
   progress: number;
   update: () => void;
   scrollBack: () => void;
@@ -22,6 +21,7 @@ export type ProjectCarouselState = {
 export const ProjectCarouselContext = createContext<ProjectCarouselState | null>(null);
 
 export const useProjectCarouselState = (): ProjectCarouselState => {
+  // Why: how far the track is scrolled, from 0 (start) to 1 (end); the thumb under the cards follows it.
   const state = useContext(ProjectCarouselContext);
   if (state === null) {
     throw new Error("A project carousel part must be inside a ProjectCarousel.");

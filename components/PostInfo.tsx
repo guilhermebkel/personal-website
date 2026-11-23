@@ -7,11 +7,11 @@ type PostInfoProps = {
   summary?: string;
   tags?: string[];
   headingLevel?: "h1" | "h2" | "h3";
-  // Why: the post page shows a larger title than a card does.
   isLarge?: boolean;
 };
 
 export const PostInfo = (props: PostInfoProps) => {
+  // Why: the post page shows a larger title than a card does.
   const { date, readingMinutes, title, summary, tags = [], headingLevel = "h3", isLarge = false } = props;
   const Heading = headingLevel;
   const titleSize = isLarge ? "text-section tracking-title max-md:text-heading" : "text-title";

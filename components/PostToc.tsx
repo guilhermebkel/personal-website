@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import type { Heading } from "@/Utils/HeadingSlugUtil.ts";
 
-// Why: the index marks the section being read; the observer watches the h2 anchors the markdown renderer put in the page.
 export const PostToc = ({ headings }: { headings: Heading[] }) => {
+  // Why: the index marks the section being read; the observer watches the h2 anchors the markdown renderer put in the page.
   const [activeId, setActiveId] = useState(headings[0]?.id ?? "");
 
   useEffect(() => {

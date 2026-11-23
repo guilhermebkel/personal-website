@@ -2,8 +2,8 @@ import { BrandIcon } from "@components/BrandIcon.tsx";
 import { Icon } from "@components/Icon.tsx";
 import type { Contact } from "@/Utils/ContactUtil.ts";
 
-// Why: the prototype's contact is a wide pill: brand icon, the name, and the arrow that says it leaves the site.
 export const ContactLink = ({ contact }: { contact: Contact }) => {
+  // Why: the prototype's contact is a wide pill: brand icon, the name, and the arrow that says it leaves the site.
   return (
     <a
       href={contact.href}

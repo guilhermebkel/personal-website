@@ -314,16 +314,22 @@
         "considerDefaultExhaustiveForUnions": true
       }
     ],
-    "local/file-suffix": "error",
-    "local/arrow-function": "error",
-    "local/layer-imports": "error",
-    "local/class-matches-file": "error",
+    "local/comment-marker": "error",
+    "local/comment-placement": "error",
+    "local/map-name": "error",
     "local/verb-function-name": "error",
+    "local/arrow-function": "error",
+    "local/known-keys": "error",
+    "local/no-bare-string-field": "error",
     "local/schema-file": "error",
     "local/protocol-types-only": "error",
+    "local/interface-for-contracts": "error",
+    "local/no-inferred-type": "error",
     "local/error-location": "error",
-    "local/comment-marker": "error",
-    "local/one-component-per-file": "error"
+    "local/literal-dispatch": "error",
+    "local/class-matches-file": "error",
+    "local/file-suffix": "error",
+    "local/layer-imports": "error"
   },
   "overrides": [
     {
@@ -587,15 +593,53 @@
     },
     {
       "files": ["src/**/*.test.ts"],
+      "rules": {}
+    },
+    {
+      "files": ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "hooks/**/*.{ts,tsx}", "styles/**/*.ts"],
+      "rules": {}
+    },
+    {
+      "files": ["e2e/*.spec.ts"],
+      "rules": {}
+    },
+    {
+      "files": ["e2e/**/*.ts", "**/*.test.{ts,tsx}", "scripts/*.test.mjs", "*.test.mjs"],
+      "rules": {}
+    },
+    {
+      "files": ["playwright.config.ts", "e2e/**/*.ts"],
+      "rules": {}
+    },
+    {
+      "files": ["src/**/*.test.ts"],
       "rules": {
         "local/describe-target": "error"
       }
     },
     {
-      "files": ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "hooks/**/*.{ts,tsx}", "styles/**/*.ts"],
+      "files": ["components/**/*.tsx"],
+      "rules": {
+        "local/one-component-per-file": "error"
+      }
+    },
+    {
+      "files": ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
+      "rules": {
+        "local/class-matches-file": "off"
+      }
+    },
+    {
+      "files": ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
       "rules": {
         "local/tokens-only": "error",
         "local/no-inline-svg": "error"
+      }
+    },
+    {
+      "files": ["**/*.test.{ts,tsx}", "e2e/**/*.ts"],
+      "rules": {
+        "local/schema-file": "off"
       }
     },
     {

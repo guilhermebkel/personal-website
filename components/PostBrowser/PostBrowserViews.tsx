@@ -14,8 +14,8 @@ const VIEW_OPTIONS: ViewOption[] = [
   { view: "list", icon: "list", label: "Show as a list" },
 ];
 
-// Why: on a phone the posts are always one column, so the choice is only drawn from the tablet up.
 export const PostBrowserViews = () => {
+  // Why: on a phone the posts are always one column, so the choice is only drawn from the tablet up.
   const { view, setView } = usePostBrowserState();
   return (
     <div

@@ -4,9 +4,9 @@ import { useQuoteCarouselState } from "@components/QuoteCarousel/QuoteCarouselCo
 
 const NUMBER_WIDTH = 2;
 
-// Why: the active counter fills its bar in 4 seconds and the end of that animation moves to the next quote. With reduced motion there is no animation, so nothing moves by itself and the reader picks a quote.
 export const QuoteCarouselCounter = ({ index }: { index: number }) => {
-  const { active, select, goToNext } = useQuoteCarouselState();
+  // Why: the active counter fills its bar in 4 seconds and the end of that animation moves to the next quote. With reduced motion there is no animation, so nothing moves by itself and the reader picks a quote.
+  const { active, select, moveToNext } = useQuoteCarouselState();
   const isActive = index === active;
   const onSelect = () => {
     select(index);
@@ -24,7 +24,7 @@ export const QuoteCarouselCounter = ({ index }: { index: number }) => {
       </span>
       <span className="mt-2 block h-0.5 overflow-hidden rounded-sm bg-sunken">
         <span
-          onAnimationEnd={goToNext}
+          onAnimationEnd={moveToNext}
           className={[
             "block h-0.5 origin-left bg-purple",
             isActive ? "animate-quote-progress motion-reduce:scale-x-100 motion-reduce:animate-none" : "scale-x-0",

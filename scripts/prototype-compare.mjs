@@ -21,16 +21,16 @@ const SERVER_POLL_MS = 250;
 const MENU_BUTTON = "button[aria-controls]";
 const FROZEN_CSS = "*,*::before,*::after{animation:none!important;transition:none!important;}";
 
-// Why: pure, so the tests need no files or browser. the side-by-side page: the prototype on the left, the site on the right, both at the same width.
 export const buildComparePage = ({ prototypePng, sitePng }) => {
+  // Why: pure, so the tests need no files or browser. the side-by-side page: the prototype on the left, the site on the right, both at the same width.
   return `<!doctype html><html><body style="margin:0;background:#202020;display:flex;gap:24px;align-items:flex-start">
 <img alt="Prototype" src="${prototypePng}" style="display:block">
 <img alt="Site" src="${sitePng}" style="display:block">
 </body></html>`;
 };
 
-// Why: the site is served the way `pnpm test:e2e` serves it, and this run stops the server it started.
 const startSiteServer = () => {
+  // Why: the site is served the way `pnpm test:e2e` serves it, and this run stops the server it started.
   const child = spawn("pnpm", ["exec", "serve", SITE_DIR, "-l", String(SITE_PORT)], {
     stdio: "ignore",
     detached: true,
@@ -54,8 +54,8 @@ const waitForSite = async () => {
   return false;
 };
 
-// Why: a board that opens a menu is captured with the menu open, as the prototype shows it.
 const captureSite = async ({ browser, name, mapping, board }) => {
+  // Why: a board that opens a menu is captured with the menu open, as the prototype shows it.
   // Why: the site is captured at the board's own width and height, so the two sides of the comparison line up.
   const context = await browser.newContext({
     viewport: { width: board.width, height: board.height },
@@ -70,11 +70,13 @@ const captureSite = async ({ browser, name, mapping, board }) => {
     if (mapping.openMenu === true) {
       await page.locator(MENU_BUTTON).click();
       await page.screenshot({ path: output });
-    } else if (mapping.target === "page") {
-      await page.screenshot({ path: output });
-    } else {
-      await page.locator(mapping.target).first().screenshot({ path: output, animations: "disabled" });
+      return output;
     }
+    if (mapping.target === "page") {
+      await page.screenshot({ path: output });
+      return output;
+    }
+    await page.locator(mapping.target).first().screenshot({ path: output, animations: "disabled" });
     return output;
   } finally {
     await context.close();

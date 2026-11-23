@@ -1,5 +1,3 @@
-// Why: the names, sizes and mapping of the prototype's boards live here, apart from the commands that read files and browsers.
-
 export const BOARD_DIR = "design/prototype";
 export const CANVAS_FILE = "design/prototype/canvas.json";
 export const BOARD_EXTENSION = ".dc.html";
@@ -37,8 +35,8 @@ export const BOARD_MAPPING = {
 
 export const REFERENCE_ONLY_BOARDS = ["LogoRound", "Curvas"];
 
-// Why: pure, so the tests need no files or browser. the board list from canvas.json, one entry per .dc.html file, sorted by name.
 export const loadBoards = (canvas) => {
+  // Why: pure, so the tests need no files or browser. the board list from canvas.json, one entry per .dc.html file, sorted by name.
   return Object.entries(canvas.boards)
     .map(([file, size]) => ({
       file,
@@ -50,8 +48,8 @@ export const loadBoards = (canvas) => {
     .sort((first, second) => first.name.localeCompare(second.name));
 };
 
-// Why: pure, so the tests need no files or browser. the requested names (with or without the extension) checked against the boards; an unknown name lists the valid ones.
 export const resolveBoardNames = ({ requested, boards }) => {
+  // Why: pure, so the tests need no files or browser. the requested names (with or without the extension) checked against the boards; an unknown name lists the valid ones.
   const valid = boards.map((board) => board.name);
   if (requested.length === 0) {
     return { names: valid };
@@ -64,12 +62,13 @@ export const resolveBoardNames = ({ requested, boards }) => {
   return { names };
 };
 
-// Why: pure, so the tests need no files or browser. the board names that have a route, in the order of the boards.
-export const listMappedBoardNames = (boards) =>
-  boards.map((board) => board.name).filter((name) => name in BOARD_MAPPING);
+export const listMappedBoardNames = (boards) => {
+  // Why: pure, so the tests need no files or browser. The board names that have a route, in the order of the boards.
+  return boards.map((board) => board.name).filter((name) => name in BOARD_MAPPING);
+};
 
-// Why: pure, so the tests need no files or browser. the boards for a route (prototype:compare takes routes); an unknown route is an error.
 export const selectBoardsForRoutes = ({ routes, boards }) => {
+  // Why: pure, so the tests need no files or browser. the boards for a route (prototype:compare takes routes); an unknown route is an error.
   const known = new Set(Object.values(BOARD_MAPPING).map((mapping) => mapping.route));
   if (routes.length === 0) {
     return { names: listMappedBoardNames(boards) };
@@ -82,8 +81,8 @@ export const selectBoardsForRoutes = ({ routes, boards }) => {
   return { names: selected };
 };
 
-// Why: pure, so the tests need no files or browser. where a board's PNG goes, relative to the repository root: <Board>.png for the board, <Board>.site.png or <Board>.compare.png for the rest.
 export const captureFileName = (name, kind) => {
+  // Why: pure, so the tests need no files or browser. where a board's PNG goes, relative to the repository root: <Board>.png for the board, <Board>.site.png or <Board>.compare.png for the rest.
   const suffix = kind === undefined ? "" : `.${kind}`;
   return `test-results/prototype/${name}${suffix}.png`;
 };

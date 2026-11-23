@@ -9,7 +9,6 @@ export type PostBrowserState = {
   setOrder: (order: PostOrder) => void;
   view: PostView;
   setView: (view: PostView) => void;
-  // Why: only the posts on screen (the first page, then one more page for each "See more"), already in the chosen order.
   visible: Post[];
   hasMore: boolean;
   showMore: () => void;
@@ -18,6 +17,7 @@ export type PostBrowserState = {
 export const PostBrowserContext = createContext<PostBrowserState | null>(null);
 
 export const usePostBrowserState = (): PostBrowserState => {
+  // Why: only the posts on screen (the first page, then one more page for each "See more"), already in the chosen order.
   const state = useContext(PostBrowserContext);
   if (state === null) {
     throw new Error("A post browser part must be inside a PostBrowser.");

@@ -14,16 +14,16 @@ export const EXIT_USAGE = 2;
 // Why: argv holds the node binary and the script path before the user arguments.
 const FIRST_ARG_INDEX = 2;
 
-// Why: pure, so the tests need no files or browser. the one argument is the render file; anything else is a usage error.
 export const parseVisualArgs = (argv) => {
+  // Why: pure, so the tests need no files or browser. the one argument is the render file; anything else is a usage error.
   if (argv.length === 0) {
     return { error: USAGE };
   }
   return { file: argv[0] };
 };
 
-// Why: pure, so the tests need no files or browser. the PNGs written at or after `sinceMs`, so a run lists only its own captures.
 export const listFreshPngs = ({ entries, sinceMs }) => {
+  // Why: pure, so the tests need no files or browser. the PNGs written at or after `sinceMs`, so a run lists only its own captures.
   return entries
     .filter((entry) => entry.name.endsWith(".png") && entry.mtimeMs >= sinceMs)
     .map((entry) => entry.path)

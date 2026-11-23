@@ -1,7 +1,7 @@
-// Why: brand marks from the approved prototype; the icon library has none of them. Decorative: the link next to it carries the name.
 type MailIconProps = { className?: string };
 
 export const MailIcon = ({ className }: MailIconProps) => {
+  // Why: brand marks from the approved prototype; the icon library has none of them. Decorative: the link next to it carries the name.
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
       <path d="M20,4H6C4.897,4,4,4.897,4,6v5h2V8l6.4,4.8c0.178,0.133,0.389,0.2,0.6,0.2s0.422-0.067,0.6-0.2L20,8v9h-8v2h8 c1.103,0,2-0.897,2-2V6C22,4.897,21.103,4,20,4z M13,10.75L6.666,6h12.668L13,10.75z" />

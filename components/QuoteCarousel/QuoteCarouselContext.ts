@@ -5,7 +5,7 @@ export type QuoteCarouselState = {
   quotes: Quote[];
   active: number;
   select: (index: number) => void;
-  goToNext: () => void;
+  moveToNext: () => void;
 };
 
 export const QuoteCarouselContext = createContext<QuoteCarouselState | null>(null);

@@ -7,8 +7,8 @@ export const useQuoteCarousel = (quotes: Quote[]): QuoteCarouselState => {
   const select = (index: number) => {
     setActive(index);
   };
-  const goToNext = () => {
+  const moveToNext = () => {
     setActive((current) => (current + 1) % quotes.length);
   };
-  return { quotes, active, select, goToNext };
+  return { quotes, active, select, moveToNext };
 };

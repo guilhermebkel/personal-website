@@ -7,7 +7,12 @@ import { usePostBrowserState } from "@components/PostBrowser/PostBrowserContext.
 export const PostBrowserOrder = () => {
   const { order, setOrder } = usePostBrowserState();
   const onChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setOrder(event.target.value === "oldest" ? "oldest" : "recent");
+    // Why: the select sends the value of an option; only "oldest" changes the order, every other value keeps the recent order.
+    if (event.target.value === "oldest") {
+      setOrder("oldest");
+      return;
+    }
+    setOrder("recent");
   };
   return (
     <label className="relative inline-flex items-center">

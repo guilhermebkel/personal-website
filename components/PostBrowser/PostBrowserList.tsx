@@ -12,7 +12,7 @@ export const PostBrowserList = () => {
     return (
       <ul className="m-0 mt-12 grid list-none grid-cols-1 gap-x-8 gap-y-14 p-0 md:grid-cols-2 xl:grid-cols-3">
         {visible.map((post, index) => (
-          <Reveal key={post.slug} as="li" delay={MotionUtil.delayFor(index)} className="min-w-0">
+          <Reveal key={post.slug} as="li" delay={MotionUtil.getStaggerDelay(index)} className="min-w-0">
             <PostCard
               href={`/blog/${post.slug}/`}
               date={post.date}
@@ -29,7 +29,7 @@ export const PostBrowserList = () => {
   return (
     <ul className="m-0 mt-12 flex list-none flex-col border-t-2 border-sunken p-0">
       {visible.map((post, index) => (
-        <Reveal key={post.slug} as="li" delay={MotionUtil.delayFor(index)}>
+        <Reveal key={post.slug} as="li" delay={MotionUtil.getStaggerDelay(index)}>
           <PostRow
             href={`/blog/${post.slug}/`}
             date={post.date}
