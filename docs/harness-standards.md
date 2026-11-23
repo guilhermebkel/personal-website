@@ -21,7 +21,8 @@ Each finding is exactly one class; the class picks the fix.
 | Out of scope        | The cause is outside the harness                                                                                                                                             | A recommendation only                                                                          |
 
 - **A lint rule has its test.** A local rule in `scripts/eslint-local-rules.mjs` comes with a failing example in `scripts/eslint-local-rules.test.mjs`.
-- **Not ported yet.** The rest of the local ESLint rules of `tocomevidencia` (layers, verb names, `Why:` comments, `known-keys`, `schema-file` and the Tool rules), the docs catalog, and the isolated component render. Port one when the agent breaks the matching review rule.
+- **Not ported yet.** The rest of the local ESLint rules of `tocomevidencia` (layers, verb names, `Why:` comments, `known-keys`, `schema-file` and the Tool rules), and the docs catalog. Port one when the agent breaks the matching review rule.
+- **Component render (`pnpm visual:component`).** Ported with Vitest browser mode and the Playwright provider, the same tool as `tocomevidencia`, because the components are React and need a real browser for their hover, focus and computed styles; the throwaway render files live in `test-results/visual-renders/` and are never committed.
 
 ## Updating dependencies
 

@@ -21,6 +21,7 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
     pnpm dev
     pnpm design:tokens # regenerate design/system/tokens.css from tokens.json
     pnpm test
+    pnpm visual:component <file> # one component in each state, as PNGs in test-results/visual/
     pnpm test:changed  # tests related to files changed against origin/main
     pnpm typecheck
     pnpm format        # Prettier with the Tailwind plugin, writes every file

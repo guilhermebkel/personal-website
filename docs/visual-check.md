@@ -45,6 +45,37 @@ pnpm test:e2e -- e2e/home-visual.spec.ts
 
 For a change that needs no whole screen (a button in each state), a throwaway page under `app/` is not committed either: render the states side by side, capture, then delete it.
 
+## A component alone
+
+`pnpm visual:component <file>` renders one component in each of its states and writes one PNG per state, so a component's states can be read without building the whole site. The render is a throwaway file under `test-results/visual-renders/` (gitignored, never committed):
+
+```tsx
+import { test } from "vitest";
+import { Button } from "@components/Button.tsx";
+import "../../app/globals.css";
+import { captureStates, hover } from "../../scripts/visual-capture.ts";
+
+test("Button primary, every state", async () => {
+  await captureStates({
+    name: "Button-primary",
+    element: <Button>See projects</Button>,
+    target: "button",
+    states: [{ name: "rest" }, { name: "hover", act: hover }],
+  });
+});
+```
+
+Run it, then read the paths the command prints:
+
+```sh
+pnpm visual:component test-results/visual-renders/Button.tsx
+```
+
+- The states available are `rest`, `hover` (`hover`), `focus` (`focusWithKeyboard`, reached with Tab as a keyboard user does) and any the element is rendered in (`disabled`). A `captureStates()` call takes one element and a CSS `target` inside it.
+- Transitions and animations are frozen at their end state inside the capture.
+- A render that writes no PNG makes the command print `No capture came from <file>` and exit non-zero; running it with no argument prints the usage line and exits 2.
+- The command runs Vitest in browser mode (`vitest.visual.config.mjs`, Chromium through `@vitest/browser-playwright`). It is not part of `pnpm check`.
+
 ## Compare with the prototype
 
 1. Get the prototype image. The approved prototype and the design system live in the design system artifact; save a screenshot of the same screen at the same viewport. A link is not enough.
