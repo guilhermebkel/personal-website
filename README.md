@@ -13,7 +13,7 @@ pnpm dev
 pnpm check   # typecheck, lint, dead code, duplication, tests, build and e2e
 ```
 
-Stack: Next.js (App Router, static export), TypeScript, Zod, Vitest, Playwright. Decisions are in [`docs/adr/`](docs/adr/) and the vocabulary in [`GLOSSARY.md`](GLOSSARY.md). The harness follows the one of `tocomevidencia`.
+Stack: Next.js (App Router, static export), TypeScript, Tailwind v4 and shadcn/ui, Zod, Vitest, Playwright. The design system is in [`design/`](design/). Decisions are in [`docs/adr/`](docs/adr/) and the vocabulary in [`GLOSSARY.md`](GLOSSARY.md). The harness follows the one of `tocomevidencia`.
 
 ## Writing a post
 

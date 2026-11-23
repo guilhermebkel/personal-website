@@ -36,7 +36,8 @@
 
 ## UI
 
-- **No hex or raw size outside `app/globals.css` (review).** Use tokens (`docs/design-system.md`).
+- **No hex or raw size outside `design/system/tokens.json` (review).** Use tokens (`design/system/DESIGN.md`); no arbitrary values such as `bg-[#282828]`.
+- **shadcn through the intermediate (lint).** `@components/ui/**` is imported only by the intermediate in `components/` (ADR 0004).
 - **Server components by default (review).** Add `"use client"` only for what needs state or the browser.
 
 ## Before committing

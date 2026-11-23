@@ -6,7 +6,7 @@ test("the home shows the name and links to the posts", { tag: CRITICAL_FLOW }, a
   await page.goto("/");
 
   await expect(page.getByRole("heading", { level: 1, name: "Guilherme Mota" })).toBeVisible();
-  await page.getByRole("link", { name: "Posts" }).click();
+  await page.getByRole("link", { name: "Posts", exact: true }).click();
   await expect(page).toHaveURL(/\/blog\/$/u);
 });
 

@@ -5,7 +5,8 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
 ## Layout
 
 - `app/`: routes, pages and layouts (Next.js App Router, static export to `out/`).
-- `components/`: UI components, one per file (or a folder with `index.tsx` when it has parts), named by what they show.
+- `components/`: UI components, one per file (or a folder with `index.tsx` when it has parts), named by what they show. `components/ui/` holds shadcn/ui's own files, used only through their intermediate.
+- `design/`: the design as code (`design/README.md`); `design/system/` has the tokens (`tokens.json`, generated `tokens.css`) and `DESIGN.md`.
 - `src/`: logic with no UI. Every file in a mapped folder ends its name with the folder's name, singular (`PostService.ts`). Layers, low to high: `Protocols` (types only) < `Schemas` (Zod) < `Utils` (static helpers) < `Services` (dependencies through the constructor) < `Factories` (wiring) < `app/`.
 - `content/posts/`: one Markdown file per post, with front-matter checked by `PostSchema`.
 - `content/projects/`: one JSON file per project, written by the projects cron and checked by `ProjectSchema`.
@@ -17,6 +18,7 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
     nvm use
     pnpm ensure-deps   # pnpm install when node_modules is missing or the lockfile changed
     pnpm dev
+    pnpm design:tokens # regenerate design/system/tokens.css from tokens.json
     pnpm test
     pnpm test:changed  # tests related to files changed against origin/main
     pnpm typecheck
@@ -34,7 +36,9 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
 | Starting a session | `README.md` (Development) | `nvm use`, `pnpm ensure-deps` |
 | Writing or changing code | `docs/code-standards.md` | — |
 | Writing or changing tests | `docs/test-standards.md` | — |
-| Screen layout, tokens or motion | `docs/design-system.md` | — |
+| Screen layout, tokens or motion | `design/system/DESIGN.md` | `pnpm design:tokens` |
+| Adding a shadcn control | `docs/adding-shadcn-components.md` | — |
+| Change visible on screen | `docs/visual-check.md` | `pnpm build`, `pnpm test:e2e` |
 | Writing a post or changing the content format | `docs/content.md` | `pnpm test` |
 | Before committing | `docs/code-standards.md` ("Before committing"), `.github/PULL_REQUEST_TEMPLATE.md` | `pnpm check:changed` |
 | Full verification (CI gate) | `.github/PULL_REQUEST_TEMPLATE.md` | `pnpm check` |
@@ -46,7 +50,8 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
 - Commit once per task, after a clean `pnpm check:changed`; CI runs the full `pnpm check` as the gate. Never raise a limit or add an ignore to pass.
 - Start new work on a branch from `main` and open a pull request. Branch names are `<type>/<short-name>` in lowercase kebab-case, where `<type>` is `feat`, `fix` or `chore`.
 - Code, docs, routes and identifiers are in English. The site text is in English too (the approved prototype); change that only through an ADR.
-- No hex color or size outside `app/globals.css`: everything else uses a token (`docs/design-system.md`).
+- No hex color or size outside `design/system/tokens.json`: everything else uses a token (`design/system/DESIGN.md`). Edit `tokens.json`, run `pnpm design:tokens`, commit both files.
+- The app imports shadcn controls only through their intermediate in `components/`, never from `components/ui/` (ADR 0004).
 - The site is static: no server code at request time, no database, no login. Anything that needs one is a new ADR first.
 - Content is data checked at build: a post or project that fails its schema fails the build.
 - Posts written by the AI arrive as pull requests and are merged only by the owner.

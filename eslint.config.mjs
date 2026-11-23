@@ -9,7 +9,7 @@ const TEST_FILES = ["src/**/*.test.ts", "scripts/**/*.test.mjs", "*.test.mjs"];
 const COMPONENT_FILES = ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"];
 
 export default tseslint.config(
-  { ignores: ["dist/", ".next/", "node_modules/", "coverage/", "next-env.d.ts", "test-results/", "out/"] },
+  { ignores: ["dist/", ".next/", "node_modules/", "coverage/", "next-env.d.ts", "test-results/", "out/", "components/ui/"] },
   {
     files: ["**/*.{ts,tsx,mjs,js}"],
     plugins: { "@typescript-eslint": tseslint.plugin },

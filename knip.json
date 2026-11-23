@@ -12,5 +12,14 @@
     "components/**/*.{ts,tsx}",
     "scripts/**/*.mjs"
   ],
-  "ignoreExportsUsedInFile": true
+  "ignoreExportsUsedInFile": true,
+  "ignore": [
+    "components/ui/**"
+  ],
+  "ignoreDependencies": [
+    "tw-animate-css",
+    "shadcn",
+    "tailwindcss",
+    "lucide-react"
+  ]
 }

@@ -23,4 +23,4 @@ A post written by the AI pipeline and opened as a pull request. It becomes a pos
 Posts and projects together. It is data, checked by schemas at build.
 
 **Design system**:
-The tokens and components approved for the site, kept in the guilherr.me Design System artifact and mirrored in `app/globals.css`.
+The tokens and components approved for the site, kept in the guilherr.me Design System artifact and mirrored in code by `design/system/` (`tokens.json` is the source of the Tailwind theme).

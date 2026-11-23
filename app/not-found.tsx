@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const NotFoundPage = () => {
   return (
-    <div className="page">
+    <div className="mx-auto max-w-content px-4 py-8">
       <h1>Nothing here. I probably moved it.</h1>
       <p>
         <Link href="/">Back home</Link>

@@ -14,5 +14,6 @@
 
 - [ ] No secrets or private data anywhere in the diff
 - [ ] `GLOSSARY.md`, the docs or an ADR updated if behavior or vocabulary changed
-- [ ] Screen changes use tokens only and follow `docs/design-system.md`
+- [ ] Screen changes use tokens only and follow `design/system/DESIGN.md` (tokens changed in `tokens.json`, `pnpm design:tokens` run)
+- [ ] Screen changes were checked in the browser as `docs/visual-check.md` describes and compared with the prototype
 - [ ] A post from the AI pipeline is merged only by the owner

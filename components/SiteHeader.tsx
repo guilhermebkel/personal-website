@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const SiteHeader = () => {
   return (
-    <header className="page">
+    <header className="mx-auto max-w-content px-4 py-8">
       <nav aria-label="Main">
         <Link href="/">guilherr.me</Link>
         {" · "}

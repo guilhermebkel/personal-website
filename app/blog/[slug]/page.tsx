@@ -23,8 +23,8 @@ const PostPage = async ({ params }: PostPageProps) => {
   const { slug } = await params;
   const post = await ContentFactory.createPostService().readPost(slug);
   return (
-    <article className="page">
-      <p className="meta">{`${post.date} · ${post.readingMinutes} min read`}</p>
+    <article className="mx-auto max-w-content px-4 py-8">
+      <p className="font-mono text-caption text-text-muted">{`${post.date} · ${post.readingMinutes} min read`}</p>
       <h1>{post.title}</h1>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.body}</ReactMarkdown>
     </article>

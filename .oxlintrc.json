@@ -23,7 +23,8 @@
     "coverage/",
     "next-env.d.ts",
     "test-results/",
-    "out/"
+    "out/",
+    "components/ui/"
   ],
   "rules": {
     "constructor-super": "error",
@@ -517,10 +518,9 @@
         "patterns": [
           {
             "group": [
-              "../*",
-              "../**"
+              "@components/ui/**"
             ],
-            "message": "Import from \"@/...\" instead of a relative parent path."
+            "message": "Import the intermediate component in components/ (Button, ...), never components/ui/ directly (ADR 0004). Only the intermediates import from ui/."
           }
         ]
       }
@@ -981,6 +981,14 @@
         "typescript/switch-exhaustiveness-check": "off",
         "typescript/unbound-method": "off",
         "typescript/use-unknown-in-catch-callback-variable": "off"
+      }
+    },
+    {
+      "files": [
+        "components/Button.tsx"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
       }
     }
   ],
