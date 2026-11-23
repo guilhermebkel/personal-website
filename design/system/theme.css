@@ -1,0 +1,2 @@
+/* One file to import: the generated tokens. app/globals.css imports it after Tailwind's own layers. */
+@import "./tokens.css";

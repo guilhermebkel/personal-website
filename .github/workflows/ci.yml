@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Why: the jobs run in parallel and together run everything `pnpm check` runs; CI never uses lint-staged.
+jobs:
+  typecheck-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/cache@v4
+        with:
+          path: tsconfig.tsbuildinfo
+          key: tsbuildinfo-${{ hashFiles('pnpm-lock.yaml', 'tsconfig.json') }}
+      - run: pnpm typecheck
+      # Why: ESLint's content cache is keyed by the config, so a rule or config change re-lints every file even on a hit; Oxlint keeps no cache.
+      - uses: actions/cache@v4
+        with:
+          path: .eslintcache
+          key: eslint-${{ hashFiles('pnpm-lock.yaml', 'eslint.config.mjs', '.oxlintrc.json', 'tsconfig.json') }}
+      - run: pnpm lint
+
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm quality
+
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+
+  build-e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('pnpm-lock.yaml') }}
+      # Why: restore the browser cache and OS libs before `pnpm test:e2e`; ensure-playwright.mjs skips download when the binary exists and does not replace install-deps on a cache hit.
+      - if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: pnpm exec playwright install --with-deps chromium
+      - if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: pnpm exec playwright install-deps chromium
+      # Why: Next.js recompiles only what changed, so the key adds the sources and falls back to the last cache of this lockfile.
+      - uses: actions/cache@v4
+        with:
+          path: .next/cache
+          key: next-${{ hashFiles('pnpm-lock.yaml', 'next.config.ts', 'tsconfig.json') }}-${{ hashFiles('app/**', 'components/**', 'src/**', 'content/**') }}
+          restore-keys: next-${{ hashFiles('pnpm-lock.yaml', 'next.config.ts', 'tsconfig.json') }}-
+      - run: pnpm build
+      - run: pnpm test:e2e
