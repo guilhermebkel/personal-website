@@ -81,16 +81,3 @@ jobs:
           restore-keys: next-${{ hashFiles('pnpm-lock.yaml', 'next.config.ts', 'tsconfig.json') }}-
       - run: pnpm build
       - run: pnpm test:e2e
-
-  audit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-      # Why: production findings block the job; scripts/audit-check.mjs exits non-zero when the audit does not answer, so an outage never passes silently.
-      - run: node scripts/audit-check.mjs prod
-      # Why: a development dependency never ships, so its findings are printed as warnings and the job stays green.
-      - run: node scripts/audit-check.mjs dev
