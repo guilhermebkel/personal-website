@@ -23,35 +23,65 @@
   --animate-write: write 1s cubic-bezier(0.23, 1, 0.32, 1) both;
 
   @keyframes shake {
-    0% { transform: rotate(0); }
-    33% { transform: rotate(-30deg); }
-    66% { transform: rotate(30deg); }
-    100% { transform: rotate(0); }
+    0% {
+      transform: rotate(0);
+    }
+    33% {
+      transform: rotate(-30deg);
+    }
+    66% {
+      transform: rotate(30deg);
+    }
+    100% {
+      transform: rotate(0);
+    }
   }
 
   @keyframes quote-progress {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
   }
 
   @keyframes rise {
-    from { opacity: 0; transform: translateY(calc(var(--spacing) * 4.5)); }
-    to { opacity: 1; transform: none; }
+    from {
+      opacity: 0;
+      transform: translateY(calc(var(--spacing) * 4.5));
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 
   @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @keyframes write {
-    from { clip-path: inset(-10% 100% -10% 0); }
-    to { clip-path: inset(-10% -12% -10% 0); }
+    from {
+      clip-path: inset(-10% 100% -10% 0);
+    }
+    to {
+      clip-path: inset(-10% -12% -10% 0);
+    }
   }
 
   @keyframes draw-path {
-    from { stroke-dashoffset: 1; }
-    to { stroke-dashoffset: 0; }
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
   }
 }
 
@@ -72,7 +102,11 @@
 
 /* The soft light behind the home hero (prototype, Intro): a faint white ellipse on the right, where the logo is drawn. */
 @utility hero-glow {
-  background: radial-gradient(ellipse 60% 70% at 75% 45%, color-mix(in srgb, var(--color-text) 3.5%, transparent), transparent 70%);
+  background: radial-gradient(
+    ellipse 60% 70% at 75% 45%,
+    color-mix(in srgb, var(--color-text) 3.5%, transparent),
+    transparent 70%
+  );
 }
 
 @layer base {

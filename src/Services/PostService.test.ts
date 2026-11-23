@@ -54,7 +54,13 @@ describe("PostService.readPost()", () => {
 
     const post = await new PostService(directory).readPost("hello");
 
-    expect(post).toMatchObject({ slug: "hello", title: "Hello", date: "2026-03-03", tags: ["notes"], readingMinutes: 1 });
+    expect(post).toMatchObject({
+      slug: "hello",
+      title: "Hello",
+      date: "2026-03-03",
+      tags: ["notes"],
+      readingMinutes: 1,
+    });
     expect(post.body).toContain("Body of Hello.");
   });
 });

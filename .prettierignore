@@ -1,0 +1,8 @@
+out
+.next
+next-env.d.ts
+node_modules
+pnpm-lock.yaml
+design/system/tokens.css
+test-results
+public

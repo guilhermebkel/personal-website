@@ -29,7 +29,9 @@ export const NavbarMenu = () => {
               onClick={closeMenu}
               className="flex items-baseline gap-4 py-3.5 text-text-inverted no-underline"
             >
-              <span className="font-mono text-caption tracking-wide text-text-disabled">{String(index + 1).padStart(NUMBER_WIDTH, "0")}</span>
+              <span className="font-mono text-caption tracking-wide text-text-disabled">
+                {String(index + 1).padStart(NUMBER_WIDTH, "0")}
+              </span>
               <span className="text-menu-item font-medium tracking-title">{item.label}</span>
             </NextLink>
           </li>

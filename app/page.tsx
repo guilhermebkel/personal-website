@@ -27,16 +27,30 @@ const BUTTONS_DELAY = 1150;
 const SOCIAL_DELAY = 1300;
 
 const Hero = () => (
-  <section className={`hero-glow relative flex flex-col gap-16 pt-16 pb-24 ${PAGE_X}`}>
+  <section className={`relative flex flex-col gap-16 pt-16 pb-24 hero-glow ${PAGE_X}`}>
     <div className="flex items-start justify-between gap-10">
       <div className="max-w-155">
         <Reveal>
           <p className="m-0 text-small tracking-eyebrow text-text-muted uppercase">Introduction</p>
         </Reveal>
         <h1 className="m-0 mt-4 font-signature text-hero font-medium max-md:text-hero-sm">
-          <span style={{ animationDelay: `${FIRST_NAME_DELAY}ms` }} className="block w-max animate-write motion-reduce:animate-none">Guilherme</span>
-          <span style={{ animationDelay: `${LAST_NAME_DELAY}ms` }} className="block w-max ml-7 animate-write motion-reduce:animate-none max-md:ml-0">
-            <Spotlight delay={MARKER_DELAY} width="calc(100% + var(--spacing) * 7)" left="calc(var(--spacing) * -3.5)" height="46%" bottom="calc(var(--spacing) * 0.5)">
+          <span
+            style={{ animationDelay: `${FIRST_NAME_DELAY}ms` }}
+            className="block w-max animate-write motion-reduce:animate-none"
+          >
+            Guilherme
+          </span>
+          <span
+            style={{ animationDelay: `${LAST_NAME_DELAY}ms` }}
+            className="ml-7 block w-max animate-write motion-reduce:animate-none max-md:ml-0"
+          >
+            <Spotlight
+              delay={MARKER_DELAY}
+              width="calc(100% + var(--spacing) * 7)"
+              left="calc(var(--spacing) * -3.5)"
+              height="46%"
+              bottom="calc(var(--spacing) * 0.5)"
+            >
               Mota
             </Spotlight>
           </span>
@@ -50,7 +64,9 @@ const Hero = () => (
           <Button asChild variant="primary">
             <a href="#projects">See projects</a>
           </Button>
-          <Link href="/blog/" className="text-body text-text no-underline">Read the posts</Link>
+          <Link href="/blog/" className="text-body text-text no-underline">
+            Read the posts
+          </Link>
         </Reveal>
       </div>
       <HeroLogoIcon className="mr-24 hidden h-auto w-100 flex-none lg:block" />
@@ -78,14 +94,14 @@ const HomePage = async () => {
         <SectionTitle
           eyebrow="02 — Posts"
           title="What I've been writing"
-          action={(
+          action={
             <Button asChild variant="primary" className="h-12 max-md:hidden">
               <Link href="/blog/">
                 See all posts
                 <Icon name="external" />
               </Link>
             </Button>
-          )}
+          }
         />
         <div className="mt-10 flex flex-col border-t-2 border-sunken">
           {posts.map((post, index) => (

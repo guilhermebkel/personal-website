@@ -11,6 +11,8 @@ const VARIANT_TO_CLASS = {
 
 export const Tag = ({ label, variant = "post" }: TagProps) => {
   return (
-    <span className={`inline-flex rounded-pill border-2 px-3 py-1 text-caption ${VARIANT_TO_CLASS[variant]}`}>{label}</span>
+    <span className={`inline-flex rounded-pill border-2 px-3 py-1 text-caption ${VARIANT_TO_CLASS[variant]}`}>
+      {label}
+    </span>
   );
 };

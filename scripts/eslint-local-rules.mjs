@@ -22,7 +22,10 @@ const NAME_PARTS = /\.(?:test|d)$/;
 const fileSuffix = {
   meta: {
     type: "suggestion",
-    messages: { missing: "\"{{file}}\" is in src/{{folder}}/, so its name must end with \"{{suffix}}\" (before the extension, and before \".test\")." },
+    messages: {
+      missing:
+        '"{{file}}" is in src/{{folder}}/, so its name must end with "{{suffix}}" (before the extension, and before ".test").',
+    },
   },
   create(context) {
     const match = SOURCE_FOLDER.exec(context.filename.replaceAll("\\", "/"));
@@ -66,10 +69,11 @@ const describeTarget = {
   meta: {
     type: "suggestion",
     messages: {
-      format: "Name the outer describe \"{{className}}.<method>()\": the class this file tests and the public method the tests go through.",
-      otherClass: "This file tests {{className}}; the outer describe names \"{{named}}\".",
-      notPublic: "{{className}} has no public method \"{{method}}\" in {{source}}; test through a public method.",
-      outside: "Put this test inside a describe named \"{{className}}.<method>()\".",
+      format:
+        'Name the outer describe "{{className}}.<method>()": the class this file tests and the public method the tests go through.',
+      otherClass: 'This file tests {{className}}; the outer describe names "{{named}}".',
+      notPublic: '{{className}} has no public method "{{method}}" in {{source}}; test through a public method.',
+      outside: 'Put this test inside a describe named "{{className}}.<method>()".',
     },
   },
   create(context) {
@@ -94,7 +98,11 @@ const describeTarget = {
         return;
       }
       if (!listMethodsOfSource().has(method)) {
-        context.report({ node: title, messageId: "notPublic", data: { className, method, source: `${className}${SOURCE_EXTENSION}` } });
+        context.report({
+          node: title,
+          messageId: "notPublic",
+          data: { className, method, source: `${className}${SOURCE_EXTENSION}` },
+        });
       }
     };
     const reportOutside = (call) => {
@@ -124,11 +132,41 @@ const SPACING_SIDES = ["", "x", "y", "t", "r", "b", "l", "s", "e"];
 const CORNER_SIDES = ["", "t", "r", "b", "l", "s", "e", "tl", "tr", "br", "bl", "ss", "se", "es", "ee"];
 const SIZE_PREFIXES = new Set([
   ...["p", "m"].flatMap((base) => SPACING_SIDES.map((side) => `${base}${side}`)),
-  ...["border", "scroll-m", "scroll-p"].flatMap((base) => SPACING_SIDES.map((side) => (side === "" ? base : `${base}-${side}`))),
+  ...["border", "scroll-m", "scroll-p"].flatMap((base) =>
+    SPACING_SIDES.map((side) => (side === "" ? base : `${base}-${side}`)),
+  ),
   ...CORNER_SIDES.map((corner) => (corner === "" ? "rounded" : `rounded-${corner}`)),
-  "gap", "gap-x", "gap-y", "space-x", "space-y", "inset", "inset-x", "inset-y", "top", "right", "bottom", "left", "start", "end",
-  "size", "w", "h", "min-w", "min-h", "max-w", "max-h", "text", "leading", "tracking", "outline", "outline-offset",
-  "underline-offset", "decoration", "basis", "translate-x", "translate-y",
+  "gap",
+  "gap-x",
+  "gap-y",
+  "space-x",
+  "space-y",
+  "inset",
+  "inset-x",
+  "inset-y",
+  "top",
+  "right",
+  "bottom",
+  "left",
+  "start",
+  "end",
+  "size",
+  "w",
+  "h",
+  "min-w",
+  "min-h",
+  "max-w",
+  "max-h",
+  "text",
+  "leading",
+  "tracking",
+  "outline",
+  "outline-offset",
+  "underline-offset",
+  "decoration",
+  "basis",
+  "translate-x",
+  "translate-y",
 ]);
 
 const hasRawColor = (value) => {
@@ -186,9 +224,12 @@ const tokensOnly = {
   meta: {
     type: "problem",
     messages: {
-      rawColor: "`{{token}}` writes a color in the class. Use a color token (add it to design/system/tokens.json and run `pnpm design:tokens` if it is missing).",
-      oneOffLength: "`{{token}}` writes a size in the class. Use the spacing scale or a token (add it to design/system/tokens.json and run `pnpm design:tokens` if it is missing).",
-      oneOffBreakpoint: "`{{token}}` writes a breakpoint in the class. Use a Tailwind breakpoint (`sm:`, `md:`, `max-md:`), never a width in the class.",
+      rawColor:
+        "`{{token}}` writes a color in the class. Use a color token (add it to design/system/tokens.json and run `pnpm design:tokens` if it is missing).",
+      oneOffLength:
+        "`{{token}}` writes a size in the class. Use the spacing scale or a token (add it to design/system/tokens.json and run `pnpm design:tokens` if it is missing).",
+      oneOffBreakpoint:
+        "`{{token}}` writes a breakpoint in the class. Use a Tailwind breakpoint (`sm:`, `md:`, `max-md:`), never a width in the class.",
     },
   },
   create(context) {
@@ -219,7 +260,8 @@ const noInlineSvg = {
   meta: {
     type: "problem",
     messages: {
-      inlineSvg: "An inline <svg> belongs only in components/Icons/. For a standard icon use the icon library (lucide-react, through <Icon name=\"...\" />); for an icon of our own add a file to components/Icons/ and say in it why the library has no equal.",
+      inlineSvg:
+        'An inline <svg> belongs only in components/Icons/. For a standard icon use the icon library (lucide-react, through <Icon name="..." />); for an icon of our own add a file to components/Icons/ and say in it why the library has no equal.',
     },
   },
   create(context) {
@@ -264,7 +306,9 @@ const e2eTag = {
     return {
       "CallExpression[callee.type='Identifier'][callee.name='test']"(node) {
         const options = node.arguments.find((argument) => argument.type === "ObjectExpression");
-        const tagProperty = options?.properties.find((property) => property.type === "Property" && property.key.name === "tag");
+        const tagProperty = options?.properties.find(
+          (property) => property.type === "Property" && property.key.name === "tag",
+        );
         if (tagProperty === undefined) {
           context.report({ node, messageId: "missing" });
           return;
@@ -280,11 +324,16 @@ const e2eTag = {
 const noFixedWait = {
   meta: {
     type: "problem",
-    messages: { fixed: "Wait for the condition, not for time: use an expect that retries (toBeVisible, expect.poll) or a fake timer." },
+    messages: {
+      fixed:
+        "Wait for the condition, not for time: use an expect that retries (toBeVisible, expect.poll) or a fake timer.",
+    },
   },
   create(context) {
     return {
-      "CallExpression[callee.name=/^(waitForTimeout|setTimeout)$/], CallExpression[callee.property.name=/^(waitForTimeout|setTimeout)$/]"(node) {
+      "CallExpression[callee.name=/^(waitForTimeout|setTimeout)$/], CallExpression[callee.property.name=/^(waitForTimeout|setTimeout)$/]"(
+        node,
+      ) {
         context.report({ node, messageId: "fixed" });
       },
     };
@@ -294,7 +343,10 @@ const noFixedWait = {
 const noTestRetries = {
   meta: {
     type: "problem",
-    messages: { retries: "Do not retry tests: a test that passes on a rerun hides a flaky test. Fix its cause and keep `retries` at 0." },
+    messages: {
+      retries:
+        "Do not retry tests: a test that passes on a rerun hides a flaky test. Fix its cause and keep `retries` at 0.",
+    },
   },
   create(context) {
     return {
@@ -353,8 +405,8 @@ const arrowFunction = {
     type: "suggestion",
     fixable: "code",
     messages: {
-      declaration: "Use an arrow function instead of the function declaration \"{{ name }}\".",
-      expression: "Use an arrow function instead of the function expression assigned to \"{{ name }}\".",
+      declaration: 'Use an arrow function instead of the function declaration "{{ name }}".',
+      expression: 'Use an arrow function instead of the function expression assigned to "{{ name }}".',
     },
   },
   create(context) {
@@ -375,7 +427,10 @@ const arrowFunction = {
         return;
       }
       const name = id?.name ?? "default";
-      const arrow = buildArrow(node, id ? id.range[1] : sourceCode.getFirstToken(node, { filter: (token) => token.value === "function" }).range[1]);
+      const arrow = buildArrow(
+        node,
+        id ? id.range[1] : sourceCode.getFirstToken(node, { filter: (token) => token.value === "function" }).range[1],
+      );
       const isDefaultExport = node.parent.type === "ExportDefaultDeclaration";
       const fix = (fixer) => {
         if (isDefaultExport && id) {
@@ -406,7 +461,8 @@ const arrowFunction = {
 
     return {
       "FunctionDeclaration": reportDeclaration,
-      "VariableDeclarator[id.type='Identifier'][init.type='FunctionExpression']": (node) => reportExpression(node, node.init),
+      "VariableDeclarator[id.type='Identifier'][init.type='FunctionExpression']": (node) =>
+        reportExpression(node, node.init),
     };
   },
 };

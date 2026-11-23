@@ -16,7 +16,10 @@ export const ContactLink = ({ contact }: { contact: Contact }) => {
     >
       <BrandIcon name={contact.name} className="size-6" />
       <span className="flex-1">{contact.label}</span>
-      <Icon name="external" className="size-4.5 text-text-soft transition-transform duration-250 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      <Icon
+        name="external"
+        className="size-4.5 text-text-soft transition-transform duration-250 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+      />
     </a>
   );
 };

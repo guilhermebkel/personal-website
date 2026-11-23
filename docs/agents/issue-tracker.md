@@ -8,11 +8,11 @@ In Claude Code sessions `gh issue create` and some `gh issue` commands fail with
 
 Each type has a form in `.github/ISSUE_TEMPLATE/` (blank issues are off). The forms only show up in the web UI; when you create an issue from the CLI, copy the same headings.
 
-| Type | Label | Use it for |
-| --- | --- | --- |
-| Task | `task` | A piece of work written as a spec. The default. One task is one pull request. |
-| Bug | `bug` | Something that does not work as the product or the docs say. Say the environment (production, preview or local), the page, the width and the browser, and attach a screenshot. |
-| Idea | `enhancement` | Something to decide before it becomes a task. Triage rewrites it as a task or closes it. |
+| Type | Label         | Use it for                                                                                                                                                                     |
+| ---- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Task | `task`        | A piece of work written as a spec. The default. One task is one pull request.                                                                                                  |
+| Bug  | `bug`         | Something that does not work as the product or the docs say. Say the environment (production, preview or local), the page, the width and the browser, and attach a screenshot. |
+| Idea | `enhancement` | Something to decide before it becomes a task. Triage rewrites it as a task or closes it.                                                                                       |
 
 Area labels group tasks that touch the same part of the code: `area:ui`, `area:content`, `area:design-system`, `area:harness`, `area:ops`. Triage sets them.
 

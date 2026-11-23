@@ -9,7 +9,12 @@ export const QuoteCarouselSlides = () => {
   return (
     <div className="mt-7 grid w-full">
       {quotes.map((quote, index) => (
-        <QuoteCarouselSlide key={quote.lines.join(" ")} quote={quote} isActive={index === active} isBefore={index < active} />
+        <QuoteCarouselSlide
+          key={quote.lines.join(" ")}
+          quote={quote}
+          isActive={index === active}
+          isBefore={index < active}
+        />
       ))}
     </div>
   );

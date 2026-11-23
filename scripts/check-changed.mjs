@@ -6,7 +6,14 @@ const BASE_REF = "origin/main";
 
 // Why: a change here can break any file, so the changed-files run proves nothing and the full check runs.
 const SHARED_ROOT_PREFIXES = ["tsconfig", "lint-staged.config", "scripts/", "src/Protocols/", ".github/"];
-const SHARED_ROOT_FILES = new Set(["package.json", "pnpm-lock.yaml", "eslint.config.mjs", ".oxlintrc.json", "vitest.config.mjs", "playwright.config.ts"]);
+const SHARED_ROOT_FILES = new Set([
+  "package.json",
+  "pnpm-lock.yaml",
+  "eslint.config.mjs",
+  ".oxlintrc.json",
+  "vitest.config.mjs",
+  "playwright.config.ts",
+]);
 
 export const isSharedRoot = (path) => {
   return SHARED_ROOT_FILES.has(path) || SHARED_ROOT_PREFIXES.some((prefix) => path.startsWith(prefix));
@@ -76,6 +83,11 @@ const runChecks = () => {
   if (changedPaths.length === 0) {
     process.stdout.write("Nothing changed since the base; nothing to check.\n");
     return 0;
+  }
+  // Why: the format check runs before lint-staged, so a file that is out of format fails here and is never rewritten by lint-staged's `prettier --write`.
+  const formatStatus = run("pnpm", ["format:check"]);
+  if (formatStatus !== 0) {
+    return formatStatus;
   }
   return run("pnpm", ["lint-staged", "--diff", plan.base, "--concurrent", "false"]);
 };

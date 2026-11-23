@@ -14,10 +14,7 @@ export const ProjectCarouselProgress = () => {
   return (
     <div aria-hidden="true" className={`mt-10 ${PAGE_X}`}>
       <div className="h-0.5 w-60 rounded-sm bg-sunken">
-        <div
-          style={{ transform: `translateX(${progress * PERCENT}%)` }}
-          className="h-0.5 w-1/2 rounded-sm bg-purple"
-        />
+        <div style={{ transform: `translateX(${progress * PERCENT}%)` }} className="h-0.5 w-1/2 rounded-sm bg-purple" />
       </div>
     </div>
   );

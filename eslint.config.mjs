@@ -9,7 +9,18 @@ const TEST_FILES = ["src/**/*.test.ts", "scripts/**/*.test.mjs", "*.test.mjs"];
 const COMPONENT_FILES = ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "hooks/**/*.{ts,tsx}", "styles/**/*.ts"];
 
 export default tseslint.config(
-  { ignores: ["dist/", ".next/", "node_modules/", "coverage/", "next-env.d.ts", "test-results/", "out/", "components/ui/"] },
+  {
+    ignores: [
+      "dist/",
+      ".next/",
+      "node_modules/",
+      "coverage/",
+      "next-env.d.ts",
+      "test-results/",
+      "out/",
+      "components/ui/",
+    ],
+  },
   {
     files: ["**/*.{ts,tsx,mjs,js}"],
     plugins: { "@typescript-eslint": tseslint.plugin },
@@ -33,35 +44,81 @@ export default tseslint.config(
         { selector: "typeLike", format: ["PascalCase"] },
         { selector: "variable", modifiers: ["const", "global"], format: ["UPPER_CASE", "camelCase"] },
         // Why: a schema is named after what it describes, in PascalCase with the Schema suffix (ChatRequestSchema), like the type it is checked against.
-        { selector: ["variable", "classProperty"], modifiers: ["const"], format: ["PascalCase"], filter: { regex: "^(?!appSchema$).*Schema$", match: true } },
+        {
+          selector: ["variable", "classProperty"],
+          modifiers: ["const"],
+          format: ["PascalCase"],
+          filter: { regex: "^(?!appSchema$).*Schema$", match: true },
+        },
         // Why: a function that builds a schema (`buildSkillNameSchema(names)`) keeps its camelCase name; only the schema constants are PascalCase.
-        { selector: "variable", modifiers: ["const"], types: ["function"], format: ["camelCase"], filter: { regex: "Schema$", match: true } },
-        { selector: "variable", modifiers: ["const", "global"], types: ["boolean", "number", "string", "array"], format: ["UPPER_CASE"] },
+        {
+          selector: "variable",
+          modifiers: ["const"],
+          types: ["function"],
+          format: ["camelCase"],
+          filter: { regex: "Schema$", match: true },
+        },
+        {
+          selector: "variable",
+          modifiers: ["const", "global"],
+          types: ["boolean", "number", "string", "array"],
+          format: ["UPPER_CASE"],
+        },
         { selector: ["variable", "parameter"], types: ["boolean"], format: ["PascalCase"], prefix: BOOLEAN_PREFIXES },
         // Why: object literal keys are checked through the type they satisfy; library option objects (`{ recursive: true }`) keep the library's names.
-        { selector: ["typeProperty", "classProperty", "parameterProperty", "accessor"], types: ["boolean"], format: ["PascalCase"], prefix: BOOLEAN_PREFIXES },
+        {
+          selector: ["typeProperty", "classProperty", "parameterProperty", "accessor"],
+          types: ["boolean"],
+          format: ["PascalCase"],
+          prefix: BOOLEAN_PREFIXES,
+        },
         // Why: keys of external formats (agent JSON, CLI flags, snake_case signal ids) keep their spelling.
-        { selector: ["objectLiteralProperty", "objectLiteralMethod", "typeProperty"], modifiers: ["requiresQuotes"], format: null },
-        { selector: ["objectLiteralProperty", "objectLiteralMethod", "typeProperty"], format: null, filter: { regex: "^[a-z]+(_[a-z]+)+$", match: true } },
+        {
+          selector: ["objectLiteralProperty", "objectLiteralMethod", "typeProperty"],
+          modifiers: ["requiresQuotes"],
+          format: null,
+        },
+        {
+          selector: ["objectLiteralProperty", "objectLiteralMethod", "typeProperty"],
+          format: null,
+          filter: { regex: "^[a-z]+(_[a-z]+)+$", match: true },
+        },
         // Why: `retry` (client request body) and `ok` (tool failure result) are wire-format names the client and the model already read.
-        { selector: "typeProperty", types: ["boolean"], format: null, filter: { regex: "^(ok|retry|multiple|required|isRequired)$", match: true } },
+        {
+          selector: "typeProperty",
+          types: ["boolean"],
+          format: null,
+          filter: { regex: "^(ok|retry|multiple|required|isRequired)$", match: true },
+        },
         // Why: environment variable names keep the operating system's UPPER_CASE spelling.
-        { selector: ["objectLiteralProperty", "typeProperty"], format: null, filter: { regex: "^[A-Z][A-Z0-9_]+$", match: true } },
+        {
+          selector: ["objectLiteralProperty", "typeProperty"],
+          format: null,
+          filter: { regex: "^[A-Z][A-Z0-9_]+$", match: true },
+        },
         { selector: "classProperty", modifiers: ["static", "readonly"], format: ["UPPER_CASE", "camelCase"] },
         // Why: a static constant of a primitive type is spelled like a module-level one.
-        { selector: "classProperty", modifiers: ["static", "readonly"], types: ["boolean", "number", "string", "array"], format: ["UPPER_CASE"] },
+        {
+          selector: "classProperty",
+          modifiers: ["static", "readonly"],
+          types: ["boolean", "number", "string", "array"],
+          format: ["UPPER_CASE"],
+        },
         // Why: esbuild's `define` injects these build-time constants.
         { selector: "variable", format: null, filter: { regex: "^__[A-Z_]+__$", match: true } },
       ],
       "@typescript-eslint/no-unnecessary-condition": "error",
       "@typescript-eslint/prefer-optional-chain": "error",
-      "no-restricted-syntax": ["error", {
-        selector: [
-          "CallExpression > CallExpression.arguments:matches([arguments.length>=3], :has(> CallExpression.arguments))",
-          "CallExpression > SpreadElement > CallExpression:matches([arguments.length>=3], :has(> CallExpression.arguments))",
-        ].join(", "),
-        message: "Store this call's result in a named variable before passing it to another call.",
-      }],
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector: [
+            "CallExpression > CallExpression.arguments:matches([arguments.length>=3], :has(> CallExpression.arguments))",
+            "CallExpression > SpreadElement > CallExpression:matches([arguments.length>=3], :has(> CallExpression.arguments))",
+          ].join(", "),
+          message: "Store this call's result in a named variable before passing it to another call.",
+        },
+      ],
     },
   },
   {

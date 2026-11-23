@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": [
-      "ES2023",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
@@ -19,30 +15,18 @@
     "allowJs": false,
     "noEmit": true,
     "allowImportingTsExtensions": true,
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@components/*": [
-        "./components/*"
-      ],
-      "@hooks/*": [
-        "./hooks/*"
-      ],
-      "@styles/*": [
-        "./styles/*"
-      ],
-      "@app/*": [
-        "./app/*"
-      ]
+      "@/*": ["./src/*"],
+      "@components/*": ["./components/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@styles/*": ["./styles/*"],
+      "@app/*": ["./app/*"]
     }
   },
   "include": [
@@ -59,7 +43,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

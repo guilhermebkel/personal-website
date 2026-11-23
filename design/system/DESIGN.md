@@ -4,16 +4,16 @@ Tokens and components of the graphite look: one dark theme, one purple, Ubuntu. 
 
 ## Where things are
 
-| What | Where |
-| --- | --- |
-| Token source (names, values, a note of use per token) | `design/system/tokens.json` |
-| Generated Tailwind theme | `design/system/tokens.css` (do not edit; run the generator) |
-| One file to import | `design/system/theme.css` |
-| Fonts (Ubuntu, Geist Mono, Caveat) | `@fontsource` packages, imported in `app/layout.tsx` |
-| Components (intermediates) | `components/` |
-| Library components (shadcn/ui, untouched) | `components/ui/` |
-| Variant classes of a control | `styles/<Name>Classes.ts` (`ButtonClasses.ts`) |
-| Class merging | `src/Utils/ClassNameUtil.ts` |
+| What                                                  | Where                                                       |
+| ----------------------------------------------------- | ----------------------------------------------------------- |
+| Token source (names, values, a note of use per token) | `design/system/tokens.json`                                 |
+| Generated Tailwind theme                              | `design/system/tokens.css` (do not edit; run the generator) |
+| One file to import                                    | `design/system/theme.css`                                   |
+| Fonts (Ubuntu, Geist Mono, Caveat)                    | `@fontsource` packages, imported in `app/layout.tsx`        |
+| Components (intermediates)                            | `components/`                                               |
+| Library components (shadcn/ui, untouched)             | `components/ui/`                                            |
+| Variant classes of a control                          | `styles/<Name>Classes.ts` (`ButtonClasses.ts`)              |
+| Class merging                                         | `src/Utils/ClassNameUtil.ts`                                |
 
 ## Regenerate the tokens
 

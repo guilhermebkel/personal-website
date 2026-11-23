@@ -1,8 +1,23 @@
-import { ArrowLeft, ArrowRight, ArrowUp, ArrowUpRight, ChevronDown, LayoutGrid, List, Mail, Menu, MessageCircle, Quote, X, type LucideProps } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  ArrowUpRight,
+  ChevronDown,
+  LayoutGrid,
+  List,
+  Mail,
+  Menu,
+  MessageCircle,
+  Quote,
+  X,
+  type LucideProps,
+} from "lucide-react";
 import type { ComponentType } from "react";
 import { ClassNameUtil } from "@/Utils/ClassNameUtil.ts";
 
-export type IconName = "external" | "mail" | "menu" | "close" | "quote" | "message" | "up" | "left" | "right" | "chevron" | "grid" | "list";
+export type IconName =
+  "external" | "mail" | "menu" | "close" | "quote" | "message" | "up" | "left" | "right" | "chevron" | "grid" | "list";
 
 const STROKE_WIDTH = 1.75;
 
@@ -29,5 +44,11 @@ type IconProps = {
 
 export const Icon = ({ name, className }: IconProps) => {
   const Component = ICON_NAME_TO_COMPONENT[name];
-  return <Component className={ClassNameUtil.merge("size-4 shrink-0", className)} strokeWidth={STROKE_WIDTH} aria-hidden="true" />;
+  return (
+    <Component
+      className={ClassNameUtil.merge("size-4 shrink-0", className)}
+      strokeWidth={STROKE_WIDTH}
+      aria-hidden="true"
+    />
+  );
 };

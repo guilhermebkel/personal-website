@@ -16,7 +16,9 @@ const NotFoundPage = () => {
         <p className="m-0 font-mono text-small tracking-wide text-purple-light">404</p>
       </Reveal>
       <Reveal delay={MotionUtil.delayFor(1)}>
-        <h1 className="m-0 mt-4 max-w-225 text-section font-medium tracking-title max-md:text-heading">Nothing here. I probably moved it.</h1>
+        <h1 className="m-0 mt-4 max-w-225 text-section font-medium tracking-title max-md:text-heading">
+          Nothing here. I probably moved it.
+        </h1>
       </Reveal>
       <Reveal delay={MotionUtil.delayFor(TEXT_STEP)}>
         <p className="m-0 mt-5 max-w-130 text-prose leading-7 text-text-soft">

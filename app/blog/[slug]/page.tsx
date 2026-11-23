@@ -41,7 +41,10 @@ const PostPage = async ({ params }: PostPageProps) => {
   return (
     <article className={`pt-12 pb-24 ${PAGE_X}`}>
       <Reveal>
-        <Link href="/blog/" className="inline-flex items-center gap-2 font-mono text-small text-text-soft no-underline hover:text-text">
+        <Link
+          href="/blog/"
+          className="inline-flex items-center gap-2 font-mono text-small text-text-soft no-underline hover:text-text"
+        >
           <Icon name="left" />
           All posts
         </Link>

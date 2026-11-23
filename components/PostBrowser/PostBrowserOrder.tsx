@@ -16,7 +16,7 @@ export const PostBrowserOrder = () => {
         value={order}
         onChange={onChange}
         className={[
-          "h-11 cursor-pointer appearance-none font-sans rounded-pill border-2 border-border-strong bg-control py-0 pr-11 pl-5",
+          "h-11 cursor-pointer appearance-none rounded-pill border-2 border-border-strong bg-control py-0 pr-11 pl-5 font-sans",
           "text-body text-text transition-colors duration-250 md:hover:border-purple-light",
         ].join(" ")}
       >

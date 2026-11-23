@@ -12,6 +12,9 @@ describe("HeadingSlugUtil.listH2()", () => {
   it("lists only the h2 headings, in order", () => {
     const markdown = "# Title\n\n## One\n\ntext\n\n### Deeper\n\n## Two";
 
-    expect(HeadingSlugUtil.listH2(markdown)).toStrictEqual([{ id: "one", text: "One" }, { id: "two", text: "Two" }]);
+    expect(HeadingSlugUtil.listH2(markdown)).toStrictEqual([
+      { id: "one", text: "One" },
+      { id: "two", text: "Two" },
+    ]);
   });
 });

@@ -11,12 +11,15 @@ export const useInView = <T extends HTMLElement>(threshold = IN_VIEW_THRESHOLD) 
     if (element === null) {
       return undefined;
     }
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry?.isIntersecting) {
-        setIsVisible(true);
-        observer.disconnect();
-      }
-    }, { threshold });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold },
+    );
     observer.observe(element);
     return () => {
       observer.disconnect();

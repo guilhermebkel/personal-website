@@ -12,7 +12,11 @@ export class QuoteUtil {
       highlights: ["and keep going deep", "to the abstractions."],
     },
     {
-      lines: ["Try not to focus on learning new technologies,", "but improving your learning process", "for every single new technology you study."],
+      lines: [
+        "Try not to focus on learning new technologies,",
+        "but improving your learning process",
+        "for every single new technology you study.",
+      ],
       highlights: ["but improving your learning process"],
     },
     {

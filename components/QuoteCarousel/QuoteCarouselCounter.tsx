@@ -27,7 +27,7 @@ export const QuoteCarouselCounter = ({ index }: { index: number }) => {
           onAnimationEnd={next}
           className={[
             "block h-0.5 origin-left bg-purple",
-            isActive ? "animate-quote-progress motion-reduce:animate-none motion-reduce:scale-x-100" : "scale-x-0",
+            isActive ? "animate-quote-progress motion-reduce:scale-x-100 motion-reduce:animate-none" : "scale-x-0",
           ].join(" ")}
         />
       </span>
