@@ -27,7 +27,7 @@ export const captureBoard = async ({ browser, board, outputPath = captureFileNam
   return outputPath;
 };
 
-const main = async () => {
+const runPrototypeShots = async () => {
   const canvas = JSON.parse(readFileSync(CANVAS_FILE, "utf8"));
   const boards = loadBoards(canvas);
   const requested = process.argv.slice(FIRST_ARG_INDEX);
@@ -51,5 +51,5 @@ const main = async () => {
 };
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  process.exit(await main());
+  process.exit(await runPrototypeShots());
 }

@@ -21,7 +21,7 @@ const FROZEN_MOTION_CSS = "*,*::before,*::after{transition:none!important;animat
 // Why: the browser resolves a screenshot path from the render file's folder (test-results/visual-renders/), so the output is one level up.
 const OUTPUT_DIR = "../visual";
 
-const nextPaint = () =>
+const waitForPaint = () =>
   new Promise<void>((resolve) => {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -51,7 +51,7 @@ const waitForTarget = async (container: HTMLElement, target: string) => {
     if (found !== null) {
       return found;
     }
-    await nextPaint();
+    await waitForPaint();
   }
   return null;
 };
@@ -64,18 +64,18 @@ export const captureStates = async ({ name, element, target, states }: CaptureOp
     if (targetElement === null) {
       throw new Error(`No element matches "${target}" in the render of ${name}.`);
     }
-    // Why: the pointer goes back to the body first, so a hover from the previous state does not stay on.
+    // Why: the pointer goes back to the body first, so a hoverTarget from the previous state does not stay on.
     await userEvent.hover(document.body);
-    await nextPaint();
+    await waitForPaint();
     await state.act?.(targetElement);
-    await nextPaint();
+    await waitForPaint();
     await page.screenshot({ path: `${OUTPUT_DIR}/${name}-${state.name}.png` });
   }
   root.unmount();
   container.remove();
 };
 
-export const hover = async (target: HTMLElement) => {
+export const hoverTarget = async (target: HTMLElement) => {
   await userEvent.hover(target);
 };
 

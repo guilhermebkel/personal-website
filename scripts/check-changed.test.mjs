@@ -1,15 +1,15 @@
 import { describe, it, expect } from "vitest";
-import { isSharedRoot, planCheck } from "./check-changed.mjs";
+import { isSharedRoot, buildCheckPlan } from "./check-changed.mjs";
 
-describe("planCheck()", () => {
+describe("buildCheckPlan()", () => {
   it("checks only the changed files when nothing shared changed", () => {
-    expect(planCheck({ base: "abc", changedPaths: ["src/Utils/TimeUtil.ts", "components/SiteNav.tsx"] })).toStrictEqual(
-      { kind: "changed", base: "abc" },
-    );
+    expect(
+      buildCheckPlan({ base: "abc", changedPaths: ["src/Utils/TimeUtil.ts", "components/SiteNav.tsx"] }),
+    ).toStrictEqual({ kind: "changed", base: "abc" });
   });
 
   it("runs the full check and says why when the base cannot be resolved", () => {
-    expect(planCheck({ base: null, changedPaths: [] })).toStrictEqual({
+    expect(buildCheckPlan({ base: null, changedPaths: [] })).toStrictEqual({
       kind: "full",
       reason: "origin/main could not be resolved",
     });
@@ -28,7 +28,7 @@ describe("planCheck()", () => {
     "src/Protocols/PostProtocol.ts",
     ".github/workflows/ci.yml",
   ])("runs the full check when %s changed", (path) => {
-    expect(planCheck({ base: "abc", changedPaths: ["src/Utils/TimeUtil.ts", path] })).toStrictEqual({
+    expect(buildCheckPlan({ base: "abc", changedPaths: ["src/Utils/TimeUtil.ts", path] })).toStrictEqual({
       kind: "full",
       reason: `${path} is a shared root`,
     });

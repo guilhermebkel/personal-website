@@ -22,6 +22,7 @@ const MISSING_SUFFIX = "missing";
 // Why: the layer rule reads the file's place in the repository, so each case names a file path under the layer it tests.
 const LAYER_IMPORT_FORBIDDEN = "forbidden";
 const UTIL_FILE = "src/Utils/TimeUtil.ts";
+const PROTOCOL_FILE = "src/Protocols/PostProtocol.ts";
 const CLASS_FILE = "src/Utils/ClassNameUtil.ts";
 const SERVICE_FILE = "src/Services/PostService.ts";
 const COMPONENT_FILE = "components/PostRow.tsx";
@@ -66,7 +67,7 @@ ruleTester.run("layer-imports", localRules.rules["layer-imports"], {
     { name: "a Util imports a Service", filename: UTIL_FILE, code: SERVICE_IMPORT, errors: FORBIDDEN },
     {
       name: "a Protocol imports a Schema",
-      filename: "src/Protocols/PostProtocol.ts",
+      filename: PROTOCOL_FILE,
       code: 'import { PostSchema } from "@/Schemas/PostSchema.ts";',
       errors: FORBIDDEN,
     },
@@ -118,6 +119,113 @@ ruleTester.run("class-matches-file", localRules.rules["class-matches-file"], {
       name: "two classes in one file",
       filename: CLASS_FILE,
       code: "export class ClassNameUtil {}\nclass Helper {}",
+      errors: [{ messageId: "second" }],
+    },
+  ],
+});
+
+ruleTester.run("verb-function-name", localRules.rules["verb-function-name"], {
+  valid: [
+    { name: "a named verb", filename: UTIL_FILE, code: "export const listPosts = () => [];" },
+    { name: "a component", filename: COMPONENT_FILE, code: "export const PostRow = () => null;" },
+    { name: "a hook", filename: "hooks/useInView.ts", code: "export const useInView = () => null;" },
+    { name: "a function declaration with a verb", filename: UTIL_FILE, code: "function buildPaths() {}" },
+  ],
+  invalid: [
+    { name: "a noun", filename: UTIL_FILE, code: "export const posts = () => [];", errors: [{ messageId: "noVerb" }] },
+    {
+      name: "a generic name",
+      filename: UTIL_FILE,
+      code: "export const handler = () => null;",
+      errors: [{ messageId: "noVerb" }],
+    },
+    { name: "a declared noun", filename: UTIL_FILE, code: "function data() {}", errors: [{ messageId: "noVerb" }] },
+  ],
+});
+
+ruleTester.run("schema-file", localRules.rules["schema-file"], {
+  valid: [{ name: "a schema", filename: "src/Schemas/PostSchema.ts", code: "export const PostSchema = z.object({});" }],
+  invalid: [
+    {
+      name: "no schema in Schemas",
+      filename: "src/Schemas/PostSchema.ts",
+      code: "export const post = 1;",
+      errors: [{ messageId: "noSchema" }],
+    },
+  ],
+});
+
+// Why: a Protocol file is TypeScript (types), which the default parser of the RuleTester cannot read.
+const typescriptRuleTester = new RuleTester({
+  languageOptions: { parser: tseslint.parser, ecmaVersion: 2024, sourceType: "module" },
+});
+typescriptRuleTester.run("protocol-types-only", localRules.rules["protocol-types-only"], {
+  valid: [
+    {
+      name: "a type only",
+      filename: PROTOCOL_FILE,
+      code: "export type PostProtocol = { slug: string };",
+    },
+  ],
+  invalid: [
+    {
+      name: "a value in a Protocol",
+      filename: PROTOCOL_FILE,
+      code: "export const SLUG = 1;",
+      errors: [{ messageId: "value" }],
+    },
+  ],
+});
+
+ruleTester.run("error-location", localRules.rules["error-location"], {
+  valid: [
+    {
+      name: "an error in src/Errors",
+      filename: "src/Errors/PostError.ts",
+      code: "export class PostError extends Error {}",
+    },
+  ],
+  invalid: [
+    {
+      name: "an error outside src/Errors",
+      filename: UTIL_FILE,
+      code: "export class PostError extends Error {}",
+      errors: [{ messageId: "outside" }],
+    },
+  ],
+});
+
+ruleTester.run("comment-marker", localRules.rules["comment-marker"], {
+  valid: [
+    {
+      name: "a comment that says why",
+      filename: UTIL_FILE,
+      code: "// Why: the page is static.\nexport const TIME = 1;",
+    },
+    {
+      name: "a legacy marker",
+      filename: UTIL_FILE,
+      code: "// @legacy: old front-matter field.\nexport const TIME = 1;",
+    },
+    { name: "a tool directive", filename: UTIL_FILE, code: "// eslint-disable-next-line no-console\nconsole.log(1);" },
+  ],
+  invalid: [
+    {
+      name: "a comment that says what",
+      filename: UTIL_FILE,
+      code: "// Pure: the list.\nexport const TIME = 1;",
+      errors: [{ messageId: "marker" }],
+    },
+  ],
+});
+
+ruleTester.run("one-component-per-file", localRules.rules["one-component-per-file"], {
+  valid: [{ name: "one component", filename: COMPONENT_FILE, code: "export const PostRow = () => null;" }],
+  invalid: [
+    {
+      name: "two components",
+      filename: COMPONENT_FILE,
+      code: "export const PostRow = () => null;\nexport const PostCard = () => null;",
       errors: [{ messageId: "second" }],
     },
   ],

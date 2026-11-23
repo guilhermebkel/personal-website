@@ -281,7 +281,7 @@ const E2E_TAGS = ["@critical-flow", "@needs-browser"];
 // Why: the same tag repeats in every test, so specs may name it through the constants of e2e/tags.ts.
 const E2E_TAG_CONSTANTS = ["CRITICAL_FLOW", "NEEDS_BROWSER"];
 
-const tagValues = (tagProperty) => {
+const readTagValues = (tagProperty) => {
   return tagProperty.value.elements ?? [tagProperty.value];
 };
 
@@ -313,7 +313,7 @@ const e2eTag = {
           context.report({ node, messageId: "missing" });
           return;
         }
-        for (const value of tagValues(tagProperty).filter((candidate) => !isAllowedTag(candidate))) {
+        for (const value of readTagValues(tagProperty).filter((candidate) => !isAllowedTag(candidate))) {
           context.report({ node: value ?? tagProperty, messageId: "unknown" });
         }
       },
@@ -432,7 +432,7 @@ const arrowFunction = {
         id ? id.range[1] : sourceCode.getFirstToken(node, { filter: (token) => token.value === "function" }).range[1],
       );
       const isDefaultExport = node.parent.type === "ExportDefaultDeclaration";
-      const fix = (fixer) => {
+      const buildFix = (fixer) => {
         if (isDefaultExport && id) {
           return fixer.replaceText(node.parent, `const ${name} = ${arrow};\n\nexport default ${name};`);
         }
@@ -441,7 +441,7 @@ const arrowFunction = {
         }
         return fixer.replaceText(node, `const ${name} = ${arrow};`);
       };
-      context.report({ node: id ?? node, messageId: "declaration", data: { name }, fix });
+      context.report({ node: id ?? node, messageId: "declaration", data: { name }, fix: buildFix });
     };
 
     const reportExpression = (declarator, node) => {
@@ -473,8 +473,8 @@ const UI_FOLDERS = ["components", "hooks", "styles"];
 const UI_ALLOWED_LAYERS = new Set(["Protocols", "Utils"]);
 const ALIAS_TO_FOLDER = { "@": "src", "@components": "components", "@hooks": "hooks", "@styles": "styles" };
 
-// Pure: the layer of a repository-relative path, or null when the file is outside the layers (a config, a script, a test of e2e).
-export const layerOfPath = (path) => {
+// Why: pure, so the tests need no files or browser. the layer of a repository-relative path, or null when the file is outside the layers (a config, a script, a test of e2e).
+export const getLayerOfPath = (path) => {
   const normalized = path.replaceAll("\\", "/");
   const source = /^src\/([^/]+)\//u.exec(normalized);
   if (source !== null && LAYER_ORDER.includes(source[1])) {
@@ -490,7 +490,7 @@ export const layerOfPath = (path) => {
   return null;
 };
 
-// Pure: the repository-relative path an import points to, or null for a package.
+// Why: pure, so the tests need no files or browser. the repository-relative path an import points to, or null for a package.
 export const resolveImportPath = (specifier, fromPath) => {
   for (const [alias, folder] of Object.entries(ALIAS_TO_FOLDER)) {
     if (specifier === alias || specifier.startsWith(`${alias}/`)) {
@@ -511,7 +511,7 @@ export const resolveImportPath = (specifier, fromPath) => {
   return null;
 };
 
-// Pure: whether a file in `from` may import a file in `to`.
+// Why: pure, so the tests need no files or browser. whether a file in `from` may import a file in `to`.
 export const isLayerImportAllowed = (from, to) => {
   if (from === null || to === null) {
     return true;
@@ -534,7 +534,7 @@ const layerImports = {
   },
   create(context) {
     const filePath = relative(process.cwd(), context.filename).replaceAll("\\", "/");
-    const from = layerOfPath(filePath);
+    const from = getLayerOfPath(filePath);
     const check = (node, specifier) => {
       if (typeof specifier !== "string") {
         return;
@@ -543,7 +543,7 @@ const layerImports = {
       if (target === null) {
         return;
       }
-      const to = layerOfPath(target);
+      const to = getLayerOfPath(target);
       if (!isLayerImportAllowed(from, to)) {
         context.report({
           node,
@@ -599,6 +599,279 @@ const classMatchesFile = {
   },
 };
 
+// Why: a function's name starts with a verb (get, build, is…), so the call reads as an action; React components and hooks have their own shape.
+const VERBS = new Set([
+  "add",
+  "apply",
+  "assert",
+  "build",
+  "can",
+  "capture",
+  "check",
+  "clamp",
+  "close",
+  "collapse",
+  "compare",
+  "compute",
+  "convert",
+  "count",
+  "create",
+  "delay",
+  "dispatch",
+  "ensure",
+  "evaluate",
+  "expand",
+  "expect",
+  "fail",
+  "filter",
+  "find",
+  "focus",
+  "format",
+  "generate",
+  "get",
+  "handle",
+  "has",
+  "install",
+  "is",
+  "join",
+  "list",
+  "load",
+  "map",
+  "match",
+  "measure",
+  "merge",
+  "mount",
+  "mark",
+  "normalize",
+  "observe",
+  "on",
+  "open",
+  "parse",
+  "pick",
+  "read",
+  "remove",
+  "render",
+  "report",
+  "reset",
+  "resolve",
+  "run",
+  "scroll",
+  "select",
+  "set",
+  "should",
+  "show",
+  "sort",
+  "split",
+  "start",
+  "stop",
+  "sync",
+  "to",
+  "toggle",
+  "track",
+  "unmount",
+  "update",
+  "use",
+  "validate",
+  "wait",
+  "wrap",
+  "write",
+  "walk",
+  "with",
+  "make",
+  "for",
+  "from",
+  "stage",
+  "replace",
+  "remember",
+  "pass",
+  "accept",
+  "reject",
+  "emit",
+  "subscribe",
+  "publish",
+  "send",
+  "fetch",
+  "store",
+  "save",
+  "clear",
+  "bind",
+  "compile",
+  "go",
+  "hover",
+  "press",
+  "tab",
+  "keep",
+  "pick",
+]);
+const FIRST_WORD = /^[a-z]+/u;
+const COMPONENT_OR_HOOK = /^(?:[A-Z]|use[A-Z])/u;
+
+// Why: pure, so the tests need no files or browser. whether a function name starts with a verb, is a component (PascalCase) or a hook (use…).
+export const hasVerbName = (name) => {
+  if (COMPONENT_OR_HOOK.test(name)) {
+    return true;
+  }
+  const word = FIRST_WORD.exec(name)?.[0];
+  return word !== undefined && VERBS.has(word);
+};
+
+const verbFunctionName = {
+  meta: {
+    type: "suggestion",
+    messages: {
+      noVerb: 'The function "{{name}}" starts with no verb: name what it does (get, build, is, load…).',
+    },
+  },
+  create(context) {
+    const check = (node, name) => {
+      if (name !== undefined && !hasVerbName(name)) {
+        context.report({ node, messageId: "noVerb", data: { name } });
+      }
+    };
+    return {
+      "FunctionDeclaration"(node) {
+        check(node, node.id?.name);
+      },
+      "VariableDeclarator[id.type='Identifier'][init.type=/^(ArrowFunctionExpression|FunctionExpression)$/]"(node) {
+        check(node.id, node.id.name);
+      },
+    };
+  },
+};
+
+// Why: a file in src/Schemas/ holds a Zod schema, named with the Schema suffix, so a reader finds it by name.
+const schemaFile = {
+  meta: {
+    type: "suggestion",
+    messages: { noSchema: "{{file}} is in src/Schemas/ but exports no value named ...Schema." },
+  },
+  create(context) {
+    const stem = getFileStem(context.filename);
+    const isSchemaFolder = /(?:^|\/)src\/Schemas\//u.test(context.filename.replaceAll("\\", "/"));
+    let hasSchema = false;
+    return {
+      "ExportNamedDeclaration"(node) {
+        for (const declarator of node.declaration?.declarations ?? []) {
+          if (declarator.id.type === "Identifier" && declarator.id.name.endsWith("Schema")) {
+            hasSchema = true;
+          }
+        }
+      },
+      "Program:exit"(node) {
+        if (isSchemaFolder && !hasSchema) {
+          context.report({ node, messageId: "noSchema", data: { file: stem } });
+        }
+      },
+    };
+  },
+};
+
+// Why: a Protocol file holds types only, so it has no runtime cost and no dependency on values (docs/code-standards.md).
+const VALUE_DECLARATIONS = new Set([
+  "VariableDeclaration",
+  "FunctionDeclaration",
+  "ClassDeclaration",
+  "TSEnumDeclaration",
+]);
+const protocolTypesOnly = {
+  meta: {
+    type: "problem",
+    messages: { value: "A Protocol file holds types only: move this value out of {{file}}." },
+  },
+  create(context) {
+    const filename = context.filename.replaceAll("\\", "/");
+    if (!/(?:^|\/)src\/Protocols\//u.test(filename)) {
+      return {};
+    }
+    return {
+      "ExportNamedDeclaration"(node) {
+        if (VALUE_DECLARATIONS.has(node.declaration?.type)) {
+          context.report({ node, messageId: "value", data: { file: getFileStem(filename) } });
+        }
+      },
+    };
+  },
+};
+
+// Why: errors live in src/Errors/, so a reader finds every error type in one place.
+const errorLocation = {
+  meta: {
+    type: "problem",
+    messages: { outside: 'The error class "{{name}}" must live in src/Errors/.' },
+  },
+  create(context) {
+    const filename = context.filename.replaceAll("\\", "/");
+    const inErrors = /(?:^|\/)src\/Errors\//u.test(filename);
+    return {
+      "ClassDeclaration"(node) {
+        const parent = node.superClass?.type === "Identifier" ? node.superClass.name : "";
+        if (!inErrors && (parent === "Error" || parent.endsWith("Error"))) {
+          context.report({ node, messageId: "outside", data: { name: node.id?.name ?? "" } });
+        }
+      },
+    };
+  },
+};
+
+// Why: a comment says why, starting with `Why:`; the only other comments are the @legacy marker and tool directives (docs/code-standards.md).
+// Why: a preview is enough to find the comment in the report.
+const COMMENT_PREVIEW_LENGTH = 40;
+const COMMENT_MARKER = /^(?:Why:|@legacy:|eslint|oxlint|prettier-ignore|@ts-|global |istanbul|biome-ignore)/u;
+const commentMarker = {
+  meta: {
+    type: "suggestion",
+    messages: {
+      marker: 'A comment starts with "Why:" and says why: "{{text}}" does not.',
+    },
+  },
+  create(context) {
+    return {
+      "Program:exit"() {
+        for (const comment of context.sourceCode.getAllComments()) {
+          if (comment.type === "Line" && !COMMENT_MARKER.test(comment.value.trim())) {
+            context.report({
+              loc: comment.loc,
+              messageId: "marker",
+              data: { text: comment.value.trim().slice(0, COMMENT_PREVIEW_LENGTH) },
+            });
+          }
+        }
+      },
+    };
+  },
+};
+
+// Why: a component file exports one component, so a reader finds a component by its file name.
+const oneComponentPerFile = {
+  meta: {
+    type: "suggestion",
+    messages: {
+      second: 'The component "{{name}}" is a second component in this file: move it to its own file.',
+    },
+  },
+  create(context) {
+    const isComponentFile = /(?:^|\/)components\//u.test(context.filename.replaceAll("\\", "/"));
+    const components = [];
+    return {
+      "ExportNamedDeclaration"(node) {
+        for (const declarator of node.declaration?.declarations ?? []) {
+          const isFunction = ["ArrowFunctionExpression", "FunctionExpression"].includes(declarator.init?.type);
+          if (declarator.id.type === "Identifier" && isFunction && /^[A-Z]/u.test(declarator.id.name)) {
+            components.push(declarator.id);
+          }
+        }
+      },
+      "Program:exit"() {
+        if (isComponentFile) {
+          components.slice(1).forEach((node) => {
+            context.report({ node, messageId: "second", data: { name: node.name } });
+          });
+        }
+      },
+    };
+  },
+};
+
 export const localRules = {
   rules: {
     "file-suffix": fileSuffix,
@@ -611,6 +884,12 @@ export const localRules = {
     "arrow-function": arrowFunction,
     "layer-imports": layerImports,
     "class-matches-file": classMatchesFile,
+    "verb-function-name": verbFunctionName,
+    "schema-file": schemaFile,
+    "protocol-types-only": protocolTypesOnly,
+    "error-location": errorLocation,
+    "comment-marker": commentMarker,
+    "one-component-per-file": oneComponentPerFile,
   },
 };
 

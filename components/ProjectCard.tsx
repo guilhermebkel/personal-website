@@ -12,7 +12,7 @@ type ProjectCardProps = {
 
 const NUMBER_WIDTH = 2;
 
-const hostOf = (url: string) => new URL(url).host;
+const getHost = (url: string) => new URL(url).host;
 
 export const ProjectCard = ({ index, name, description, url, tags }: ProjectCardProps) => (
   <a
@@ -39,7 +39,7 @@ export const ProjectCard = ({ index, name, description, url, tags }: ProjectCard
         </ul>
       )}
       <div className="mt-auto flex items-center justify-between gap-3 pt-5">
-        <span className="truncate font-mono text-caption text-text-meta">{hostOf(url)}</span>
+        <span className="truncate font-mono text-caption text-text-meta">{getHost(url)}</span>
         <span
           className={[
             "inline-flex h-9 items-center gap-2 rounded-pill border-2 border-purple-light px-4 text-small font-medium transition-colors duration-250",

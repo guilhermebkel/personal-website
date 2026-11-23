@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { USAGE, listFreshPngs, noCaptureMessage, parseVisualArgs } from "./visual-component.mjs";
+import { USAGE, listFreshPngs, buildNoCaptureMessage, parseVisualArgs } from "./visual-component.mjs";
 
 const BUTTON_RENDER = "test-results/visual-renders/Button.tsx";
 
@@ -29,8 +29,8 @@ describe("listFreshPngs()", () => {
   });
 });
 
-describe("noCaptureMessage()", () => {
+describe("buildNoCaptureMessage()", () => {
   it("names the render file", () => {
-    expect(noCaptureMessage(BUTTON_RENDER)).toBe(`No capture came from ${BUTTON_RENDER}`);
+    expect(buildNoCaptureMessage(BUTTON_RENDER)).toBe(`No capture came from ${BUTTON_RENDER}`);
   });
 });

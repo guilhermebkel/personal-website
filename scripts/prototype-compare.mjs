@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 import { pathToFileURL, fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 import { captureBoard } from "./prototype-shots.mjs";
-import { BOARD_MAPPING, CANVAS_FILE, captureFileName, boardsForRoutes, loadBoards } from "./prototype-boards.mjs";
+import { BOARD_MAPPING, CANVAS_FILE, captureFileName, selectBoardsForRoutes, loadBoards } from "./prototype-boards.mjs";
 
 export const EXIT_OK = 0;
 export const EXIT_FAILED = 1;
@@ -21,7 +21,7 @@ const SERVER_POLL_MS = 250;
 const MENU_BUTTON = "button[aria-controls]";
 const FROZEN_CSS = "*,*::before,*::after{animation:none!important;transition:none!important;}";
 
-// Pure: the side-by-side page: the prototype on the left, the site on the right, both at the same width.
+// Why: pure, so the tests need no files or browser. the side-by-side page: the prototype on the left, the site on the right, both at the same width.
 export const buildComparePage = ({ prototypePng, sitePng }) => {
   return `<!doctype html><html><body style="margin:0;background:#202020;display:flex;gap:24px;align-items:flex-start">
 <img alt="Prototype" src="${prototypePng}" style="display:block">
@@ -81,7 +81,7 @@ const captureSite = async ({ browser, name, mapping, board }) => {
   }
 };
 
-const composeCompare = async ({ browser, name, prototypePng, sitePng, width }) => {
+const writeCompare = async ({ browser, name, prototypePng, sitePng, width }) => {
   const comparePath = captureFileName(name, "compare");
   const htmlPath = `test-results/prototype/${name}.compare.html`;
   writeFileSync(
@@ -104,7 +104,7 @@ const composeCompare = async ({ browser, name, prototypePng, sitePng, width }) =
   return comparePath;
 };
 
-const main = async () => {
+const runPrototypeCompare = async () => {
   if (!existsSync(SITE_DIR)) {
     process.stderr.write("out/ is missing: run pnpm build first.\n");
     return EXIT_FAILED;
@@ -112,7 +112,7 @@ const main = async () => {
   const canvas = JSON.parse(readFileSync(CANVAS_FILE, "utf8"));
   const boards = loadBoards(canvas);
   const routes = process.argv.slice(FIRST_ARG_INDEX);
-  const selected = boardsForRoutes({ routes, boards });
+  const selected = selectBoardsForRoutes({ routes, boards });
   if (selected.error !== undefined) {
     process.stderr.write(`${selected.error}\n`);
     return EXIT_USAGE;
@@ -129,7 +129,7 @@ const main = async () => {
       const board = boards.find((candidate) => candidate.name === name);
       const prototypePng = await captureBoard({ browser, board });
       const sitePng = await captureSite({ board, browser, name, mapping: BOARD_MAPPING[name] });
-      const comparePng = await composeCompare({ browser, name, prototypePng, sitePng, width: board.width });
+      const comparePng = await writeCompare({ browser, name, prototypePng, sitePng, width: board.width });
       process.stdout.write(`${comparePng}\n`);
     }
     return EXIT_OK;
@@ -140,5 +140,5 @@ const main = async () => {
 };
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  process.exit(await main());
+  process.exit(await runPrototypeCompare());
 }

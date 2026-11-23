@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
 import {
   BOARD_MAPPING,
-  boardsForRoutes,
+  selectBoardsForRoutes,
   captureFileName,
   loadBoards,
-  mappedBoardNames,
+  listMappedBoardNames,
   resolveBoardNames,
 } from "./prototype-boards.mjs";
 
@@ -66,19 +66,21 @@ describe("the board mapping", () => {
         [...Object.keys(BOARD_MAPPING), "LogoRound", "Curvas"].map((name) => [`${name}.dc.html`, { w: 1, h: 1 }]),
       ),
     });
-    expect(mappedBoardNames(allBoards)).toStrictEqual(Object.keys(BOARD_MAPPING).sort());
-    expect(mappedBoardNames(allBoards)).not.toContain("LogoRound");
-    expect(mappedBoardNames(allBoards)).not.toContain("Curvas");
+    expect(listMappedBoardNames(allBoards)).toStrictEqual(Object.keys(BOARD_MAPPING).sort());
+    expect(listMappedBoardNames(allBoards)).not.toContain("LogoRound");
+    expect(listMappedBoardNames(allBoards)).not.toContain("Curvas");
   });
 });
 
-describe("boardsForRoutes()", () => {
+describe("selectBoardsForRoutes()", () => {
   it("selects the mapped boards of a route", () => {
-    expect(boardsForRoutes({ routes: ["/"], boards: BOARDS })).toStrictEqual({ names: ["Intro", "IntroMobile"] });
+    expect(selectBoardsForRoutes({ routes: ["/"], boards: BOARDS })).toStrictEqual({ names: ["Intro", "IntroMobile"] });
   });
 
   it("rejects a route no board is mapped to", () => {
-    expect(boardsForRoutes({ routes: ["/nope/"], boards: BOARDS }).error).toContain("No board is mapped to: /nope/");
+    expect(selectBoardsForRoutes({ routes: ["/nope/"], boards: BOARDS }).error).toContain(
+      "No board is mapped to: /nope/",
+    );
   });
 });
 

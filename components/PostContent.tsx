@@ -17,13 +17,13 @@ const PROSE_CLASS = [
   "[&_img]:mb-6 [&_img]:rounded-md [&_figcaption]:mt-3 [&_figcaption]:font-mono [&_figcaption]:text-caption [&_figcaption]:text-text-meta",
 ].join(" ");
 
-const textOf = (children: ReactNode): string => (typeof children === "string" ? children : "");
+const getText = (children: ReactNode): string => (typeof children === "string" ? children : "");
 
 export const PostContent = ({ markdown }: { markdown: string }) => (
   <div className={PROSE_CLASS}>
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
-      components={{ h2: ({ children }) => <h2 id={HeadingSlugUtil.toId(textOf(children))}>{children}</h2> }}
+      components={{ h2: ({ children }) => <h2 id={HeadingSlugUtil.toId(getText(children))}>{children}</h2> }}
     >
       {markdown}
     </ReactMarkdown>

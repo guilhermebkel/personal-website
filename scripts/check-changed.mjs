@@ -19,7 +19,7 @@ export const isSharedRoot = (path) => {
   return SHARED_ROOT_FILES.has(path) || SHARED_ROOT_PREFIXES.some((prefix) => path.startsWith(prefix));
 };
 
-export const planCheck = ({ base, changedPaths }) => {
+export const buildCheckPlan = ({ base, changedPaths }) => {
   if (base === null) {
     return { kind: "full", reason: `${BASE_REF} could not be resolved` };
   }
@@ -74,7 +74,7 @@ const runChecks = () => {
     return depsStatus;
   }
   const { base, changedPaths } = readChangedPaths();
-  const plan = planCheck({ base, changedPaths });
+  const plan = buildCheckPlan({ base, changedPaths });
 
   if (plan.kind === "full") {
     process.stdout.write(`Running the full pnpm check: ${plan.reason}.\n`);

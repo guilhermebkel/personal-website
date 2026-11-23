@@ -1,4 +1,4 @@
-// The colors of the prototype boards against the color tokens. Pure: the caller reads the files.
+// Why: the census is pure, so the caller reads the files and the tests need none.
 
 // Why: each exception is a color the boards use that is not a site color, with the reason; a new color in a board fails the census.
 export const COLOR_EXCEPTIONS = {
@@ -15,7 +15,7 @@ const SHORT_HEX_LENGTH = 3;
 const DATA_URI = /data:[^"'()\s]+/gu;
 const COLOR = /#[0-9a-fA-F]{3,8}\b|rgba?\([^)]*\)/gu;
 
-// Pure: one spelling per color: lowercase, no spaces, a leading zero on alpha, six-digit hex.
+// Why: pure, so the tests need no files or browser. one spelling per color: lowercase, no spaces, a leading zero on alpha, six-digit hex.
 export const normalizeColor = (raw) => {
   const compact = raw.toLowerCase().replaceAll(/\s+/gu, "");
   if (compact.startsWith("#")) {
@@ -25,8 +25,8 @@ export const normalizeColor = (raw) => {
   return compact.replaceAll(/(?<=[,(])\./gu, "0.");
 };
 
-// Pure: the colors of one board, counted; base64 images are removed first, they are not colors.
-export const censusOfBoard = (html) => {
+// Why: pure, so the tests need no files or browser. the colors of one board, counted; base64 images are removed first, they are not colors.
+export const countBoardColors = (html) => {
   const counts = new Map();
   for (const match of html.replaceAll(DATA_URI, "").matchAll(COLOR)) {
     const color = normalizeColor(match[0]);
@@ -35,10 +35,10 @@ export const censusOfBoard = (html) => {
   return counts;
 };
 
-// Pure: the colors of the boards that are neither a color token nor a documented exception, sorted.
-export const unknownColors = ({ census, tokenValues }) => {
+// Why: pure, so the tests need no files or browser. the colors of the boards that are neither a color token nor a documented exception, sorted.
+export const findUnknownColors = ({ census, tokenValues }) => {
   const known = new Set([...tokenValues.map(normalizeColor), ...Object.keys(COLOR_EXCEPTIONS).map(normalizeColor)]);
   return [...census.keys()].filter((color) => !known.has(color)).sort();
 };
 
-export const tokenColorValues = (tokens) => tokens.color.tokens.map((token) => token.value);
+export const getTokenColorValues = (tokens) => tokens.color.tokens.map((token) => token.value);

@@ -1,9 +1,9 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { describe, it, expect } from "vitest";
-import { censusOfBoard, normalizeColor, tokenColorValues, unknownColors } from "./prototype-colors.mjs";
+import { countBoardColors, normalizeColor, getTokenColorValues, findUnknownColors } from "./prototype-colors.mjs";
 
 const TOKENS = JSON.parse(readFileSync("design/system/tokens.json", "utf8"));
-const TOKEN_VALUES = tokenColorValues(TOKENS);
+const TOKEN_VALUES = getTokenColorValues(TOKENS);
 const BOARD_DIR = "design/prototype";
 
 describe("normalizeColor()", () => {
@@ -14,27 +14,27 @@ describe("normalizeColor()", () => {
   });
 });
 
-describe("censusOfBoard()", () => {
+describe("countBoardColors()", () => {
   it("counts each color of a board and ignores base64 images", () => {
     const html = `<p style="color:#fff">a</p><p style="color:#FFF">b</p><img src="data:image/png;base64,iVBORw0#abcdef">`;
-    expect(censusOfBoard(html)).toStrictEqual(new Map([["#ffffff", 2]]));
+    expect(countBoardColors(html)).toStrictEqual(new Map([["#ffffff", 2]]));
   });
 });
 
-describe("unknownColors()", () => {
+describe("findUnknownColors()", () => {
   it("accepts a color that is a token", () => {
-    const census = censusOfBoard(`<p style="color:#8C8C93"></p>`);
-    expect(unknownColors({ census, tokenValues: TOKEN_VALUES })).toStrictEqual([]);
+    const census = countBoardColors(`<p style="color:#8C8C93"></p>`);
+    expect(findUnknownColors({ census, tokenValues: TOKEN_VALUES })).toStrictEqual([]);
   });
 
   it("accepts a documented exception", () => {
-    const census = censusOfBoard(`<p style="color:#C9BDFF"></p>`);
-    expect(unknownColors({ census, tokenValues: TOKEN_VALUES })).toStrictEqual([]);
+    const census = countBoardColors(`<p style="color:#C9BDFF"></p>`);
+    expect(findUnknownColors({ census, tokenValues: TOKEN_VALUES })).toStrictEqual([]);
   });
 
   it("fails on a color that is neither", () => {
-    const census = censusOfBoard(`<p style="color:#123456"></p>`);
-    expect(unknownColors({ census, tokenValues: TOKEN_VALUES })).toStrictEqual(["#123456"]);
+    const census = countBoardColors(`<p style="color:#123456"></p>`);
+    expect(findUnknownColors({ census, tokenValues: TOKEN_VALUES })).toStrictEqual(["#123456"]);
   });
 });
 
@@ -43,8 +43,8 @@ describe("the prototype boards", () => {
   it("use only the color tokens and the documented exceptions", () => {
     const boards = readdirSync(BOARD_DIR).filter((name) => name.endsWith(".dc.html"));
     const unknown = boards.flatMap((name) => {
-      const census = censusOfBoard(readFileSync(`${BOARD_DIR}/${name}`, "utf8"));
-      return unknownColors({ census, tokenValues: TOKEN_VALUES }).map((color) => `${name}: ${color}`);
+      const census = countBoardColors(readFileSync(`${BOARD_DIR}/${name}`, "utf8"));
+      return findUnknownColors({ census, tokenValues: TOKEN_VALUES }).map((color) => `${name}: ${color}`);
     });
     expect(unknown).toStrictEqual([]);
   });

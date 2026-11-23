@@ -14,7 +14,7 @@ export const EXIT_USAGE = 2;
 // Why: argv holds the node binary and the script path before the user arguments.
 const FIRST_ARG_INDEX = 2;
 
-// Pure: the one argument is the render file; anything else is a usage error.
+// Why: pure, so the tests need no files or browser. the one argument is the render file; anything else is a usage error.
 export const parseVisualArgs = (argv) => {
   if (argv.length === 0) {
     return { error: USAGE };
@@ -22,7 +22,7 @@ export const parseVisualArgs = (argv) => {
   return { file: argv[0] };
 };
 
-// Pure: the PNGs written at or after `sinceMs`, so a run lists only its own captures.
+// Why: pure, so the tests need no files or browser. the PNGs written at or after `sinceMs`, so a run lists only its own captures.
 export const listFreshPngs = ({ entries, sinceMs }) => {
   return entries
     .filter((entry) => entry.name.endsWith(".png") && entry.mtimeMs >= sinceMs)
@@ -30,7 +30,7 @@ export const listFreshPngs = ({ entries, sinceMs }) => {
     .sort();
 };
 
-export const noCaptureMessage = (file) => `No capture came from ${file}`;
+export const buildNoCaptureMessage = (file) => `No capture came from ${file}`;
 
 const readCaptureEntries = (directory) => {
   if (!existsSync(directory)) {
@@ -47,14 +47,14 @@ const runRender = (file) => {
   return result.status ?? EXIT_FAILED;
 };
 
-const main = () => {
+const runVisualComponent = () => {
   const parsed = parseVisualArgs(process.argv.slice(FIRST_ARG_INDEX));
   if (parsed.error !== undefined) {
     process.stderr.write(`${parsed.error}\n`);
     return EXIT_USAGE;
   }
   if (!existsSync(parsed.file)) {
-    process.stderr.write(`${noCaptureMessage(parsed.file)}: the render file does not exist.\n`);
+    process.stderr.write(`${buildNoCaptureMessage(parsed.file)}: the render file does not exist.\n`);
     return EXIT_FAILED;
   }
   if (ensurePlaywrightChromium() !== 0) {
@@ -65,7 +65,7 @@ const main = () => {
   const renderStatus = runRender(parsed.file);
   const written = listFreshPngs({ entries: readCaptureEntries(CAPTURE_DIR), sinceMs: startedAt });
   if (written.length === 0) {
-    process.stderr.write(`${noCaptureMessage(parsed.file)}\n`);
+    process.stderr.write(`${buildNoCaptureMessage(parsed.file)}\n`);
     return EXIT_FAILED;
   }
   for (const path of written) {
@@ -75,5 +75,5 @@ const main = () => {
 };
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  process.exit(main());
+  process.exit(runVisualComponent());
 }

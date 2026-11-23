@@ -317,7 +317,13 @@
     "local/file-suffix": "error",
     "local/arrow-function": "error",
     "local/layer-imports": "error",
-    "local/class-matches-file": "error"
+    "local/class-matches-file": "error",
+    "local/verb-function-name": "error",
+    "local/schema-file": "error",
+    "local/protocol-types-only": "error",
+    "local/error-location": "error",
+    "local/comment-marker": "error",
+    "local/one-component-per-file": "error"
   },
   "overrides": [
     {
