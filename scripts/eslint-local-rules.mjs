@@ -110,7 +110,7 @@ const describeTarget = {
     };
     const CALLEE_TO_CHECK = { describe: checkDescribe, it: reportOutside, test: reportOutside };
     return {
-      Program(program) {
+      "Program"(program) {
         for (const statement of program.body) {
           const name = getCalleeName(statement);
           const check = Object.hasOwn(CALLEE_TO_CHECK, name ?? "") ? CALLEE_TO_CHECK[name] : undefined;
@@ -242,12 +242,12 @@ const tokensOnly = {
       }
     };
     return {
-      Literal(node) {
+      "Literal"(node) {
         if (typeof node.value === "string") {
           check(node, node.value);
         }
       },
-      TemplateElement(node) {
+      "TemplateElement"(node) {
         check(node, node.value.cooked ?? "");
       },
     };
@@ -460,7 +460,7 @@ const arrowFunction = {
     };
 
     return {
-      FunctionDeclaration: reportDeclaration,
+      "FunctionDeclaration": reportDeclaration,
       "VariableDeclarator[id.type='Identifier'][init.type='FunctionExpression']": (node) =>
         reportExpression(node, node.init),
     };
