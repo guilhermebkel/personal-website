@@ -17,6 +17,8 @@ test("an unknown path shows the 404 page", { tag: CRITICAL_FLOW }, async ({ page
 });
 
 test("the home has no accessibility violations", { tag: NEEDS_BROWSER }, async ({ page }) => {
+  // Why: the entrance animations fade the text in, and a contrast check in the middle of a fade reads the wrong color, so this test runs the page as a reader with reduced motion sees it.
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
 
   const results = await new AxeBuilder({ page }).analyze();

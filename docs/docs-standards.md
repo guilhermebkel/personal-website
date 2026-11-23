@@ -8,7 +8,7 @@ What goes in `docs/` and where everything else goes.
 - **Guide.** How to do a recurring job (checking a screen in the browser, adding a shadcn control, writing a post). A guide is listed in the table below.
 - **Product doc.** What the site does or how a part of it is operated. It lives in `docs/product/`, never beside the standards, so it is not read as one.
 
-`docs/adr/` keeps its own rules and is not classified here.
+`docs/adr/` keeps its own rules and is not classified here. `docs/agents/` holds the issue and triage setup the agent reads (`issue-tracker.md`, `triage-labels.md`, `domain.md`); it is not classified here either.
 
 | File | Kind |
 | --- | --- |

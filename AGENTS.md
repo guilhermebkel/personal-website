@@ -34,6 +34,9 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
 | When | Read | Run |
 | --- | --- | --- |
 | Starting a session | `README.md` (Development) | `nvm use`, `pnpm ensure-deps` |
+| Given a GitHub issue number | `docs/agents/issue-tracker.md` ("Working an issue") | `gh issue view <n> --comments` |
+| Triage labels on an issue | `docs/agents/triage-labels.md` | — |
+| Domain terms or an ADR | `docs/agents/domain.md`, `GLOSSARY.md`, `docs/adr/` | — |
 | Writing or changing code | `docs/code-standards.md` | — |
 | Writing or changing tests | `docs/test-standards.md` | — |
 | Screen layout or UI behavior | `docs/ui-ux-standards.md` | — |
@@ -51,7 +54,7 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
 ## Rules
 
 - Commit once per task, after a clean `pnpm check:changed`; CI runs the full `pnpm check` as the gate. Never raise a limit or add an ignore to pass.
-- Start new work on a branch from `main` and open a pull request. Branch names are `<type>/<short-name>` in lowercase kebab-case, where `<type>` is `feat`, `fix` or `chore`.
+- Start new work on a branch from `main` and open a pull request. Branch names are `<type>/<short-name>` in lowercase kebab-case, where `<type>` is `feat`, `fix` or `chore`; for issue work the name starts with the issue number (`feat/<n>-short-slug`). The pull request body starts with `Closes #<n>`; one pull request closes one issue.
 - Code, docs, routes and identifiers are in English. The site text is in English too (the approved prototype); change that only through an ADR.
 - No hex color or size outside `design/system/tokens.json`: everything else uses a token (`design/system/DESIGN.md`). Edit `tokens.json`, run `pnpm design:tokens`, commit both files.
 - The app imports shadcn controls only through their intermediate in `components/`, never from `components/ui/` (ADR 0004).

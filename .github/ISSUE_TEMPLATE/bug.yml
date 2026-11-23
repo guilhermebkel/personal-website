@@ -1,0 +1,76 @@
+name: Bug
+description: Something does not work as the product or the docs say.
+title: "[bug] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Never paste secrets or private data** (tokens, personal contact details of other people). Use invented data.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What was done and what was seen, on which page, at which width and in which browser.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What was expected
+      description: Cite the prototype board, ADR or glossary term when there is one.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: Steps to see it. Say if it was not reproduced yet.
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      description: Where it happens.
+      options:
+        - Production (guilherr.me)
+        - Preview
+        - Local
+        - Not known
+    validations:
+      required: true
+  - type: input
+    id: deployment
+    attributes:
+      label: Deployment URL
+      description: The preview or production URL where it was seen, when known.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Screenshot, preview URL, commit, route and console output.
+  - type: textarea
+    id: suspected-cause
+    attributes:
+      label: Suspected cause and where to look
+      description: Files and hypotheses, marked as hypotheses.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: The failing case becomes a test; say what it must prove.
+    validations:
+      required: true
+  - type: input
+    id: blocked-by
+    attributes:
+      label: Blocked by
+      placeholder: none
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      options:
+        - label: This issue has no secrets or private data.
+          required: true

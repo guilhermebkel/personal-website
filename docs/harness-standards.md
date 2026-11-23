@@ -20,4 +20,4 @@ Each finding is exactly one class; the class picks the fix.
 | Out of scope | The cause is outside the harness | A recommendation only |
 
 - **A lint rule has its test.** A local rule in `scripts/eslint-local-rules.mjs` comes with a failing example in `scripts/eslint-local-rules.test.mjs`.
-- **Not ported yet.** The rest of the local ESLint rules of `tocomevidencia` (layers, verb names, `Why:` comments, `known-keys`, `schema-file` and the Tool rules), the docs catalog, the isolated component render and the issue templates. Port one when the agent breaks the matching review rule.
+- **Not ported yet.** The rest of the local ESLint rules of `tocomevidencia` (layers, verb names, `Why:` comments, `known-keys`, `schema-file` and the Tool rules), the docs catalog, and the isolated component render. Port one when the agent breaks the matching review rule.

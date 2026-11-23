@@ -19,7 +19,15 @@
   --color-border: rgba(255, 255, 255, 0.2);  /* Default hairline. */
   --color-border-strong: #3a3a40;  /* Control borders. */
   --color-contour: rgba(255, 255, 255, 0.04);  /* Faint outline of large areas. */
+  --color-raised: #202024;  /* Hover fill of a post card (prototype). */
+  --color-cover: #232327;  /* Ground of a post cover and of a figure. */
   --color-control: #151515;  /* Fill of fields. */
+  --color-line: #5b5b5b;  /* Solid hairline between posts and around code blocks and cards (decorative, 2.69:1 on graphite). */
+  --color-text-disabled: #6b6b6b;  /* Text and border of a disabled button or link (disabled text is exempt from 4.5:1). */
+  --color-pressed: #d7d7d7;  /* Button fill while pressed; the label on it is graphite. */
+  --color-menu: #f3f3f3;  /* Fill of the open mobile menu. */
+  --color-menu-line: #e4e4e7;  /* Rule between the items of the mobile menu. */
+  --color-text-inverted: #252525;  /* Text on the inverted fill (15.33:1). */
   --color-transparent: transparent;
 
   --font-sans: "Ubuntu", sans-serif;
@@ -32,16 +40,28 @@
   --text-small--line-height: 20px;
   --text-body: 16px;  /* Running text. */
   --text-body--line-height: 24px;
+  --text-prose: 18px;  /* Paragraphs of a post (prototype). */
+  --text-prose--line-height: 30px;
   --text-lead: 20px;  /* Intro paragraphs. */
   --text-lead--line-height: 28px;
+  --text-subheading: 32px;  /* Section headings inside a post (prototype). */
+  --text-subheading--line-height: 40px;
   --text-title: 24px;  /* Section titles. */
   --text-title--line-height: 32px;
   --text-heading: 40px;  /* Page headings. */
   --text-heading--line-height: 48px;
+  --text-hero: 176px;  /* The signature name on the home (Caveat). */
+  --text-hero--line-height: 136px;
+  --text-hero-sm: 96px;  /* The signature name on a phone, and the post signature (Caveat). */
+  --text-hero-sm--line-height: 76px;
+  --text-section: 56px;  /* Title of a section or a page. */
+  --text-section--line-height: 64px;
+  --text-menu-item: 44px;  /* Items of the mobile menu. */
+  --text-menu-item--line-height: 52px;
   --text-display: 50px;  /* The home intro. */
   --text-display--line-height: 56px;
   --text-quote: 52px;  /* Quotes section. */
-  --text-quote--line-height: 60px;
+  --text-quote--line-height: 72px;
 
   --radius-sm: 8px;  /* Buttons and fields. */
   --radius-md: 16px;  /* Cards. */

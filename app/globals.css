@@ -11,9 +11,75 @@
 @source not "../design";
 @source not "../content";
 
+/* Hand-written theme extras: what the generated tokens do not cover (the eyebrow tracking and the animations the components use). */
+@theme {
+  --tracking-eyebrow: 0.3em;
+  --tracking-title: -0.01em;
+  --animate-shake: shake 0.7s ease-in-out;
+  --animate-draw-path: draw-path 1.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+  --animate-quote-progress: quote-progress 4s linear both;
+  --animate-rise: rise 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
+  --animate-fade-in: fade-in 0.5s ease-out both;
+  --animate-write: write 1s cubic-bezier(0.23, 1, 0.32, 1) both;
+
+  @keyframes shake {
+    0% { transform: rotate(0); }
+    33% { transform: rotate(-30deg); }
+    66% { transform: rotate(30deg); }
+    100% { transform: rotate(0); }
+  }
+
+  @keyframes quote-progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(calc(var(--spacing) * 4.5)); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes write {
+    from { clip-path: inset(-10% 100% -10% 0); }
+    to { clip-path: inset(-10% -12% -10% 0); }
+  }
+
+  @keyframes draw-path {
+    from { stroke-dashoffset: 1; }
+    to { stroke-dashoffset: 0; }
+  }
+}
+
+/* The hand-drawn marker stroke behind a heading or a phrase. The mask is the shape; the fill version exists because a data URI cannot read a CSS variable (it is the purple token). */
+@utility marker-shape {
+  rotate: -1.5deg;
+  -webkit-mask: var(--shape-marker) 0 0 / 100% 100% no-repeat;
+  mask: var(--shape-marker) 0 0 / 100% 100% no-repeat;
+}
+
+@utility marker-fill {
+  background-image: var(--shape-marker-fill);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% calc(var(--spacing) * 3.5);
+  box-decoration-break: clone;
+}
+
+/* The soft light behind the home hero (prototype, Intro): a faint white ellipse on the right, where the logo is drawn. */
+@utility hero-glow {
+  background: radial-gradient(ellipse 60% 70% at 75% 45%, color-mix(in srgb, var(--color-text) 3.5%, transparent), transparent 70%);
+}
+
 @layer base {
   :root {
     color-scheme: dark;
+    --shape-marker: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E");
+    --shape-marker-fill: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath fill='%235328FE' d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E");
   }
 
   *,
