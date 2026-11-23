@@ -24,6 +24,11 @@ export const buildRelatedTestsCommand = (files) => {
   return `vitest related --run --passWithNoTests ${quote(files)}`;
 };
 
+export const buildFormatCommand = (files) => {
+  // Why: `--ignore-unknown` skips the staged files Prettier has no parser for (images, fonts), so they never fail the commit.
+  return `prettier --write --ignore-unknown ${quote(files)}`;
+};
+
 export const buildTypecheckCommand = () => {
   // Why: `tsc` given file names ignores tsconfig.json, so the typecheck gets none and checks the whole project (incremental).
   return "tsc --noEmit";
@@ -47,5 +52,5 @@ export const buildE2eCommands = (files, cwd = process.cwd()) => {
 export default {
   [SOURCE_FILES]: [buildLintCommand, buildRelatedTestsCommand, buildQualityCommand],
   [TYPESCRIPT_FILES]: buildTypecheckCommand,
-  [ANY_FILE]: buildE2eCommands,
+  [ANY_FILE]: [buildFormatCommand, buildE2eCommands],
 };

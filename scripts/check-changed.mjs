@@ -84,6 +84,11 @@ const runChecks = () => {
     process.stdout.write("Nothing changed since the base; nothing to check.\n");
     return 0;
   }
+  // Why: the format check runs before lint-staged, so a file that is out of format fails here and is never rewritten by lint-staged's `prettier --write`.
+  const formatStatus = run("pnpm", ["format:check"]);
+  if (formatStatus !== 0) {
+    return formatStatus;
+  }
   return run("pnpm", ["lint-staged", "--diff", plan.base, "--concurrent", "false"]);
 };
 
