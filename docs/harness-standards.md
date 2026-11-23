@@ -22,3 +22,11 @@ Each finding is exactly one class; the class picks the fix.
 
 - **A lint rule has its test.** A local rule in `scripts/eslint-local-rules.mjs` comes with a failing example in `scripts/eslint-local-rules.test.mjs`.
 - **Not ported yet.** The rest of the local ESLint rules of `tocomevidencia` (layers, verb names, `Why:` comments, `known-keys`, `schema-file` and the Tool rules), the docs catalog, and the isolated component render. Port one when the agent breaks the matching review rule.
+
+## Updating dependencies
+
+Dependabot opens the updates: npm weekly, in four groups (`next-react`, `tailwind-shadcn`, `testing`, `lint`), and GitHub Actions monthly, at most five open at a time, labelled `chore` and `area:harness`. The owner merges; nothing merges by itself.
+
+- **What a green check shows (review).** `pnpm check` passes, the `audit` job passes (no high or critical vulnerability in production dependencies; development findings are warnings), and `.nvmrc`, `engines.node` and `packageManager` still agree (`scripts/runtime-versions.test.mjs`).
+- **Major updates of Next.js or Tailwind (review).** Read the migration guide before the update, update the ADR that names the version (`docs/adr/0001` for Next.js, `docs/adr/0003` for Tailwind), and check the visual result in the browser (`docs/visual-check.md`).
+- **A Node or pnpm bump (review).** Change `.nvmrc`, `engines.node` and `packageManager` in the same pull request; the runtime test fails when one is left behind.
