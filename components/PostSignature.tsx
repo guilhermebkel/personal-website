@@ -10,7 +10,7 @@ export const PostSignature = () => {
   const { ref, isVisible } = useInView<HTMLDivElement>(SIGNATURE_THRESHOLD);
   return (
     <div ref={ref} data-visible={isVisible} className="group border-t-2 border-sunken pt-7">
-      <p className="m-0 font-mono text-caption tracking-wider text-text-muted uppercase opacity-0 group-data-[visible=true]:animate-rise motion-reduce:animate-none motion-reduce:opacity-100">
+      <p className="m-0 font-mono text-caption tracking-wider text-text-meta uppercase opacity-0 group-data-[visible=true]:animate-rise motion-reduce:animate-none motion-reduce:opacity-100">
         Written by
       </p>
       <p

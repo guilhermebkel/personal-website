@@ -10,7 +10,7 @@ export const ContactLink = ({ contact }: { contact: Contact }) => {
       target="_blank"
       rel="noopener noreferrer"
       className={[
-        "group flex items-center gap-3.5 rounded-pill border-2 border-border-strong bg-control px-7 py-4.5 text-lead text-text no-underline",
+        "group flex items-center gap-3.5 rounded-pill border-2 border-border-strong bg-control px-7 py-4.5 text-lead text-text-strong no-underline",
         "transition-colors duration-250 md:hover:border-purple-light",
       ].join(" ")}
     >

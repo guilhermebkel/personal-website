@@ -26,7 +26,7 @@ export const ProjectCard = ({ index, name, description, url, tags }: ProjectCard
   >
     <Cover className="h-47.5 flex-none" />
     <div className="flex min-w-0 flex-1 flex-col px-7 py-6">
-      <span className="font-mono text-caption tracking-wide text-text-muted">{`P/${String(index + 1).padStart(NUMBER_WIDTH, "0")}`}</span>
+      <span className="font-mono text-caption tracking-wide text-text-meta">{`P/${String(index + 1).padStart(NUMBER_WIDTH, "0")}`}</span>
       <h3 className="m-0 mt-3.5 text-title font-medium wrap-anywhere">{name}</h3>
       <p className="m-0 mt-3 text-small leading-5.5 text-text-soft md:text-body md:leading-5.5">{description}</p>
       {tags.length > 0 && (
@@ -39,7 +39,7 @@ export const ProjectCard = ({ index, name, description, url, tags }: ProjectCard
         </ul>
       )}
       <div className="mt-auto flex items-center justify-between gap-3 pt-5">
-        <span className="truncate font-mono text-caption text-text-muted">{hostOf(url)}</span>
+        <span className="truncate font-mono text-caption text-text-meta">{hostOf(url)}</span>
         <span
           className={[
             "inline-flex h-9 items-center gap-2 rounded-pill border-2 border-purple-light px-4 text-small font-medium transition-colors duration-250",

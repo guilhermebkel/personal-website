@@ -18,7 +18,7 @@ export const QuoteCarouselCounter = ({ index }: { index: number }) => {
       onClick={onSelect}
       className="w-16 cursor-pointer border-0 bg-transparent p-0 text-left"
     >
-      <span className={`block font-mono text-caption tracking-wide ${isActive ? "text-text" : "text-text-muted"}`}>
+      <span className={`block font-mono text-caption tracking-wide ${isActive ? "text-text" : "text-text-meta"}`}>
         <span className="sr-only">Quote </span>
         {String(index + 1).padStart(NUMBER_WIDTH, "0")}
       </span>

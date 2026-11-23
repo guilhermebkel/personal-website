@@ -14,7 +14,7 @@ const PROSE_CLASS = [
   "[&_pre]:font-mono [&_pre]:text-small [&_pre]:text-text-soft",
   "[&_:not(pre)>code]:font-mono [&_:not(pre)>code]:text-small [&_:not(pre)>code]:text-text",
   "[&_blockquote]:mb-6 [&_blockquote]:rounded-lg [&_blockquote]:border-2 [&_blockquote]:border-sunken [&_blockquote]:bg-raised [&_blockquote]:px-7 [&_blockquote]:py-6",
-  "[&_img]:mb-6 [&_img]:rounded-md [&_figcaption]:mt-3 [&_figcaption]:font-mono [&_figcaption]:text-caption [&_figcaption]:text-text-muted",
+  "[&_img]:mb-6 [&_img]:rounded-md [&_figcaption]:mt-3 [&_figcaption]:font-mono [&_figcaption]:text-caption [&_figcaption]:text-text-meta",
 ].join(" ");
 
 const textOf = (children: ReactNode): string => (typeof children === "string" ? children : "");

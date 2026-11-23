@@ -17,10 +17,10 @@ export const PostInfo = (props: PostInfoProps) => {
   const titleSize = isLarge ? "text-section tracking-title max-md:text-heading" : "text-title";
   return (
     <div className="flex min-w-0 flex-col text-text">
-      <p className="m-0 font-mono text-caption tracking-wide text-text-muted">{`${date} · ${readingMinutes} min read`}</p>
+      <p className="m-0 font-mono text-caption tracking-wide text-text-meta">{`${date} · ${readingMinutes} min read`}</p>
       <Heading className={`m-0 font-medium ${isLarge ? "mt-4 max-w-250" : "mt-2.5"} ${titleSize}`}>{title}</Heading>
       {summary !== undefined && (
-        <p className="m-0 mt-2 text-small leading-5.5 text-text-muted md:text-body">{summary}</p>
+        <p className="m-0 mt-2 text-small leading-5.5 text-text-summary md:text-body">{summary}</p>
       )}
       {tags.length > 0 && (
         <ul className={`m-0 flex list-none flex-wrap gap-2 p-0 ${isLarge ? "mt-5" : "mt-3.5"}`}>

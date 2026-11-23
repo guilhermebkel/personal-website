@@ -10,7 +10,7 @@ export const Footer = () => {
     >
       <div className="flex items-center gap-5">
         <LogoIcon className="h-8 w-auto text-text-soft" />
-        <span className="font-mono text-caption text-text-muted">© 2026 Guilherme Mota</span>
+        <span className="font-mono text-caption text-text-meta">© 2026 Guilherme Mota</span>
       </div>
       <NextLink
         href="#main"

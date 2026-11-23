@@ -7,8 +7,8 @@ type CoverProps = {
 export const Cover = ({ className }: CoverProps) => {
   return (
     <div aria-hidden="true" className={`relative overflow-hidden bg-cover ${className}`}>
-      <div className="absolute top-1/2 left-1/2 size-16 -translate-1/2 rounded-full border-2 border-purple bg-purple/20 transition-transform duration-500 group-hover/card:scale-110" />
-      <div className="absolute top-1/2 left-1/2 size-32 -translate-1/2 rounded-full border-2 border-border transition-transform duration-500 group-hover/card:scale-110" />
+      <div className="absolute top-1/2 left-1/2 size-16 -translate-1/2 rounded-full border-2 border-purple bg-purple-wash transition-transform duration-500 group-hover/card:scale-110" />
+      <div className="absolute top-1/2 left-1/2 size-32 -translate-1/2 rounded-full border-2 border-ring-cover transition-transform duration-500 group-hover/card:scale-110" />
     </div>
   );
 };
