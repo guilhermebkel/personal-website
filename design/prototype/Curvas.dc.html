@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hoje × proposta: formas e linhas curvas</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&amp;family=Caveat:wght@500&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #151515;
+          }
+
+          .dv {
+            stroke-dasharray: 1;
+            stroke-dashoffset: 0;
+            animation: dv 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes dv {
+            0% {
+              stroke-dashoffset: 1;
+            }
+            22% {
+              stroke-dashoffset: 0;
+            }
+            100% {
+              stroke-dashoffset: 0;
+            }
+          }
+          .dh {
+            animation: dh 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes dh {
+            0%,
+            18% {
+              opacity: 0;
+            }
+            28% {
+              opacity: 1;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          .sw {
+            transform: scaleX(0);
+            transform-origin: left center;
+            animation: sw 6s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes sw {
+            0%,
+            20% {
+              transform: scaleX(0);
+              transform-origin: left center;
+            }
+            40% {
+              transform: scaleX(1);
+              transform-origin: left center;
+            }
+            60% {
+              transform: scaleX(1);
+              transform-origin: right center;
+            }
+            80%,
+            100% {
+              transform: scaleX(0);
+              transform-origin: right center;
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            * {
+              animation: none !important;
+            }
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          width: 1280px;
+          height: 820px;
+          box-sizing: border-box;
+          padding: 56px 60px;
+          background: #151515;
+          color: #ffffff;
+          font-family: Ubuntu, sans-serif;
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+        "
+      >
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="font-size: 14px; letter-spacing: 4.8px; text-transform: uppercase; color: #aaaaaa">
+            Forma e linha
+          </div>
+          <div style="font-size: 32px; font-weight: 700; line-height: 1.2">
+            Hoje, tudo é reto. Na proposta, a curva suaviza.
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 80px">
+          <!-- HOJE -->
+          <div style="width: 540px; display: flex; flex-direction: column; gap: 28px">
+            <div
+              style="
+                font-size: 14px;
+                letter-spacing: 4.8px;
+                text-transform: uppercase;
+                color: #aaaaaa;
+                border-bottom: 2px solid #5b5b5b;
+                padding-bottom: 10px;
+              "
+            >
+              Hoje · cantos retos
+            </div>
+
+            <svg width="540" height="56" viewBox="0 0 540 56" fill="none" aria-hidden="true">
+              <path
+                d="M2 44 H270 V12 H508"
+                stroke="#5B5B5B"
+                stroke-width="2"
+                stroke-linecap="butt"
+                stroke-linejoin="miter"
+              />
+              <path
+                d="M496 4 L510 12 L496 20"
+                stroke="#9479FF"
+                stroke-width="2"
+                stroke-linecap="butt"
+                stroke-linejoin="miter"
+              />
+            </svg>
+
+            <div
+              style="
+                display: flex;
+                gap: 20px;
+                height: 188px;
+                box-sizing: border-box;
+                padding: 0;
+                background: #252525;
+                border-radius: 0;
+                border: 2px solid #5b5b5b;
+              "
+            >
+              <div
+                style="
+                  width: 180px;
+                  background: #2c2c2c;
+                  border-radius: 0;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #aaaaaa;
+                  font-size: 14px;
+                  letter-spacing: 4.8px;
+                "
+              >
+                CAPA
+              </div>
+              <div
+                style="
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  gap: 8px;
+                  padding-right: 20px;
+                "
+              >
+                <div style="font-size: 14px; letter-spacing: 4.8px; color: #aaaaaa">P/01</div>
+                <div style="font-size: 24px; font-weight: 700; line-height: 1.2">Projeto um</div>
+                <div style="font-size: 16px; color: #d7d7d7; line-height: 1.4">Descrição curta do que a obra faz.</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 32px; height: 48px">
+              <span
+                style="
+                  display: inline-block;
+                  font-size: 16px;
+                  font-weight: 500;
+                  padding-bottom: 6px;
+                  border-bottom: 2px solid #ffffff;
+                "
+                >Ver projeto ↗</span
+              >
+              <span
+                style="
+                  display: inline-block;
+                  font-size: 16px;
+                  font-weight: 500;
+                  padding: 12px 24px;
+                  border: 2px solid #9479ff;
+                  border-radius: 0;
+                  color: #ffffff;
+                "
+                >Ler post</span
+              >
+            </div>
+
+            <div style="display: flex; gap: 12px; height: 36px">
+              <span style="font-size: 14px; padding: 6px 12px; background: #2c2c2c; border-radius: 4px; color: #d7d7d7"
+                >react</span
+              >
+              <span style="font-size: 14px; padding: 6px 12px; background: #2c2c2c; border-radius: 4px; color: #d7d7d7"
+                >three.js</span
+              >
+              <span style="font-size: 14px; padding: 6px 12px; background: #2c2c2c; border-radius: 4px; color: #d7d7d7"
+                >mcp</span
+              >
+            </div>
+
+            <div style="height: 52px; display: flex; align-items: center; font-size: 32px; font-weight: 700">
+              <span>Feito&nbsp;</span
+              ><span style="background: #5328fe; padding: 0 10px; border-radius: 0; line-height: 1.4">sem pressa</span>
+            </div>
+          </div>
+
+          <!-- PROPOSTA -->
+          <div style="width: 540px; display: flex; flex-direction: column; gap: 28px">
+            <div
+              style="
+                font-size: 14px;
+                letter-spacing: 4.8px;
+                text-transform: uppercase;
+                color: #9479ff;
+                border-bottom: 2px solid #9479ff;
+                padding-bottom: 10px;
+              "
+            >
+              Proposta · cantos e linhas suaves
+            </div>
+
+            <svg width="540" height="56" viewBox="0 0 540 56" fill="none" aria-hidden="true">
+              <path
+                class="dv"
+                pathLength="1"
+                d="M2 44 C130 44 150 12 280 12 S430 40 504 14"
+                stroke="#5B5B5B"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <path
+                class="dh"
+                d="M490 6 C497 8 502 11 506 14 C503 20 500 25 497 30"
+                stroke="#9479FF"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+
+            <div
+              style="
+                display: flex;
+                gap: 20px;
+                height: 188px;
+                box-sizing: border-box;
+                padding: 12px;
+                background: #252525;
+                border-radius: 24px;
+                border: 2px solid #5b5b5b;
+              "
+            >
+              <div
+                style="
+                  width: 180px;
+                  background: #2c2c2c;
+                  border-radius: 16px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #aaaaaa;
+                  font-size: 14px;
+                  letter-spacing: 4.8px;
+                "
+              >
+                CAPA
+              </div>
+              <div
+                style="
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  gap: 8px;
+                  padding-right: 12px;
+                "
+              >
+                <div style="font-size: 14px; letter-spacing: 4.8px; color: #aaaaaa">P/01</div>
+                <div style="font-size: 24px; font-weight: 700; line-height: 1.2">Projeto um</div>
+                <div style="font-size: 16px; color: #d7d7d7; line-height: 1.4">Descrição curta do que a obra faz.</div>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 32px; height: 48px">
+              <span
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  font-size: 16px;
+                  font-weight: 500;
+                  padding-bottom: 6px;
+                  position: relative;
+                "
+                >Ver projeto ↗<svg
+                  width="100%"
+                  height="6"
+                  viewBox="0 0 100 6"
+                  preserveAspectRatio="none"
+                  fill="none"
+                  style="position: absolute; left: 0; right: 0; bottom: 0"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2 3 C25 0 40 6 60 3 S85 1 98 3"
+                    stroke="#FFFFFF"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    vector-effect="non-scaling-stroke"
+                  /></svg
+              ></span>
+              <span
+                style="
+                  position: relative;
+                  display: inline-block;
+                  overflow: hidden;
+                  font-size: 16px;
+                  font-weight: 500;
+                  padding: 12px 24px;
+                  border: 2px solid #9479ff;
+                  border-radius: 999px;
+                  color: #ffffff;
+                  isolation: isolate;
+                "
+                ><span
+                  class="sw"
+                  style="position: absolute; inset: 0; background: #5328fe; z-index: -1"
+                  aria-hidden="true"
+                ></span
+                >Ler post</span
+              >
+            </div>
+
+            <div style="display: flex; gap: 12px; height: 36px">
+              <span
+                style="font-size: 14px; padding: 6px 14px; background: #2c2c2c; border-radius: 999px; color: #d7d7d7"
+                >react</span
+              >
+              <span
+                style="font-size: 14px; padding: 6px 14px; background: #2c2c2c; border-radius: 999px; color: #d7d7d7"
+                >three.js</span
+              >
+              <span
+                style="font-size: 14px; padding: 6px 14px; background: #2c2c2c; border-radius: 999px; color: #d7d7d7"
+                >mcp</span
+              >
+            </div>
+
+            <div style="height: 52px; display: flex; align-items: center; font-size: 32px; font-weight: 700">
+              <span>Feito&nbsp;</span>
+              <span
+                style="position: relative; display: inline-block; padding: 0 14px; line-height: 1.4; isolation: isolate"
+              >
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 190 52"
+                  preserveAspectRatio="none"
+                  style="position: absolute; inset: 0; z-index: -1; transform: rotate(-1.5deg)"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M10 14 C40 5 150 4 180 12 C189 20 186 36 178 42 C140 51 50 49 12 42 C3 34 4 20 10 14 Z"
+                    fill="#5328FE"
+                  />
+                </svg>
+                sem pressa</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":820}}'>
+      class Component extends DCLogic { renderVals() { return {}; } }
+    </script>
+  </body>
+</html>

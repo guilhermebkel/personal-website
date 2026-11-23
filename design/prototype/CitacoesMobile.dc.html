@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Citações</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300&amp;family=Caveat:wght@500&amp;family=Geist+Mono:wght@400;500&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #1b1b1e;
+          }
+          .rise-0-5-5 {
+            animation: rise-0-5-5 14s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-0-5-5 {
+            0%,
+            0% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            5%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-4-10-10 {
+            animation: rise-4-10-10 14s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-4-10-10 {
+            0%,
+            4% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            10%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          @keyframes rise-0-5-5-r {
+            0%,
+            0% {
+              opacity: 0;
+            }
+            5%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-4-10-10-r {
+            0%,
+            4% {
+              opacity: 0;
+            }
+            10%,
+            100% {
+              opacity: 1;
+            }
+          }
+
+          .stage {
+            animation: stg 14s ease-in-out infinite;
+          }
+          @keyframes stg {
+            0%,
+            86% {
+              opacity: 1;
+            }
+            97%,
+            100% {
+              opacity: 0;
+            }
+          }
+          .mk {
+            position: relative;
+            display: inline-block;
+            isolation: isolate;
+          }
+          .mk::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: -14px;
+            right: -14px;
+            bottom: 2px;
+            height: 46%;
+            background: #5328fe;
+            rotate: -1.5deg;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E")
+              0 0/100% 100% no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E")
+              0 0/100% 100% no-repeat;
+            transform-origin: left;
+            animation: mk 14s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes mk {
+            0%,
+            20% {
+              transform: scaleX(0);
+            }
+            31% {
+              transform: scaleX(1);
+            }
+            100% {
+              transform: scaleX(1);
+            }
+          }
+          .btn {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            display: inline-flex;
+            align-items: center;
+            padding: 0 24px;
+            height: 44px;
+            box-sizing: border-box;
+            border: 2px solid #9479ff;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+          }
+          .lnk {
+            position: relative;
+            display: inline-block;
+            isolation: isolate;
+            font-size: 16px;
+            line-height: 24px;
+            padding-right: 8px;
+          }
+          .lnk::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 14px;
+            background: #5328fe;
+            rotate: -1.5deg;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E")
+              0 0/100% 100% no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E")
+              0 0/100% 100% no-repeat;
+            opacity: 0;
+          }
+          .chip {
+            display: inline-block;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: #2c2c2c;
+            color: #d7d7d7;
+            border: 2px solid #5b5b5b;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            * {
+              animation: none !important;
+            }
+            .rise-0-5-5 {
+              animation: rise-0-5-5-r 14s linear infinite !important;
+            }
+            .rise-4-10-10 {
+              animation: rise-4-10-10-r 14s linear infinite !important;
+            }
+          }
+        </style>
+      </helmet>
+      <div class="stage" style="position: absolute; inset: 0">
+        <div
+          style="
+            width: 390px;
+            height: 640px;
+            position: relative;
+            overflow: hidden;
+            background: #1b1b1e;
+            color: #fff;
+            font-family: Ubuntu, sans-serif;
+          "
+        >
+          <style>
+            .hl {
+              font-weight: 300;
+              color: #fff;
+              padding: 0 0.12em;
+              margin: 0 -0.12em;
+              background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%235328FE' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath fill='%235328FE' d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E")
+                0 100%/100% 58% no-repeat;
+              -webkit-box-decoration-break: clone;
+              box-decoration-break: clone;
+            }
+            .qk0 {
+              animation: qk0 14s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+            }
+            @keyframes qk0 {
+              0%,
+              10% {
+                opacity: 0;
+                transform: translateY(18px);
+              }
+              19% {
+                opacity: 1;
+                transform: none;
+              }
+              25% {
+                opacity: 1;
+                transform: none;
+              }
+              30%,
+              100% {
+                opacity: 0;
+                transform: translateY(-14px);
+              }
+            }
+            .hl0 {
+              animation: hl0 14s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+            }
+            @keyframes hl0 {
+              0%,
+              10% {
+                background-size: 0% 58%;
+              }
+              19%,
+              100% {
+                background-size: 100% 58%;
+              }
+            }
+            .pk0 {
+              transform-origin: left;
+              animation: pk0 14s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+            }
+            @keyframes pk0 {
+              0%,
+              10% {
+                transform: scaleX(0);
+              }
+              13%,
+              25% {
+                transform: scaleX(1);
+              }
+              30%,
+              100% {
+                transform: scaleX(0);
+              }
+            }
+            .pn0 {
+              animation: pn0 14s linear infinite;
+            }
+            @keyframes pn0 {
+              0%,
+              10% {
+                opacity: 0.45;
+              }
+              13%,
+              25% {
+                opacity: 1;
+              }
+              30%,
+              100% {
+                opacity: 0.45;
+              }
+            }
+            .qk1 {
+              animation: qk1 14s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+            }
+            @keyframes qk1 {
+              0%,
+              28% {
+                opacity: 0;
+                transform: translateY(18px);
+              }
+              37% {
+                opacity: 1;
+                transform: none;
+              }
+              43% {
+                opacity: 1;
+                transform: none;
+              }
+              48%,
+              100% {
+                opacity: 0;
+                transform: translateY(-14px);
+              }
+            }
+            .hl1 {
+              animation: hl1 14s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+            }
+            @keyframes hl1 {
+              0%,
+              28% {
+                background-size: 0% 58%;
+              }
+              37%,
+              100% {
+                background-size: 100% 58%;
+              }
+            }
+            .pk1 {
+              transform-origin: left;
+              animation: pk1 14s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+            }
+            @keyframes pk1 {
+              0%,
+              28% {
+                transform: scaleX(0);
+              }
+              31%,
+              43% {
+                transform: scaleX(1);
+              }
+              48%,
+              100% {
+                transform: scaleX(0);
+              }
+            }
+            .pn1 {
+              animation: pn1 14s linear infinite;
+            }
+            @keyframes pn1 {
+              0%,
+              28% {
+                opacity: 0.45;
+              }
+              31%,
+              43% {
+                opacity: 1;
+              }
+              48%,
+              100% {
+                opacity: 0.45;
+              }
+            }
+            .qk2 {
+              animation: qk2 14s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+            }
+            @keyframes qk2 {
+              0%,
+              46% {
+                opacity: 0;
+                transform: translateY(18px);
+              }
+              55% {
+                opacity: 1;
+                transform: none;
+              }
+              61% {
+                opacity: 1;
+                transform: none;
+              }
+              66%,
+              100% {
+                opacity: 0;
+                transform: translateY(-14px);
+              }
+            }
+            .hl2 {
+              animation: hl2 14s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+            }
+            @keyframes hl2 {
+              0%,
+              46% {
+                background-size: 0% 58%;
+              }
+              55%,
+              100% {
+                background-size: 100% 58%;
+              }
+            }
+            .pk2 {
+              transform-origin: left;
+              animation: pk2 14s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+            }
+            @keyframes pk2 {
+              0%,
+              46% {
+                transform: scaleX(0);
+              }
+              49%,
+              61% {
+                transform: scaleX(1);
+              }
+              66%,
+              100% {
+                transform: scaleX(0);
+              }
+            }
+            .pn2 {
+              animation: pn2 14s linear infinite;
+            }
+            @keyframes pn2 {
+              0%,
+              46% {
+                opacity: 0.45;
+              }
+              49%,
+              61% {
+                opacity: 1;
+              }
+              66%,
+              100% {
+                opacity: 0.45;
+              }
+            }
+            .qk3 {
+              animation: qk3 14s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+            }
+            @keyframes qk3 {
+              0%,
+              64% {
+                opacity: 0;
+                transform: translateY(18px);
+              }
+              73% {
+                opacity: 1;
+                transform: none;
+              }
+              100% {
+                opacity: 1;
+                transform: none;
+              }
+            }
+            .hl3 {
+              animation: hl3 14s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+            }
+            @keyframes hl3 {
+              0%,
+              64% {
+                background-size: 0% 58%;
+              }
+              73%,
+              100% {
+                background-size: 100% 58%;
+              }
+            }
+            .pk3 {
+              transform-origin: left;
+              animation: pk3 14s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+            }
+            @keyframes pk3 {
+              0%,
+              64% {
+                transform: scaleX(0);
+              }
+              67%,
+              100% {
+                transform: scaleX(1);
+              }
+            }
+            .pn3 {
+              animation: pn3 14s linear infinite;
+            }
+            @keyframes pn3 {
+              0%,
+              64% {
+                opacity: 0.45;
+              }
+              67%,
+              100% {
+                opacity: 1;
+              }
+            }
+            @media (prefers-reduced-motion: reduce) {
+              .qk {
+                opacity: 0 !important;
+              }
+              .qk0 {
+                opacity: 1 !important;
+                transform: none !important;
+              }
+              .hl {
+                animation: none !important;
+                background-size: 100% 58% !important;
+              }
+            }</style
+          ><svg
+            width="390"
+            height="640"
+            viewBox="0 0 390 640"
+            style="
+              position: absolute;
+              left: 0;
+              top: 0;
+              -webkit-mask-image: linear-gradient(#000 0%, #000 60%, transparent 100%);
+              mask-image: linear-gradient(#000 0%, #000 60%, transparent 100%);
+            "
+          >
+            <path
+              d="M-40 31.0 L0 40.0 L40 49.0 L80 57.2 L120 64.0 L160 68.9 L200 71.7 L240 72.2 L280 70.8 L320 67.7 L360 63.7 L400 59.3 L440 55.2"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 110.6 L0 119.2 L40 126.3 L80 131.4 L120 134.1 L160 134.4 L200 132.7 L240 129.3 L280 124.8 L320 119.9 L360 115.1 L400 111.1 L440 108.2"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 187.9 L0 192.5 L40 194.7 L80 194.5 L120 192.1 L160 188.0 L200 182.8 L240 177.3 L280 171.9 L320 167.2 L360 163.7 L400 161.3 L440 160.1"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 251.7 L0 250.6 L40 247.3 L80 242.4 L120 236.6 L160 230.4 L200 224.5 L240 219.5 L280 215.7 L320 213.2 L360 211.8 L400 211.4 L440 211.4"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 298.6 L0 293.1 L40 286.7 L80 280.2 L120 274.3 L160 269.3 L200 265.7 L240 263.6 L280 262.7 L320 262.8 L360 263.5 L400 264.0 L440 264.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 335.7 L0 329.2 L40 323.5 L80 319.0 L120 316.0 L160 314.5 L200 314.5 L240 315.4 L280 316.9 L320 318.4 L360 319.2 L400 319.0 L440 317.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 374.3 L0 370.2 L40 367.8 L80 367.0 L120 367.7 L160 369.4 L200 371.6 L240 373.8 L280 375.2 L320 375.6 L360 374.6 L400 372.1 L440 368.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 421.2 L0 420.6 L40 421.6 L80 423.6 L120 426.1 L160 428.4 L200 430.2 L240 430.7 L280 429.9 L320 427.7 L360 424.2 L400 419.7 L440 415.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 474.7 L0 476.5 L40 478.7 L80 481.0 L120 482.5 L160 483.0 L200 482.2 L240 480.0 L280 476.7 L320 472.6 L360 468.3 L400 464.4 L440 461.5"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 529.4 L0 531.3 L40 532.7 L80 533.1 L120 532.3 L160 530.3 L200 527.3 L240 523.7 L280 520.0 L320 516.9 L360 515.0 L400 514.8 L440 516.6"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 582.6 L0 583.2 L40 582.6 L80 581.0 L120 578.6 L160 575.7 L200 572.9 L240 570.8 L280 570.0 L320 570.9 L360 573.9 L400 579.0 L440 586.1"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+          </svg>
+          <div style="position: absolute; left: 0; right: 0; top: 72px">
+            <div
+              class="rise-0-5-5"
+              style="
+                font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                font-size: 14px;
+                color: #9479ff;
+                letter-spacing: 0.04em;
+                margin: 0 20px;
+              "
+            >
+              03 — Quotes
+            </div>
+            <h2
+              class="rise-4-10-10"
+              style="margin: 16px 20px 0; font-size: 40px; line-height: 48px; font-weight: 500; letter-spacing: -0.01em"
+            >
+              Words I build on
+            </h2>
+            <div style="margin: 48px 20px 0; display: flex; flex-direction: column; align-items: center">
+              <div class="rise-4-10-10" style="margin-bottom: 20px">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+                  <path
+                    d="M21.95 8.721c-.017-.109-.025-.168-.025-.168l-.026.006C21.465 6.526 19.662 5 17.5 5 15.015 5 13 7.015 13 9.5s2.015 4.5 4.5 4.5c.223 0 .437-.034.65-.065-.069.232-.14.468-.254.68-.114.308-.292.575-.469.844-.148.291-.409.488-.601.737-.201.242-.475.403-.692.604-.213.21-.492.315-.714.463-.232.133-.434.28-.65.35-.208.086-.39.16-.539.222-.302.125-.474.197-.474.197l.484 1.939c0 0 .218-.052.597-.144.191-.048.424-.104.689-.171.271-.05.56-.187.882-.312.317-.143.686-.238 1.028-.467.344-.218.741-.4 1.091-.692.339-.301.748-.562 1.05-.944.33-.358.656-.734.909-1.162.293-.408.492-.856.702-1.299.19-.443.343-.896.468-1.336.237-.882.343-1.72.384-2.437.034-.718.014-1.315-.028-1.747C21.998 9.056 21.971 8.857 21.95 8.721zM10.95 8.721c-.017-.109-.025-.168-.025-.168l-.026.006C10.465 6.526 8.662 5 6.5 5 4.015 5 2 7.015 2 9.5S4.015 14 6.5 14c.223 0 .437-.034.65-.065-.069.232-.14.468-.254.68-.114.308-.292.575-.469.844-.148.291-.409.488-.601.737-.201.242-.475.403-.692.604-.213.21-.492.315-.714.463-.232.133-.434.28-.65.35-.208.086-.39.16-.539.222C2.93 17.958 2.758 18.03 2.758 18.03l.484 1.939c0 0 .218-.052.597-.144.191-.048.424-.104.689-.171.271-.05.56-.187.882-.312.317-.143.686-.238 1.028-.467.344-.218.741-.4 1.091-.692.339-.301.748-.562 1.05-.944.33-.358.656-.734.909-1.162.293-.408.492-.856.702-1.299.19-.443.343-.896.468-1.336.237-.882.343-1.72.384-2.437.034-.718.014-1.315-.028-1.747C10.998 9.056 10.971 8.857 10.95 8.721z"
+                  />
+                </svg>
+              </div>
+              <div style="position: relative; width: 100%; height: 236px">
+                <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center">
+                  <p
+                    class="qk qk0"
+                    style="
+                      margin: 0;
+                      text-align: center;
+                      font-size: 26px;
+                      line-height: 38px;
+                      font-weight: 300;
+                      font-style: italic;
+                      text-wrap: balance;
+                      max-width: 350px;
+                    "
+                  >
+                    Does not matter what you are doing, <span class="hl hl0">do it with excellence.</span>
+                  </p>
+                </div>
+                <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center">
+                  <p
+                    class="qk qk1"
+                    style="
+                      margin: 0;
+                      text-align: center;
+                      font-size: 26px;
+                      line-height: 38px;
+                      font-weight: 300;
+                      font-style: italic;
+                      text-wrap: balance;
+                      max-width: 350px;
+                    "
+                  >
+                    Start learning by the surface and <span class="hl hl1">keep going deep to the abstractions.</span>
+                  </p>
+                </div>
+                <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center">
+                  <p
+                    class="qk qk2"
+                    style="
+                      margin: 0;
+                      text-align: center;
+                      font-size: 26px;
+                      line-height: 38px;
+                      font-weight: 300;
+                      font-style: italic;
+                      text-wrap: balance;
+                      max-width: 350px;
+                    "
+                  >
+                    Try not to focus on learning new technologies,
+                    <span class="hl hl2">but improving your learning process</span> for every single new technology you
+                    study.
+                  </p>
+                </div>
+                <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center">
+                  <p
+                    class="qk qk3"
+                    style="
+                      margin: 0;
+                      text-align: center;
+                      font-size: 26px;
+                      line-height: 38px;
+                      font-weight: 300;
+                      font-style: italic;
+                      text-wrap: balance;
+                      max-width: 350px;
+                    "
+                  >
+                    Most of the time, the best software is <span class="hl hl3">the flexible one.</span>
+                  </p>
+                </div>
+              </div>
+              <div style="margin-top: 32px; display: flex; gap: 16px">
+                <div style="width: 56px">
+                  <div
+                    class="pn pn0"
+                    style="
+                      font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                      font-size: 12px;
+                      color: #fff;
+                      letter-spacing: 0.04em;
+                    "
+                  >
+                    01
+                  </div>
+                  <div style="margin-top: 8px; height: 2px; background: #2c2c2c; border-radius: 2px; overflow: hidden">
+                    <div class="pk pk0" style="height: 2px; background: #5328fe"></div>
+                  </div>
+                </div>
+                <div style="width: 56px">
+                  <div
+                    class="pn pn1"
+                    style="
+                      font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                      font-size: 12px;
+                      color: #fff;
+                      letter-spacing: 0.04em;
+                    "
+                  >
+                    02
+                  </div>
+                  <div style="margin-top: 8px; height: 2px; background: #2c2c2c; border-radius: 2px; overflow: hidden">
+                    <div class="pk pk1" style="height: 2px; background: #5328fe"></div>
+                  </div>
+                </div>
+                <div style="width: 56px">
+                  <div
+                    class="pn pn2"
+                    style="
+                      font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                      font-size: 12px;
+                      color: #fff;
+                      letter-spacing: 0.04em;
+                    "
+                  >
+                    03
+                  </div>
+                  <div style="margin-top: 8px; height: 2px; background: #2c2c2c; border-radius: 2px; overflow: hidden">
+                    <div class="pk pk2" style="height: 2px; background: #5328fe"></div>
+                  </div>
+                </div>
+                <div style="width: 56px">
+                  <div
+                    class="pn pn3"
+                    style="
+                      font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                      font-size: 12px;
+                      color: #fff;
+                      letter-spacing: 0.04em;
+                    "
+                  >
+                    04
+                  </div>
+                  <div style="margin-top: 8px; height: 2px; background: #2c2c2c; border-radius: 2px; overflow: hidden">
+                    <div class="pk pk3" style="height: 2px; background: #5328fe"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":640}}'>
+      class Component extends DCLogic { renderVals() { return {}; } }
+    </script>
+  </body>
+</html>

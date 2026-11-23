@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Assinatura no fim do post</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&amp;family=Caveat:wght@500&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #151515;
+          }
+
+          .hr {
+            stroke-dasharray: 1;
+            stroke-dashoffset: 0;
+            animation: hr 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes hr {
+            0% {
+              stroke-dashoffset: 1;
+            }
+            14% {
+              stroke-dashoffset: 0;
+            }
+            100% {
+              stroke-dashoffset: 0;
+            }
+          }
+          .cap {
+            animation: cap 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes cap {
+            0%,
+            10% {
+              opacity: 0;
+            }
+            20% {
+              opacity: 1;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          .sig {
+            display: inline-block;
+            animation: sig 9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+          }
+          @keyframes sig {
+            0%,
+            18% {
+              clip-path: inset(-10% 100% -10% 0);
+            }
+            50% {
+              clip-path: inset(-10% 0 -10% 0);
+            }
+            100% {
+              clip-path: inset(-10% 0 -10% 0);
+            }
+          }
+          .fl {
+            stroke-dasharray: 1;
+            stroke-dashoffset: 0;
+            animation: fl 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes fl {
+            0%,
+            48% {
+              stroke-dashoffset: 1;
+            }
+            64% {
+              stroke-dashoffset: 0;
+            }
+            100% {
+              stroke-dashoffset: 0;
+            }
+          }
+          .back {
+            animation: back 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes back {
+            0%,
+            60% {
+              opacity: 0;
+              transform: translateY(12px);
+            }
+            74% {
+              opacity: 1;
+              transform: none;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            * {
+              animation: none !important;
+            }
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          width: 1280px;
+          height: 560px;
+          box-sizing: border-box;
+          padding: 72px 160px;
+          background: #151515;
+          color: #ffffff;
+          font-family: Ubuntu, sans-serif;
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+        "
+      >
+        <svg width="960" height="4" viewBox="0 0 960 4" fill="none" aria-hidden="true">
+          <path class="hr" pathLength="1" stroke="#5B5B5B" stroke-width="2" stroke-linecap="round" d="M2 2 H958" />
+        </svg>
+        <div style="display: flex; align-items: flex-end; gap: 48px">
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <span
+              class="cap"
+              style="
+                font-size: 12px;
+                line-height: 16px;
+                color: #aaaaaa;
+                letter-spacing: 1.2px;
+                text-transform: uppercase;
+              "
+              >Escrito por</span
+            >
+            <div style="position: relative">
+              <span
+                class="sig"
+                style="
+                  font-family: Caveat, cursive;
+                  font-weight: 500;
+                  font-size: 96px;
+                  line-height: 96px;
+                  color: #ffffff;
+                "
+                >Guilherme Mota</span
+              >
+              <svg
+                width="520"
+                height="24"
+                viewBox="0 0 520 24"
+                fill="none"
+                style="display: block; margin-top: -8px"
+                aria-hidden="true"
+              >
+                <path
+                  class="fl"
+                  pathLength="1"
+                  stroke="#9479FF"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  d="M4 16 C120 4 300 24 516 8"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <a
+          class="back"
+          href="#"
+          style="
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            line-height: 24px;
+            color: #ffffff;
+            text-decoration: none;
+            align-self: flex-start;
+            margin-top: 16px;
+          "
+          ><svg
+            width="28"
+            height="16"
+            viewBox="0 0 28 16"
+            fill="none"
+            stroke="#9479FF"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M26 8 H3 M9 2 L3 8 L9 14" /></svg
+          >Voltar aos projetos</a
+        >
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":560}}'>
+      class Component extends DCLogic {
+      renderVals() {
+      return {};
+      }
+      }
+    </script>
+  </body>
+</html>

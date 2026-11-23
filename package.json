@@ -27,7 +27,9 @@
     "check": "pnpm ensure-deps && pnpm typecheck && pnpm lint && pnpm quality && pnpm test && pnpm build && pnpm test:e2e",
     "test:e2e": "pnpm ensure-playwright && playwright test",
     "design:tokens": "node scripts/build-design-tokens.mjs",
-    "visual:component": "node scripts/visual-component.mjs"
+    "visual:component": "node scripts/visual-component.mjs",
+    "prototype:shots": "node scripts/prototype-shots.mjs",
+    "prototype:compare": "node scripts/prototype-compare.mjs"
   },
   "dependencies": {
     "@fontsource/caveat": "^5.2.8",

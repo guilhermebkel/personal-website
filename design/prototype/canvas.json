@@ -1,0 +1,269 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Assinatura.dc.html": {
+      "h": 560,
+      "title": "Assinatura no fim do post",
+      "w": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "Blog.dc.html": {
+      "h": 1500,
+      "title": "Blog · Listagem (desktop)",
+      "w": 1440,
+      "x": 0,
+      "y": 8600
+    },
+    "BlogMobile.dc.html": {
+      "h": 1620,
+      "title": "Blog · Listagem (mobile)",
+      "w": 390,
+      "x": 1520,
+      "y": 8600
+    },
+    "Citacoes.dc.html": {
+      "h": 730,
+      "title": "Seção 4 · Citações (desktop)",
+      "w": 1440,
+      "x": 0,
+      "y": 6200
+    },
+    "CitacoesMobile.dc.html": {
+      "h": 640,
+      "title": "Seção 4 · Citações (mobile)",
+      "w": 390,
+      "x": 1520,
+      "y": 6200
+    },
+    "Contato.dc.html": {
+      "h": 600,
+      "title": "Seção 5 · Contato (desktop)",
+      "w": 1440,
+      "x": 0,
+      "y": 7400
+    },
+    "ContatoMobile.dc.html": {
+      "h": 740,
+      "title": "Seção 5 · Contato (mobile)",
+      "w": 390,
+      "x": 1520,
+      "y": 7400
+    },
+    "Curvas.dc.html": {
+      "h": 820,
+      "title": "Hoje × proposta: formas e linhas curvas",
+      "w": 1280,
+      "x": 1360,
+      "y": 0
+    },
+    "Intro.dc.html": {
+      "h": 900,
+      "title": "Seção 1 · Intro (desktop)",
+      "w": 1440,
+      "x": 0,
+      "y": 1900
+    },
+    "IntroMobile.dc.html": {
+      "h": 844,
+      "title": "Seção 1 · Intro (mobile)",
+      "w": 390,
+      "x": 1520,
+      "y": 1900
+    },
+    "LogoRound.dc.html": {
+      "h": 700,
+      "title": "Logo: versão final (cantos suaves)",
+      "w": 1440,
+      "x": 0,
+      "y": 2980
+    },
+    "MenuMobile.dc.html": {
+      "h": 844,
+      "title": "Menu mobile aberto",
+      "w": 390,
+      "x": 0,
+      "y": 14100
+    },
+    "NotFound.dc.html": {
+      "h": 740,
+      "title": "404 (desktop)",
+      "w": 1440,
+      "x": 470,
+      "y": 14100
+    },
+    "NotFoundMobile.dc.html": {
+      "h": 700,
+      "title": "404 (mobile)",
+      "w": 390,
+      "x": 1990,
+      "y": 14100
+    },
+    "Post.dc.html": {
+      "h": 3230,
+      "title": "Blog · Post (desktop)",
+      "w": 1440,
+      "x": 0,
+      "y": 10420
+    },
+    "PostMobile.dc.html": {
+      "h": 3030,
+      "title": "Blog · Post (mobile)",
+      "w": 390,
+      "x": 1520,
+      "y": 10420
+    },
+    "Posts.dc.html": {
+      "h": 1040,
+      "title": "Seção 3 · Posts (desktop)",
+      "w": 1440,
+      "x": 0,
+      "y": 4900
+    },
+    "PostsMobile.dc.html": {
+      "h": 1360,
+      "title": "Seção 3 · Posts (mobile)",
+      "w": 390,
+      "x": 1520,
+      "y": 4900
+    },
+    "Projetos.dc.html": {
+      "h": 832,
+      "title": "Seção 2 · Projetos (desktop)",
+      "w": 1440,
+      "x": 0,
+      "y": 3900
+    },
+    "ProjetosMobile.dc.html": {
+      "h": 732,
+      "title": "Seção 2 · Projetos (mobile)",
+      "w": 390,
+      "x": 1520,
+      "y": 3900
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-11-23T10:35:00Z",
+    "v": 1
+  },
+  "designSystems": [
+    {
+      "artifact": "https://claude.ai/artifact/Y6NoKZRYSqiY1G6fD3K1Sh",
+      "copiedAt": "2026-11-23T10:35:00Z",
+      "namespace": "guilherr-me",
+      "title": "guilherr.me Design System",
+      "version": "1795428571-326b"
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  },
+  "noteOrder": ["t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9", "t10"],
+  "notes": {
+    "t1": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Traço: linha constrói, grifado enfatiza",
+      "w": 240,
+      "x": 0,
+      "y": -260
+    },
+    "t10": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Menu mobile aberto e página 404 (aguardando aprovação)",
+      "w": 240,
+      "x": 0,
+      "y": 14000
+    },
+    "t2": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Site: seção por seção. Seção 1, Intro (aprovada)",
+      "w": 240,
+      "x": 0,
+      "y": 1740
+    },
+    "t3": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Logo: cantos suaves (decisão final)",
+      "w": 240,
+      "x": 0,
+      "y": 2880
+    },
+    "t4": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Seção 2, Projetos (aprovada)",
+      "w": 240,
+      "x": 0,
+      "y": 3800
+    },
+    "t5": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Seção 3, Posts (aprovada)",
+      "w": 240,
+      "x": 0,
+      "y": 4800
+    },
+    "t6": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Seção 4, Citações (aprovada)",
+      "w": 240,
+      "x": 0,
+      "y": 6100
+    },
+    "t7": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Seção 5, Contato (aprovada)",
+      "w": 240,
+      "x": 0,
+      "y": 7300
+    },
+    "t8": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Blog: listagem de posts e página do post (aguardando aprovação)",
+      "w": 240,
+      "x": 0,
+      "y": 8500
+    },
+    "t9": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "Blog · Post",
+      "w": 240,
+      "x": 0,
+      "y": 10320
+    }
+  },
+  "order": [
+    "Assinatura.dc.html",
+    "Curvas.dc.html",
+    "Intro.dc.html",
+    "IntroMobile.dc.html",
+    "LogoRound.dc.html",
+    "Projetos.dc.html",
+    "ProjetosMobile.dc.html",
+    "Posts.dc.html",
+    "PostsMobile.dc.html",
+    "Citacoes.dc.html",
+    "CitacoesMobile.dc.html",
+    "Contato.dc.html",
+    "ContatoMobile.dc.html",
+    "Blog.dc.html",
+    "BlogMobile.dc.html",
+    "Post.dc.html",
+    "PostMobile.dc.html",
+    "MenuMobile.dc.html",
+    "NotFound.dc.html",
+    "NotFoundMobile.dc.html"
+  ],
+  "pages": [],
+  "title": "guilherr.me: protótipo do site (seção por seção)"
+}

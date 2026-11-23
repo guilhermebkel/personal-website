@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Posts</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&amp;family=Caveat:wght@500&amp;family=Geist+Mono:wght@400;500&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #1b1b1e;
+          }
+          .rise-0-5-5 {
+            animation: rise-0-5-5 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-0-5-5 {
+            0%,
+            0% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            5%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-4-10-10 {
+            animation: rise-4-10-10 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-4-10-10 {
+            0%,
+            4% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            10%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-12-20-20 {
+            animation: rise-12-20-20 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-12-20-20 {
+            0%,
+            12% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            20%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-17-25-25 {
+            animation: rise-17-25-25 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-17-25-25 {
+            0%,
+            17% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            25%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-22-30-30 {
+            animation: rise-22-30-30 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-22-30-30 {
+            0%,
+            22% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            30%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-27-35-35 {
+            animation: rise-27-35-35 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-27-35-35 {
+            0%,
+            27% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            35%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          @keyframes rise-0-5-5-r {
+            0%,
+            0% {
+              opacity: 0;
+            }
+            5%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-4-10-10-r {
+            0%,
+            4% {
+              opacity: 0;
+            }
+            10%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-12-20-20-r {
+            0%,
+            12% {
+              opacity: 0;
+            }
+            20%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-17-25-25-r {
+            0%,
+            17% {
+              opacity: 0;
+            }
+            25%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-22-30-30-r {
+            0%,
+            22% {
+              opacity: 0;
+            }
+            30%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-27-35-35-r {
+            0%,
+            27% {
+              opacity: 0;
+            }
+            35%,
+            100% {
+              opacity: 1;
+            }
+          }
+
+          .stage {
+            animation: stg 9s ease-in-out infinite;
+          }
+          @keyframes stg {
+            0%,
+            86% {
+              opacity: 1;
+            }
+            97%,
+            100% {
+              opacity: 0;
+            }
+          }
+          .mk {
+            position: relative;
+            display: inline-block;
+            isolation: isolate;
+          }
+          .mk::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: -14px;
+            right: -14px;
+            bottom: 2px;
+            height: 46%;
+            background: #5328fe;
+            rotate: -1.5deg;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E")
+              0 0/100% 100% no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E")
+              0 0/100% 100% no-repeat;
+            transform-origin: left;
+            animation: mk 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes mk {
+            0%,
+            20% {
+              transform: scaleX(0);
+            }
+            31% {
+              transform: scaleX(1);
+            }
+            100% {
+              transform: scaleX(1);
+            }
+          }
+          .btn {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            display: inline-flex;
+            align-items: center;
+            padding: 0 24px;
+            height: 44px;
+            box-sizing: border-box;
+            border: 2px solid #9479ff;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+          }
+          .lnk {
+            position: relative;
+            display: inline-block;
+            isolation: isolate;
+            font-size: 16px;
+            line-height: 24px;
+            padding-right: 8px;
+          }
+          .lnk::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 14px;
+            background: #5328fe;
+            rotate: -1.5deg;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E")
+              0 0/100% 100% no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E")
+              0 0/100% 100% no-repeat;
+            opacity: 0;
+          }
+          .chip {
+            display: inline-block;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: #2c2c2c;
+            color: #d7d7d7;
+            border: 2px solid #5b5b5b;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            * {
+              animation: none !important;
+            }
+            .rise-0-5-5 {
+              animation: rise-0-5-5-r 9s linear infinite !important;
+            }
+            .rise-4-10-10 {
+              animation: rise-4-10-10-r 9s linear infinite !important;
+            }
+            .rise-12-20-20 {
+              animation: rise-12-20-20-r 9s linear infinite !important;
+            }
+            .rise-17-25-25 {
+              animation: rise-17-25-25-r 9s linear infinite !important;
+            }
+            .rise-22-30-30 {
+              animation: rise-22-30-30-r 9s linear infinite !important;
+            }
+            .rise-27-35-35 {
+              animation: rise-27-35-35-r 9s linear infinite !important;
+            }
+          }
+        </style>
+      </helmet>
+      <div class="stage" style="position: absolute; inset: 0">
+        <div
+          style="
+            width: 390px;
+            height: 1360px;
+            position: relative;
+            overflow: hidden;
+            background: #1b1b1e;
+            color: #fff;
+            font-family: Ubuntu, sans-serif;
+          "
+        >
+          <style>
+            .pr {
+              transition: background-color 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+            }
+            .pr .cv {
+              transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            }
+            .pr:hover {
+              background-color: #202024;
+            }
+            .pr:hover .cv {
+              transform: scale(1.03);
+            }
+            .pr .go {
+              width: 48px;
+              height: 48px;
+              border: 2px solid #9479ff;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              box-sizing: border-box;
+              transition:
+                background-color 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.25s;
+            }
+            .pr .go svg {
+              transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+            }
+            .pr:hover .go {
+              background: #5328fe;
+              border-color: #5328fe;
+            }
+            .pr:hover .go svg {
+              transform: translate(3px, -3px);
+            }
+            .all {
+              display: inline-flex;
+              align-items: center;
+              gap: 10px;
+              height: 48px;
+              padding: 0 24px;
+              border: 2px solid #9479ff;
+              border-radius: 999px;
+              font-size: 16px;
+              font-weight: 500;
+              color: #fff;
+              box-sizing: border-box;
+            }</style
+          ><svg
+            width="390"
+            height="1360"
+            viewBox="0 0 390 1360"
+            style="
+              position: absolute;
+              left: 0;
+              top: 0;
+              -webkit-mask-image: linear-gradient(#000 0%, #000 60%, transparent 100%);
+              mask-image: linear-gradient(#000 0%, #000 60%, transparent 100%);
+            "
+          >
+            <path
+              d="M-40 31.0 L0 40.0 L40 49.0 L80 57.2 L120 64.0 L160 68.9 L200 71.7 L240 72.2 L280 70.8 L320 67.7 L360 63.7 L400 59.3 L440 55.2"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 110.6 L0 119.2 L40 126.3 L80 131.4 L120 134.1 L160 134.4 L200 132.7 L240 129.3 L280 124.8 L320 119.9 L360 115.1 L400 111.1 L440 108.2"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 187.9 L0 192.5 L40 194.7 L80 194.5 L120 192.1 L160 188.0 L200 182.8 L240 177.3 L280 171.9 L320 167.2 L360 163.7 L400 161.3 L440 160.1"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 251.7 L0 250.6 L40 247.3 L80 242.4 L120 236.6 L160 230.4 L200 224.5 L240 219.5 L280 215.7 L320 213.2 L360 211.8 L400 211.4 L440 211.4"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 298.6 L0 293.1 L40 286.7 L80 280.2 L120 274.3 L160 269.3 L200 265.7 L240 263.6 L280 262.7 L320 262.8 L360 263.5 L400 264.0 L440 264.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 335.7 L0 329.2 L40 323.5 L80 319.0 L120 316.0 L160 314.5 L200 314.5 L240 315.4 L280 316.9 L320 318.4 L360 319.2 L400 319.0 L440 317.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 374.3 L0 370.2 L40 367.8 L80 367.0 L120 367.7 L160 369.4 L200 371.6 L240 373.8 L280 375.2 L320 375.6 L360 374.6 L400 372.1 L440 368.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 421.2 L0 420.6 L40 421.6 L80 423.6 L120 426.1 L160 428.4 L200 430.2 L240 430.7 L280 429.9 L320 427.7 L360 424.2 L400 419.7 L440 415.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 474.7 L0 476.5 L40 478.7 L80 481.0 L120 482.5 L160 483.0 L200 482.2 L240 480.0 L280 476.7 L320 472.6 L360 468.3 L400 464.4 L440 461.5"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 529.4 L0 531.3 L40 532.7 L80 533.1 L120 532.3 L160 530.3 L200 527.3 L240 523.7 L280 520.0 L320 516.9 L360 515.0 L400 514.8 L440 516.6"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 582.6 L0 583.2 L40 582.6 L80 581.0 L120 578.6 L160 575.7 L200 572.9 L240 570.8 L280 570.0 L320 570.9 L360 573.9 L400 579.0 L440 586.1"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 635.9 L0 634.9 L40 633.1 L80 630.9 L120 628.9 L160 627.7 L200 627.8 L240 629.6 L280 633.4 L320 639.3 L360 647.0 L400 656.0 L440 665.8"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 691.7 L0 690.0 L40 688.5 L80 687.6 L120 688.1 L160 690.2 L200 694.3 L240 700.2 L280 707.9 L320 716.8 L360 726.2 L400 735.5 L440 743.8"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 750.0 L0 749.1 L40 749.3 L80 751.2 L120 754.8 L160 760.3 L200 767.3 L240 775.5 L280 784.1 L320 792.4 L360 799.7 L400 805.4 L440 808.9"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 809.7 L0 811.0 L40 814.0 L80 818.7 L120 824.9 L160 832.2 L200 839.8 L240 847.1 L280 853.4 L320 858.0 L360 860.6 L400 860.8 L440 858.6"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 871.9 L0 876.1 L40 881.7 L80 888.3 L120 895.2 L160 901.7 L200 907.2 L240 911.1 L280 912.9 L320 912.4 L360 909.7 L400 905.1 L440 899.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 939.6 L0 945.9 L40 952.5 L80 958.6 L120 963.5 L160 966.8 L200 968.0 L240 966.9 L280 963.7 L320 958.7 L360 952.2 L400 945.2 L440 938.1"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1012.8 L0 1018.6 L40 1023.1 L80 1025.8 L120 1026.3 L160 1024.6 L200 1020.6 L240 1014.8 L280 1007.7 L320 1000.0 L360 992.5 L400 985.7 L440 980.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1084.6 L0 1086.5 L40 1086.2 L80 1083.4 L120 1078.5 L160 1071.6 L200 1063.5 L240 1054.9 L280 1046.5 L320 1038.9 L360 1032.8 L400 1028.5 L440 1026.2"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1144.9 L0 1141.0 L40 1134.8 L80 1126.9 L120 1117.7 L160 1108.2 L200 1098.9 L240 1090.6 L280 1084.0 L320 1079.3 L360 1076.6 L400 1075.9 L440 1076.8"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1188.3 L0 1179.5 L40 1169.7 L80 1159.6 L120 1149.9 L160 1141.5 L200 1134.7 L240 1130.1 L280 1127.6 L320 1127.2 L360 1128.4 L400 1130.8 L440 1133.7"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1220.3 L0 1210.3 L40 1200.9 L80 1192.9 L120 1186.8 L160 1182.8 L200 1181.1 L240 1181.4 L280 1183.5 L320 1186.6 L360 1190.2 L400 1193.8 L440 1196.7"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1253.4 L0 1246.4 L40 1241.3 L80 1238.5 L120 1237.9 L160 1239.3 L200 1242.3 L240 1246.3 L280 1250.6 L320 1254.7 L360 1258.1 L400 1260.3 L440 1261.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1298.0 L0 1296.4 L40 1296.9 L80 1299.3 L120 1303.2 L160 1307.8 L200 1312.7 L240 1317.1 L280 1320.6 L320 1322.8 L360 1323.7 L400 1323.3 L440 1321.9"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+          </svg>
+          <div style="position: absolute; left: 0; right: 0; top: 72px">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin: 0 20px">
+              <div>
+                <div
+                  class="rise-0-5-5"
+                  style="
+                    font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                    font-size: 14px;
+                    color: #9479ff;
+                    letter-spacing: 0.04em;
+                  "
+                >
+                  02 — Posts
+                </div>
+                <h2
+                  class="rise-4-10-10"
+                  style="
+                    margin: 16px 0 0;
+                    font-size: 40px;
+                    line-height: 48px;
+                    font-weight: 500;
+                    letter-spacing: -0.01em;
+                  "
+                >
+                  What I've been writing
+                </h2>
+              </div>
+            </div>
+            <div style="margin: 28px 20px 0; border-top: 0">
+              <div class="rise-12-20-20" style="">
+                <div
+                  class="pr"
+                  style="
+                    padding: 20px 0;
+                    border-top: 2px solid #2c2c2c;
+                    border-radius: 0;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                  "
+                >
+                  <div style="overflow: hidden; border-radius: 16px; height: 150px; background: #232327">
+                    <svg
+                      class="cv"
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 350 150"
+                      preserveAspectRatio="xMidYMid slice"
+                      style="display: block"
+                    >
+                      <path
+                        d="M-20 21.0 L0 22.1 L20 24.0 L40 25.8 L60 26.4 L80 25.2 L100 22.0 L120 17.6 L140 12.9 L160 9.3 L180 7.6 L200 7.9 L220 10.0 L240 12.8 L260 15.2 L280 16.5 L300 16.4 L320 15.5 L340 14.7 L360 14.8 L380 16.5"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 38.0 L0 39.6 L20 40.7 L40 40.4 L60 38.3 L80 34.4 L100 29.6 L120 25.1 L140 22.1 L160 21.3 L180 22.5 L200 25.3 L220 28.4 L240 30.8 L260 32.0 L280 31.9 L300 31.2 L320 30.8 L340 31.5 L360 33.8 L380 37.3"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 55.3 L0 55.4 L20 54.0 L40 50.7 L60 46.0 L80 40.9 L100 36.7 L120 34.4 L140 34.4 L160 36.6 L180 40.0 L200 43.5 L220 46.1 L240 47.4 L260 47.6 L280 47.4 L300 47.7 L320 49.2 L340 52.1 L360 55.9 L380 59.5"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 69.0 L0 66.3 L20 62.0 L40 56.7 L60 51.7 L80 48.1 L100 46.7 L120 48.0 L140 51.2 L160 55.3 L180 59.3 L200 62.1 L220 63.6 L240 64.2 L260 64.5 L280 65.5 L300 67.7 L320 70.9 L340 74.6 L360 77.5 L380 78.7"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 77.8 L0 73.0 L20 67.7 L40 63.1 L60 60.6 L80 60.6 L100 63.1 L120 67.3 L140 72.1 L160 76.4 L180 79.3 L200 80.8 L220 81.4 L240 82.0 L260 83.4 L280 85.8 L300 89.0 L320 92.1 L340 94.0 L360 93.8 L380 91.1"
+                        fill="none"
+                        stroke="rgba(83,40,254,.75)"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M-20 84.7 L0 79.9 L20 76.4 L40 75.2 L60 76.6 L80 80.3 L100 85.3 L120 90.4 L140 94.4 L160 97.0 L180 98.0 L200 98.4 L220 98.9 L240 100.2 L260 102.4 L280 105.2 L300 107.5 L320 108.3 L340 106.8 L360 102.9 L380 97.3"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 94.2 L0 92.0 L20 92.1 L40 94.7 L60 99.2 L80 104.4 L100 109.2 L120 112.5 L140 114.1 L160 114.3 L180 114.1 L200 114.2 L220 115.2 L240 117.2 L260 119.4 L280 120.9 L300 120.8 L320 118.4 L340 113.9 L360 108.2 L380 102.5"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 109.0 L0 110.3 L20 113.7 L40 118.5 L60 123.4 L80 127.3 L100 129.5 L120 129.9 L140 129.2 L160 128.3 L180 128.1 L200 128.9 L220 130.7 L240 132.5 L260 133.5 L280 132.7 L300 129.8 L320 125.2 L340 119.8 L360 115.0 L380 111.8"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 128.5 L0 132.4 L20 137.1 L40 141.5 L60 144.4 L80 145.4 L100 144.8 L120 143.3 L140 142.0 L160 141.7 L180 142.5 L200 144.2 L220 145.8 L240 146.3 L260 145.0 L280 141.8 L300 137.3 L320 132.5 L340 128.7 L360 126.7 L380 127.0"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <circle cx="210" cy="82" r="42" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5" />
+                      <circle
+                        cx="210"
+                        cy="82"
+                        r="21"
+                        fill="rgba(83,40,254,.18)"
+                        stroke="rgba(83,40,254,.8)"
+                        stroke-width="1.5"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div
+                      style="
+                        font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                        font-size: 12px;
+                        color: #8c8c93;
+                        letter-spacing: 0.04em;
+                      "
+                    >
+                      18 Nov 2026 · 6 min read
+                    </div>
+                    <div style="margin-top: 8px; font-size: 22px; line-height: 28px; font-weight: 500">
+                      Giving an agent a read-only window into the Brazilian market
+                    </div>
+                    <div style="margin-top: 8px; font-size: 15px; line-height: 22px; color: #afafb5">
+                      Why better-investment-mcp answers with one SELECT, and what that taught me about tool design.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="rise-17-25-25" style="">
+                <div
+                  class="pr"
+                  style="
+                    padding: 20px 0;
+                    border-top: 2px solid #2c2c2c;
+                    border-radius: 0;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                  "
+                >
+                  <div style="overflow: hidden; border-radius: 16px; height: 150px; background: #232327">
+                    <svg
+                      class="cv"
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 350 150"
+                      preserveAspectRatio="xMidYMid slice"
+                      style="display: block"
+                    >
+                      <path
+                        d="M-20 24.3 L0 23.4 L20 20.7 L40 16.5 L60 11.8 L80 7.7 L100 5.3 L120 5.2 L140 7.2 L160 10.6 L180 14.3 L200 17.1 L220 18.5 L240 18.7 L260 18.2 L280 18.0 L300 18.9 L320 21.2 L340 24.5 L360 27.9 L380 30.3"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 36.1 L0 32.4 L20 27.6 L40 22.8 L60 19.2 L80 17.7 L100 18.7 L120 21.8 L140 26.0 L160 30.1 L180 33.1 L200 34.7 L220 35.1 L240 35.0 L260 35.5 L280 37.0 L300 39.7 L320 43.0 L340 45.9 L360 47.2 L380 46.3"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 43.3 L0 38.3 L20 33.9 L40 31.2 L60 31.0 L80 33.3 L100 37.6 L120 42.5 L140 46.9 L160 50.1 L180 51.7 L200 52.3 L220 52.6 L240 53.4 L260 55.3 L280 58.0 L300 60.9 L320 62.8 L340 62.9 L360 60.5 L380 56.0"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 50.1 L0 46.5 L20 45.1 L40 46.3 L60 49.9 L80 55.1 L100 60.4 L120 64.9 L140 67.8 L160 69.1 L180 69.5 L200 69.7 L220 70.6 L240 72.4 L260 74.8 L280 77.0 L300 77.8 L320 76.6 L340 72.9 L360 67.4 L380 61.1"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 61.3 L0 61.3 L20 63.8 L40 68.4 L60 74.0 L80 79.2 L100 83.1 L120 85.2 L140 85.8 L160 85.6 L180 85.4 L200 86.1 L220 87.6 L240 89.6 L260 91.0 L280 90.8 L300 88.5 L320 84.1 L340 78.3 L360 72.2 L380 67.2"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 79.3 L0 82.7 L20 87.7 L40 93.1 L60 97.6 L80 100.4 L100 101.4 L120 100.9 L140 100.0 L160 99.5 L180 99.9 L200 101.2 L220 102.8 L240 103.6 L260 102.8 L280 100.0 L300 95.3 L320 89.7 L340 84.5 L360 80.7 L380 79.3"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 101.7 L0 106.7 L20 111.4 L40 114.9 L60 116.5 L80 116.2 L100 114.8 L120 113.3 L140 112.6 L160 113.0 L180 114.3 L200 115.7 L220 116.2 L240 115.0 L260 111.8 L280 107.3 L300 102.3 L320 98.1 L340 95.7 L360 95.7 L380 97.6"
+                        fill="none"
+                        stroke="rgba(83,40,254,.75)"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M-20 124.8 L0 128.8 L20 131.2 L40 131.7 L60 130.4 L80 128.4 L100 126.7 L120 126.0 L140 126.6 L160 127.9 L180 129.2 L200 129.3 L220 127.7 L240 124.3 L260 119.9 L280 115.5 L300 112.4 L320 111.3 L340 112.3 L360 115.1 L380 118.5"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 145.9 L0 147.5 L20 147.0 L40 145.2 L60 142.9 L80 141.1 L100 140.6 L120 141.2 L140 142.4 L160 143.3 L180 142.8 L200 140.6 L220 136.9 L240 132.5 L260 128.6 L280 126.3 L300 126.3 L320 128.3 L340 131.7 L360 135.3 L380 138.1"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <circle cx="158" cy="82" r="42" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5" />
+                      <circle
+                        cx="158"
+                        cy="82"
+                        r="21"
+                        fill="rgba(83,40,254,.18)"
+                        stroke="rgba(83,40,254,.8)"
+                        stroke-width="1.5"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div
+                      style="
+                        font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                        font-size: 12px;
+                        color: #8c8c93;
+                        letter-spacing: 0.04em;
+                      "
+                    >
+                      04 Nov 2026 · 5 min read
+                    </div>
+                    <div style="margin-top: 8px; font-size: 22px; line-height: 28px; font-weight: 500">
+                      Rebuilding UNO for the browser
+                    </div>
+                    <div style="margin-top: 8px; font-size: 15px; line-height: 22px; color: #afafb5">
+                      From a weekend card game to Zerod: rooms, hosts and why there is no ready button.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="rise-22-30-30" style="">
+                <div
+                  class="pr"
+                  style="
+                    padding: 20px 0;
+                    border-top: 2px solid #2c2c2c;
+                    border-radius: 0;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+                  "
+                >
+                  <div style="overflow: hidden; border-radius: 16px; height: 150px; background: #232327">
+                    <svg
+                      class="cv"
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 350 150"
+                      preserveAspectRatio="xMidYMid slice"
+                      style="display: block"
+                    >
+                      <path
+                        d="M-20 9.4 L0 5.1 L20 2.3 L40 1.9 L60 4.0 L80 8.1 L100 13.0 L120 17.6 L140 20.9 L160 22.6 L180 23.0 L200 22.9 L220 23.1 L240 24.4 L260 26.7 L280 29.3 L300 31.3 L320 31.6 L340 29.7 L360 25.6 L380 20.0"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 17.1 L0 15.5 L20 16.5 L40 20.0 L60 25.1 L80 30.6 L100 35.4 L120 38.6 L140 40.0 L160 40.3 L180 40.2 L200 40.6 L220 42.0 L240 44.0 L260 46.0 L280 46.9 L300 45.9 L320 42.6 L340 37.3 L360 31.1 L380 25.3"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 31.0 L0 33.4 L20 37.9 L40 43.7 L60 49.3 L80 53.7 L100 56.3 L120 57.1 L140 56.8 L160 56.4 L180 56.7 L200 57.8 L220 59.4 L240 60.6 L260 60.5 L280 58.4 L300 54.1 L320 48.3 L340 42.0 L360 36.8 L380 33.5"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 51.9 L0 57.1 L20 62.8 L40 67.9 L60 71.4 L80 72.8 L100 72.6 L120 71.7 L140 70.8 L160 70.8 L180 71.7 L200 72.9 L220 73.6 L240 72.8 L260 69.9 L280 65.2 L300 59.5 L320 53.9 L340 49.8 L360 47.9 L380 48.4"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 76.2 L0 81.5 L20 85.5 L40 87.6 L60 87.8 L80 86.6 L100 84.9 L120 83.8 L140 83.7 L160 84.6 L180 85.6 L200 86.0 L220 84.8 L240 81.7 L260 77.1 L280 71.9 L300 67.4 L320 64.6 L340 64.2 L360 65.9 L380 69.1"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 99.0 L0 101.9 L20 102.7 L40 101.7 L60 99.7 L80 97.7 L100 96.5 L120 96.6 L140 97.6 L160 98.7 L180 98.9 L200 97.4 L220 94.3 L240 89.9 L260 85.4 L280 81.9 L300 80.4 L320 81.3 L340 84.0 L360 87.6 L380 90.9"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 117.7 L0 117.5 L20 115.7 L40 113.2 L60 111.1 L80 110.2 L100 110.5 L120 111.5 L140 112.5 L160 112.3 L180 110.5 L200 107.1 L220 102.9 L240 99.0 L260 96.5 L280 96.2 L300 98.0 L320 101.4 L340 105.2 L360 108.3 L380 110.0"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 133.0 L0 130.5 L20 127.7 L40 125.6 L60 124.8 L80 125.2 L100 126.0 L120 126.5 L140 125.6 L160 123.2 L180 119.5 L200 115.3 L220 112.0 L240 110.5 L260 111.2 L280 114.0 L300 118.0 L320 122.0 L340 125.0 L360 126.4 L380 126.3"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 146.0 L0 142.9 L20 140.7 L40 139.8 L60 139.8 L80 140.1 L100 139.8 L120 138.1 L140 134.9 L160 130.9 L180 127.0 L200 124.4 L220 123.9 L240 125.9 L260 129.7 L280 134.4 L300 138.7 L320 141.7 L340 143.0 L360 142.9 L380 142.3"
+                        fill="none"
+                        stroke="rgba(83,40,254,.75)"
+                        stroke-width="2"
+                      />
+                      <circle cx="105" cy="82" r="42" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5" />
+                      <circle
+                        cx="105"
+                        cy="82"
+                        r="21"
+                        fill="rgba(83,40,254,.18)"
+                        stroke="rgba(83,40,254,.8)"
+                        stroke-width="1.5"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div
+                      style="
+                        font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                        font-size: 12px;
+                        color: #8c8c93;
+                        letter-spacing: 0.04em;
+                      "
+                    >
+                      21 Oct 2026 · 7 min read
+                    </div>
+                    <div style="margin-top: 8px; font-size: 22px; line-height: 28px; font-weight: 500">
+                      Operating CapRover from a chat
+                    </div>
+                    <div style="margin-top: 8px; font-size: 15px; line-height: 22px; color: #afafb5">
+                      What changes when deploys, logs and env vars are one tool call away.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="margin: 0 20px">
+              <div class="rise-27-35-35" style="margin-top: 28px">
+                <span class="all"
+                  >See all posts
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    style="display: block"
+                  >
+                    <path d="M4 12L12 4M5.5 4H12v6.5" /></svg
+                ></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1360}}'>
+      class Component extends DCLogic { renderVals() { return {}; } }
+    </script>
+  </body>
+</html>

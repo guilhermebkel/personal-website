@@ -10,6 +10,8 @@ Chromium is not bundled with the repo. `scripts/ensure-playwright.mjs` runs befo
 
 ## Take the screenshot
 
+To compare a screen with the prototype, start with the two commands: `pnpm prototype:shots` writes each board to a PNG, and `pnpm prototype:compare` (after `pnpm build`) writes each board beside the page it matches (`design/prototype/README.md` maps them). Use the throwaway spec below only for a state those commands do not cover.
+
 Put the capture in a throwaway spec under `e2e/` (for example `e2e/home-visual.spec.ts`), run it, read the PNGs and delete the spec. Save each PNG with `test.info().outputPath()`, which goes to `test-results/` (gitignored); never commit a PNG.
 
 ```ts

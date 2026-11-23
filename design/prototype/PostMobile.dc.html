@@ -1,0 +1,1498 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Blog</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300&amp;family=Caveat:wght@500&amp;family=Geist+Mono:wght@400;500&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #1b1b1e;
+          }
+          .fo-0-6-6 {
+            animation: fo-0-6-6 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes fo-0-6-6 {
+            0%,
+            0% {
+              opacity: 0;
+            }
+            6%,
+            100% {
+              opacity: 1;
+            }
+          }
+          .rise-0-5-5 {
+            animation: rise-0-5-5 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-0-5-5 {
+            0%,
+            0% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            5%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-3-8-8 {
+            animation: rise-3-8-8 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-3-8-8 {
+            0%,
+            3% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            8%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-6-14-14 {
+            animation: rise-6-14-14 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-6-14-14 {
+            0%,
+            6% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            14%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-12-18-18 {
+            animation: rise-12-18-18 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-12-18-18 {
+            0%,
+            12% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            18%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-16-26-26 {
+            animation: rise-16-26-26 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-16-26-26 {
+            0%,
+            16% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            26%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-22-32-32 {
+            animation: rise-22-32-32 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-22-32-32 {
+            0%,
+            22% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            32%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-38-44-44 {
+            animation: rise-38-44-44 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-38-44-44 {
+            0%,
+            38% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            44%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-40-46-46 {
+            animation: rise-40-46-46 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-40-46-46 {
+            0%,
+            40% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            46%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .wr-44-56-56 {
+            clip-path: inset(-10% -12% -10% 0);
+            animation: wr-44-56-56 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes wr-44-56-56 {
+            0%,
+            44% {
+              clip-path: inset(-10% 100% -10% 0);
+            }
+            56%,
+            100% {
+              clip-path: inset(-10% -12% -10% 0);
+            }
+          }
+          .dr-54-62-62 {
+            stroke-dasharray: 1;
+            stroke-dashoffset: 0;
+            animation: dr-54-62-62 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes dr-54-62-62 {
+            0%,
+            54% {
+              stroke-dashoffset: 1;
+            }
+            62%,
+            100% {
+              stroke-dashoffset: 0;
+            }
+          }
+          .rise-66-72-72 {
+            animation: rise-66-72-72 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-66-72-72 {
+            0%,
+            66% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            72%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          .rise-68-76-76 {
+            animation: rise-68-76-76 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes rise-68-76-76 {
+            0%,
+            68% {
+              opacity: 0;
+              transform: translateY(18px);
+            }
+            76%,
+            100% {
+              opacity: 1;
+              transform: none;
+            }
+          }
+          @keyframes fo-0-6-6-r {
+            0%,
+            0% {
+              opacity: 0;
+            }
+            6%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-0-5-5-r {
+            0%,
+            0% {
+              opacity: 0;
+            }
+            5%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-3-8-8-r {
+            0%,
+            3% {
+              opacity: 0;
+            }
+            8%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-6-14-14-r {
+            0%,
+            6% {
+              opacity: 0;
+            }
+            14%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-12-18-18-r {
+            0%,
+            12% {
+              opacity: 0;
+            }
+            18%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-16-26-26-r {
+            0%,
+            16% {
+              opacity: 0;
+            }
+            26%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-22-32-32-r {
+            0%,
+            22% {
+              opacity: 0;
+            }
+            32%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-38-44-44-r {
+            0%,
+            38% {
+              opacity: 0;
+            }
+            44%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-40-46-46-r {
+            0%,
+            40% {
+              opacity: 0;
+            }
+            46%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes wr-44-56-56-r {
+            0%,
+            44% {
+              opacity: 0;
+            }
+            56%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-66-72-72-r {
+            0%,
+            66% {
+              opacity: 0;
+            }
+            72%,
+            100% {
+              opacity: 1;
+            }
+          }
+          @keyframes rise-68-76-76-r {
+            0%,
+            68% {
+              opacity: 0;
+            }
+            76%,
+            100% {
+              opacity: 1;
+            }
+          }
+
+          .stage {
+            animation: stg 9s ease-in-out infinite;
+          }
+          @keyframes stg {
+            0%,
+            86% {
+              opacity: 1;
+            }
+            97%,
+            100% {
+              opacity: 0;
+            }
+          }
+          .mk {
+            position: relative;
+            display: inline-block;
+            isolation: isolate;
+          }
+          .mk::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: -14px;
+            right: -14px;
+            bottom: 2px;
+            height: 46%;
+            background: #5328fe;
+            rotate: -1.5deg;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E")
+              0 0/100% 100% no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E")
+              0 0/100% 100% no-repeat;
+            transform-origin: left;
+            animation: mk 9s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+          }
+          @keyframes mk {
+            0%,
+            20% {
+              transform: scaleX(0);
+            }
+            31% {
+              transform: scaleX(1);
+            }
+            100% {
+              transform: scaleX(1);
+            }
+          }
+          .btn {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            display: inline-flex;
+            align-items: center;
+            padding: 0 24px;
+            height: 44px;
+            box-sizing: border-box;
+            border: 2px solid #9479ff;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+          }
+          .lnk {
+            position: relative;
+            display: inline-block;
+            isolation: isolate;
+            font-size: 16px;
+            line-height: 24px;
+            padding-right: 8px;
+          }
+          .lnk::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 14px;
+            background: #5328fe;
+            rotate: -1.5deg;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E")
+              0 0/100% 100% no-repeat;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 190 52' preserveAspectRatio='none'%3E%3Cpath d='M10 16C40 6 70 14 100 9S160 6 182 13C190 22 186 34 178 41C150 46 120 40 95 45S40 48 12 41C3 33 4 22 10 16Z'/%3E%3C/svg%3E")
+              0 0/100% 100% no-repeat;
+            opacity: 0;
+          }
+          .chip {
+            display: inline-block;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: #2c2c2c;
+            color: #d7d7d7;
+            border: 2px solid #5b5b5b;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            * {
+              animation: none !important;
+            }
+            .fo-0-6-6 {
+              animation: fo-0-6-6-r 9s linear infinite !important;
+            }
+            .rise-0-5-5 {
+              animation: rise-0-5-5-r 9s linear infinite !important;
+            }
+            .rise-3-8-8 {
+              animation: rise-3-8-8-r 9s linear infinite !important;
+            }
+            .rise-6-14-14 {
+              animation: rise-6-14-14-r 9s linear infinite !important;
+            }
+            .rise-12-18-18 {
+              animation: rise-12-18-18-r 9s linear infinite !important;
+            }
+            .rise-16-26-26 {
+              animation: rise-16-26-26-r 9s linear infinite !important;
+            }
+            .rise-22-32-32 {
+              animation: rise-22-32-32-r 9s linear infinite !important;
+            }
+            .rise-38-44-44 {
+              animation: rise-38-44-44-r 9s linear infinite !important;
+            }
+            .rise-40-46-46 {
+              animation: rise-40-46-46-r 9s linear infinite !important;
+            }
+            .wr-44-56-56 {
+              animation: wr-44-56-56-r 9s linear infinite !important;
+            }
+            .rise-66-72-72 {
+              animation: rise-66-72-72-r 9s linear infinite !important;
+            }
+            .rise-68-76-76 {
+              animation: rise-68-76-76-r 9s linear infinite !important;
+            }
+          }
+        </style>
+      </helmet>
+      <div class="stage" style="position: absolute; inset: 0">
+        <div
+          style="
+            width: 390px;
+            height: 3030px;
+            position: relative;
+            overflow: hidden;
+            background: #1b1b1e;
+            color: #fff;
+            font-family: Ubuntu, sans-serif;
+          "
+        >
+          <style>
+            .pcard {
+              transition: background-color 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+            }
+            .pcard .cv {
+              transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            }
+            .pcard:hover {
+              background-color: #202024;
+            }
+            .pcard:hover .cv {
+              transform: scale(1.03);
+            }
+            .pill {
+              display: inline-flex;
+              align-items: center;
+              gap: 10px;
+              height: 44px;
+              padding: 0 20px;
+              border: 2px solid #3a3a40;
+              border-radius: 999px;
+              background: #151515;
+              font-size: 15px;
+              color: #f2f2f2;
+              box-sizing: border-box;
+            }
+            .pill.pri {
+              border-color: #9479ff;
+              font-weight: 500;
+              height: 48px;
+              padding: 0 24px;
+              font-size: 16px;
+              background: transparent;
+            }
+            .seg {
+              display: inline-flex;
+              border: 2px solid #3a3a40;
+              border-radius: 999px;
+              padding: 3px;
+              background: #151515;
+              box-sizing: border-box;
+            }
+            .seg span {
+              width: 38px;
+              height: 34px;
+              border-radius: 999px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: #8c8c93;
+            }
+            .seg span.on {
+              background: #5328fe;
+              color: #fff;
+            }
+            .chip2 {
+              display: inline-flex;
+              font-size: 12px;
+              line-height: 16px;
+              padding: 4px 12px;
+              border: 2px solid #3a3a40;
+              border-radius: 999px;
+              color: #d7d7d7;
+            }
+            .toc a {
+              display: block;
+              font-size: 14px;
+              line-height: 20px;
+              color: #8c8c93;
+              padding: 6px 0 6px 16px;
+              border-left: 2px solid #2c2c2c;
+            }
+            .toc a.on {
+              color: #fff;
+              border-left-color: #5328fe;
+            }
+            .prose p {
+              margin: 0 0 24px;
+              font-size: 18px;
+              line-height: 30px;
+              color: #d7d7d7;
+            }
+            .prose h2 {
+              margin: 56px 0 20px;
+              font-size: 32px;
+              line-height: 40px;
+              font-weight: 500;
+              letter-spacing: -0.01em;
+              color: #fff;
+            }
+            .prose u {
+              text-decoration: underline;
+              text-decoration-thickness: 2px;
+              text-underline-offset: 3px;
+              text-decoration-color: #9479ff;
+              color: #fff;
+            }
+            .code {
+              margin: 0 0 24px;
+              padding: 20px 24px;
+              background: #151515;
+              border: 2px solid #2c2c2c;
+              border-radius: 8px;
+              font-family: "Geist Mono", monospace;
+              font-size: 14px;
+              line-height: 22px;
+              color: #d7d7d7;
+              overflow: hidden;
+              white-space: pre;
+            }
+            .code i {
+              font-style: normal;
+              color: #9479ff;
+            }
+            .code em {
+              font-style: normal;
+              color: #8c8c93;
+            }
+            .fig {
+              margin: 0 0 24px;
+            }
+            .fig .im {
+              border-radius: 16px;
+              overflow: hidden;
+              background: #232327;
+            }
+            .fig .cap {
+              margin-top: 12px;
+              font-family: "Geist Mono", monospace;
+              font-size: 12px;
+              line-height: 16px;
+              color: #8c8c93;
+            }
+            @keyframes prog {
+              0%,
+              24% {
+                transform: scaleX(0.03);
+              }
+              70%,
+              86% {
+                transform: scaleX(0.46);
+              }
+              100% {
+                transform: scaleX(0.46);
+              }
+            }
+            .prog {
+              transform-origin: left;
+              animation: prog 9s ease-in-out infinite;
+            }
+            @media (prefers-reduced-motion: reduce) {
+              .prog {
+                animation: none;
+                transform: scaleX(0.46);
+              }
+            }</style
+          ><svg
+            width="390"
+            height="3030"
+            viewBox="0 0 390 3030"
+            style="
+              position: absolute;
+              left: 0;
+              top: 0;
+              -webkit-mask-image: linear-gradient(#000 0%, #000 60%, transparent 100%);
+              mask-image: linear-gradient(#000 0%, #000 60%, transparent 100%);
+            "
+          >
+            <path
+              d="M-40 31.0 L0 40.0 L40 49.0 L80 57.2 L120 64.0 L160 68.9 L200 71.7 L240 72.2 L280 70.8 L320 67.7 L360 63.7 L400 59.3 L440 55.2"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 110.6 L0 119.2 L40 126.3 L80 131.4 L120 134.1 L160 134.4 L200 132.7 L240 129.3 L280 124.8 L320 119.9 L360 115.1 L400 111.1 L440 108.2"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 187.9 L0 192.5 L40 194.7 L80 194.5 L120 192.1 L160 188.0 L200 182.8 L240 177.3 L280 171.9 L320 167.2 L360 163.7 L400 161.3 L440 160.1"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 251.7 L0 250.6 L40 247.3 L80 242.4 L120 236.6 L160 230.4 L200 224.5 L240 219.5 L280 215.7 L320 213.2 L360 211.8 L400 211.4 L440 211.4"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 298.6 L0 293.1 L40 286.7 L80 280.2 L120 274.3 L160 269.3 L200 265.7 L240 263.6 L280 262.7 L320 262.8 L360 263.5 L400 264.0 L440 264.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 335.7 L0 329.2 L40 323.5 L80 319.0 L120 316.0 L160 314.5 L200 314.5 L240 315.4 L280 316.9 L320 318.4 L360 319.2 L400 319.0 L440 317.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 374.3 L0 370.2 L40 367.8 L80 367.0 L120 367.7 L160 369.4 L200 371.6 L240 373.8 L280 375.2 L320 375.6 L360 374.6 L400 372.1 L440 368.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 421.2 L0 420.6 L40 421.6 L80 423.6 L120 426.1 L160 428.4 L200 430.2 L240 430.7 L280 429.9 L320 427.7 L360 424.2 L400 419.7 L440 415.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 474.7 L0 476.5 L40 478.7 L80 481.0 L120 482.5 L160 483.0 L200 482.2 L240 480.0 L280 476.7 L320 472.6 L360 468.3 L400 464.4 L440 461.5"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 529.4 L0 531.3 L40 532.7 L80 533.1 L120 532.3 L160 530.3 L200 527.3 L240 523.7 L280 520.0 L320 516.9 L360 515.0 L400 514.8 L440 516.6"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 582.6 L0 583.2 L40 582.6 L80 581.0 L120 578.6 L160 575.7 L200 572.9 L240 570.8 L280 570.0 L320 570.9 L360 573.9 L400 579.0 L440 586.1"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 635.9 L0 634.9 L40 633.1 L80 630.9 L120 628.9 L160 627.7 L200 627.8 L240 629.6 L280 633.4 L320 639.3 L360 647.0 L400 656.0 L440 665.8"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 691.7 L0 690.0 L40 688.5 L80 687.6 L120 688.1 L160 690.2 L200 694.3 L240 700.2 L280 707.9 L320 716.8 L360 726.2 L400 735.5 L440 743.8"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 750.0 L0 749.1 L40 749.3 L80 751.2 L120 754.8 L160 760.3 L200 767.3 L240 775.5 L280 784.1 L320 792.4 L360 799.7 L400 805.4 L440 808.9"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 809.7 L0 811.0 L40 814.0 L80 818.7 L120 824.9 L160 832.2 L200 839.8 L240 847.1 L280 853.4 L320 858.0 L360 860.6 L400 860.8 L440 858.6"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 871.9 L0 876.1 L40 881.7 L80 888.3 L120 895.2 L160 901.7 L200 907.2 L240 911.1 L280 912.9 L320 912.4 L360 909.7 L400 905.1 L440 899.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 939.6 L0 945.9 L40 952.5 L80 958.6 L120 963.5 L160 966.8 L200 968.0 L240 966.9 L280 963.7 L320 958.7 L360 952.2 L400 945.2 L440 938.1"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1012.8 L0 1018.6 L40 1023.1 L80 1025.8 L120 1026.3 L160 1024.6 L200 1020.6 L240 1014.8 L280 1007.7 L320 1000.0 L360 992.5 L400 985.7 L440 980.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1084.6 L0 1086.5 L40 1086.2 L80 1083.4 L120 1078.5 L160 1071.6 L200 1063.5 L240 1054.9 L280 1046.5 L320 1038.9 L360 1032.8 L400 1028.5 L440 1026.2"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1144.9 L0 1141.0 L40 1134.8 L80 1126.9 L120 1117.7 L160 1108.2 L200 1098.9 L240 1090.6 L280 1084.0 L320 1079.3 L360 1076.6 L400 1075.9 L440 1076.8"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1188.3 L0 1179.5 L40 1169.7 L80 1159.6 L120 1149.9 L160 1141.5 L200 1134.7 L240 1130.1 L280 1127.6 L320 1127.2 L360 1128.4 L400 1130.8 L440 1133.7"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1220.3 L0 1210.3 L40 1200.9 L80 1192.9 L120 1186.8 L160 1182.8 L200 1181.1 L240 1181.4 L280 1183.5 L320 1186.6 L360 1190.2 L400 1193.8 L440 1196.7"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1253.4 L0 1246.4 L40 1241.3 L80 1238.5 L120 1237.9 L160 1239.3 L200 1242.3 L240 1246.3 L280 1250.6 L320 1254.7 L360 1258.1 L400 1260.3 L440 1261.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1298.0 L0 1296.4 L40 1296.9 L80 1299.3 L120 1303.2 L160 1307.8 L200 1312.7 L240 1317.1 L280 1320.6 L320 1322.8 L360 1323.7 L400 1323.3 L440 1321.9"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1355.7 L0 1358.9 L40 1363.4 L80 1368.5 L120 1373.7 L160 1378.3 L200 1381.7 L240 1383.8 L280 1384.4 L320 1383.6 L360 1381.9 L400 1379.7 L440 1377.6"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1420.7 L0 1426.2 L40 1431.7 L80 1436.4 L120 1440.0 L160 1442.1 L200 1442.7 L240 1441.9 L280 1440.1 L320 1437.8 L360 1435.7 L400 1434.3 L440 1434.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1486.7 L0 1492.0 L40 1496.0 L80 1498.5 L120 1499.5 L160 1499.2 L200 1497.9 L240 1496.1 L280 1494.4 L320 1493.4 L360 1493.6 L400 1495.2 L440 1498.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1551.6 L0 1554.9 L40 1556.7 L80 1557.1 L120 1556.6 L160 1555.6 L200 1554.6 L240 1554.3 L280 1555.1 L320 1557.2 L360 1560.7 L400 1565.4 L440 1570.8"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1615.5 L0 1616.6 L40 1616.7 L80 1616.4 L120 1616.0 L160 1616.2 L200 1617.4 L240 1619.7 L280 1623.3 L320 1627.9 L360 1633.1 L400 1638.4 L440 1643.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1677.4 L0 1677.1 L40 1676.8 L80 1677.0 L120 1678.1 L160 1680.3 L200 1683.6 L240 1687.8 L280 1692.5 L320 1697.1 L360 1700.9 L400 1703.4 L440 1704.1"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1735.1 L0 1734.8 L40 1735.4 L80 1737.0 L120 1739.8 L160 1743.4 L200 1747.4 L240 1751.4 L280 1754.6 L320 1756.4 L360 1756.4 L400 1754.2 L440 1749.7"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1789.0 L0 1790.0 L40 1792.1 L80 1795.2 L120 1798.7 L160 1802.3 L200 1805.1 L240 1806.7 L280 1806.5 L320 1804.2 L360 1799.8 L400 1793.3 L440 1785.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1842.8 L0 1845.5 L40 1848.9 L80 1852.2 L120 1855.0 L160 1856.6 L200 1856.6 L240 1854.6 L280 1850.5 L320 1844.6 L360 1837.2 L400 1829.0 L440 1820.6"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1900.5 L0 1903.8 L40 1906.6 L80 1908.3 L120 1908.3 L160 1906.5 L200 1902.8 L240 1897.3 L280 1890.4 L320 1882.8 L360 1875.2 L400 1868.2 L440 1862.5"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 1960.6 L0 1962.0 L40 1961.8 L80 1959.8 L120 1955.9 L160 1950.4 L200 1943.6 L240 1936.2 L280 1928.8 L320 1922.2 L360 1917.1 L400 1913.8 L440 1912.7"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2015.8 L0 2013.1 L40 2008.6 L80 2002.5 L120 1995.3 L160 1987.6 L200 1980.2 L240 1973.7 L280 1968.7 L320 1965.8 L360 1965.2 L400 1966.9 L440 1970.6"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2059.7 L0 2052.8 L40 2045.1 L80 2037.1 L120 2029.5 L160 2023.0 L200 2018.4 L240 2015.9 L280 2015.9 L320 2018.2 L360 2022.8 L400 2028.9 L440 2036.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2094.2 L0 2086.1 L40 2078.6 L80 2072.4 L120 2068.3 L160 2066.5 L200 2067.3 L240 2070.6 L280 2076.1 L320 2083.2 L360 2091.3 L400 2099.6 L440 2107.5"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2130.0 L0 2124.6 L40 2121.2 L80 2120.3 L120 2122.1 L160 2126.3 L200 2132.7 L240 2140.7 L280 2149.6 L320 2158.6 L360 2167.1 L400 2174.3 L440 2180.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2178.6 L0 2178.6 L40 2181.2 L80 2186.1 L120 2193.2 L160 2201.6 L200 2210.8 L240 2219.9 L280 2228.3 L320 2235.3 L360 2240.7 L400 2244.1 L440 2245.7"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2243.3 L0 2248.6 L40 2255.8 L80 2264.2 L120 2273.1 L160 2281.8 L200 2289.5 L240 2295.8 L280 2300.2 L320 2302.6 L360 2303.2 L400 2302.3 L440 2300.4"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2318.4 L0 2326.5 L40 2334.8 L80 2342.7 L120 2349.5 L160 2354.7 L200 2357.9 L240 2359.2 L280 2358.7 L320 2356.7 L360 2353.8 L400 2350.6 L440 2347.7"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2394.9 L0 2402.1 L40 2408.1 L80 2412.5 L120 2414.8 L160 2415.2 L200 2413.7 L240 2410.9 L280 2407.3 L320 2403.5 L360 2400.1 L400 2397.7 L440 2396.5"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2466.8 L0 2470.7 L40 2472.6 L80 2472.5 L120 2470.6 L160 2467.3 L200 2463.3 L240 2459.1 L280 2455.4 L320 2452.8 L360 2451.4 L400 2451.4 L440 2452.8"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2532.6 L0 2532.3 L40 2530.2 L80 2526.7 L120 2522.4 L160 2518.0 L200 2514.0 L240 2511.0 L280 2509.2 L320 2508.9 L360 2509.7 L400 2511.5 L440 2513.7"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2591.9 L0 2588.1 L40 2583.5 L80 2578.6 L120 2574.1 L160 2570.5 L200 2568.1 L240 2567.0 L280 2567.1 L320 2568.0 L360 2569.3 L400 2570.3 L440 2570.6"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2643.7 L0 2638.1 L40 2633.0 L80 2628.7 L120 2625.5 L160 2623.6 L200 2622.9 L240 2622.9 L280 2623.2 L320 2623.4 L360 2622.7 L400 2620.9 L440 2617.6"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2688.5 L0 2683.5 L40 2679.8 L80 2677.4 L120 2676.1 L160 2675.6 L200 2675.5 L240 2675.2 L280 2674.1 L320 2672.0 L360 2668.4 L400 2663.5 L440 2657.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2731.2 L0 2728.8 L40 2727.6 L80 2727.2 L120 2727.3 L160 2727.2 L200 2726.4 L240 2724.6 L280 2721.4 L320 2716.9 L360 2711.2 L400 2704.9 L440 2698.3"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2779.0 L0 2779.4 L40 2780.2 L80 2780.8 L120 2780.8 L160 2779.7 L200 2777.3 L240 2773.6 L280 2768.7 L320 2763.1 L360 2757.3 L400 2752.1 L440 2748.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2834.8 L0 2836.3 L40 2837.2 L80 2837.0 L120 2835.3 L160 2832.3 L200 2828.2 L240 2823.2 L280 2818.1 L320 2813.4 L360 2809.8 L400 2807.8 L440 2807.9"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2893.9 L0 2894.2 L40 2893.1 L80 2890.6 L120 2886.9 L160 2882.4 L200 2877.6 L240 2873.3 L280 2870.0 L320 2868.4 L360 2868.7 L400 2871.2 L440 2875.7"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2948.5 L0 2946.2 L40 2942.7 L80 2938.5 L120 2934.1 L160 2930.2 L200 2927.4 L240 2926.1 L280 2926.9 L320 2929.7 L360 2934.5 L400 2941.0 L440 2948.4"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+            <path
+              d="M-40 2995.3 L0 2991.5 L40 2987.6 L80 2984.4 L120 2982.3 L160 2981.9 L200 2983.5 L240 2987.1 L280 2992.7 L320 2999.8 L360 3007.9 L400 3016.2 L440 3024.0"
+              fill="none"
+              stroke="rgba(255,255,255,.04)"
+              stroke-width="1.5"
+            />
+          </svg>
+          <div style="position: absolute; left: 0; top: 0; right: 0; height: 3px; background: #2c2c2c; z-index: 5">
+            <div class="prog" style="height: 3px; background: #5328fe"></div>
+          </div>
+          <div
+            style="
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 390px;
+              height: 64px;
+              box-sizing: border-box;
+              padding: 0 20px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzEyIiBoZWlnaHQ9IjQ3MCIgdmlld0JveD0iMCAwIDMxMiA0NzAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik02MS45NSA0MzMuODkgTDY2LjMzIDQzNy41MiBMNzAuNDcgNDQwLjcwIEw3NC44MiA0NDMuNzkgTDc5LjEzIDQ0Ni42MiBMODMuNTkgNDQ5LjMyIEw4OC4xMyA0NTEuODQgTDkyLjgwIDQ1NC4yMyBMOTcuNDEgNDU2LjM3IEwxMDEuOTUgNDU4LjMwIEwxMDYuNzUgNDYwLjE1IEwxMTEuNTkgNDYxLjgyIEwxMTYuNDkgNDYzLjMzIEwxMjEuNDIgNDY0LjY2IEwxMjYuNDAgNDY1LjgzIEwxMzEuMzQgNDY2LjgxIEwxMzYuNzEgNDY3LjY5IEwxNDEuNzAgNDY4LjM0IEwxNDYuODQgNDY4Ljg0IEwxNTEuODcgNDY5LjE2IEwxNTYuOTcgNDY5LjMyIEwxNjIuMDcgNDY5LjMyIEwxNjcuMjQgNDY5LjE1IEwxNzIuMjcgNDY4LjgzIEwxNzcuMzYgNDY4LjM0IEwxODIuNDIgNDY3LjY5IEwxODcuNDcgNDY2Ljg4IEwxOTIuNDkgNDY1LjkxIEwxOTcuNDggNDY0Ljc4IEwyMDIuNDQgNDYzLjQ5IEwyMDcuNDIgNDYyLjAyIEwyMTIuMjMgNDYwLjQ0IEwyMTcuMDQgNDU4LjY3IEwyMjEuODEgNDU2Ljc2IEwyMjYuNTEgNDU0LjY4IEwyMzEuMTUgNDUyLjQ2IEwyMzUuNTQgNDUwLjE3IEwyNDAuMDQgNDQ3LjY0IEwyNDQuNDAgNDQ0Ljk5IEwyNDguNzkgNDQyLjEyIEwyNTMuMDMgNDM5LjE0IEwyNTcuMTggNDM2LjAwIEwyNjEuMTcgNDMyLjc2IEwyNjUuMTcgNDI5LjI4IEwyNjguOTYgNDI1Ljc0IEwyNzIuOTIgNDIxLjc2IEwyNzYuNDcgNDE3LjkyIEwyNzkuOTUgNDEzLjg5IEwyODMuMTYgNDA5Ljg4IEwyODYuMzMgNDA1LjYyIEwyODkuNDYgNDAxLjA5IEwyOTIuMzUgMzk2LjU1IEwyOTUuMzIgMzkxLjQ3IEwyOTcuOTEgMzg2LjY0IEwzMDAuMzggMzgxLjYwIEwzMDIuNjkgMzc2LjQxIEwzMDQuNzUgMzcxLjI5IEwzMDYuNzIgMzY1LjgzIEwzMDguNTEgMzYwLjIzIEwzMTAuMTMgMzU0LjQ4IEwzMTAuNjEgMzUyLjIwIEwzMTAuNjYgMzUxLjAyIEwzMTAuNjAgMzUwLjI0IEwzMTAuMzYgMzQ5LjA5IEwzMTAuMTEgMzQ4LjM0IEwzMDkuNTkgMzQ3LjI4IEwzMDkuMTcgMzQ2LjYzIEwzMDguNjggMzQ2LjAxIEwzMDcuOTIgMzQ1LjI0IEwyMTEuMTkgMjU5LjE3IEwyMTAuMzEgMjU4LjQ5IEwyMDkuNjMgMjU4LjA3IEwyMDguOTAgMjU3LjcyIEwyMDguMTQgMjU3LjQ0IEwyMDcuMzUgMjU3LjI0IEwyMDYuNTUgMjU3LjEzIEwyMDUuNzUgMjU3LjA5IEwyMDQuOTQgMjU3LjE0IEwyMDMuNzUgMjU3LjM2IEwyMDIuOTggMjU3LjYwIEwyMDIuMjQgMjU3LjkzIEwyMDEuMjggMjU4LjQ4IEwxNTkuMDIgMjg2LjY5IEwxNTguMTMgMjg3LjUwIEwxNTcuNjEgMjg4LjEyIEwxNTcuMTUgMjg4Ljc4IEwxNTYuNTkgMjg5Ljg1IEwxNTYuMzEgMjkwLjYwIEwxNTYuMDQgMjkxLjc4IEwxNTUuOTYgMjkyLjU4IEwxNTUuOTkgMjkzLjc5IEwxNTYuMTEgMjk0LjU4IEwxNTYuMzEgMjk1LjM2IEwxNTYuNzYgMjk2LjQ4IEwxNTcuMTQgMjk3LjE5IEwxNTcuNjAgMjk3Ljg1IEwxNTguNjIgMjk4Ljk2IEwyMjEuMDIgMzU1Ljk1IEwyMjIuMDUgMzU3LjEwIEwyMjIuODUgMzU4LjQyIEwyMjMuMTUgMzU5LjEzIEwyMjMuNTMgMzYwLjYyIEwyMjMuNjIgMzYyLjE1IEwyMjMuNTYgMzYyLjkyIEwyMjMuMjEgMzY0LjQyIEwyMjIuNTggMzY1LjgzIEwyMjEuMzcgMzY3LjU2IEwyMTguNzUgMzcwLjkzIEwyMTYuNTcgMzczLjQ4IEwyMTQuMjAgMzc2LjA2IEwyMTEuNTggMzc4LjY3IEwyMDguNzAgMzgxLjI5IEwyMDUuNTYgMzgzLjg3IEwyMDIuMTUgMzg2LjM4IEwxOTguNzAgMzg4LjYyIEwxOTQuNzkgMzkwLjg0IEwxOTIuNDggMzkxLjk5IEwxODguNDMgMzkzLjc1IEwxODUuODkgMzk0LjY5IEwxODMuNTYgMzk1LjQ0IEwxODEuNDggMzk2LjAzIEwxNzguNzEgMzk2LjY5IEwxNzYuMTggMzk3LjE4IEwxNzMuOTMgMzk3LjUyIEwxNzAuOTQgMzk3Ljg1IEwxNjguMjIgMzk4LjAyIEwxNjUuNzcgMzk4LjA4IEwxNjIuOTIgMzk4LjAzIEwxNTkuNjYgMzk3LjgzIEwxNTYuNjggMzk3LjUxIEwxNTMuNjMgMzk3LjA0IEwxNTAuODQgMzk2LjUxIEwxNDcuNjUgMzk1Ljc3IEwxNDQuMDkgMzk0Ljc4IEwxNDAuNzggMzkzLjcxIEwxMzcuNDAgMzkyLjQ3IEwxMzMuOTYgMzkxLjA3IEwxMzAuNDUgMzg5LjQ4IEwxMjcuMTEgMzg3Ljg0IEwxMjMuNDYgMzg1Ljg5IEwxMTkuNzQgMzgzLjc0IEwxMTUuOTUgMzgxLjM5IEwxMTEuOTAgMzc4LjcwIEwxMDcuOTcgMzc1LjkyIEwxMDUuOTEgMzc0LjM1IEwxMDMuOTEgMzcyLjcwIEwxMDIuMTggMzcxLjE3IEwxMDAuMjYgMzY5LjM1IEw5OC40MCAzNjcuNDUgTDk2LjQxIDM2NS4yNiBMOTQuNjYgMzYzLjE5IEw5Mi45OCAzNjEuMDUgTDkxLjM1IDM1OC44MyBMODkuNzkgMzU2LjU0IEw4OC4zMCAzNTQuMTggTDg2Ljg3IDM1MS43NSBMODUuNTEgMzQ5LjI1IEw4NC4yMiAzNDYuNjkgTDgzLjAxIDM0NC4wNyBMODEuODcgMzQxLjM4IEw4MC44MiAzMzguNjQgTDc5Ljg0IDMzNS44NSBMNzguOTUgMzMzLjAwIEw3OC4xNCAzMzAuMTAgTDc3LjQyIDMyNy4xNiBMNzYuODAgMzI0LjE2IEw3Ni4yNiAzMjEuMTIgTDc1LjgyIDMxOC4wNCBMNzUuNDggMzE0LjkzIEw3NS4yNCAzMTEuNzcgTDc1LjEwIDMwOC44NCBMNzUuMDYgMzA1LjYxIEw3NS4xMiAzMDIuMzYgTDc1LjI5IDI5OS4wNyBMNzUuNTcgMjk1Ljc2IEw3Ni4wMCAyOTIuMTcgTDc2LjUyIDI4OC44MSBMNzcuMTEgMjg1LjY5IEw3Ny44NiAyODIuMzAgTDc4LjczIDI3OC44OCBMNzkuODEgMjc1LjIxIEw4MC45NCAyNzEuNzcgTDgyLjExIDI2OC41OCBMODMuNTkgMjY0Ljg4IEw4NS4xMiAyNjEuNDMgTDg2LjY3IDI1OC4yMSBMODguNTkgMjU0LjUyIEw5MC41MyAyNTEuMDcgTDkyLjQ5IDI0Ny44NCBMOTQuODUgMjQ0LjE4IEw5Ny4yMyAyNDAuNzUgTDk5LjYxIDIzNy41MiBMMTAyLjQ0IDIzMy45MiBMMTA1LjI4IDIzMC41MyBMMTA4LjEyIDIyNy4zMyBMMTExLjQzIDIyMy44MCBMMTE0Ljc0IDIyMC40NyBMMTE4LjA2IDIxNy4zMSBMMTIxLjg2IDIxMy44OCBMMTI1LjY4IDIxMC42MyBMMTI5LjY2IDIwNy40MSBMMTM0LjU3IDIwMy42NiBMMTM1LjI1IDIwMy4wOSBMMTM1LjgwIDIwMi41MiBMMTM2LjcxIDIwMS4yNCBMMTM3LjM2IDE5OS44MCBMMTM3LjcxIDE5OC4yNiBMMTM3Ljc1IDE5Ni42OCBMMTM3LjQ4IDE5NS4xMiBMMTM2LjkxIDE5My42NSBMMTM2LjA2IDE5Mi4zMiBMMTM1LjA1IDE5MS4yNCBMOTMuMTggMTUzLjY0IEw5Mi4xNyAxNTIuODkgTDkxLjE0IDE1Mi4zNCBMOTAuMDUgMTUxLjk1IEw4OC41MiAxNTEuNjggTDg3LjM2IDE1MS42OCBMODYuMjEgMTUxLjg0IEw4NS4wOSAxNTIuMTcgTDg0LjM4IDE1Mi40OCBMODMuMTQgMTUzLjIzIEw3OC41NCAxNTYuNTYgTDczLjU3IDE2MC4zOCBMNjguODQgMTY0LjIyIEw2NC4zMCAxNjguMTMgTDU5Ljk1IDE3Mi4wOSBMNTUuODMgMTc2LjA2IEw1MS43NCAxODAuMjMgTDQ3Ljc5IDE4NC40OCBMNDQuMDAgMTg4LjgxIEw0MC4zNiAxOTMuMjEgTDM2Ljg3IDE5Ny42OSBMMzMuNTMgMjAyLjI0IEwzMC4zNSAyMDYuODUgTDI3LjM1IDIxMS40OCBMMjQuMzMgMjE2LjQ3IEwyMS42NSAyMjEuMjEgTDE5LjA2IDIyNi4xMSBMMTYuNjkgMjMwLjk1IEwxNC40NSAyMzUuOTAgTDEyLjM3IDI0MC44OCBMMTAuNDMgMjQ1Ljk3IEw4LjY4IDI1MC45NyBMNy4wOCAyNTYuMDcgTDUuNjQgMjYxLjE5IEw0LjM2IDI2Ni4zNSBMMy4yNSAyNzEuNTIgTDIuMjkgMjc2LjcyIEwxLjUxIDI4MS45MyBMMC44OCAyODcuMjIgTDAuNDIgMjkyLjM5IEwwLjEzIDI5Ny42NCBMMC4wMSAzMDIuODggTDAuMDUgMzA4LjEzIEwwLjI2IDMxMy4zOCBMMC42MiAzMTguNDIgTDEuMTcgMzIzLjY1IEwxLjg3IDMyOC44MSBMMi43NiAzMzQuMDcgTDMuODIgMzM5LjI2IEw1LjA0IDM0NC40MiBMNi40MyAzNDkuNDkgTDguMDIgMzU0LjY2IEw5Ljc1IDM1OS42NyBMMTEuNzkgMzY1LjAyIEwxMy44NyAzNjkuOTYgTDE2LjE1IDM3NC45MSBMMTguNjEgMzc5LjgzIEwyMS4yNCAzODQuNjkgTDI0LjA2IDM4OS41MCBMMjcuMDUgMzk0LjI2IEwzMC4xMSAzOTguODAgTDMzLjQyIDQwMy4zOSBMMzYuOTkgNDA4LjAyIEw0MC43MCA0MTIuNTMgTDQ0LjYwIDQxNi45NiBMNDguNjMgNDIxLjI4IEw1My4xMSA0MjUuNzggTDU3LjUxIDQyOS45NFoiIGZpbGw9IiNGMkYyRjIiLz4KPHBhdGggZD0iTTIzNy4xNyAxMzUuNjkgTDIzOC41NSAxMzQuOTYgTDI0MC4wNSAxMzQuNTEgTDI0MC44MyAxMzQuNDAgTDI0MS42MSAxMzQuMzYgTDI0My4xNyAxMzQuNTIgTDI0NC42NiAxMzQuOTggTDI0NS4zNyAxMzUuMzIgTDI0Ni42NyAxMzYuMTkgTDI0Ny4yNSAxMzYuNzIgTDI0OC4yNCAxMzcuOTMgTDI0OC45NyAxMzkuMzEgTDI0OS4yMyAxNDAuMDUgTDI0OS41NCAxNDEuNTggTDI0OS41OCAyNDkuODUgTDI0OS42NCAyNTAuODcgTDI0OS43NiAyNTEuNjAgTDI1MC4yMCAyNTMuMDIgTDI1MC43MCAyNTQuMDIgTDI1MS4xMCAyNTQuNjQgTDI1MS41NyAyNTUuMjIgTDI1Mi4yOCAyNTUuOTQgTDI5OC42OCAyOTcuODEgTDI5OS42OCAyOTguNDcgTDMwMC43NyAyOTguOTggTDMwMS45MiAyOTkuMzEgTDMwMi43MSAyOTkuNDQgTDMwMy45MSAyOTkuNDggTDMwNC43MSAyOTkuNDEgTDMwNS41MCAyOTkuMjUgTDMwNi42NCAyOTguODggTDMwNy43MSAyOTguMzQgTDMwOC42OSAyOTcuNjQgTDMwOS41NSAyOTYuODAgTDMxMC4yOCAyOTUuODUgTDMxMC44NiAyOTQuODAgTDMxMS4yNyAyOTMuNjcgTDMxMS41MSAyOTIuNDkgTDMxMS41OCAyOTEuMzkgTDMxMS41OCAxNS4xMiBMMzExLjUxIDE0LjA0IEwzMTEuMjggMTIuODggTDMxMC44OCAxMS43OCBMMzEwLjUzIDExLjA3IEwzMDkuODcgMTAuMTAgTDMwOS4zNiA5LjUwIEwzMDguNDkgOC43MSBMMzA3LjUxIDguMDYgTDMwNi40NCA3LjU2IEwzMDUuNzAgNy4zMSBMMzA0LjU0IDcuMDggTDMwMy4zNiA3LjAzIEwzMDIuMTkgNy4xNSBMMzAxLjA1IDcuNDQgTDI5OS45NiA3Ljg5IEwyOTkuMDMgOC40MyBMMTIzLjEwIDEyNi43MiBMMTIyLjI3IDEyNy4zNiBMMTIxLjQ1IDEyOC4xNiBMMTIwLjk4IDEyOC43NiBMMTIwLjM4IDEyOS43NCBMMTIwLjA2IDEzMC40NCBMMTE5LjcyIDEzMS41MyBMMTE5LjU3IDEzMi4yOCBMMTE5LjQ5IDEzMy40MiBMMTE5LjU4IDEzNC41NyBMMTE5LjcyIDEzNS4zMiBMMTIwLjIzIDEzNi43NiBMMTIxLjAwIDEzOC4wOCBMMTIxLjQ3IDEzOC42OCBMMTIyLjIxIDEzOS40MyBMMTYzLjk4IDE3Ni45NCBMMTY1LjA0IDE3Ny43MSBMMTY1Ljc1IDE3OC4xMCBMMTY2LjQ5IDE3OC40MiBMMTY3LjY2IDE3OC43NSBMMTY4LjQ2IDE3OC44NyBMMTY5LjI2IDE3OC45MSBMMTcwLjQ3IDE3OC44MiBMMTcxLjY1IDE3OC41NCBMMTcyLjc4IDE3OC4wOSBMMTczLjc0IDE3Ny41NFoiIGZpbGw9IiM1MzI4RkUiLz4KPC9zdmc+Cg=="
+              height="40"
+              alt="Guilherme Mota"
+              style="display: block; height: 40px; width: auto"
+            />
+            <div class="fo-0-6-6" style="display: flex; gap: 24px; font-size: 16px">
+              <span>Projects</span><span>Posts</span><span>About</span>
+            </div>
+          </div>
+          <div style="position: absolute; left: 0; right: 0; top: 88px">
+            <div
+              class="rise-0-5-5"
+              style="
+                margin: 0 20px;
+                font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                font-size: 13px;
+                color: #d7d7d7;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+              "
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="display: block"
+              >
+                <path d="M13 8H3M7.5 3.5L3 8l4.5 4.5" />
+              </svg>
+              All posts
+            </div>
+            <div style="margin: 28px 20px 0">
+              <div
+                class="rise-3-8-8"
+                style="
+                  font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                  font-size: 12px;
+                  color: #8c8c93;
+                  letter-spacing: 0.04em;
+                "
+              >
+                18 Nov 2026 · 6 min read
+              </div>
+              <h1
+                class="rise-6-14-14"
+                style="
+                  margin: 16px 0 0;
+                  max-width: none;
+                  font-size: 34px;
+                  line-height: 42px;
+                  font-weight: 500;
+                  letter-spacing: -0.01em;
+                "
+              >
+                Giving an agent a read-only window into the Brazilian market
+              </h1>
+              <div class="rise-12-18-18" style="margin-top: 20px; display: flex; gap: 8px">
+                <span class="chip2">MCP</span><span class="chip2">Finance</span>
+              </div>
+            </div>
+            <div class="rise-16-26-26" style="margin: 32px 20px 0">
+              <div style="overflow: hidden; border-radius: 16px; height: 190px; background: #232327">
+                <svg
+                  class="cv"
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 350 190"
+                  preserveAspectRatio="xMidYMid slice"
+                  style="display: block"
+                >
+                  <path
+                    d="M-20 43.9 L0 40.2 L20 34.0 L40 27.0 L60 20.7 L80 16.2 L100 14.0 L120 13.5 L140 13.7 L160 13.4 L180 12.1 L200 9.8 L220 7.2 L240 5.6 L260 6.3 L280 9.8 L300 15.9 L320 23.6 L340 31.1 L360 37.0 L380 40.2"
+                    fill="none"
+                    stroke="rgba(255,255,255,.09)"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M-20 54.2 L0 47.6 L20 40.9 L40 35.5 L60 32.4 L80 31.5 L100 32.2 L120 33.2 L140 33.4 L160 32.4 L180 30.4 L200 28.4 L220 27.7 L240 29.2 L260 33.5 L280 39.9 L300 47.1 L320 53.6 L340 57.8 L360 59.2 L380 57.8"
+                    fill="none"
+                    stroke="rgba(255,255,255,.09)"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M-20 61.6 L0 55.7 L20 51.8 L40 50.3 L60 50.9 L80 52.6 L100 54.2 L120 54.7 L140 53.7 L160 51.9 L180 50.2 L200 50.0 L220 52.1 L240 56.6 L260 62.8 L280 69.1 L300 74.1 L320 76.6 L340 76.2 L360 73.4 L380 69.6"
+                    fill="none"
+                    stroke="rgba(255,255,255,.09)"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M-20 71.9 L0 69.3 L20 69.3 L40 71.0 L60 73.5 L80 75.3 L100 75.7 L120 74.6 L140 72.7 L160 71.4 L180 71.6 L200 74.2 L220 78.9 L240 84.7 L260 90.1 L280 93.7 L300 94.6 L320 92.8 L340 89.1 L360 84.9 L380 81.5"
+                    fill="none"
+                    stroke="rgba(255,255,255,.09)"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M-20 87.1 L0 88.1 L20 90.6 L40 93.3 L60 95.1 L80 95.3 L100 94.1 L120 92.5 L140 91.7 L160 92.8 L180 96.0 L200 101.1 L220 106.7 L240 111.3 L260 113.6 L280 113.2 L300 110.2 L320 105.8 L340 101.5 L360 98.4 L380 97.2"
+                    fill="none"
+                    stroke="rgba(255,255,255,.09)"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M-20 105.9 L0 108.9 L20 111.9 L40 113.6 L60 113.8 L80 112.9 L100 112.0 L120 112.2 L140 114.4 L160 118.6 L180 124.1 L200 129.5 L220 133.3 L240 134.5 L260 132.6 L280 128.6 L300 123.5 L320 118.9 L340 115.9 L360 114.9 L380 115.2"
+                    fill="none"
+                    stroke="rgba(255,255,255,.09)"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M-20 126.8 L0 130.0 L20 132.0 L40 132.5 L60 132.3 L80 132.3 L100 133.8 L120 137.2 L140 142.4 L160 148.2 L180 153.1 L200 155.8 L220 155.5 L240 152.2 L260 146.8 L280 141.0 L300 136.0 L320 132.9 L340 131.8 L360 131.9 L380 132.2"
+                    fill="none"
+                    stroke="rgba(83,40,254,.75)"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M-20 149.2 L0 151.5 L20 152.5 L40 153.0 L60 154.1 L80 156.7 L100 161.0 L120 166.6 L140 172.1 L160 176.1 L180 177.3 L200 175.1 L220 170.2 L240 163.7 L260 157.2 L280 152.0 L300 149.0 L320 147.9 L340 147.9 L360 147.8 L380 146.8"
+                    fill="none"
+                    stroke="rgba(255,255,255,.09)"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M-20 172.7 L0 173.9 L20 174.8 L40 176.5 L60 179.7 L80 184.3 L100 189.7 L120 194.3 L140 196.8 L160 196.2 L180 192.3 L200 186.0 L220 178.7 L240 172.0 L260 167.2 L280 164.7 L300 164.1 L320 164.4 L340 164.4 L360 163.5 L380 161.5"
+                    fill="none"
+                    stroke="rgba(255,255,255,.09)"
+                    stroke-width="1.5"
+                  />
+                  <circle cx="210" cy="105" r="53" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5" />
+                  <circle
+                    cx="210"
+                    cy="105"
+                    r="27"
+                    fill="rgba(83,40,254,.18)"
+                    stroke="rgba(83,40,254,.8)"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="rise-22-32-32" style="margin: 40px 20px 0">
+              <div class="prose">
+                <p>
+                  An agent that can write SQL is only as useful as the table it is allowed to read. For
+                  better-investment-mcp I gave it one tool, <u>query_sql</u>, and a guide that explains the tables,
+                  instead of thirty tools that each answer one question.
+                </p>
+                <h2 id="a">Why one SELECT?</h2>
+                <p>
+                  Every extra tool is another choice the agent has to make before it does anything useful. A single
+                  read-only query collapses that choice, and the guide does the teaching.
+                </p>
+                <div class="code">
+                  <em>-- last dividends of a ticker</em> <i>SELECT</i> paid_on, amount <i>FROM</i> dividends
+                  <i>WHERE</i> ticker = 'ITSA4' <i>ORDER BY</i> paid_on <i>DESC</i> <i>LIMIT</i> 5;
+                </div>
+                <div class="fig">
+                  <div class="im">
+                    <svg
+                      class="cv"
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 680 300"
+                      preserveAspectRatio="xMidYMid slice"
+                      style="display: block"
+                    >
+                      <path
+                        d="M-20 23.7 L0 20.3 L20 18.0 L40 16.8 L60 16.5 L80 17.1 L100 18.3 L120 19.9 L140 21.4 L160 22.8 L180 23.7 L200 24.1 L220 23.9 L240 23.2 L260 22.2 L280 20.9 L300 19.8 L320 19.0 L340 18.9 L360 19.7 L380 21.4 L400 24.2 L420 27.9 L440 32.6 L460 37.8 L480 43.2 L500 48.7 L520 53.7 L540 58.0 L560 61.2 L580 63.3 L600 64.1 L620 63.6 L640 62.0 L660 59.5 L680 56.3 L700 52.8"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 47.0 L0 47.0 L20 47.9 L40 49.5 L60 51.6 L80 53.7 L100 55.6 L120 57.2 L140 58.2 L160 58.5 L180 58.2 L200 57.4 L220 56.2 L240 55.0 L260 53.9 L280 53.3 L300 53.4 L320 54.3 L340 56.3 L360 59.2 L380 62.9 L400 67.3 L420 72.1 L440 77.0 L460 81.6 L480 85.5 L500 88.6 L520 90.6 L540 91.3 L560 90.8 L580 89.2 L600 86.6 L620 83.3 L640 79.7 L660 76.0 L680 72.5 L700 69.6"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 79.6 L0 81.9 L20 84.4 L40 86.8 L60 88.8 L80 90.4 L100 91.2 L120 91.3 L140 90.8 L160 89.9 L180 88.6 L200 87.4 L220 86.5 L240 86.2 L260 86.6 L280 87.9 L300 90.1 L320 93.2 L340 97.0 L360 101.3 L380 105.8 L400 110.1 L420 114.0 L440 117.0 L460 119.0 L480 119.8 L500 119.5 L520 117.9 L540 115.4 L560 112.1 L580 108.3 L600 104.5 L620 100.8 L640 97.5 L660 94.9 L680 93.2 L700 92.2"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 115.2 L0 117.7 L20 119.8 L40 121.3 L60 122.0 L80 122.1 L100 121.5 L120 120.7 L140 119.7 L160 118.8 L180 118.4 L200 118.6 L220 119.6 L240 121.6 L260 124.4 L280 127.9 L300 132.0 L320 136.3 L340 140.5 L360 144.4 L380 147.5 L400 149.7 L420 150.8 L440 150.6 L460 149.2 L480 146.7 L500 143.3 L520 139.4 L540 135.2 L560 131.1 L580 127.3 L600 124.2 L620 121.9 L640 120.4 L660 119.8 L680 119.9 L700 120.5"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 149.4 L0 151.0 L20 151.8 L40 152.1 L60 151.9 L80 151.4 L100 151.0 L120 150.9 L140 151.2 L160 152.3 L180 154.2 L200 156.9 L220 160.4 L240 164.4 L260 168.7 L280 173.0 L300 177.0 L320 180.3 L340 182.6 L360 183.8 L380 183.8 L400 182.4 L420 179.9 L440 176.3 L460 172.1 L480 167.4 L500 162.7 L520 158.2 L540 154.3 L560 151.1 L580 148.8 L600 147.4 L620 146.8 L640 146.9 L660 147.4 L680 148.1 L700 148.7"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 182.8 L0 183.4 L20 183.7 L40 183.8 L60 184.1 L80 184.8 L100 186.0 L120 187.9 L140 190.6 L160 194.0 L180 197.9 L200 202.1 L220 206.4 L240 210.4 L260 213.8 L280 216.2 L300 217.5 L320 217.4 L340 216.0 L360 213.4 L380 209.5 L400 204.9 L420 199.6 L440 194.2 L460 188.9 L480 184.0 L500 179.9 L520 176.6 L540 174.3 L560 172.9 L580 172.4 L600 172.4 L620 172.8 L640 173.3 L660 173.7 L680 173.7 L700 173.2"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 217.4 L0 218.0 L20 218.8 L40 220.0 L60 221.8 L80 224.3 L100 227.4 L120 231.0 L140 235.0 L160 239.0 L180 242.8 L200 246.1 L220 248.4 L240 249.6 L260 249.5 L280 248.1 L300 245.3 L320 241.2 L340 236.2 L360 230.5 L380 224.5 L400 218.5 L420 212.9 L440 208.0 L460 203.9 L480 200.9 L500 198.9 L520 197.8 L540 197.5 L560 197.8 L580 198.3 L600 198.9 L620 199.3 L640 199.3 L660 198.9 L680 197.9 L700 196.6"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 253.4 L0 254.7 L20 256.6 L40 259.2 L60 262.2 L80 265.6 L100 269.2 L120 272.6 L140 275.6 L160 277.8 L180 278.9 L200 278.9 L220 277.4 L240 274.6 L260 270.6 L280 265.5 L300 259.7 L320 253.4 L340 247.1 L360 241.2 L380 235.8 L400 231.3 L420 227.9 L440 225.6 L460 224.3 L480 224.0 L500 224.4 L520 225.2 L540 226.2 L560 227.2 L580 227.9 L600 228.1 L620 227.9 L640 227.2 L660 226.3 L680 225.2 L700 224.3"
+                        fill="none"
+                        stroke="rgba(255,255,255,.09)"
+                        stroke-width="1.5"
+                      />
+                      <path
+                        d="M-20 288.5 L0 290.8 L20 293.5 L40 296.5 L60 299.4 L80 302.1 L100 304.1 L120 305.3 L140 305.4 L160 304.2 L180 301.7 L200 298.0 L220 293.2 L240 287.6 L260 281.6 L280 275.4 L300 269.5 L320 264.2 L340 259.7 L360 256.3 L380 254.0 L400 252.8 L420 252.7 L440 253.4 L460 254.7 L480 256.3 L500 257.9 L520 259.2 L540 260.2 L560 260.7 L580 260.7 L600 260.2 L620 259.5 L640 258.8 L660 258.2 L680 258.2 L700 258.9"
+                        fill="none"
+                        stroke="rgba(83,40,254,.75)"
+                        stroke-width="2"
+                      />
+                      <circle cx="306" cy="165" r="84" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5" />
+                      <circle
+                        cx="306"
+                        cy="165"
+                        r="42"
+                        fill="rgba(83,40,254,.18)"
+                        stroke="rgba(83,40,254,.8)"
+                        stroke-width="1.5"
+                      />
+                    </svg>
+                  </div>
+                  <div class="cap">Figure 1. One tool, one guide, one read-only database.</div>
+                </div>
+                <h2 id="b">What did the agent get wrong?</h2>
+                <p>
+                  At first it joined everything. It answered quickly and confidently, and the numbers were wrong in ways
+                  that looked right. The fix was boring: shorter guide, named examples, and a note saying when a load is
+                  still running.
+                </p>
+                <h2 id="c">What would I do again?</h2>
+                <p>
+                  Start with the smallest surface that works, then watch where the agent stumbles. The next change is
+                  almost always in the guide, not in the code.
+                </p>
+                <div
+                  style="
+                    margin-top: 56px;
+                    padding: 24px 28px;
+                    border: 2px solid #2c2c2c;
+                    border-radius: 24px;
+                    background: #202024;
+                  "
+                >
+                  <div
+                    style="
+                      font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                      font-size: 12px;
+                      color: #9479ff;
+                      letter-spacing: 0.04em;
+                    "
+                  >
+                    SUMMARY
+                  </div>
+                  <div style="margin-top: 12px; font-size: 18px; line-height: 28px; color: #f2f2f2">
+                    Prefer one well-explained, read-only tool over many narrow ones, and fix the guide before you fix
+                    the code.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="margin: 56px 20px 0">
+              <div class="rise-38-44-44" style="height: 2px; background: #2c2c2c"></div>
+              <div
+                class="rise-40-46-46"
+                style="
+                  margin-top: 28px;
+                  font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                  font-size: 12px;
+                  color: #8c8c93;
+                  letter-spacing: 0.08em;
+                  text-transform: uppercase;
+                "
+              >
+                Written by
+              </div>
+              <div style="position: relative; margin-top: 8px">
+                <span
+                  class="wr-44-56-56"
+                  style="
+                    display: block;
+                    width: max-content;
+                    font-family: Caveat, cursive;
+                    font-weight: 500;
+                    font-size: 56px;
+                    line-height: 56px;
+                    color: #fff;
+                  "
+                  >Guilherme Mota</span
+                >
+                <svg
+                  width="300"
+                  height="24"
+                  viewBox="0 0 520 24"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  style="display: block; margin-top: -6px"
+                  aria-hidden="true"
+                >
+                  <path
+                    class="dr-54-62-62"
+                    style=""
+                    pathLength="1"
+                    stroke="#9479FF"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    d="M4 16 C120 4 300 24 516 8"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div style="margin: 56px 20px 64px">
+              <div
+                class="rise-66-72-72"
+                style="
+                  font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                  font-size: 14px;
+                  color: #9479ff;
+                  letter-spacing: 0.04em;
+                "
+              >
+                Keep reading
+              </div>
+              <div
+                style="
+                  margin-top: 32px;
+                  display: grid;
+                  grid-template-columns: repeat(1, minmax(0, 1fr));
+                  gap: 44px 32px;
+                "
+              >
+                <div class="rise-68-76-76" style="min-width: 0">
+                  <div
+                    class="pcard"
+                    style="
+                      margin: -16px;
+                      padding: 16px;
+                      border-radius: 24px;
+                      display: flex;
+                      flex-direction: column;
+                      gap: 16px;
+                    "
+                  >
+                    <div style="overflow: hidden; border-radius: 16px; height: 150px; background: #232327">
+                      <svg
+                        class="cv"
+                        width="100%"
+                        height="100%"
+                        viewBox="0 0 400 150"
+                        preserveAspectRatio="xMidYMid slice"
+                        style="display: block"
+                      >
+                        <path
+                          d="M-20 24.3 L0 23.4 L20 21.1 L40 17.7 L60 13.6 L80 9.6 L100 6.5 L120 5.0 L140 5.3 L160 7.2 L180 10.2 L200 13.4 L220 16.2 L240 18.0 L260 18.7 L280 18.6 L300 18.1 L320 18.0 L340 18.7 L360 20.5 L380 23.2 L400 26.3 L420 29.0"
+                          fill="none"
+                          stroke="rgba(255,255,255,.09)"
+                          stroke-width="1.5"
+                        />
+                        <path
+                          d="M-20 35.7 L0 32.4 L20 28.2 L40 23.9 L60 20.3 L80 18.1 L100 17.8 L120 19.3 L140 22.3 L160 26.0 L180 29.6 L200 32.5 L220 34.3 L240 35.0 L260 35.1 L280 35.1 L300 35.6 L320 37.0 L340 39.3 L360 42.2 L380 44.9 L400 46.8 L420 47.2"
+                          fill="none"
+                          stroke="rgba(255,255,255,.09)"
+                          stroke-width="1.5"
+                        />
+                        <path
+                          d="M-20 42.7 L0 38.3 L20 34.4 L40 31.7 L60 30.8 L80 31.9 L100 34.8 L120 38.8 L140 43.1 L160 46.9 L180 49.8 L200 51.5 L220 52.2 L240 52.4 L260 52.8 L280 53.8 L300 55.6 L320 58.0 L340 60.6 L360 62.5 L380 63.1 L400 62.0 L420 59.0"
+                          fill="none"
+                          stroke="rgba(255,255,255,.09)"
+                          stroke-width="1.5"
+                        />
+                        <path
+                          d="M-20 49.5 L0 46.5 L20 45.1 L40 45.8 L60 48.3 L80 52.4 L100 57.1 L120 61.7 L140 65.4 L160 67.8 L180 69.0 L200 69.4 L220 69.6 L240 70.0 L260 71.2 L280 73.0 L300 75.1 L320 77.0 L340 77.8 L360 77.1 L380 74.5 L400 70.3 L420 65.1"
+                          fill="none"
+                          stroke="rgba(255,255,255,.09)"
+                          stroke-width="1.5"
+                        />
+                        <path
+                          d="M-20 61.2 L0 61.3 L20 63.4 L40 67.1 L60 71.8 L80 76.7 L100 80.9 L120 83.8 L140 85.4 L160 85.8 L180 85.6 L200 85.4 L220 85.7 L240 86.8 L260 88.4 L280 90.0 L300 91.1 L320 90.8 L340 89.0 L360 85.4 L380 80.5 L400 75.2 L420 70.2"
+                          fill="none"
+                          stroke="rgba(255,255,255,.09)"
+                          stroke-width="1.5"
+                        />
+                        <path
+                          d="M-20 79.6 L0 82.7 L20 87.0 L40 91.8 L60 96.1 L80 99.3 L100 101.0 L120 101.4 L140 100.8 L160 100.0 L180 99.5 L200 99.7 L220 100.7 L240 102.0 L260 103.3 L280 103.6 L300 102.6 L320 100.0 L340 95.9 L360 91.1 L380 86.3 L400 82.4 L420 79.9"
+                          fill="none"
+                          stroke="rgba(255,255,255,.09)"
+                          stroke-width="1.5"
+                        />
+                        <path
+                          d="M-20 102.3 L0 106.7 L20 110.9 L40 114.2 L60 116.1 L80 116.5 L100 115.8 L120 114.4 L140 113.2 L160 112.6 L180 112.9 L200 113.9 L220 115.2 L240 116.1 L260 115.9 L280 114.4 L300 111.3 L320 107.3 L340 102.9 L360 99.0 L380 96.4 L400 95.4 L420 96.2"
+                          fill="none"
+                          stroke="rgba(83,40,254,.75)"
+                          stroke-width="2"
+                        />
+                        <path
+                          d="M-20 125.3 L0 128.8 L20 131.0 L40 131.7 L60 131.0 L80 129.5 L100 127.7 L120 126.4 L140 126.1 L160 126.6 L180 127.8 L200 128.9 L220 129.4 L240 128.7 L260 126.6 L280 123.3 L300 119.3 L320 115.5 L340 112.7 L360 111.3 L380 111.7 L400 113.6 L420 116.3"
+                          fill="none"
+                          stroke="rgba(255,255,255,.09)"
+                          stroke-width="1.5"
+                        />
+                        <path
+                          d="M-20 146.2 L0 147.5 L20 147.2 L40 145.7 L60 143.7 L80 141.9 L100 140.8 L120 140.7 L140 141.4 L160 142.4 L180 143.2 L200 143.1 L220 141.6 L240 138.9 L260 135.2 L280 131.4 L300 128.2 L320 126.3 L340 126.2 L360 127.6 L380 130.3 L400 133.6 L420 136.5"
+                          fill="none"
+                          stroke="rgba(255,255,255,.09)"
+                          stroke-width="1.5"
+                        />
+                        <circle cx="180" cy="82" r="42" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5" />
+                        <circle
+                          cx="180"
+                          cy="82"
+                          r="21"
+                          fill="rgba(83,40,254,.18)"
+                          stroke="rgba(83,40,254,.8)"
+                          stroke-width="1.5"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <div
+                        style="
+                          font-family: &quot;Geist Mono&quot;, ui-monospace, monospace;
+                          font-size: 12px;
+                          color: #8c8c93;
+                          letter-spacing: 0.04em;
+                        "
+                      >
+                        04 Nov 2026 · 5 min read
+                      </div>
+                      <div style="margin-top: 10px; font-size: 22px; line-height: 28px; font-weight: 500">
+                        Rebuilding UNO for the browser
+                      </div>
+                      <div style="margin-top: 8px; font-size: 15px; line-height: 22px; color: #afafb5">
+                        From a weekend card game to Zerod: rooms, hosts and why there is no ready button.
+                      </div>
+                      <div style="margin-top: 14px; display: flex; gap: 8px"><span class="chip2">Games</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              position: absolute;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              box-sizing: border-box;
+              height: 88px;
+              padding: 0 20px;
+              background: #131315;
+              border-top: 1px solid #2c2c2c;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 12px;
+            "
+          >
+            <div style="display: flex; align-items: center; gap: 12px">
+              <img
+                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzEyIiBoZWlnaHQ9IjQ3MCIgdmlld0JveD0iMCAwIDMxMiA0NzAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik02MS45NSA0MzMuODkgTDY2LjMzIDQzNy41MiBMNzAuNDcgNDQwLjcwIEw3NC44MiA0NDMuNzkgTDc5LjEzIDQ0Ni42MiBMODMuNTkgNDQ5LjMyIEw4OC4xMyA0NTEuODQgTDkyLjgwIDQ1NC4yMyBMOTcuNDEgNDU2LjM3IEwxMDEuOTUgNDU4LjMwIEwxMDYuNzUgNDYwLjE1IEwxMTEuNTkgNDYxLjgyIEwxMTYuNDkgNDYzLjMzIEwxMjEuNDIgNDY0LjY2IEwxMjYuNDAgNDY1LjgzIEwxMzEuMzQgNDY2LjgxIEwxMzYuNzEgNDY3LjY5IEwxNDEuNzAgNDY4LjM0IEwxNDYuODQgNDY4Ljg0IEwxNTEuODcgNDY5LjE2IEwxNTYuOTcgNDY5LjMyIEwxNjIuMDcgNDY5LjMyIEwxNjcuMjQgNDY5LjE1IEwxNzIuMjcgNDY4LjgzIEwxNzcuMzYgNDY4LjM0IEwxODIuNDIgNDY3LjY5IEwxODcuNDcgNDY2Ljg4IEwxOTIuNDkgNDY1LjkxIEwxOTcuNDggNDY0Ljc4IEwyMDIuNDQgNDYzLjQ5IEwyMDcuNDIgNDYyLjAyIEwyMTIuMjMgNDYwLjQ0IEwyMTcuMDQgNDU4LjY3IEwyMjEuODEgNDU2Ljc2IEwyMjYuNTEgNDU0LjY4IEwyMzEuMTUgNDUyLjQ2IEwyMzUuNTQgNDUwLjE3IEwyNDAuMDQgNDQ3LjY0IEwyNDQuNDAgNDQ0Ljk5IEwyNDguNzkgNDQyLjEyIEwyNTMuMDMgNDM5LjE0IEwyNTcuMTggNDM2LjAwIEwyNjEuMTcgNDMyLjc2IEwyNjUuMTcgNDI5LjI4IEwyNjguOTYgNDI1Ljc0IEwyNzIuOTIgNDIxLjc2IEwyNzYuNDcgNDE3LjkyIEwyNzkuOTUgNDEzLjg5IEwyODMuMTYgNDA5Ljg4IEwyODYuMzMgNDA1LjYyIEwyODkuNDYgNDAxLjA5IEwyOTIuMzUgMzk2LjU1IEwyOTUuMzIgMzkxLjQ3IEwyOTcuOTEgMzg2LjY0IEwzMDAuMzggMzgxLjYwIEwzMDIuNjkgMzc2LjQxIEwzMDQuNzUgMzcxLjI5IEwzMDYuNzIgMzY1LjgzIEwzMDguNTEgMzYwLjIzIEwzMTAuMTMgMzU0LjQ4IEwzMTAuNjEgMzUyLjIwIEwzMTAuNjYgMzUxLjAyIEwzMTAuNjAgMzUwLjI0IEwzMTAuMzYgMzQ5LjA5IEwzMTAuMTEgMzQ4LjM0IEwzMDkuNTkgMzQ3LjI4IEwzMDkuMTcgMzQ2LjYzIEwzMDguNjggMzQ2LjAxIEwzMDcuOTIgMzQ1LjI0IEwyMTEuMTkgMjU5LjE3IEwyMTAuMzEgMjU4LjQ5IEwyMDkuNjMgMjU4LjA3IEwyMDguOTAgMjU3LjcyIEwyMDguMTQgMjU3LjQ0IEwyMDcuMzUgMjU3LjI0IEwyMDYuNTUgMjU3LjEzIEwyMDUuNzUgMjU3LjA5IEwyMDQuOTQgMjU3LjE0IEwyMDMuNzUgMjU3LjM2IEwyMDIuOTggMjU3LjYwIEwyMDIuMjQgMjU3LjkzIEwyMDEuMjggMjU4LjQ4IEwxNTkuMDIgMjg2LjY5IEwxNTguMTMgMjg3LjUwIEwxNTcuNjEgMjg4LjEyIEwxNTcuMTUgMjg4Ljc4IEwxNTYuNTkgMjg5Ljg1IEwxNTYuMzEgMjkwLjYwIEwxNTYuMDQgMjkxLjc4IEwxNTUuOTYgMjkyLjU4IEwxNTUuOTkgMjkzLjc5IEwxNTYuMTEgMjk0LjU4IEwxNTYuMzEgMjk1LjM2IEwxNTYuNzYgMjk2LjQ4IEwxNTcuMTQgMjk3LjE5IEwxNTcuNjAgMjk3Ljg1IEwxNTguNjIgMjk4Ljk2IEwyMjEuMDIgMzU1Ljk1IEwyMjIuMDUgMzU3LjEwIEwyMjIuODUgMzU4LjQyIEwyMjMuMTUgMzU5LjEzIEwyMjMuNTMgMzYwLjYyIEwyMjMuNjIgMzYyLjE1IEwyMjMuNTYgMzYyLjkyIEwyMjMuMjEgMzY0LjQyIEwyMjIuNTggMzY1LjgzIEwyMjEuMzcgMzY3LjU2IEwyMTguNzUgMzcwLjkzIEwyMTYuNTcgMzczLjQ4IEwyMTQuMjAgMzc2LjA2IEwyMTEuNTggMzc4LjY3IEwyMDguNzAgMzgxLjI5IEwyMDUuNTYgMzgzLjg3IEwyMDIuMTUgMzg2LjM4IEwxOTguNzAgMzg4LjYyIEwxOTQuNzkgMzkwLjg0IEwxOTIuNDggMzkxLjk5IEwxODguNDMgMzkzLjc1IEwxODUuODkgMzk0LjY5IEwxODMuNTYgMzk1LjQ0IEwxODEuNDggMzk2LjAzIEwxNzguNzEgMzk2LjY5IEwxNzYuMTggMzk3LjE4IEwxNzMuOTMgMzk3LjUyIEwxNzAuOTQgMzk3Ljg1IEwxNjguMjIgMzk4LjAyIEwxNjUuNzcgMzk4LjA4IEwxNjIuOTIgMzk4LjAzIEwxNTkuNjYgMzk3LjgzIEwxNTYuNjggMzk3LjUxIEwxNTMuNjMgMzk3LjA0IEwxNTAuODQgMzk2LjUxIEwxNDcuNjUgMzk1Ljc3IEwxNDQuMDkgMzk0Ljc4IEwxNDAuNzggMzkzLjcxIEwxMzcuNDAgMzkyLjQ3IEwxMzMuOTYgMzkxLjA3IEwxMzAuNDUgMzg5LjQ4IEwxMjcuMTEgMzg3Ljg0IEwxMjMuNDYgMzg1Ljg5IEwxMTkuNzQgMzgzLjc0IEwxMTUuOTUgMzgxLjM5IEwxMTEuOTAgMzc4LjcwIEwxMDcuOTcgMzc1LjkyIEwxMDUuOTEgMzc0LjM1IEwxMDMuOTEgMzcyLjcwIEwxMDIuMTggMzcxLjE3IEwxMDAuMjYgMzY5LjM1IEw5OC40MCAzNjcuNDUgTDk2LjQxIDM2NS4yNiBMOTQuNjYgMzYzLjE5IEw5Mi45OCAzNjEuMDUgTDkxLjM1IDM1OC44MyBMODkuNzkgMzU2LjU0IEw4OC4zMCAzNTQuMTggTDg2Ljg3IDM1MS43NSBMODUuNTEgMzQ5LjI1IEw4NC4yMiAzNDYuNjkgTDgzLjAxIDM0NC4wNyBMODEuODcgMzQxLjM4IEw4MC44MiAzMzguNjQgTDc5Ljg0IDMzNS44NSBMNzguOTUgMzMzLjAwIEw3OC4xNCAzMzAuMTAgTDc3LjQyIDMyNy4xNiBMNzYuODAgMzI0LjE2IEw3Ni4yNiAzMjEuMTIgTDc1LjgyIDMxOC4wNCBMNzUuNDggMzE0LjkzIEw3NS4yNCAzMTEuNzcgTDc1LjEwIDMwOC44NCBMNzUuMDYgMzA1LjYxIEw3NS4xMiAzMDIuMzYgTDc1LjI5IDI5OS4wNyBMNzUuNTcgMjk1Ljc2IEw3Ni4wMCAyOTIuMTcgTDc2LjUyIDI4OC44MSBMNzcuMTEgMjg1LjY5IEw3Ny44NiAyODIuMzAgTDc4LjczIDI3OC44OCBMNzkuODEgMjc1LjIxIEw4MC45NCAyNzEuNzcgTDgyLjExIDI2OC41OCBMODMuNTkgMjY0Ljg4IEw4NS4xMiAyNjEuNDMgTDg2LjY3IDI1OC4yMSBMODguNTkgMjU0LjUyIEw5MC41MyAyNTEuMDcgTDkyLjQ5IDI0Ny44NCBMOTQuODUgMjQ0LjE4IEw5Ny4yMyAyNDAuNzUgTDk5LjYxIDIzNy41MiBMMTAyLjQ0IDIzMy45MiBMMTA1LjI4IDIzMC41MyBMMTA4LjEyIDIyNy4zMyBMMTExLjQzIDIyMy44MCBMMTE0Ljc0IDIyMC40NyBMMTE4LjA2IDIxNy4zMSBMMTIxLjg2IDIxMy44OCBMMTI1LjY4IDIxMC42MyBMMTI5LjY2IDIwNy40MSBMMTM0LjU3IDIwMy42NiBMMTM1LjI1IDIwMy4wOSBMMTM1LjgwIDIwMi41MiBMMTM2LjcxIDIwMS4yNCBMMTM3LjM2IDE5OS44MCBMMTM3LjcxIDE5OC4yNiBMMTM3Ljc1IDE5Ni42OCBMMTM3LjQ4IDE5NS4xMiBMMTM2LjkxIDE5My42NSBMMTM2LjA2IDE5Mi4zMiBMMTM1LjA1IDE5MS4yNCBMOTMuMTggMTUzLjY0IEw5Mi4xNyAxNTIuODkgTDkxLjE0IDE1Mi4zNCBMOTAuMDUgMTUxLjk1IEw4OC41MiAxNTEuNjggTDg3LjM2IDE1MS42OCBMODYuMjEgMTUxLjg0IEw4NS4wOSAxNTIuMTcgTDg0LjM4IDE1Mi40OCBMODMuMTQgMTUzLjIzIEw3OC41NCAxNTYuNTYgTDczLjU3IDE2MC4zOCBMNjguODQgMTY0LjIyIEw2NC4zMCAxNjguMTMgTDU5Ljk1IDE3Mi4wOSBMNTUuODMgMTc2LjA2IEw1MS43NCAxODAuMjMgTDQ3Ljc5IDE4NC40OCBMNDQuMDAgMTg4LjgxIEw0MC4zNiAxOTMuMjEgTDM2Ljg3IDE5Ny42OSBMMzMuNTMgMjAyLjI0IEwzMC4zNSAyMDYuODUgTDI3LjM1IDIxMS40OCBMMjQuMzMgMjE2LjQ3IEwyMS42NSAyMjEuMjEgTDE5LjA2IDIyNi4xMSBMMTYuNjkgMjMwLjk1IEwxNC40NSAyMzUuOTAgTDEyLjM3IDI0MC44OCBMMTAuNDMgMjQ1Ljk3IEw4LjY4IDI1MC45NyBMNy4wOCAyNTYuMDcgTDUuNjQgMjYxLjE5IEw0LjM2IDI2Ni4zNSBMMy4yNSAyNzEuNTIgTDIuMjkgMjc2LjcyIEwxLjUxIDI4MS45MyBMMC44OCAyODcuMjIgTDAuNDIgMjkyLjM5IEwwLjEzIDI5Ny42NCBMMC4wMSAzMDIuODggTDAuMDUgMzA4LjEzIEwwLjI2IDMxMy4zOCBMMC42MiAzMTguNDIgTDEuMTcgMzIzLjY1IEwxLjg3IDMyOC44MSBMMi43NiAzMzQuMDcgTDMuODIgMzM5LjI2IEw1LjA0IDM0NC40MiBMNi40MyAzNDkuNDkgTDguMDIgMzU0LjY2IEw5Ljc1IDM1OS42NyBMMTEuNzkgMzY1LjAyIEwxMy44NyAzNjkuOTYgTDE2LjE1IDM3NC45MSBMMTguNjEgMzc5LjgzIEwyMS4yNCAzODQuNjkgTDI0LjA2IDM4OS41MCBMMjcuMDUgMzk0LjI2IEwzMC4xMSAzOTguODAgTDMzLjQyIDQwMy4zOSBMMzYuOTkgNDA4LjAyIEw0MC43MCA0MTIuNTMgTDQ0LjYwIDQxNi45NiBMNDguNjMgNDIxLjI4IEw1My4xMSA0MjUuNzggTDU3LjUxIDQyOS45NFoiIGZpbGw9IiNGMkYyRjIiLz4KPHBhdGggZD0iTTIzNy4xNyAxMzUuNjkgTDIzOC41NSAxMzQuOTYgTDI0MC4wNSAxMzQuNTEgTDI0MC44MyAxMzQuNDAgTDI0MS42MSAxMzQuMzYgTDI0My4xNyAxMzQuNTIgTDI0NC42NiAxMzQuOTggTDI0NS4zNyAxMzUuMzIgTDI0Ni42NyAxMzYuMTkgTDI0Ny4yNSAxMzYuNzIgTDI0OC4yNCAxMzcuOTMgTDI0OC45NyAxMzkuMzEgTDI0OS4yMyAxNDAuMDUgTDI0OS41NCAxNDEuNTggTDI0OS41OCAyNDkuODUgTDI0OS42NCAyNTAuODcgTDI0OS43NiAyNTEuNjAgTDI1MC4yMCAyNTMuMDIgTDI1MC43MCAyNTQuMDIgTDI1MS4xMCAyNTQuNjQgTDI1MS41NyAyNTUuMjIgTDI1Mi4yOCAyNTUuOTQgTDI5OC42OCAyOTcuODEgTDI5OS42OCAyOTguNDcgTDMwMC43NyAyOTguOTggTDMwMS45MiAyOTkuMzEgTDMwMi43MSAyOTkuNDQgTDMwMy45MSAyOTkuNDggTDMwNC43MSAyOTkuNDEgTDMwNS41MCAyOTkuMjUgTDMwNi42NCAyOTguODggTDMwNy43MSAyOTguMzQgTDMwOC42OSAyOTcuNjQgTDMwOS41NSAyOTYuODAgTDMxMC4yOCAyOTUuODUgTDMxMC44NiAyOTQuODAgTDMxMS4yNyAyOTMuNjcgTDMxMS41MSAyOTIuNDkgTDMxMS41OCAyOTEuMzkgTDMxMS41OCAxNS4xMiBMMzExLjUxIDE0LjA0IEwzMTEuMjggMTIuODggTDMxMC44OCAxMS43OCBMMzEwLjUzIDExLjA3IEwzMDkuODcgMTAuMTAgTDMwOS4zNiA5LjUwIEwzMDguNDkgOC43MSBMMzA3LjUxIDguMDYgTDMwNi40NCA3LjU2IEwzMDUuNzAgNy4zMSBMMzA0LjU0IDcuMDggTDMwMy4zNiA3LjAzIEwzMDIuMTkgNy4xNSBMMzAxLjA1IDcuNDQgTDI5OS45NiA3Ljg5IEwyOTkuMDMgOC40MyBMMTIzLjEwIDEyNi43MiBMMTIyLjI3IDEyNy4zNiBMMTIxLjQ1IDEyOC4xNiBMMTIwLjk4IDEyOC43NiBMMTIwLjM4IDEyOS43NCBMMTIwLjA2IDEzMC40NCBMMTE5LjcyIDEzMS41MyBMMTE5LjU3IDEzMi4yOCBMMTE5LjQ5IDEzMy40MiBMMTE5LjU4IDEzNC41NyBMMTE5LjcyIDEzNS4zMiBMMTIwLjIzIDEzNi43NiBMMTIxLjAwIDEzOC4wOCBMMTIxLjQ3IDEzOC42OCBMMTIyLjIxIDEzOS40MyBMMTYzLjk4IDE3Ni45NCBMMTY1LjA0IDE3Ny43MSBMMTY1Ljc1IDE3OC4xMCBMMTY2LjQ5IDE3OC40MiBMMTY3LjY2IDE3OC43NSBMMTY4LjQ2IDE3OC44NyBMMTY5LjI2IDE3OC45MSBMMTcwLjQ3IDE3OC44MiBMMTcxLjY1IDE3OC41NCBMMTcyLjc4IDE3OC4wOSBMMTczLjc0IDE3Ny41NFoiIGZpbGw9IiM1MzI4RkUiLz4KPC9zdmc+Cg=="
+                height="32"
+                alt=""
+                style="display: block; height: 32px; width: auto"
+              /><span
+                style="font-family: &quot;Geist Mono&quot;, ui-monospace, monospace; font-size: 12px; color: #8c8c93"
+                >© 2026 Guilherme Mota</span
+              >
+            </div>
+            <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: #d7d7d7"
+              >Back to top
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="display: block"
+              >
+                <path d="M8 13V3M3.5 7.5L8 3l4.5 4.5" /></svg
+            ></span>
+          </div>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":3030}}'>
+      class Component extends DCLogic { renderVals() { return {}; } }
+    </script>
+  </body>
+</html>
