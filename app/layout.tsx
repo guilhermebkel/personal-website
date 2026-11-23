@@ -6,6 +6,7 @@ import "@fontsource/ubuntu/700.css";
 import "@fontsource/caveat/400.css";
 import "@fontsource/geist-mono/400.css";
 import "./globals.css";
+import { SkipLink } from "@components/SkipLink.tsx";
 import { SiteHeader } from "@components/SiteHeader.tsx";
 
 export const metadata: Metadata = {
@@ -18,8 +19,9 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en">
       <body>
+        <SkipLink />
         <SiteHeader />
-        <main>{children}</main>
+        <main id="main" tabIndex={-1} className="outline-none">{children}</main>
       </body>
     </html>
   );

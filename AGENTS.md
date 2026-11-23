@@ -36,10 +36,13 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
 | Starting a session | `README.md` (Development) | `nvm use`, `pnpm ensure-deps` |
 | Writing or changing code | `docs/code-standards.md` | — |
 | Writing or changing tests | `docs/test-standards.md` | — |
-| Screen layout, tokens or motion | `design/system/DESIGN.md` | `pnpm design:tokens` |
+| Screen layout or UI behavior | `docs/ui-ux-standards.md` | — |
+| Tokens, colors or motion | `design/system/DESIGN.md` | `pnpm design:tokens` |
+| Text a visitor reads | `docs/copy-standards.md` | — |
 | Adding a shadcn control | `docs/adding-shadcn-components.md` | — |
 | Change visible on screen | `docs/visual-check.md` | `pnpm build`, `pnpm test:e2e` |
 | Writing a post or changing the content format | `docs/content.md` | `pnpm test` |
+| Writing or moving docs under `docs/` | `docs/docs-standards.md` | — |
 | Before committing | `docs/code-standards.md` ("Before committing"), `.github/PULL_REQUEST_TEMPLATE.md` | `pnpm check:changed` |
 | Full verification (CI gate) | `.github/PULL_REQUEST_TEMPLATE.md` | `pnpm check` |
 | Changing the harness | `docs/harness-standards.md` | `pnpm check:changed` |
@@ -53,6 +56,9 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
 - No hex color or size outside `design/system/tokens.json`: everything else uses a token (`design/system/DESIGN.md`). Edit `tokens.json`, run `pnpm design:tokens`, commit both files.
 - The app imports shadcn controls only through their intermediate in `components/`, never from `components/ui/` (ADR 0004).
 - The site is static: no server code at request time, no database, no login. Anything that needs one is a new ADR first.
+- Rules that cannot fail (a content schema, who may merge a post) live in code with a test, never only in a doc.
+- `process.env` is read only in `EnvUtil`; a new dependency needs a reason in the PR (`docs/code-standards.md`).
+- Before exploring an area, read `GLOSSARY.md` and the ADRs that touch it; when your output contradicts an ADR, say so.
 - Content is data checked at build: a post or project that fails its schema fails the build.
 - Posts written by the AI arrive as pull requests and are merged only by the owner.
 - When behavior or vocabulary changes, update `GLOSSARY.md`, the docs or an ADR in the same PR.

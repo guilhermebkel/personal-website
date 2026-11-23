@@ -5,7 +5,8 @@
 - Same lint split as `tocomevidencia` (its ADR 0022): Oxlint runs almost every rule, including the `@stylistic` and `sonarjs` JS plugins; a minimal ESLint keeps what Oxlint cannot run (`naming-convention`, `no-unnecessary-condition`, `prefer-optional-chain`). `pnpm lint` runs both in parallel through `scripts/lint.mjs`.
 - Same check scripts (`check:changed`, `test:changed`, `ensure-deps`, `ensure-playwright`, `affected-specs`) and the same quality tools (Knip, jscpd, dpdm).
 - Dropped on purpose: Supabase and Drizzle, the AI SDK and OpenRouter, React Email, the docs catalog and the isolated-render visual scripts, because the site has none of those. Tailwind and shadcn were dropped at first and adopted afterwards (ADR 0003 and 0004).
-- Not ported yet: the 23 local ESLint rules (file suffix, layers, verb names, comment markers). The matching rules in `docs/code-standards.md` are **(review)** until they are.
+- Ported: eight of the local ESLint rules (`file-suffix`, `describe-target`, `arrow-function`, `tokens-only`, `no-inline-svg`, `e2e-tag`, `no-fixed-wait`, `no-test-retries`), each with a failing example in `scripts/eslint-local-rules.test.mjs`.
+- Not ported yet: the rest (layers, verb names, comment markers, schema and protocol rules). The matching rules in `docs/code-standards.md` are **(review)** until they are.
 
 ## Cost
 

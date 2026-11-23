@@ -13,7 +13,9 @@
 ## Checklist
 
 - [ ] No secrets or private data anywhere in the diff
+- [ ] A new runtime dependency has its reason in this description; `pnpm-lock.yaml` changed only with `package.json`
 - [ ] `GLOSSARY.md`, the docs or an ADR updated if behavior or vocabulary changed
+- [ ] Screen changes follow `docs/ui-ux-standards.md` and `docs/copy-standards.md`
 - [ ] Screen changes use tokens only and follow `design/system/DESIGN.md` (tokens changed in `tokens.json`, `pnpm design:tokens` run)
 - [ ] Screen changes were checked in the browser as `docs/visual-check.md` describes and compared with the prototype
 - [ ] A post from the AI pipeline is merged only by the owner

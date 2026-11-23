@@ -19,7 +19,6 @@
   "ignoreDependencies": [
     "tw-animate-css",
     "shadcn",
-    "tailwindcss",
-    "lucide-react"
+    "tailwindcss"
   ]
 }

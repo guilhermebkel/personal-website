@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Icon } from "@components/Icon.tsx";
 
 export const SiteHeader = () => {
   return (
@@ -8,7 +9,10 @@ export const SiteHeader = () => {
         {" · "}
         <Link href="/blog/">Posts</Link>
         {" · "}
-        <a href="https://about.guilherr.me">About</a>
+        <a href="https://about.guilherr.me" className="inline-flex items-center gap-1">
+          About
+          <Icon name="external" />
+        </a>
       </nav>
     </header>
   );
