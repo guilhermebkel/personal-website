@@ -7,6 +7,7 @@ export const ProjectCarouselHeader = ({ children }: { children: ReactNode }) => 
   return (
     <div className={PAGE_X}>
       <SectionTitle
+        headingId="projects-title"
         eyebrow="01 — Projects"
         title="Things I've built"
         action={<div className="flex gap-3 max-md:hidden">{children}</div>}
