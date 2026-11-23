@@ -1,0 +1,96 @@
+/* Tokens come from the guilherr.me design system (dark theme only). Add a token there first, then here. */
+:root {
+  color-scheme: dark;
+
+  --graphite-color: #1b1b1e;
+  --graphite-deep-color: #131315;
+  --purple-color: #5328fe;
+  --purple-color-light: #9479ff;
+
+  --color-bg: var(--graphite-color);
+  --color-bg-deep: var(--graphite-deep-color);
+  --color-surface: #282828;
+  --color-panel: #252525;
+  --color-sunken: #2c2c2c;
+  --color-text: #ffffff;
+  --color-text-soft: #d7d7d7;
+  --color-text-muted: #aaaaaa;
+  --color-border: rgba(255, 255, 255, 0.2);
+  --color-border-strong: #3a3a40;
+  --color-contour: rgba(255, 255, 255, 0.04);
+  --color-control: #151515;
+  --color-primary: var(--purple-color);
+  --color-on-primary: #ffffff;
+  --color-accent-text: var(--purple-color-light);
+  --color-focus: var(--purple-color-light);
+
+  --font-sans: "Ubuntu", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-signature: "Caveat", cursive;
+
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --navbar-height: 64px;
+  --content-max-width: 1366px;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+a {
+  color: var(--color-accent-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.page {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-2);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.04em;
+  color: var(--color-accent-text);
+}
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
