@@ -315,7 +315,9 @@
       }
     ],
     "local/file-suffix": "error",
-    "local/arrow-function": "error"
+    "local/arrow-function": "error",
+    "local/layer-imports": "error",
+    "local/class-matches-file": "error"
   },
   "overrides": [
     {

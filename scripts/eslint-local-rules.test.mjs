@@ -19,6 +19,110 @@ const ruleTester = new RuleTester({ languageOptions: { ecmaVersion: 2024, source
 const FILE_SUFFIX_CODE = "export const NAME = 1;";
 const MISSING_SUFFIX = "missing";
 
+// Why: the layer rule reads the file's place in the repository, so each case names a file path under the layer it tests.
+const LAYER_IMPORT_FORBIDDEN = "forbidden";
+const UTIL_FILE = "src/Utils/TimeUtil.ts";
+const CLASS_FILE = "src/Utils/ClassNameUtil.ts";
+const SERVICE_FILE = "src/Services/PostService.ts";
+const COMPONENT_FILE = "components/PostRow.tsx";
+const SERVICE_IMPORT = 'import { PostService } from "@/Services/PostService.ts";';
+const FORBIDDEN = [{ messageId: LAYER_IMPORT_FORBIDDEN }];
+ruleTester.run("layer-imports", localRules.rules["layer-imports"], {
+  valid: [
+    {
+      name: "a Util imports a Protocol",
+      filename: UTIL_FILE,
+      code: 'import { Clock } from "@/Protocols/ClockProtocol.ts";',
+    },
+    {
+      name: "a Service imports a Util",
+      filename: SERVICE_FILE,
+      code: 'import { SlugUtil } from "@/Utils/SlugUtil.ts";',
+    },
+    { name: "a Factory imports a Service", filename: "src/Factories/ContentFactory.ts", code: SERVICE_IMPORT },
+    {
+      name: "a component imports a Util",
+      filename: "components/Footer.tsx",
+      code: 'import { ClassNameUtil } from "@/Utils/ClassNameUtil.ts";',
+    },
+    {
+      name: "a component imports a Protocol",
+      filename: "components/Footer.tsx",
+      code: 'import { ContactProtocol } from "@/Protocols/ContactProtocol.ts";',
+    },
+    {
+      name: "a page imports a Factory",
+      filename: "app/page.tsx",
+      code: 'import { ContentFactory } from "@/Factories/ContentFactory.ts";',
+    },
+    { name: "a package is not a layer", filename: UTIL_FILE, code: 'import { z } from "zod";' },
+    {
+      name: "a relative import in the same layer",
+      filename: SERVICE_FILE,
+      code: 'import { PostRow } from "./PostRow.ts";',
+    },
+  ],
+  invalid: [
+    { name: "a Util imports a Service", filename: UTIL_FILE, code: SERVICE_IMPORT, errors: FORBIDDEN },
+    {
+      name: "a Protocol imports a Schema",
+      filename: "src/Protocols/PostProtocol.ts",
+      code: 'import { PostSchema } from "@/Schemas/PostSchema.ts";',
+      errors: FORBIDDEN,
+    },
+    {
+      name: "a Service imports a Factory",
+      filename: SERVICE_FILE,
+      code: 'import { ContentFactory } from "@/Factories/ContentFactory.ts";',
+      errors: FORBIDDEN,
+    },
+    { name: "a component imports a Service", filename: COMPONENT_FILE, code: SERVICE_IMPORT, errors: FORBIDDEN },
+    {
+      name: "a hook imports a Schema",
+      filename: "hooks/useInView.ts",
+      code: 'import { PostSchema } from "@/Schemas/PostSchema.ts";',
+      errors: FORBIDDEN,
+    },
+    {
+      name: "a component re-exports a Service",
+      filename: COMPONENT_FILE,
+      code: 'export { PostService } from "@/Services/PostService.ts";',
+      errors: FORBIDDEN,
+    },
+    {
+      name: "a relative import that climbs to a higher layer",
+      filename: UTIL_FILE,
+      code: 'import { PostService } from "../Services/PostService.ts";',
+      errors: FORBIDDEN,
+    },
+  ],
+});
+
+ruleTester.run("class-matches-file", localRules.rules["class-matches-file"], {
+  valid: [
+    {
+      name: "one class named like its file",
+      filename: CLASS_FILE,
+      code: "export class ClassNameUtil {}",
+    },
+    { name: "a file with no class", filename: UTIL_FILE, code: "export const TIME = 1;" },
+  ],
+  invalid: [
+    {
+      name: "a class named differently from its file",
+      filename: CLASS_FILE,
+      code: "export class OtherUtil {}",
+      errors: [{ messageId: "name" }],
+    },
+    {
+      name: "two classes in one file",
+      filename: CLASS_FILE,
+      code: "export class ClassNameUtil {}\nclass Helper {}",
+      errors: [{ messageId: "second" }],
+    },
+  ],
+});
+
 ruleTester.run("file-suffix", localRules.rules["file-suffix"], {
   valid: [
     { name: "a service with the Service suffix", filename: "src/Services/ChatService.ts", code: FILE_SUFFIX_CODE },

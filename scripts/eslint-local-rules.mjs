@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 import tseslint from "typescript-eslint";
 
 const getFileStem = (filename) => {
@@ -467,6 +467,138 @@ const arrowFunction = {
   },
 };
 
+// Why: the layers from AGENTS.md, lowest first; a file may import only from its own layer or a lower one (docs/code-standards.md).
+const LAYER_ORDER = ["Protocols", "Schemas", "Utils", "Services", "Factories"];
+const UI_FOLDERS = ["components", "hooks", "styles"];
+const UI_ALLOWED_LAYERS = new Set(["Protocols", "Utils"]);
+const ALIAS_TO_FOLDER = { "@": "src", "@components": "components", "@hooks": "hooks", "@styles": "styles" };
+
+// Pure: the layer of a repository-relative path, or null when the file is outside the layers (a config, a script, a test of e2e).
+export const layerOfPath = (path) => {
+  const normalized = path.replaceAll("\\", "/");
+  const source = /^src\/([^/]+)\//u.exec(normalized);
+  if (source !== null && LAYER_ORDER.includes(source[1])) {
+    return { kind: "layer", name: source[1], rank: LAYER_ORDER.indexOf(source[1]) };
+  }
+  const ui = UI_FOLDERS.find((folder) => normalized.startsWith(`${folder}/`));
+  if (ui !== undefined) {
+    return { kind: "ui", name: ui };
+  }
+  if (normalized.startsWith("app/")) {
+    return { kind: "app", name: "app" };
+  }
+  return null;
+};
+
+// Pure: the repository-relative path an import points to, or null for a package.
+export const resolveImportPath = (specifier, fromPath) => {
+  for (const [alias, folder] of Object.entries(ALIAS_TO_FOLDER)) {
+    if (specifier === alias || specifier.startsWith(`${alias}/`)) {
+      const rest = specifier.slice(alias.length + 1);
+      return folder === "src" ? `src/${rest}` : `${folder}/${rest}`;
+    }
+  }
+  if (specifier.startsWith(".")) {
+    const parts = [...dirname(fromPath).split("/"), ...specifier.split("/")];
+    const resolved = parts.reduce((segments, part) => {
+      if (part === "..") {
+        return segments.slice(0, -1);
+      }
+      return part === "." || part === "" ? segments : [...segments, part];
+    }, []);
+    return resolved.join("/");
+  }
+  return null;
+};
+
+// Pure: whether a file in `from` may import a file in `to`.
+export const isLayerImportAllowed = (from, to) => {
+  if (from === null || to === null) {
+    return true;
+  }
+  if (from.kind === "app") {
+    return true;
+  }
+  if (from.kind === "ui") {
+    return to.kind === "ui" || (to.kind === "layer" && UI_ALLOWED_LAYERS.has(to.name));
+  }
+  return to.kind === "layer" && to.rank <= from.rank;
+};
+
+const LAYER_IMPORT_MESSAGE = "{{from}} may not import {{to}}: a file imports only from its own layer or a lower one.";
+
+const layerImports = {
+  meta: {
+    type: "problem",
+    messages: { forbidden: LAYER_IMPORT_MESSAGE },
+  },
+  create(context) {
+    const filePath = relative(process.cwd(), context.filename).replaceAll("\\", "/");
+    const from = layerOfPath(filePath);
+    const check = (node, specifier) => {
+      if (typeof specifier !== "string") {
+        return;
+      }
+      const target = resolveImportPath(specifier, filePath);
+      if (target === null) {
+        return;
+      }
+      const to = layerOfPath(target);
+      if (!isLayerImportAllowed(from, to)) {
+        context.report({
+          node,
+          messageId: "forbidden",
+          data: { from: from?.name ?? "file", to: to?.name ?? target },
+        });
+      }
+    };
+    return {
+      "ImportDeclaration"(node) {
+        check(node.source, node.source.value);
+      },
+      "ExportNamedDeclaration"(node) {
+        if (node.source) {
+          check(node.source, node.source.value);
+        }
+      },
+      "ExportAllDeclaration"(node) {
+        check(node.source, node.source.value);
+      },
+    };
+  },
+};
+
+// Why: a file holds one class, named like the file, so a reader finds a class by its file name (docs/code-standards.md).
+const classMatchesFile = {
+  meta: {
+    type: "suggestion",
+    messages: {
+      second: 'Move the class "{{name}}" to its own file: a file holds one class.',
+      name: 'The class "{{name}}" is in "{{file}}", so it must be named "{{file}}".',
+    },
+  },
+  create(context) {
+    const stem = getFileStem(context.filename);
+    const classes = [];
+    return {
+      "ClassDeclaration"(node) {
+        classes.push(node);
+      },
+      "Program:exit"() {
+        classes.forEach((node, index) => {
+          const name = node.id?.name ?? "";
+          if (index > 0) {
+            context.report({ node, messageId: "second", data: { name } });
+          }
+          if (index === 0 && name !== stem) {
+            context.report({ node, messageId: "name", data: { name, file: stem } });
+          }
+        });
+      },
+    };
+  },
+};
+
 export const localRules = {
   rules: {
     "file-suffix": fileSuffix,
@@ -477,6 +609,8 @@ export const localRules = {
     "no-fixed-wait": noFixedWait,
     "no-test-retries": noTestRetries,
     "arrow-function": arrowFunction,
+    "layer-imports": layerImports,
+    "class-matches-file": classMatchesFile,
   },
 };
 
