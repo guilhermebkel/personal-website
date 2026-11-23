@@ -1,12 +1,6 @@
 {
-  "plugins": [
-    "typescript"
-  ],
-  "jsPlugins": [
-    "@stylistic/eslint-plugin",
-    "eslint-plugin-sonarjs",
-    "./scripts/eslint-local-rules.mjs"
-  ],
+  "plugins": ["typescript"],
+  "jsPlugins": ["@stylistic/eslint-plugin", "eslint-plugin-sonarjs", "./scripts/eslint-local-rules.mjs"],
   "categories": {
     "correctness": "off"
   },
@@ -92,10 +86,7 @@
     "no-unused-expressions": "error",
     "no-useless-constructor": "error",
     "no-empty-function": "error",
-    "@stylistic/array-bracket-spacing": [
-      "error",
-      "never"
-    ],
+    "@stylistic/array-bracket-spacing": ["error", "never"],
     "@stylistic/arrow-parens": [
       "error",
       "always",
@@ -110,10 +101,7 @@
         "before": true
       }
     ],
-    "@stylistic/block-spacing": [
-      "error",
-      "always"
-    ],
+    "@stylistic/block-spacing": ["error", "always"],
     "@stylistic/brace-style": [
       "error",
       "1tbs",
@@ -121,10 +109,7 @@
         "allowSingleLine": false
       }
     ],
-    "@stylistic/comma-dangle": [
-      "error",
-      "always-multiline"
-    ],
+    "@stylistic/comma-dangle": ["error", "always-multiline"],
     "@stylistic/comma-spacing": [
       "error",
       {
@@ -132,10 +117,7 @@
         "before": false
       }
     ],
-    "@stylistic/comma-style": [
-      "error",
-      "last"
-    ],
+    "@stylistic/comma-style": ["error", "last"],
     "@stylistic/computed-property-spacing": [
       "error",
       "never",
@@ -143,10 +125,7 @@
         "enforceForClassMembers": true
       }
     ],
-    "@stylistic/dot-location": [
-      "error",
-      "property"
-    ],
+    "@stylistic/dot-location": ["error", "property"],
     "@stylistic/eol-last": "error",
     "@stylistic/generator-star-spacing": [
       "error",
@@ -175,10 +154,7 @@
           "returnType": 1
         },
         "ignoreComments": false,
-        "ignoredNodes": [
-          "TSUnionType",
-          "TSIntersectionType"
-        ],
+        "ignoredNodes": ["TSUnionType", "TSIntersectionType"],
         "ImportDeclaration": 1,
         "MemberExpression": 1,
         "ObjectExpression": 1,
@@ -189,10 +165,7 @@
         "VariableDeclarator": 1
       }
     ],
-    "@stylistic/indent-binary-ops": [
-      "error",
-      2
-    ],
+    "@stylistic/indent-binary-ops": ["error", 2],
     "@stylistic/key-spacing": [
       "error",
       {
@@ -222,39 +195,18 @@
       }
     ],
     "@stylistic/member-delimiter-style": "error",
-    "@stylistic/multiline-ternary": [
-      "error",
-      "always-multiline"
-    ],
+    "@stylistic/multiline-ternary": ["error", "always-multiline"],
     "@stylistic/new-parens": "error",
-    "@stylistic/no-extra-parens": [
-      "error",
-      "functions"
-    ],
+    "@stylistic/no-extra-parens": ["error", "functions"],
     "@stylistic/no-floating-decimal": "error",
     "@stylistic/no-mixed-operators": [
       "error",
       {
         "allowSamePrecedence": true,
         "groups": [
-          [
-            "==",
-            "!=",
-            "===",
-            "!==",
-            ">",
-            ">=",
-            "<",
-            "<="
-          ],
-          [
-            "&&",
-            "||"
-          ],
-          [
-            "in",
-            "instanceof"
-          ]
+          ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
+          ["&&", "||"],
+          ["in", "instanceof"]
         ]
       }
     ],
@@ -271,14 +223,8 @@
     "@stylistic/no-tabs": "error",
     "@stylistic/no-trailing-spaces": "error",
     "@stylistic/no-whitespace-before-property": "error",
-    "@stylistic/object-curly-spacing": [
-      "error",
-      "always"
-    ],
-    "@stylistic/operator-linebreak": [
-      "error",
-      "before"
-    ],
+    "@stylistic/object-curly-spacing": ["error", "always"],
+    "@stylistic/operator-linebreak": ["error", "before"],
     "@stylistic/padded-blocks": [
       "error",
       {
@@ -287,10 +233,7 @@
         "switches": "never"
       }
     ],
-    "@stylistic/quote-props": [
-      "error",
-      "consistent-as-needed"
-    ],
+    "@stylistic/quote-props": ["error", "consistent-as-needed"],
     "@stylistic/quotes": [
       "error",
       "double",
@@ -299,14 +242,8 @@
         "avoidEscape": false
       }
     ],
-    "@stylistic/rest-spread-spacing": [
-      "error",
-      "never"
-    ],
-    "@stylistic/semi": [
-      "error",
-      "always"
-    ],
+    "@stylistic/rest-spread-spacing": ["error", "never"],
+    "@stylistic/semi": ["error", "always"],
     "@stylistic/semi-spacing": [
       "error",
       {
@@ -314,10 +251,7 @@
         "before": false
       }
     ],
-    "@stylistic/space-before-blocks": [
-      "error",
-      "always"
-    ],
+    "@stylistic/space-before-blocks": ["error", "always"],
     "@stylistic/space-before-function-paren": [
       "error",
       {
@@ -326,10 +260,7 @@
         "named": "never"
       }
     ],
-    "@stylistic/space-in-parens": [
-      "error",
-      "never"
-    ],
+    "@stylistic/space-in-parens": ["error", "never"],
     "@stylistic/space-infix-ops": "error",
     "@stylistic/space-unary-ops": [
       "error",
@@ -344,33 +275,18 @@
       {
         "block": {
           "balanced": true,
-          "exceptions": [
-            "*"
-          ],
-          "markers": [
-            "!"
-          ]
+          "exceptions": ["*"],
+          "markers": ["!"]
         },
         "line": {
-          "exceptions": [
-            "/",
-            "#"
-          ],
-          "markers": [
-            "/"
-          ]
+          "exceptions": ["/", "#"],
+          "markers": ["/"]
         }
       }
     ],
     "@stylistic/template-curly-spacing": "error",
-    "@stylistic/template-tag-spacing": [
-      "error",
-      "never"
-    ],
-    "@stylistic/type-annotation-spacing": [
-      "error",
-      {}
-    ],
+    "@stylistic/template-tag-spacing": ["error", "never"],
+    "@stylistic/type-annotation-spacing": ["error", {}],
     "@stylistic/type-generic-spacing": "error",
     "@stylistic/type-named-tuple-spacing": "error",
     "@stylistic/wrap-iife": [
@@ -396,20 +312,11 @@
       }
     ],
     "@stylistic/jsx-curly-newline": "error",
-    "@stylistic/jsx-curly-spacing": [
-      "error",
-      "never"
-    ],
+    "@stylistic/jsx-curly-spacing": ["error", "never"],
     "@stylistic/jsx-equals-spacing": "error",
     "@stylistic/jsx-first-prop-new-line": "error",
-    "@stylistic/jsx-function-call-newline": [
-      "error",
-      "multiline"
-    ],
-    "@stylistic/jsx-indent-props": [
-      "error",
-      2
-    ],
+    "@stylistic/jsx-function-call-newline": ["error", "multiline"],
+    "@stylistic/jsx-indent-props": ["error", 2],
     "@stylistic/jsx-max-props-per-line": [
       "error",
       {
@@ -459,24 +366,12 @@
         }
       }
     ],
-    "curly": [
-      "error",
-      "all"
-    ],
+    "curly": ["error", "all"],
     "no-nested-ternary": "error",
     "no-console": "error",
-    "sonarjs/cognitive-complexity": [
-      "error",
-      15
-    ],
-    "max-depth": [
-      "error",
-      3
-    ],
-    "max-params": [
-      "error",
-      5
-    ],
+    "sonarjs/cognitive-complexity": ["error", 15],
+    "max-depth": ["error", 3],
+    "max-params": ["error", 5],
     "sonarjs/no-nested-conditional": "error",
     "sonarjs/no-collapsible-if": "error",
     "sonarjs/no-identical-functions": "error",
@@ -484,10 +379,7 @@
     "sonarjs/no-all-duplicated-branches": "error",
     "sonarjs/no-identical-conditions": "error",
     "prefer-arrow-callback": "error",
-    "max-classes-per-file": [
-      "error",
-      1
-    ],
+    "max-classes-per-file": ["error", 1],
     "sonarjs/expression-complexity": "error",
     "sonarjs/no-nested-template-literals": "error",
     "sonarjs/no-nested-functions": "error",
@@ -518,9 +410,7 @@
       {
         "patterns": [
           {
-            "group": [
-              "@components/ui/**"
-            ],
+            "group": ["@components/ui/**"],
             "message": "Import the intermediate component in components/ (Button, ...), never components/ui/ directly (ADR 0004). Only the intermediates import from ui/."
           }
         ]
@@ -540,11 +430,7 @@
     "no-magic-numbers": [
       "error",
       {
-        "ignore": [
-          -1,
-          0,
-          1
-        ],
+        "ignore": [-1, 0, 1],
         "ignoreArrayIndexes": true,
         "ignoreDefaultValues": true,
         "ignoreEnums": true,
@@ -645,10 +531,7 @@
         "allowNumber": true
       }
     ],
-    "typescript/return-await": [
-      "error",
-      "error-handling-correctness-only"
-    ],
+    "typescript/return-await": ["error", "error-handling-correctness-only"],
     "typescript/triple-slash-reference": "error",
     "typescript/unbound-method": "error",
     "typescript/unified-signatures": "error",
@@ -682,12 +565,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.mts",
-        "**/*.cts"
-      ],
+      "files": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
       "rules": {
         "constructor-super": "off",
         "getter-return": "off",
@@ -712,13 +590,7 @@
       }
     },
     {
-      "files": [
-        "src/**/*.test.ts",
-        "scripts/**/*.test.mjs",
-        "*.test.mjs",
-        "src/**/*Builder.ts",
-        "src/**/fixtures/**"
-      ],
+      "files": ["src/**/*.test.ts", "scripts/**/*.test.mjs", "*.test.mjs", "src/**/*Builder.ts", "src/**/fixtures/**"],
       "rules": {
         "no-restricted-properties": "off",
         "no-magic-numbers": "off",
@@ -726,11 +598,7 @@
       }
     },
     {
-      "files": [
-        "src/**/*.test.ts",
-        "scripts/**/*.test.mjs",
-        "*.test.mjs"
-      ],
+      "files": ["src/**/*.test.ts", "scripts/**/*.test.mjs", "*.test.mjs"],
       "rules": {
         "vitest/expect-expect": "error",
         "vitest/no-commented-out-tests": "error",
@@ -773,17 +641,10 @@
           }
         ]
       },
-      "plugins": [
-        "vitest"
-      ]
+      "plugins": ["vitest"]
     },
     {
-      "files": [
-        "app/**/*.{ts,tsx}",
-        "components/**/*.{ts,tsx}",
-        "hooks/**/*.{ts,tsx}",
-        "styles/**/*.ts"
-      ],
+      "files": ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "hooks/**/*.{ts,tsx}", "styles/**/*.ts"],
       "rules": {
         "jsx-a11y/alt-text": "error",
         "jsx-a11y/anchor-has-content": "error",
@@ -799,15 +660,7 @@
           "error",
           {
             "depth": 3,
-            "ignoreElements": [
-              "audio",
-              "canvas",
-              "embed",
-              "input",
-              "textarea",
-              "tr",
-              "video"
-            ]
+            "ignoreElements": ["audio", "canvas", "embed", "input", "textarea", "tr", "video"]
           }
         ],
         "jsx-a11y/heading-has-content": "error",
@@ -840,18 +693,9 @@
         "jsx-a11y/no-noninteractive-element-interactions": [
           "error",
           {
-            "body": [
-              "onError",
-              "onLoad"
-            ],
-            "iframe": [
-              "onError",
-              "onLoad"
-            ],
-            "img": [
-              "onError",
-              "onLoad"
-            ]
+            "body": ["onError", "onLoad"],
+            "iframe": ["onError", "onLoad"],
+            "img": ["onError", "onLoad"]
           }
         ],
         "jsx-a11y/no-noninteractive-element-to-interactive-role": "error",
@@ -867,13 +711,7 @@
         "jsx-a11y/anchor-ambiguous-text": [
           "error",
           {
-            "words": [
-              "clique aqui",
-              "saiba mais",
-              "leia mais",
-              "aqui",
-              "link"
-            ]
+            "words": ["clique aqui", "saiba mais", "leia mais", "aqui", "link"]
           }
         ],
         "sonarjs/function-name": "off",
@@ -913,20 +751,11 @@
         "react/set-state-in-render": "error",
         "react/unsupported-syntax": "warn"
       },
-      "jsPlugins": [
-        "eslint-plugin-sonarjs"
-      ],
-      "plugins": [
-        "nextjs",
-        "react",
-        "jsx-a11y"
-      ]
+      "jsPlugins": ["eslint-plugin-sonarjs"],
+      "plugins": ["nextjs", "react", "jsx-a11y"]
     },
     {
-      "files": [
-        "**/*.mjs",
-        "**/*.js"
-      ],
+      "files": ["**/*.mjs", "**/*.js"],
       "rules": {
         "typescript/await-thenable": "off",
         "typescript/consistent-return": "off",
@@ -989,57 +818,38 @@
       }
     },
     {
-      "files": [
-        "components/Button.tsx"
-      ],
+      "files": ["components/Button.tsx"],
       "rules": {
         "no-restricted-imports": "off"
       }
     },
     {
-      "files": [
-        "src/**/*.test.ts"
-      ],
+      "files": ["src/**/*.test.ts"],
       "rules": {
         "local/describe-target": "error"
       }
     },
     {
-      "files": [
-        "app/**/*.{ts,tsx}",
-        "components/**/*.{ts,tsx}",
-        "hooks/**/*.{ts,tsx}",
-        "styles/**/*.ts"
-      ],
+      "files": ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "hooks/**/*.{ts,tsx}", "styles/**/*.ts"],
       "rules": {
         "local/tokens-only": "error",
         "local/no-inline-svg": "error"
       }
     },
     {
-      "files": [
-        "e2e/*.spec.ts"
-      ],
+      "files": ["e2e/*.spec.ts"],
       "rules": {
         "local/e2e-tag": "error"
       }
     },
     {
-      "files": [
-        "e2e/**/*.ts",
-        "**/*.test.{ts,tsx}",
-        "scripts/*.test.mjs",
-        "*.test.mjs"
-      ],
+      "files": ["e2e/**/*.ts", "**/*.test.{ts,tsx}", "scripts/*.test.mjs", "*.test.mjs"],
       "rules": {
         "local/no-fixed-wait": "error"
       }
     },
     {
-      "files": [
-        "playwright.config.ts",
-        "e2e/**/*.ts"
-      ],
+      "files": ["playwright.config.ts", "e2e/**/*.ts"],
       "rules": {
         "local/no-test-retries": "error"
       }

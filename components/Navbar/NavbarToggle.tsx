@@ -7,7 +7,7 @@ import { NAVBAR_MENU_ID } from "@components/Navbar/NavbarMenu.tsx";
 export const NavbarToggle = () => {
   const { isOpen, toggleMenu } = useNavbarState();
   return (
-    <div className="md:hidden group-data-[open=true]:text-text-inverted">
+    <div className="group-data-[open=true]:text-text-inverted md:hidden">
       <IconButton
         icon={isOpen ? "close" : "menu"}
         label={isOpen ? "Close the menu" : "Open the menu"}

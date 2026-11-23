@@ -31,7 +31,10 @@ export const PostRow = ({ href, ...info }: PostRowProps) => (
         "group-hover/card:border-purple group-hover/card:bg-purple max-md:hidden",
       ].join(" ")}
     >
-      <Icon name="external" className="size-5 transition-transform duration-250 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5" />
+      <Icon
+        name="external"
+        className="size-5 transition-transform duration-250 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5"
+      />
     </span>
   </NextLink>
 );

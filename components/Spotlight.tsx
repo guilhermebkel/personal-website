@@ -24,7 +24,13 @@ export const Spotlight = (props: SpotlightProps) => {
   const { children, width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT } = props;
   const { bottom = DEFAULT_BOTTOM, left = DEFAULT_LEFT, delay = 0 } = props;
   const { ref, isVisible } = useInView<HTMLSpanElement>();
-  const vars = { "--spotlight-w": width, "--spotlight-h": height, "--spotlight-bottom": bottom, "--spotlight-left": left, "--spotlight-delay": `${delay}ms` };
+  const vars = {
+    "--spotlight-w": width,
+    "--spotlight-h": height,
+    "--spotlight-bottom": bottom,
+    "--spotlight-left": left,
+    "--spotlight-delay": `${delay}ms`,
+  };
   const style = vars as CSSProperties;
   return (
     <span
@@ -33,8 +39,8 @@ export const Spotlight = (props: SpotlightProps) => {
       style={style}
       className={[
         "relative isolate inline-block",
-        "after:absolute after:-z-10 after:left-(--spotlight-left) after:bottom-(--spotlight-bottom) after:h-(--spotlight-h) after:w-(--spotlight-w)",
-        "after:origin-left after:scale-x-0 after:bg-purple after:marker-shape after:transition-transform after:duration-500 after:delay-(--spotlight-delay)",
+        "after:absolute after:bottom-(--spotlight-bottom) after:left-(--spotlight-left) after:-z-10 after:h-(--spotlight-h) after:w-(--spotlight-w)",
+        "after:origin-left after:scale-x-0 after:marker-shape after:bg-purple after:transition-transform after:delay-(--spotlight-delay) after:duration-500",
         "data-[visible=true]:after:scale-x-100",
       ].join(" ")}
     >

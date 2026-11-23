@@ -1,18 +1,28 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { describe, it, expect } from "vitest";
-import { findClassSelectors, hasFocusVisibleOutline, hasReducedMotionReset, findOutlineRemovals, findRawColorDeclarations, findMotionClassViolations, findMotionViolations } from "./globals-css-check.mjs";
+import {
+  findClassSelectors,
+  hasFocusVisibleOutline,
+  hasReducedMotionReset,
+  findOutlineRemovals,
+  findRawColorDeclarations,
+  findMotionClassViolations,
+  findMotionViolations,
+} from "./globals-css-check.mjs";
 
 const GLOBALS_CSS_PATH = fileURLToPath(new URL("../app/globals.css", import.meta.url));
 
 const SOURCE_FOLDERS = ["../app", "../components"];
 
 const listSourceFiles = (folder) => {
-  return readdirSync(fileURLToPath(new URL(folder, import.meta.url)), { recursive: true, withFileTypes: true })
-    .filter((entry) => entry.isFile() && /\.(?:tsx|ts|css)$/u.test(entry.name) && !entry.name.includes(".test."))
-    // Why: components/ui/ is the registry's own output (it writes transition-all); the intermediates in components/ replace its transition, and those are scanned.
-    .filter((entry) => !entry.parentPath.endsWith("/components/ui"))
-    .map((entry) => `${entry.parentPath}/${entry.name}`);
+  return (
+    readdirSync(fileURLToPath(new URL(folder, import.meta.url)), { recursive: true, withFileTypes: true })
+      .filter((entry) => entry.isFile() && /\.(?:tsx|ts|css)$/u.test(entry.name) && !entry.name.includes(".test."))
+      // Why: components/ui/ is the registry's own output (it writes transition-all); the intermediates in components/ replace its transition, and those are scanned.
+      .filter((entry) => !entry.parentPath.endsWith("/components/ui"))
+      .map((entry) => `${entry.parentPath}/${entry.name}`)
+  );
 };
 
 describe("findClassSelectors()", () => {
@@ -21,7 +31,9 @@ describe("findClassSelectors()", () => {
   });
 
   it("lists a class selector nested in a media query", () => {
-    expect(findClassSelectors("@media (max-width: 640px) { .thread-inner { padding: 0; } }")).toStrictEqual(["thread-inner"]);
+    expect(findClassSelectors("@media (max-width: 640px) { .thread-inner { padding: 0; } }")).toStrictEqual([
+      "thread-inner",
+    ]);
   });
 
   it("ignores dots in declaration values and comments", () => {
@@ -34,7 +46,9 @@ describe("findClassSelectors()", () => {
   });
 
   it("finds no class selector in the theme and the base styles", () => {
-    expect(findClassSelectors("html, body { height: 100%; } button:focus-visible { outline: none; }")).toStrictEqual([]);
+    expect(findClassSelectors("html, body { height: 100%; } button:focus-visible { outline: none; }")).toStrictEqual(
+      [],
+    );
   });
 });
 
@@ -63,20 +77,28 @@ describe("app/globals.css", () => {
 
 describe("findRawColorDeclarations()", () => {
   it("allows a raw color in a custom property", () => {
-    expect(findRawColorDeclarations("@theme { --color-ink: oklch(0.23 0.02 212); --shadow-md: 0 1px 2px #000; }")).toStrictEqual([]);
+    expect(
+      findRawColorDeclarations("@theme { --color-ink: oklch(0.23 0.02 212); --shadow-md: 0 1px 2px #000; }"),
+    ).toStrictEqual([]);
   });
 
   it("allows colors derived from tokens", () => {
-    expect(findRawColorDeclarations("a { color: color-mix(in oklch, var(--color-ink) 22%, transparent); }")).toStrictEqual([]);
+    expect(
+      findRawColorDeclarations("a { color: color-mix(in oklch, var(--color-ink) 22%, transparent); }"),
+    ).toStrictEqual([]);
   });
 
   it("lists a hex color in a declaration", () => {
-    expect(findRawColorDeclarations("body { background: #fff; }")).toStrictEqual([{ selector: "body", property: "background", value: "#fff" }]);
+    expect(findRawColorDeclarations("body { background: #fff; }")).toStrictEqual([
+      { selector: "body", property: "background", value: "#fff" },
+    ]);
   });
 
   it("lists an oklch color nested in a media query", () => {
     const css = "@media (min-width: 1px) { a { color: oklch(0.5 0.1 200); } }";
-    expect(findRawColorDeclarations(css)).toStrictEqual([{ selector: "a", property: "color", value: "oklch(0.5 0.1 200)" }]);
+    expect(findRawColorDeclarations(css)).toStrictEqual([
+      { selector: "a", property: "color", value: "oklch(0.5 0.1 200)" },
+    ]);
   });
 });
 
@@ -102,16 +124,21 @@ describe("hasFocusVisibleOutline()", () => {
 
 describe("hasReducedMotionReset()", () => {
   it("finds a reset that stops animations, transitions and smooth scrolling", () => {
-    const css = "@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms; transition-duration: 0.01ms; scroll-behavior: auto; } }";
+    const css =
+      "@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms; transition-duration: 0.01ms; scroll-behavior: auto; } }";
     expect(hasReducedMotionReset(css)).toBe(true);
   });
 
   it("rejects a reset that leaves transitions running", () => {
-    expect(hasReducedMotionReset("@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms; } }")).toBe(false);
+    expect(hasReducedMotionReset("@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms; } }")).toBe(
+      false,
+    );
   });
 
   it("rejects a file with no reduced-motion query", () => {
-    expect(hasReducedMotionReset("* { animation-duration: 0.01ms; transition-duration: 0.01ms; scroll-behavior: auto; }")).toBe(false);
+    expect(
+      hasReducedMotionReset("* { animation-duration: 0.01ms; transition-duration: 0.01ms; scroll-behavior: auto; }"),
+    ).toBe(false);
   });
 });
 
@@ -122,7 +149,9 @@ describe("motion rules", () => {
   });
 
   it("writes no transition-all and no layout transition in a component", () => {
-    const violations = SOURCE_FOLDERS.flatMap(listSourceFiles).flatMap((file) => findMotionClassViolations(readFileSync(file, "utf8")).map((found) => `${file}: ${found}`));
+    const violations = SOURCE_FOLDERS.flatMap(listSourceFiles).flatMap((file) =>
+      findMotionClassViolations(readFileSync(file, "utf8")).map((found) => `${file}: ${found}`),
+    );
     expect(violations).toStrictEqual([]);
   });
 });
@@ -139,7 +168,11 @@ describe("findMotionViolations()", () => {
   });
 
   it("allows listed properties that do not change the layout", () => {
-    expect(findMotionViolations("a { transition: opacity var(--duration-fast) var(--ease-out), transform var(--duration-fast); }")).toStrictEqual([]);
+    expect(
+      findMotionViolations(
+        "a { transition: opacity var(--duration-fast) var(--ease-out), transform var(--duration-fast); }",
+      ),
+    ).toStrictEqual([]);
   });
 
   it("finds a violation nested in a media query", () => {
@@ -152,11 +185,22 @@ describe("findMotionViolations()", () => {
 });
 
 describe("findMotionClassViolations()", () => {
-  it.each(["transition-all", "hover:transition-all duration-fast", "transition-[width,opacity]", "transition-[margin-left]"])("lists %s", (classes) => {
+  it.each([
+    "transition-all",
+    "hover:transition-all duration-fast",
+    "transition-[width,opacity]",
+    "transition-[margin-left]",
+  ])("lists %s", (classes) => {
     expect(findMotionClassViolations(`<div className="${classes}" />`)).toHaveLength(1);
   });
 
-  it.each(["transition-colors", "transition-[opacity,transform]", "transition-[grid-template-columns]", "transition-[translate,visibility]", "transition-transform"])("allows %s", (classes) => {
+  it.each([
+    "transition-colors",
+    "transition-[opacity,transform]",
+    "transition-[grid-template-columns]",
+    "transition-[translate,visibility]",
+    "transition-transform",
+  ])("allows %s", (classes) => {
     expect(findMotionClassViolations(`<div className="${classes}" />`)).toStrictEqual([]);
   });
 });

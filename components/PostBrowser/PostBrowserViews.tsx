@@ -18,7 +18,11 @@ const VIEW_OPTIONS: ViewOption[] = [
 export const PostBrowserViews = () => {
   const { view, setView } = usePostBrowserState();
   return (
-    <div role="group" aria-label="View" className="inline-flex gap-1 rounded-pill border-2 border-border-strong bg-control p-0.75 max-md:hidden">
+    <div
+      role="group"
+      aria-label="View"
+      className="inline-flex gap-1 rounded-pill border-2 border-border-strong bg-control p-0.75 max-md:hidden"
+    >
       {VIEW_OPTIONS.map((option) => (
         <button
           key={option.view}

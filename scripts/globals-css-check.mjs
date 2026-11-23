@@ -19,22 +19,27 @@ const REDUCED_MOTION_PROPERTIES = ["animation-duration", "transition-duration", 
 
 const findBlocks = (css) => {
   // Why: every "}" ends the innermost block, so the text before it holds that block's selector and body, even when nested.
-  return css.replace(COMMENT_PATTERN, "").split("}").flatMap((chunk) => {
-    const open = chunk.lastIndexOf("{");
-    if (open === -1) {
-      return [];
-    }
-    const before = chunk.slice(0, open);
-    return [{ selector: before.slice(before.lastIndexOf("{") + 1).trim(), body: chunk.slice(open + 1) }];
-  });
+  return css
+    .replace(COMMENT_PATTERN, "")
+    .split("}")
+    .flatMap((chunk) => {
+      const open = chunk.lastIndexOf("{");
+      if (open === -1) {
+        return [];
+      }
+      const before = chunk.slice(0, open);
+      return [{ selector: before.slice(before.lastIndexOf("{") + 1).trim(), body: chunk.slice(open + 1) }];
+    });
 };
 
 const findDeclarations = (css) => {
-  return findBlocks(css).flatMap(({ selector, body }) => body.split(";").flatMap((declaration) => {
-    const colon = declaration.indexOf(":");
-    const property = declaration.slice(0, colon).trim();
-    return colon === -1 ? [] : [{ selector, property, value: declaration.slice(colon + 1).trim() }];
-  }));
+  return findBlocks(css).flatMap(({ selector, body }) =>
+    body.split(";").flatMap((declaration) => {
+      const colon = declaration.indexOf(":");
+      const property = declaration.slice(0, colon).trim();
+      return colon === -1 ? [] : [{ selector, property, value: declaration.slice(colon + 1).trim() }];
+    }),
+  );
 };
 
 export const findRawColorDeclarations = (css) => {
@@ -47,11 +52,15 @@ export const findRawColorDeclarations = (css) => {
 };
 
 export const findOutlineRemovals = (css) => {
-  return findDeclarations(css).filter(({ property, value }) => property === "outline" && OUTLINE_REMOVAL.test(value.split(" ")[0]));
+  return findDeclarations(css).filter(
+    ({ property, value }) => property === "outline" && OUTLINE_REMOVAL.test(value.split(" ")[0]),
+  );
 };
 
 export const hasFocusVisibleOutline = (css) => {
-  return findDeclarations(css).some(({ selector, property }) => selector.includes(":focus-visible") && property === "outline");
+  return findDeclarations(css).some(
+    ({ selector, property }) => selector.includes(":focus-visible") && property === "outline",
+  );
 };
 
 export const hasReducedMotionReset = (css) => {
@@ -67,18 +76,30 @@ const TRANSITION_ALL_CLASS = /(?<![\w-])transition-all(?![\w-])/gu;
 const TRANSITION_LIST_CLASS = /(?<![\w-])transition-\[([^\]]+)\]/gu;
 
 const isLayoutProperty = (name) => {
-  return LAYOUT_PROPERTIES.some((layout) => name === layout || name.startsWith(`${layout}-`) || name.startsWith(`min-${layout}`) || name.startsWith(`max-${layout}`));
+  return LAYOUT_PROPERTIES.some(
+    (layout) =>
+      name === layout ||
+      name.startsWith(`${layout}-`) ||
+      name.startsWith(`min-${layout}`) ||
+      name.startsWith(`max-${layout}`),
+  );
 };
 
 const listTransitionedNames = (list) => {
   // Why: a transition value is "name duration easing, name ...", so the names are the first word of each comma-separated item.
-  return list.split(",").map((item) => item.trim().split(/[\s_]+/u)[0]).filter((name) => name !== "");
+  return list
+    .split(",")
+    .map((item) => item.trim().split(/[\s_]+/u)[0])
+    .filter((name) => name !== "");
 };
 
 export const findMotionViolations = (css) => {
   // Why: `transition: all` and a layout property run on the main thread and shift what is around them, so only listed, compositor-friendly properties may move.
   return findDeclarations(css).filter(({ property, value }) => {
-    return TRANSITION_PROPERTIES.includes(property) && listTransitionedNames(value).some((name) => name === "all" || isLayoutProperty(name));
+    return (
+      TRANSITION_PROPERTIES.includes(property) &&
+      listTransitionedNames(value).some((name) => name === "all" || isLayoutProperty(name))
+    );
   });
 };
 

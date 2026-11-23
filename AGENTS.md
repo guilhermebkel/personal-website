@@ -32,25 +32,25 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
 
 ## How to act on a task
 
-| When | Read | Run |
-| --- | --- | --- |
-| Starting a session | `README.md` (Development) | `nvm use`, `pnpm ensure-deps` |
-| Given a GitHub issue number | `docs/agents/issue-tracker.md` ("Working an issue") | `gh issue view <n> --comments` |
-| Triage labels on an issue | `docs/agents/triage-labels.md` | — |
-| Domain terms or an ADR | `docs/agents/domain.md`, `GLOSSARY.md`, `docs/adr/` | — |
-| Writing or changing code | `docs/code-standards.md` | — |
-| Writing or changing tests | `docs/test-standards.md` | — |
-| Screen layout or UI behavior | `docs/ui-ux-standards.md` | — |
-| Tokens, colors or motion | `design/system/DESIGN.md` | `pnpm design:tokens` |
-| Text a visitor reads | `docs/copy-standards.md` | — |
-| Adding a shadcn control | `docs/adding-shadcn-components.md` | — |
-| Change visible on screen | `docs/visual-check.md` | `pnpm build`, `pnpm test:e2e` |
-| Writing a post or changing the content format | `docs/content.md` | `pnpm test` |
-| Writing or moving docs under `docs/` | `docs/docs-standards.md` | — |
-| Before committing | `docs/code-standards.md` ("Before committing"), `.github/PULL_REQUEST_TEMPLATE.md` | `pnpm check:changed` |
-| Full verification (CI gate) | `.github/PULL_REQUEST_TEMPLATE.md` | `pnpm check` |
-| Changing the harness | `docs/harness-standards.md` | `pnpm check:changed` |
-| A decision with a cost | `docs/adr/` | — |
+| When                                          | Read                                                                               | Run                            |
+| --------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------ |
+| Starting a session                            | `README.md` (Development)                                                          | `nvm use`, `pnpm ensure-deps`  |
+| Given a GitHub issue number                   | `docs/agents/issue-tracker.md` ("Working an issue")                                | `gh issue view <n> --comments` |
+| Triage labels on an issue                     | `docs/agents/triage-labels.md`                                                     | —                              |
+| Domain terms or an ADR                        | `docs/agents/domain.md`, `GLOSSARY.md`, `docs/adr/`                                | —                              |
+| Writing or changing code                      | `docs/code-standards.md`                                                           | —                              |
+| Writing or changing tests                     | `docs/test-standards.md`                                                           | —                              |
+| Screen layout or UI behavior                  | `docs/ui-ux-standards.md`                                                          | —                              |
+| Tokens, colors or motion                      | `design/system/DESIGN.md`                                                          | `pnpm design:tokens`           |
+| Text a visitor reads                          | `docs/copy-standards.md`                                                           | —                              |
+| Adding a shadcn control                       | `docs/adding-shadcn-components.md`                                                 | —                              |
+| Change visible on screen                      | `docs/visual-check.md`                                                             | `pnpm build`, `pnpm test:e2e`  |
+| Writing a post or changing the content format | `docs/content.md`                                                                  | `pnpm test`                    |
+| Writing or moving docs under `docs/`          | `docs/docs-standards.md`                                                           | —                              |
+| Before committing                             | `docs/code-standards.md` ("Before committing"), `.github/PULL_REQUEST_TEMPLATE.md` | `pnpm check:changed`           |
+| Full verification (CI gate)                   | `.github/PULL_REQUEST_TEMPLATE.md`                                                 | `pnpm check`                   |
+| Changing the harness                          | `docs/harness-standards.md`                                                        | `pnpm check:changed`           |
+| A decision with a cost                        | `docs/adr/`                                                                        | —                              |
 
 ## Rules
 

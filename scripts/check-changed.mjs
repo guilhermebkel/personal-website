@@ -6,7 +6,14 @@ const BASE_REF = "origin/main";
 
 // Why: a change here can break any file, so the changed-files run proves nothing and the full check runs.
 const SHARED_ROOT_PREFIXES = ["tsconfig", "lint-staged.config", "scripts/", "src/Protocols/", ".github/"];
-const SHARED_ROOT_FILES = new Set(["package.json", "pnpm-lock.yaml", "eslint.config.mjs", ".oxlintrc.json", "vitest.config.mjs", "playwright.config.ts"]);
+const SHARED_ROOT_FILES = new Set([
+  "package.json",
+  "pnpm-lock.yaml",
+  "eslint.config.mjs",
+  ".oxlintrc.json",
+  "vitest.config.mjs",
+  "playwright.config.ts",
+]);
 
 export const isSharedRoot = (path) => {
   return SHARED_ROOT_FILES.has(path) || SHARED_ROOT_PREFIXES.some((prefix) => path.startsWith(prefix));

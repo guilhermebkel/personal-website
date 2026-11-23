@@ -10,12 +10,15 @@ export const PostToc = ({ headings }: { headings: Heading[] }) => {
   useEffect(() => {
     const found = headings.map((heading) => document.getElementById(heading.id));
     const elements = found.filter((element) => element !== null);
-    const observer = new IntersectionObserver((entries) => {
-      const visible = entries.find((entry) => entry.isIntersecting);
-      if (visible !== undefined) {
-        setActiveId(visible.target.id);
-      }
-    }, { rootMargin: "0px 0px -70% 0px" });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting);
+        if (visible !== undefined) {
+          setActiveId(visible.target.id);
+        }
+      },
+      { rootMargin: "0px 0px -70% 0px" },
+    );
     elements.forEach((element) => {
       observer.observe(element);
     });

@@ -13,6 +13,7 @@ date: 2026-11-23
 summary: One sentence the list and the metadata show.
 tags: [meta]
 ---
+
 Body in Markdown. Start sections at `##`; the page title is the `h1`.
 ```
 

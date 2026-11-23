@@ -1,5 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { buildE2eCommands, buildLintCommand, buildRelatedTestsCommand, buildTypecheckCommand } from "./lint-staged.config.mjs";
+import {
+  buildE2eCommands,
+  buildLintCommand,
+  buildRelatedTestsCommand,
+  buildTypecheckCommand,
+} from "./lint-staged.config.mjs";
 
 const CWD = process.cwd();
 const UTIL = `${CWD}/src/Utils/TimeUtil.ts`;

@@ -10,11 +10,11 @@ What goes in `docs/` and where everything else goes.
 
 `docs/adr/` keeps its own rules and is not classified here. `docs/agents/` holds the issue and triage setup the agent reads (`issue-tracker.md`, `triage-labels.md`, `domain.md`); it is not classified here either.
 
-| File | Kind |
-| --- | --- |
+| File                               | Kind  |
+| ---------------------------------- | ----- |
 | `docs/adding-shadcn-components.md` | guide |
-| `docs/content.md` | guide |
-| `docs/visual-check.md` | guide |
+| `docs/content.md`                  | guide |
+| `docs/visual-check.md`             | guide |
 
 ## What a standard never contains
 

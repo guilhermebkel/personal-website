@@ -15,7 +15,11 @@ const WEB_ADDRESS = /^https?:\/\//u;
 export const Link = ({ href, className, target, children, hasExternalIcon = true, ...props }: LinkProps) => {
   const classes = ClassNameUtil.merge(LINK_CLASS, className);
   if (href.startsWith("/")) {
-    return <NextLink href={href} className={classes} {...props}>{children}</NextLink>;
+    return (
+      <NextLink href={href} className={classes} {...props}>
+        {children}
+      </NextLink>
+    );
   }
   const rel = target === "_blank" ? "noopener noreferrer" : undefined;
   const showsArrow = hasExternalIcon && WEB_ADDRESS.test(href);

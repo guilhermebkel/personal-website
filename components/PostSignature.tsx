@@ -16,7 +16,7 @@ export const PostSignature = () => {
       <p
         className={[
           "m-0 mt-2 w-max max-w-full font-signature text-hero-sm font-medium text-text max-md:text-title",
-          "[clip-path:inset(-10%_100%_-10%_0)] [animation-delay:300ms] group-data-[visible=true]:animate-write motion-reduce:animate-none motion-reduce:[clip-path:none]",
+          "[animation-delay:300ms] [clip-path:inset(-10%_100%_-10%_0)] group-data-[visible=true]:animate-write motion-reduce:animate-none motion-reduce:[clip-path:none]",
         ].join(" ")}
       >
         Guilherme Mota

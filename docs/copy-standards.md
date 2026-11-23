@@ -11,12 +11,12 @@ How to write what a visitor reads: pages, buttons, links, `aria-label`, page tit
 
 ## Words
 
-| Use | Do not use |
-| --- | --- |
-| projects, posts | portfolio, case studies, articles |
-| Read the posts | Click here, See more here |
-| About | Who am I |
-| contact links by name (GitHub, LinkedIn, email) | "get in touch" as a button label |
+| Use                                             | Do not use                        |
+| ----------------------------------------------- | --------------------------------- |
+| projects, posts                                 | portfolio, case studies, articles |
+| Read the posts                                  | Click here, See more here         |
+| About                                           | Who am I                          |
+| contact links by name (GitHub, LinkedIn, email) | "get in touch" as a button label  |
 
 A term that has a meaning in `GLOSSARY.md` (post, project, content) is used only with that meaning.
 

@@ -8,7 +8,10 @@ const HEADING_MARK = "## ";
 
 export class HeadingSlugUtil {
   static toId(text: string): string {
-    const plain = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/gu, "");
+    const plain = text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/gu, "");
     const words = plain.split(/[^a-z0-9]/u).filter((word) => word !== "");
     return words.join("-");
   }
