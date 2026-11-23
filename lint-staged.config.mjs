@@ -5,7 +5,7 @@ const SOURCE_FILES = "**/*.{ts,tsx,mjs}";
 const TYPESCRIPT_FILES = "**/*.{ts,tsx}";
 const ANY_FILE = "**/*";
 
-const quote = (files) => {
+const quotePaths = (files) => {
   // Why: lint-staged passes absolute paths and runs a string command without a shell, so each path is quoted by hand.
   return files.map((file) => JSON.stringify(file)).join(" ");
 };
@@ -16,17 +16,17 @@ const getRelativePath = (cwd, files) => {
 
 export const buildLintCommand = (files) => {
   // Why: Oxlint and ESLint both run through scripts/lint.mjs; no `--fix`, so the working tree stays as it was.
-  return `node scripts/lint.mjs --max-warnings=0 ${quote(files)}`;
+  return `node scripts/lint.mjs --max-warnings=0 ${quotePaths(files)}`;
 };
 
 export const buildRelatedTestsCommand = (files) => {
   // Why: a change nothing imports (a script, a config) has no related test, and that is not a failure.
-  return `vitest related --run --passWithNoTests ${quote(files)}`;
+  return `vitest related --run --passWithNoTests ${quotePaths(files)}`;
 };
 
 export const buildFormatCommand = (files) => {
   // Why: `--ignore-unknown` skips the staged files Prettier has no parser for (images, fonts), so they never fail the commit.
-  return `prettier --write --ignore-unknown ${quote(files)}`;
+  return `prettier --write --ignore-unknown ${quotePaths(files)}`;
 };
 
 export const buildTypecheckCommand = () => {

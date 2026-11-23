@@ -5,8 +5,8 @@ import { PAGE_X } from "@styles/LayoutClasses.ts";
 
 const PERCENT = 100;
 
-// Why: with more cards than the screen shows, a thin thumb under them tells how far the row is scrolled (prototype, Projects). With nothing to scroll it is not drawn.
 export const ProjectCarouselProgress = () => {
+  // Why: with more cards than the screen shows, a thin thumb under them tells how far the row is scrolled (prototype, Projects). With nothing to scroll it is not drawn.
   const { canScrollBack, canScrollForward, progress } = useProjectCarouselState();
   if (!canScrollBack && !canScrollForward) {
     return null;

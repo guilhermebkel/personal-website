@@ -28,6 +28,16 @@
   --color-menu: #f3f3f3;  /* Fill of the open mobile menu. */
   --color-menu-line: #e4e4e7;  /* Rule between the items of the mobile menu. */
   --color-text-inverted: #252525;  /* Text on the inverted fill (15.33:1). */
+  --color-text-meta: #8c8c93;  /* Mono metadata, captions, hosts and counters (the boards' #8C8C93; 5.14:1 on graphite, 4.69:1 on cover). */
+  --color-text-summary: #afafb5;  /* Post summary text (the boards' #AFAFB5; 7.87:1 on graphite). */
+  --color-text-strong: #f2f2f2;  /* Contact link text and the hero G (the boards' #F2F2F2; 15.35:1 on graphite). Kept apart from text so the prototype's two whites stay two. */
+  --color-contour-cover: rgba(255, 255, 255, 0.09);  /* Contour lines on a post cover and a figure (the boards' .09). */
+  --color-ring-cover: rgba(255, 255, 255, 0.12);  /* Inner ring of a post cover (the boards' .12). */
+  --color-contour-hero: rgba(255, 255, 255, 0.05);  /* Contour lines of the hero (the boards' .05). */
+  --color-purple-line: rgba(83, 40, 254, 0.75);  /* Purple line over a post cover and the hero's line (the boards' .75). */
+  --color-purple-ring: rgba(83, 40, 254, 0.8);  /* Purple ring of a post cover (the boards' .8). */
+  --color-purple-wash: rgba(83, 40, 254, 0.18);  /* Purple wash inside a post cover (the boards' .18). */
+  --color-scrim: rgba(19, 19, 21, 0.45);  /* Backdrop behind the open mobile menu (the boards' graphite at .45). */
   --color-transparent: transparent;
 
   --font-sans: "Ubuntu", sans-serif;

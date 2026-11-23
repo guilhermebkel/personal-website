@@ -7,8 +7,8 @@ type QuoteCarouselSlideProps = {
   isBefore: boolean;
 };
 
-// Why: a quote waits 18px below, rises into place, and leaves 14px upward, as in the prototype (Quotes).
 export const QuoteCarouselSlide = ({ quote, isActive, isBefore }: QuoteCarouselSlideProps) => {
+  // Why: a quote waits 18px below, rises into place, and leaves 14px upward, as in the prototype (Quotes).
   const position = isBefore ? "-translate-y-3.5" : "translate-y-4.5";
   return (
     <div

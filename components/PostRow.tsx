@@ -11,8 +11,8 @@ type PostRowProps = {
   summary: string;
 };
 
-// Why: the home lists the latest posts as rows (cover, text, a round arrow); the blog page uses cards.
 export const PostRow = ({ href, ...info }: PostRowProps) => (
+  // Why: the home lists the latest posts as rows (cover, text, a round arrow); the blog page uses cards.
   <NextLink
     href={href}
     className={[

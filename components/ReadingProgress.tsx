@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 
 const FULL = 1;
 
-// Why: a post is long, so a thin purple bar at the top of the screen shows how far the reader is (prototype, Post). It follows the scroll, it is not an animation, so reduced motion keeps it.
 export const ReadingProgress = () => {
+  // Why: a post is long, so a thin purple bar at the top of the screen shows how far the reader is (prototype, Post). It follows the scroll, it is not an animation, so reduced motion keeps it.
   const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

@@ -1,4 +1,3 @@
-// Why: a purple band sweeps in behind the lower part of the text. It grows with scaleX (a transform), never with width, and only from 768px up, where a pointer exists.
 export const LINK_CLASS = [
   "relative isolate inline-flex items-center gap-1 overflow-hidden pr-2 text-body text-text no-underline",
   "before:absolute before:inset-x-0 before:bottom-0 before:-z-10 before:h-3.5 before:origin-left before:scale-x-0",

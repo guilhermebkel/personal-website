@@ -5,13 +5,10 @@ import { useInView } from "@hooks/useInView.ts";
 
 type SpotlightProps = {
   children: ReactNode;
-  // Why: the band width must match the text it sits under, so the caller passes it (a CSS length); the default is the full width.
   width?: string;
   height?: string;
   bottom?: string;
-  // Why: the band in the prototype pokes out 14px to the left and to the right of the word.
   left?: string;
-  // Why: the band opens after the word is written, so the page asks for a wait (milliseconds).
   delay?: number;
 };
 
@@ -21,6 +18,9 @@ const DEFAULT_BOTTOM = "calc(var(--spacing) * -1)";
 const DEFAULT_LEFT = "0px";
 
 export const Spotlight = (props: SpotlightProps) => {
+  // Why: the band width must match the text it sits under, so the caller passes it (a CSS length); the default is the full width.
+  // Why: the band in the prototype pokes out 14px to the left and to the right of the word.
+  // Why: the band opens after the word is written, so the page asks for a wait (milliseconds).
   const { children, width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT } = props;
   const { bottom = DEFAULT_BOTTOM, left = DEFAULT_LEFT, delay = 0 } = props;
   const { ref, isVisible } = useInView<HTMLSpanElement>();

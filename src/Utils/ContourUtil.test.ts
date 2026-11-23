@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { ContourUtil } from "@/Utils/ContourUtil.ts";
 
-describe("ContourUtil.waveAt()", () => {
+describe("ContourUtil.computeWave()", () => {
   it("ends a line at the height where it starts, so the pattern tiles sideways", () => {
     const spacing = 60;
 
-    const end = ContourUtil.waveAt(1, 3, spacing);
-    const start = ContourUtil.waveAt(0, 3, spacing);
+    const end = ContourUtil.computeWave(1, 3, spacing);
+    const start = ContourUtil.computeWave(0, 3, spacing);
 
     expect(end).toBeCloseTo(start, 6);
   });

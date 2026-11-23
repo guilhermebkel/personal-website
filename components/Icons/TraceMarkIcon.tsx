@@ -1,5 +1,5 @@
-// Why: the 404 draws a curve that ends in a purple dot, a shape of our own from the prototype. Decoration only.
 export const TraceMarkIcon = ({ className }: { className?: string }) => {
+  // Why: the 404 draws a curve that ends in a purple dot, a shape of our own from the prototype. Decoration only.
   return (
     <svg viewBox="0 0 1200 160" fill="none" aria-hidden="true" className={className}>
       <path

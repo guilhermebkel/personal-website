@@ -10,7 +10,12 @@ const BlogPage = async () => {
   const posts = await ContentFactory.createPostService().listPosts();
   return (
     <div className={`pt-16 pb-28 ${PAGE_X}`}>
-      <SectionTitle isPageTitle eyebrow="Posts" title="Notes on what I build, break and rebuild." />
+      <SectionTitle
+        headingId="blog-title"
+        isPageTitle
+        eyebrow="Posts"
+        title="Notes on what I build, break and rebuild."
+      />
       <PostBrowser posts={posts} />
     </div>
   );

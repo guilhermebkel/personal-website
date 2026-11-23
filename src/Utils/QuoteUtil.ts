@@ -1,6 +1,5 @@
 import type { Quote } from "@/Protocols/QuoteProtocol.ts";
 
-// Why: these are the words the site is built on (the roots of the old site); they are part of the design, not of the posts.
 export class QuoteUtil {
   static readonly ALL: Quote[] = [
     {

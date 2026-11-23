@@ -27,13 +27,17 @@ const BUTTONS_DELAY = 1150;
 const SOCIAL_DELAY = 1300;
 
 const Hero = () => (
-  <section className={`relative flex flex-col gap-16 pt-16 pb-24 hero-glow ${PAGE_X}`}>
+  <section
+    id="intro"
+    aria-labelledby="intro-title"
+    className={`relative flex scroll-mt-navbar flex-col gap-16 pt-16 pb-24 hero-glow ${PAGE_X}`}
+  >
     <div className="flex items-start justify-between gap-10">
       <div className="max-w-155">
         <Reveal>
           <p className="m-0 text-small tracking-eyebrow text-text-muted uppercase">Introduction</p>
         </Reveal>
-        <h1 className="m-0 mt-4 font-signature text-hero font-medium max-md:text-hero-sm">
+        <h1 id="intro-title" className="m-0 mt-4 font-signature text-hero font-medium max-md:text-hero-sm">
           <span
             style={{ animationDelay: `${FIRST_NAME_DELAY}ms` }}
             className="block w-max animate-write motion-reduce:animate-none"
@@ -90,8 +94,9 @@ const HomePage = async () => {
     <div className="flex flex-col gap-28 pb-28">
       <Hero />
       {carouselProjects.length > 0 && <ProjectCarousel projects={carouselProjects} />}
-      <section aria-labelledby="posts-title" className={PAGE_X}>
+      <section id="posts" aria-labelledby="posts-title" className={`scroll-mt-navbar ${PAGE_X}`}>
         <SectionTitle
+          headingId="posts-title"
           eyebrow="02 — Posts"
           title="What I've been writing"
           action={
@@ -105,7 +110,7 @@ const HomePage = async () => {
         />
         <div className="mt-10 flex flex-col border-t-2 border-sunken">
           {posts.map((post, index) => (
-            <Reveal key={post.slug} delay={MotionUtil.delayFor(index)}>
+            <Reveal key={post.slug} delay={MotionUtil.getStaggerDelay(index)}>
               <PostRow
                 href={`/blog/${post.slug}/`}
                 date={post.date}
@@ -117,19 +122,19 @@ const HomePage = async () => {
           ))}
         </div>
       </section>
-      <section aria-labelledby="quotes-title" className={PAGE_X}>
-        <SectionTitle eyebrow="03 — Quotes" title="Words I build on" />
+      <section id="quotes" aria-labelledby="quotes-title" className={`scroll-mt-navbar ${PAGE_X}`}>
+        <SectionTitle headingId="quotes-title" eyebrow="03 — Quotes" title="Words I build on" />
         <div className="mt-18">
           <Reveal>
             <QuoteCarousel quotes={QuoteUtil.ALL} />
           </Reveal>
         </div>
       </section>
-      <section aria-labelledby="contact-title" className={PAGE_X}>
-        <SectionTitle eyebrow="04 — Contact" title="Let's talk" />
+      <section id="contact" aria-labelledby="contact-title" className={`scroll-mt-navbar ${PAGE_X}`}>
+        <SectionTitle headingId="contact-title" eyebrow="04 — Contact" title="Let's talk" />
         <ul className="m-0 mt-14 flex list-none flex-wrap gap-4 p-0">
           {ContactUtil.ALL.map((contact, index) => (
-            <Reveal key={contact.name} as="li" delay={MotionUtil.delayFor(index)} className="max-md:w-full">
+            <Reveal key={contact.name} as="li" delay={MotionUtil.getStaggerDelay(index)} className="max-md:w-full">
               <ContactLink contact={contact} />
             </Reveal>
           ))}

@@ -4,7 +4,6 @@ import { Link } from "@components/Link.tsx";
 
 type IconButtonProps = {
   icon: IconName;
-  // Why: the icon is decorative (aria-hidden), so the label is its only name for a screen reader.
   label: string;
   href?: string;
   onClick?: () => void;
@@ -19,6 +18,7 @@ const ICON_SIZE = "size-6";
 const renderIcon = (icon: IconName): ReactNode => <Icon name={icon} className={ICON_SIZE} />;
 
 export const IconButton = (props: IconButtonProps) => {
+  // Why: the icon is decorative (aria-hidden), so the label is its only name for a screen reader.
   const { icon, label, href, onClick, isDisabled = false, ariaExpanded, ariaControls } = props;
   if (href !== undefined) {
     return (

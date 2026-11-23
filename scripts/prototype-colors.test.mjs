@@ -1,0 +1,51 @@
+import { readdirSync, readFileSync } from "node:fs";
+import { describe, it, expect } from "vitest";
+import { countBoardColors, normalizeColor, getTokenColorValues, findUnknownColors } from "./prototype-colors.mjs";
+
+const TOKENS = JSON.parse(readFileSync("design/system/tokens.json", "utf8"));
+const TOKEN_VALUES = getTokenColorValues(TOKENS);
+const BOARD_DIR = "design/prototype";
+
+describe("normalizeColor()", () => {
+  it("reads the same color written in two spellings as one", () => {
+    expect(normalizeColor("#FFF")).toBe("#ffffff");
+    expect(normalizeColor("rgba(255, 255, 255, .04)")).toBe("rgba(255,255,255,0.04)");
+    expect(normalizeColor("rgba(255, 255, 255, 0.04)")).toBe("rgba(255,255,255,0.04)");
+  });
+});
+
+describe("countBoardColors()", () => {
+  it("counts each color of a board and ignores base64 images", () => {
+    const html = `<p style="color:#fff">a</p><p style="color:#FFF">b</p><img src="data:image/png;base64,iVBORw0#abcdef">`;
+    expect(countBoardColors(html)).toStrictEqual(new Map([["#ffffff", 2]]));
+  });
+});
+
+describe("findUnknownColors()", () => {
+  it("accepts a color that is a token", () => {
+    const census = countBoardColors(`<p style="color:#8C8C93"></p>`);
+    expect(findUnknownColors({ census, tokenValues: TOKEN_VALUES })).toStrictEqual([]);
+  });
+
+  it("accepts a documented exception", () => {
+    const census = countBoardColors(`<p style="color:#C9BDFF"></p>`);
+    expect(findUnknownColors({ census, tokenValues: TOKEN_VALUES })).toStrictEqual([]);
+  });
+
+  it("fails on a color that is neither", () => {
+    const census = countBoardColors(`<p style="color:#123456"></p>`);
+    expect(findUnknownColors({ census, tokenValues: TOKEN_VALUES })).toStrictEqual(["#123456"]);
+  });
+});
+
+// Why: every color of every board must be a token or a documented exception; this test reads the boards in the repository.
+describe("the prototype boards", () => {
+  it("use only the color tokens and the documented exceptions", () => {
+    const boards = readdirSync(BOARD_DIR).filter((name) => name.endsWith(".dc.html"));
+    const unknown = boards.flatMap((name) => {
+      const census = countBoardColors(readFileSync(`${BOARD_DIR}/${name}`, "utf8"));
+      return findUnknownColors({ census, tokenValues: TOKEN_VALUES }).map((color) => `${name}: ${color}`);
+    });
+    expect(unknown).toStrictEqual([]);
+  });
+});

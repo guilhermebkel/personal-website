@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { HeadingSlugUtil } from "@/Utils/HeadingSlugUtil.ts";
 
-describe("HeadingSlugUtil.toId()", () => {
+describe("HeadingSlugUtil.buildId()", () => {
   it("turns a heading into an anchor id without accents or punctuation", () => {
-    expect(HeadingSlugUtil.toId("What did the agent get wrong?")).toBe("what-did-the-agent-get-wrong");
-    expect(HeadingSlugUtil.toId("Por quê?")).toBe("por-que");
+    expect(HeadingSlugUtil.buildId("What did the agent get wrong?")).toBe("what-did-the-agent-get-wrong");
+    expect(HeadingSlugUtil.buildId("Por quê?")).toBe("por-que");
   });
 });
 

@@ -7,7 +7,7 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
 - `app/`: routes, pages and layouts (Next.js App Router, static export to `out/`).
 - `components/`: UI components, one per file, or a folder in the composition pattern when it has parts (`index.tsx` root, `use<Name>.ts`, `<Name>Context.ts`, one file per part), named by what they show. `components/ui/` holds shadcn/ui's own files, used only through their intermediate.
 - `hooks/`: hooks shared by more than one component. `styles/`: class strings shared by more than one component (ADR 0006).
-- `design/`: the design as code (`design/README.md`); `design/system/` has the tokens (`tokens.json`, generated `tokens.css`) and `DESIGN.md`.
+- `design/`: the design as code (`design/README.md`); `design/system/` has the tokens (`tokens.json`, generated `tokens.css`) and `DESIGN.md`. `design/prototype/` holds the approved prototype boards (`*.dc.html`, `canvas.json`) as reference only; the site imports nothing from it.
 - `src/`: logic with no UI. Every file in a mapped folder ends its name with the folder's name, singular (`PostService.ts`). Layers, low to high: `Protocols` (types only) < `Schemas` (Zod) < `Utils` (static helpers) < `Services` (dependencies through the constructor) < `Factories` (wiring) < `app/`.
 - `content/posts/`: one Markdown file per post, with front-matter checked by `PostSchema`.
 - `content/projects/`: one JSON file per project, written by the projects cron and checked by `ProjectSchema`.
@@ -21,6 +21,9 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
     pnpm dev
     pnpm design:tokens # regenerate design/system/tokens.css from tokens.json
     pnpm test
+    pnpm visual:component <file> # one component in each state, as PNGs in test-results/visual/
+    pnpm prototype:shots [Board ...] # the prototype boards as PNGs in test-results/prototype/
+    pnpm prototype:compare [route ...] # after pnpm build: prototype beside site, PNGs in test-results/prototype/
     pnpm test:changed  # tests related to files changed against origin/main
     pnpm typecheck
     pnpm format        # Prettier with the Tailwind plugin, writes every file

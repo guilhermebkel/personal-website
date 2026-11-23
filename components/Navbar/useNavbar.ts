@@ -4,8 +4,8 @@ import type { NavbarState } from "@components/Navbar/NavbarContext.ts";
 
 const POST_PATH = /^\/blog\/[^/]+\/?$/u;
 
-// Why: the navbar knows where the reader is (the path), whether the page moved (the panel appears) and whether the phone menu is open. The parts only read this state.
 export const useNavbar = (): NavbarState => {
+  // Why: the navbar knows where the reader is (the path), whether the page moved (the panel appears) and whether the phone menu is open. The parts only read this state.
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);

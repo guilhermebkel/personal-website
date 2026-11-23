@@ -6,7 +6,6 @@ export type Contact = {
   href: string;
 };
 
-// Why: the WhatsApp and e-mail addresses are redirects on the owner's own domain, so the real number and address never sit in the page.
 export class ContactUtil {
   static readonly ALL: Contact[] = [
     { name: "whatsapp", label: "WhatsApp", href: "https://whatsapp.guilherr.me" },

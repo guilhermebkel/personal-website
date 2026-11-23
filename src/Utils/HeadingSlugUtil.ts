@@ -7,7 +7,7 @@ export type Heading = {
 const HEADING_MARK = "## ";
 
 export class HeadingSlugUtil {
-  static toId(text: string): string {
+  static buildId(text: string): string {
     const plain = text
       .toLowerCase()
       .normalize("NFD")
@@ -20,6 +20,6 @@ export class HeadingSlugUtil {
     const lines = markdown.split("\n");
     const marked = lines.filter((line) => line.startsWith(HEADING_MARK));
     const headings = marked.map((line) => line.slice(HEADING_MARK.length).trim());
-    return headings.map((text) => ({ id: HeadingSlugUtil.toId(text), text }));
+    return headings.map((text) => ({ id: HeadingSlugUtil.buildId(text), text }));
   }
 }
