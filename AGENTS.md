@@ -23,8 +23,10 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
     pnpm test
     pnpm test:changed  # tests related to files changed against origin/main
     pnpm typecheck
-    pnpm lint          # Oxlint and a minimal ESLint, in parallel
-    pnpm lint:fix
+    pnpm format        # Prettier with the Tailwind plugin, writes every file
+    pnpm format:check  # the same check without writing; `pnpm lint` runs it first
+    pnpm lint          # format:check, then Oxlint and a minimal ESLint, in parallel
+    pnpm lint:fix      # format, then the linters' fixes
     pnpm quality       # knip, jscpd, dpdm
     pnpm build         # static export to out/
     pnpm check:changed # what the branch changed against origin/main

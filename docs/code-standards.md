@@ -61,4 +61,4 @@ Before writing a component, in this order:
 
 ## Before committing
 
-Run `pnpm check:changed`; it runs lint, related tests, quality, typecheck and the e2e specs the change can break. Do not commit a failing check, and do not raise a limit or add an ignore to pass.
+Run `pnpm check:changed`; it runs the format check, lint, related tests, quality, typecheck and the e2e specs the change can break. Formatting is Prettier's job: `pnpm format` rewrites a file, and lint-staged formats each staged file on commit. Do not commit a failing check, and do not raise a limit or add an ignore to pass.
