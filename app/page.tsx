@@ -30,12 +30,13 @@ const Hero = () => (
   <section
     id="intro"
     aria-labelledby="intro-title"
-    className={`relative flex scroll-mt-navbar flex-col gap-16 pt-16 pb-24 hero-glow ${PAGE_X}`}
+    className={`relative flex min-h-[calc(100dvh-var(--spacing-navbar))] scroll-mt-navbar flex-col justify-between pb-9 hero-glow max-md:pb-6 ${PAGE_X}`}
   >
-    <div className="flex items-start justify-between gap-10">
-      <div className="max-w-155">
+    <HeroLogoIcon className="mx-auto mt-5 hidden w-50 flex-none max-md:block" />
+    <div className="flex flex-1 items-center justify-between gap-10 max-md:mt-5 max-md:items-start lg:items-start">
+      <div className="max-w-155 lg:pt-28">
         <Reveal>
-          <p className="m-0 text-small tracking-eyebrow text-text-muted uppercase">Introduction</p>
+          <p className="m-0 text-small tracking-eyebrow text-text-muted uppercase max-md:text-caption">Introduction</p>
         </Reveal>
         <h1 id="intro-title" className="m-0 mt-4 font-signature text-hero font-medium max-md:text-hero-sm">
           <span
@@ -60,18 +61,18 @@ const Hero = () => (
           </span>
         </h1>
         <Reveal delay={TEXT_DELAY}>
-          <p className="m-0 mt-8 max-w-115 text-lead leading-8 text-text-soft">
+          <p className="m-0 mt-8 max-w-115 text-lead leading-8 text-text-soft max-md:mt-6 max-md:text-body max-md:leading-6">
             A problem solver who knows that knows nothing, passionate about cloud computing and complex systems.
           </p>
         </Reveal>
-        <Reveal delay={BUTTONS_DELAY} className="mt-10 flex flex-wrap items-center gap-8">
+        <Reveal delay={BUTTONS_DELAY} className="mt-10 flex flex-wrap items-center gap-8 max-md:mt-6 max-md:gap-6">
           <Button asChild variant="primary">
             <a href="#projects">See projects</a>
           </Button>
           <Link href="/blog/">Read the posts</Link>
         </Reveal>
       </div>
-      <HeroLogoIcon className="mr-24 hidden h-auto w-100 flex-none lg:block" />
+      <HeroLogoIcon className="mt-10 mr-35 hidden h-auto w-100 flex-none self-start lg:block" />
     </div>
     <Reveal delay={SOCIAL_DELAY} className="flex justify-center">
       <SocialBar />
