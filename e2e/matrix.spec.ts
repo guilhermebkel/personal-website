@@ -5,7 +5,7 @@ import { stubThirdParties } from "./thirdParties.ts";
 import { screenNameToViewport } from "./viewports.ts";
 
 // Why: every route a visitor can reach, including the 404 that renders for a missing path.
-const ROUTES = ["/", "/blog/", "/blog/hello-world/", "/nothing-here/"];
+const ROUTES = ["/", "/blog/", "/blog/how-to-install-rancher-inside-aws-eks/", "/nothing-here/"];
 const NOT_FOUND = 404;
 const CONSOLE_ERROR = "error";
 

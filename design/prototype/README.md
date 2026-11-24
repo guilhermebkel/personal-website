@@ -24,9 +24,9 @@ The Design System artifact's `ds/guilherr-me/tokens.json` is an older snapshot a
 | ContatoMobile | Seção 5 · Contato (mobile) | 390×740 | `/` | `#contact` |
 | Blog | Blog · Listagem (desktop) | 1440×1500 | `/blog/` | `main` |
 | BlogMobile | Blog · Listagem (mobile) | 390×1620 | `/blog/` | `main` |
-| Post | Blog · Post (desktop) | 1440×3230 | `/blog/hello-world/` | `main` |
-| PostMobile | Blog · Post (mobile) | 390×3030 | `/blog/hello-world/` | `main` |
-| Assinatura | Assinatura no fim do post | 1280×560 | `/blog/hello-world/` | the "Written by" block |
+| Post | Blog · Post (desktop) | 1440×3230 | `/blog/how-to-install-rancher-inside-aws-eks/` | `main` |
+| PostMobile | Blog · Post (mobile) | 390×3030 | `/blog/how-to-install-rancher-inside-aws-eks/` | `main` |
+| Assinatura | Assinatura no fim do post | 1280×560 | `/blog/how-to-install-rancher-inside-aws-eks/` | the "Written by" block |
 | MenuMobile | Menu mobile aberto | 390×844 | `/` | viewport, menu open |
 | NotFound | 404 (desktop) | 1440×740 | `/404/` | `main` |
 | NotFoundMobile | 404 (mobile) | 390×700 | `/404/` | `main` |

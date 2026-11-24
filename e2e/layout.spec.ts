@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { NEEDS_BROWSER } from "./tags.ts";
 
 const PHONE = { width: 390, height: 844 };
-const PAGES = ["/", "/blog/", "/blog/hello-world/", "/nothing-here/"];
+const PAGES = ["/", "/blog/", "/blog/how-to-install-rancher-inside-aws-eks/", "/nothing-here/"];
 
 test(
   "the first Tab reaches a skip link that moves the focus to the main content",
