@@ -22,6 +22,10 @@ Many fast unit tests, few end-to-end ones. An e2e test is allowed only if it pro
 - The e2e server serves `out/`, the static build. Run `pnpm build` first (`pnpm check` does).
 - **Map a new spec for `pnpm check:changed`.** `scripts/affected-specs.mjs` maps a path prefix to the specs it can break; an empty list means none, and a path with no entry runs every spec.
 
+## Every page: the browser matrix
+
+`e2e/matrix.spec.ts` visits every route (`/`, `/blog/`, one post, the 404) at 1440, 768 and 390 px (`e2e/viewports.ts`) with reduced motion, and each visit must pass the same checks: axe has no violations, no horizontal scroll, exactly one `h1`, every `aria-labelledby` points to an id that exists, no console error or failed request (the 404 document's own status is the one allowed error), and the skip link moves focus to `main`. A new page joins `ROUTES` in that spec. Screen issues add only what is specific to them. Behavior of the parts lives in `e2e/navbar.spec.ts` (mobile menu) and `e2e/motion.spec.ts` (reduced motion stops every animation except the quote autoplay bar, which the spec lists).
+
 ## What a test checks
 
 - **Name the break.** Before writing the body, name the change to the code that should make the test fail. If you can't name one, the test checks nothing. A test that fails only when a constant or a message changes is a change detector: test the behavior that depends on it.

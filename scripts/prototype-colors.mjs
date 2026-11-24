@@ -1,6 +1,8 @@
 export const COLOR_TO_REASON = {
   "#c9bdff": "the selected chip count of the projects filter, not on the site",
   "#9a9aa0": "the logo caption of the reference board LogoRound, not on the site",
+  "#3a3a40":
+    "the control border of the boards (border-strong in the prototype); the site uses #6e6e74 because #3a3a40 is 1.52:1 on graphite, below the 3:1 of a control border",
   "#000": "the stop of a gradient mask (the fade of the contour field), not a color on screen",
   "rgba(255,255,255,0.035)": "a faint hairline of the hero, used twice and not reused",
   "rgba(83,40,254,0.22)": "the purple edge of the hero, used twice and not reused",

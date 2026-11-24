@@ -14,7 +14,7 @@ export const QuoteCarouselSlide = ({ quote, isActive, isBefore }: QuoteCarouselS
     <div
       aria-hidden={!isActive}
       className={[
-        "col-start-1 row-start-1 flex items-center justify-center transition-[opacity,transform,visibility] duration-500 motion-reduce:transition-none",
+        "duration-zoom col-start-1 row-start-1 flex items-center justify-center transition-[opacity,transform,visibility] motion-reduce:transition-none",
         isActive ? "translate-y-0 opacity-100" : `invisible opacity-0 ${position}`,
       ].join(" ")}
     >

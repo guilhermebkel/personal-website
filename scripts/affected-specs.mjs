@@ -6,8 +6,8 @@ const SPEC_SUFFIX = ".spec.ts";
 const NO_SPECS = [];
 
 export const SPECS_BY_PATH_PREFIX = {
-  "app/blog/": ["blog"],
-  "content/posts/": ["blog"],
+  "app/blog/": ["blog", "matrix"],
+  "content/posts/": ["blog", "matrix"],
   "src/Utils/": NO_SPECS,
   "docs/": NO_SPECS,
   "GLOSSARY.md": NO_SPECS,

@@ -13,7 +13,7 @@ export const NavbarBar = ({ children }: { children: ReactNode }) => {
       className={[
         `group relative isolate flex h-navbar items-center justify-between ${PAGE_X}`,
         "before:absolute before:inset-0 before:-z-10 before:origin-top before:scale-y-0 before:rounded-b-lg before:bg-panel",
-        "before:transition-transform before:duration-500 data-[open=true]:before:scale-y-0 data-[scrolled=true]:before:scale-y-100",
+        "before:duration-zoom before:transition-transform data-[open=true]:before:scale-y-0 data-[scrolled=true]:before:scale-y-100",
       ].join(" ")}
     >
       {children}

@@ -8,7 +8,7 @@ export const NavbarLogo = () => {
     <NextLink
       href="/"
       aria-label={LOGO_LABEL}
-      className="group-data-[open=true]:text-ink inline-block text-text hover:animate-shake"
+      className="inline-block text-text group-data-[open=true]:text-text-inverted hover:animate-shake"
     >
       <LogoIcon className="h-10 w-auto" />
     </NextLink>

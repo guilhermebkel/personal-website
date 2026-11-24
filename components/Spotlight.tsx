@@ -40,7 +40,7 @@ export const Spotlight = (props: SpotlightProps) => {
       className={[
         "relative isolate inline-block",
         "after:absolute after:bottom-(--spotlight-bottom) after:left-(--spotlight-left) after:-z-10 after:h-(--spotlight-h) after:w-(--spotlight-w)",
-        "after:origin-left after:scale-x-0 after:marker-shape after:bg-purple after:transition-transform after:delay-(--spotlight-delay) after:duration-500",
+        "after:duration-zoom after:origin-left after:scale-x-0 after:marker-shape after:bg-purple after:transition-transform after:delay-(--spotlight-delay)",
         "data-[visible=true]:after:scale-x-100",
       ].join(" ")}
     >

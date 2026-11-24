@@ -11,7 +11,11 @@ export const HeroLogoIcon = ({ className }: { className?: string }) => {
   return (
     <svg viewBox="-6 -6 324 482" fill="none" aria-hidden="true" className={className}>
       <path d={BODY_OUTLINE} pathLength="1" className={`${STROKE_CLASS} stroke-text-soft`} />
-      <path d={ACCENT_OUTLINE} pathLength="1" className={`${STROKE_CLASS} stroke-purple [animation-delay:600ms]`} />
+      <path
+        d={ACCENT_OUTLINE}
+        pathLength="1"
+        className={`${STROKE_CLASS} stroke-purple [animation-delay:var(--delay-accent)]`}
+      />
     </svg>
   );
 };

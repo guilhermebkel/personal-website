@@ -5,11 +5,13 @@
   --color-*: initial;
   --text-*: initial;
   --radius-*: initial;
+  --duration-*: initial;
+  --ease-*: initial;
 
   --color-graphite: #1b1b1e;  /* Page ground. */
   --color-graphite-deep: #131315;  /* Footer band and the deepest ground. */
   --color-purple: #5328fe;  /* Brand color: primary action fill, marker highlight. */
-  --color-purple-light: #9479ff;  /* Links, labels and the focus ring on graphite (passes 4.5:1). */
+  --color-purple-light: #9479ff;  /* Links, labels and the focus ring on graphite (5.27:1). */
   --color-surface: #282828;  /* Cards and raised areas. */
   --color-panel: #252525;  /* Large panels (black-color-1 in the prototype). */
   --color-sunken: #2c2c2c;  /* Hover fill of a raised area; inset areas. */
@@ -17,17 +19,17 @@
   --color-text-soft: #d7d7d7;  /* Secondary text. */
   --color-text-muted: #aaaaaa;  /* Metadata and captions. */
   --color-border: rgba(255, 255, 255, 0.2);  /* Default hairline. */
-  --color-border-strong: #3a3a40;  /* Control borders. */
+  --color-border-strong: #6e6e74;  /* Control borders: the buttons, fields and links a reader presses (3:1 or more on graphite; see CONTRAST.md). */
   --color-contour: rgba(255, 255, 255, 0.04);  /* Faint outline of large areas. */
   --color-raised: #202024;  /* Hover fill of a post card (prototype). */
   --color-cover: #232327;  /* Ground of a post cover and of a figure. */
   --color-control: #151515;  /* Fill of fields. */
-  --color-line: #5b5b5b;  /* Solid hairline between posts and around code blocks and cards (decorative, 2.69:1 on graphite). */
+  --color-line: #5b5b5b;  /* Hairlines of containers: the borders of tags, the social bar and a card on hover, and the rules between posts and around code. They frame content and are not controls, so they are decorative (2.53:1 on graphite; see CONTRAST.md). */
   --color-text-disabled: #6b6b6b;  /* Text and border of a disabled button or link (disabled text is exempt from 4.5:1). */
   --color-pressed: #d7d7d7;  /* Button fill while pressed; the label on it is graphite. */
   --color-menu: #f3f3f3;  /* Fill of the open mobile menu. */
   --color-menu-line: #e4e4e7;  /* Rule between the items of the mobile menu. */
-  --color-text-inverted: #252525;  /* Text on the inverted fill (15.33:1). */
+  --color-text-inverted: #252525;  /* Text on the inverted fill (13.81:1 on the menu fill). */
   --color-text-meta: #8c8c93;  /* Mono metadata, captions, hosts and counters (the boards' #8C8C93; 5.14:1 on graphite, 4.69:1 on cover). */
   --color-text-summary: #afafb5;  /* Post summary text (the boards' #AFAFB5; 7.87:1 on graphite). */
   --color-text-strong: #f2f2f2;  /* Contact link text and the hero G (the boards' #F2F2F2; 15.35:1 on graphite). Kept apart from text so the prototype's two whites stay two. */
@@ -80,4 +82,24 @@
 
   --spacing-navbar: 64px;  /* Height of the top bar. */
   --container-content: 1366px;  /* Maximum content width. */
+
+  --duration-instant: 0.01ms;  /* The duration the reduced-motion reset gives every animation, so it ends at once and keeps its final state. */
+  --duration-quick: 200ms;  /* The lift of a social icon on hover. */
+  --duration-hover: 250ms;  /* Color and arrow changes on hover and focus (the boards' .25s). */
+  --duration-zoom: 500ms;  /* The cover zoom of a post card and the navbar and spotlight wipes (the boards' .5s). */
+  --duration-marker: 700ms;  /* The highlight marker that fills behind a quote. */
+  --duration-rise: 500ms;  /* Each block of the page rising into view. */
+  --duration-fade: 500ms;  /* The navbar fading in and the trace mark appearing. */
+  --duration-write: 1000ms;  /* The hero name and the signature being written. */
+  --duration-shake: 700ms;  /* The logo shake on hover. */
+  --duration-draw: 1600ms;  /* A trace line being drawn. */
+  --duration-progress: 4000ms;  /* The quote autoplay bar: one quote, then the next. */
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);  /* The one easing of the prototype: entrances, hovers and the drawn lines. */
+  --ease-inout: cubic-bezier(0.45, 0, 0.2, 1);  /* The second easing of the prototype, used by the quote board. */
+
+  --delay-signature: 300ms;  /* The post signature starts after its text. */
+  --delay-accent: 600ms;  /* The accent outline of the hero logo, after its first strokes. */
+  --delay-signature-line: 1100ms;  /* The signature line starts after the name is written. */
+  --delay-trace-mark: 1400ms;  /* The trace mark appears after its line is drawn. */
 }

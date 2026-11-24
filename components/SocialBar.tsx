@@ -17,7 +17,7 @@ export const SocialBar = ({ isBare = false }: SocialBarProps) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={contact.label}
-            className="inline-flex size-6 items-center justify-center text-inherit transition-transform duration-200 hover:-translate-y-0.5"
+            className="duration-quick inline-flex size-6 items-center justify-center text-inherit transition-transform hover:-translate-y-0.5"
           >
             <BrandIcon name={contact.name} className="size-6" />
           </a>

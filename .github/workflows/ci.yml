@@ -80,4 +80,31 @@ jobs:
           key: next-${{ hashFiles('pnpm-lock.yaml', 'next.config.ts', 'tsconfig.json') }}-${{ hashFiles('app/**', 'components/**', 'src/**', 'content/**') }}
           restore-keys: next-${{ hashFiles('pnpm-lock.yaml', 'next.config.ts', 'tsconfig.json') }}-
       - run: pnpm build
+      - run: pnpm lint:html
+      - run: pnpm check:links
       - run: pnpm test:e2e
+
+  # Why: Lighthouse runs against the same out/ the e2e job serves; it has its own job so a slow run does not hold the others.
+  perf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('pnpm-lock.yaml') }}
+      - if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: pnpm exec playwright install --with-deps chromium
+      - if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: pnpm exec playwright install-deps chromium
+      - run: pnpm build
+      # Why: the budgets are performance budgets, so they run with the Lighthouse run; a failing budget does not hide the e2e results of build-e2e.
+      - run: pnpm check:budgets
+      - run: pnpm perf

@@ -1,0 +1,128 @@
+[
+  {
+    "foreground": "text",
+    "background": "graphite",
+    "role": "text",
+    "uses": "Titles and body on the page ground."
+  },
+  {
+    "foreground": "text-soft",
+    "background": "graphite",
+    "role": "text",
+    "uses": "Lead text and secondary text."
+  },
+  {
+    "foreground": "text-muted",
+    "background": "graphite",
+    "role": "text",
+    "uses": "Metadata and captions."
+  },
+  {
+    "foreground": "text-meta",
+    "background": "graphite",
+    "role": "text",
+    "uses": "Mono metadata, hosts and counters."
+  },
+  {
+    "foreground": "text-summary",
+    "background": "graphite",
+    "role": "text",
+    "uses": "Post summaries."
+  },
+  {
+    "foreground": "text-strong",
+    "background": "graphite",
+    "role": "text",
+    "uses": "Contact link text."
+  },
+  {
+    "foreground": "purple-light",
+    "background": "graphite",
+    "role": "text",
+    "uses": "Links and eyebrow labels."
+  },
+  {
+    "foreground": "text",
+    "background": "raised",
+    "role": "text",
+    "uses": "Titles on a hovered post card."
+  },
+  {
+    "foreground": "text-soft",
+    "background": "raised",
+    "role": "text",
+    "uses": "Text on a hovered post card."
+  },
+  {
+    "foreground": "text-summary",
+    "background": "surface",
+    "role": "text",
+    "uses": "Summaries on a raised card."
+  },
+  {
+    "foreground": "text-meta",
+    "background": "cover",
+    "role": "text",
+    "uses": "Metadata on a post cover."
+  },
+  {
+    "foreground": "text-muted",
+    "background": "graphite-deep",
+    "role": "text",
+    "uses": "Footer captions."
+  },
+  {
+    "foreground": "purple-light",
+    "background": "surface",
+    "role": "text",
+    "uses": "Links on a raised card."
+  },
+  {
+    "foreground": "text",
+    "background": "purple",
+    "role": "text",
+    "uses": "Primary button label and the marker."
+  },
+  {
+    "foreground": "graphite",
+    "background": "pressed",
+    "role": "text",
+    "uses": "Button label while pressed."
+  },
+  {
+    "foreground": "text-inverted",
+    "background": "menu",
+    "role": "text",
+    "uses": "Items of the open mobile menu."
+  },
+  {
+    "foreground": "purple-light",
+    "background": "graphite",
+    "role": "ui",
+    "uses": "Focus ring on the page ground."
+  },
+  {
+    "foreground": "purple-light",
+    "background": "raised",
+    "role": "ui",
+    "uses": "Focus ring on a hovered card."
+  },
+  {
+    "foreground": "border-strong",
+    "background": "graphite",
+    "role": "ui",
+    "uses": "Control borders."
+  },
+  {
+    "foreground": "line",
+    "background": "graphite",
+    "role": "decorative",
+    "uses": "Hairlines of containers (tags, social bar, card hover) and rules between posts; not controls."
+  },
+  {
+    "foreground": "text-disabled",
+    "background": "graphite",
+    "role": "disabled",
+    "uses": "Disabled button or link."
+  }
+]

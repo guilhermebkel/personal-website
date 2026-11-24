@@ -4,6 +4,7 @@ next-env.d.ts
 node_modules
 pnpm-lock.yaml
 design/system/tokens.css
+design/system/CONTRAST.md
 test-results
 public
 design/prototype

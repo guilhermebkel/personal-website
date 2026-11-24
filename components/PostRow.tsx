@@ -16,7 +16,7 @@ export const PostRow = ({ href, ...info }: PostRowProps) => (
   <NextLink
     href={href}
     className={[
-      "group/card -mx-6 flex items-center gap-8 rounded-lg px-6 py-7 text-text no-underline transition-colors duration-250 md:hover:bg-raised",
+      "group/card duration-hover -mx-6 flex items-center gap-8 rounded-lg px-6 py-7 text-text no-underline transition-colors md:hover:bg-raised",
       "max-md:mx-0 max-md:flex-col max-md:items-start max-md:px-0",
     ].join(" ")}
   >
@@ -27,13 +27,13 @@ export const PostRow = ({ href, ...info }: PostRowProps) => (
     <span
       aria-hidden="true"
       className={[
-        "flex size-12 flex-none items-center justify-center rounded-full border-2 border-purple-light transition-colors duration-250",
+        "duration-hover flex size-12 flex-none items-center justify-center rounded-full border-2 border-purple-light transition-colors",
         "group-hover/card:border-purple group-hover/card:bg-purple max-md:hidden",
       ].join(" ")}
     >
       <Icon
         name="external"
-        className="size-5 transition-transform duration-250 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5"
+        className="duration-hover size-5 transition-transform group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5"
       />
     </span>
   </NextLink>

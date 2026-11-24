@@ -24,3 +24,18 @@ Each finding is exactly one class; the class picks the fix.
 - **Ported (lint).** Every local rule of `tocomevidencia` that applies to a static site, as in its source, plus `layer-imports` (which the source does not have): `comment-marker`, `comment-placement`, `map-name`, `verb-function-name`, `arrow-function`, `known-keys`, `no-bare-string-field`, `schema-file`, `protocol-types-only`, `interface-for-contracts`, `no-inferred-type`, `error-location`, `literal-dispatch`, `class-matches-file`, `file-suffix`, `describe-target`, `one-component-per-file`, `tokens-only`, `no-inline-svg`, `e2e-tag`, `no-fixed-wait`, `no-test-retries`, and `layer-imports` (a file imports only from its own layer or a lower one; `components/`, `hooks/` and `styles/` import only `src/Utils` and `src/Protocols`). Each rule has its cases in `scripts/eslint-local-rules.test.mjs`. Per-folder overrides mirror the source's `.oxlintrc.json`.
 - **Not ported, by design.** The Tool rules (`tool-name`, `tool-port`, `tool-builder-only`, `no-message-content-in-logs`): this site has no tools. The docs catalog: this site has no `docs-to/` folder.
 - **Component render (`pnpm visual:component`).** Ported with Vitest browser mode and the Playwright provider, the same tool as `tocomevidencia`, because the components are React and need a real browser for their hover, focus and computed styles; the throwaway render files live in `test-results/visual-renders/` and are never committed.
+
+## Built output checks
+
+Each runs on `out/` after `pnpm build`, in CI's build job (`lint:html`, `check:links`, `check:budgets`) or the `perf` job (`perf`), and all of them run in `pnpm check`.
+
+- **HTML: `pnpm lint:html`** runs html-validate with `.htmlvalidate.mjs` (`html-validate:recommended`). Each rule that is off or allowed says why in that file. The allowed inline properties are `animation-delay` (the entrance delay of each block) and `transform` (the progress bars); every other inline style fails.
+- **Links: `pnpm check:links`** follows every `href` and `src` of `out/`. A query string is dropped, a fragment must name an id on its page, and an external address is listed but not fetched.
+- **Scripts: `pnpm check:budgets`** sums the gzipped JavaScript `/` loads from `out/index.html` against `SCRIPT_BUDGET_BYTES` (210 KB, see the decision below). It also requires every `@font-face` to load woff2 first and to be a unicode-range subset.
+- **Performance: `pnpm perf`** serves `out/` and runs Lighthouse (mobile and desktop) on `/`, `/blog/` and one post. Budgets: performance ≥ 0.95, accessibility = 1, best practices ≥ 0.95, SEO ≥ 0.95; on the phone profile, LCP ≤ 2000 ms, CLS ≤ 0.02, TBT ≤ 150 ms.
+
+**Changing a budget.** A budget is raised only in a pull request that adds an ADR line here saying why and what the new value is; a check is never passed by an ignore or a larger limit.
+
+**Decisions.**
+
+- **2026-11-24: script budget 150 KB → 210 KB gzip.** The home page loads 195 KiB (199,918 bytes) of JavaScript: Next's runtime, React, and the page's own chunks. The owner chose to raise the budget rather than cut the JavaScript in this wave. The new limit leaves about 7% of room; reducing the JavaScript is the open follow-up, and the budget comes back down when it is done.

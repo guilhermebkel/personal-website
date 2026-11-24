@@ -11,7 +11,7 @@ export const TraceMarkIcon = ({ className }: { className?: string }) => {
         cx="960"
         cy="72"
         r="7"
-        className="animate-fade-in fill-purple stroke-purple-light stroke-2 [animation-delay:1400ms] motion-reduce:animate-none"
+        className="animate-fade-in fill-purple stroke-purple-light stroke-2 [animation-delay:var(--delay-trace-mark)] motion-reduce:animate-none"
       />
     </svg>
   );

@@ -103,6 +103,21 @@ export const findMotionViolations = (css) => {
   });
 };
 
+// Why: a duration, delay or easing written as a number bypasses the motion tokens, so it is listed; the token names (duration-hover, var(--delay-x)) are fine.
+const MOTION_LITERAL_CLASS = /(?<![\w-])(?:duration|delay)-\d|(?<![\w-])ease-\[/gu;
+const MOTION_LITERAL_ARBITRARY = /\[(?:animation|transition)-(?:delay|duration):\s*[\d.]/gu;
+const MOTION_DECLARATION = /^[ \t]*(?:animation|transition)(?:-(?:delay|duration))?:([^;}]*)/gmu;
+const MOTION_TIME_VALUE = /\b\d[\d.]*m?s\b/gu;
+
+export const findMotionLiterals = (source) => {
+  // Why: the value of a motion property is a token; a custom property (--animate-rise) is the one place a token is defined, so it is not listed.
+  const declarations = [...source.matchAll(MOTION_DECLARATION)].map((match) => match[1]);
+  const timeLiterals = declarations.flatMap((value) => [...value.matchAll(MOTION_TIME_VALUE)].map((match) => match[0]));
+  return [...source.matchAll(MOTION_LITERAL_CLASS), ...source.matchAll(MOTION_LITERAL_ARBITRARY)]
+    .map((match) => match[0].trim())
+    .concat(timeLiterals);
+};
+
 export const findMotionClassViolations = (source) => {
   // Why: the screens write their transitions as Tailwind classes, so the same rule is checked on those.
   const all = [...source.matchAll(TRANSITION_ALL_CLASS)].map((match) => match[0]);

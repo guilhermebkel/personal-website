@@ -14,7 +14,7 @@ type PostCardProps = {
 export const PostCard = ({ href, ...info }: PostCardProps) => (
   <NextLink
     href={href}
-    className="group/card -m-4 flex min-w-0 flex-col gap-4 rounded-lg p-4 text-text no-underline transition-colors duration-250 md:hover:bg-raised"
+    className="group/card duration-hover -m-4 flex min-w-0 flex-col gap-4 rounded-lg p-4 text-text no-underline transition-colors md:hover:bg-raised"
   >
     <Cover className="h-50 rounded-md" />
     <PostInfo {...info} headingLevel="h2" />

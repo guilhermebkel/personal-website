@@ -21,7 +21,7 @@ export const ProjectCard = ({ index, name, description, url, tags }: ProjectCard
     rel="noopener noreferrer"
     className={[
       "group/card flex w-96 flex-none flex-col overflow-hidden rounded-lg border-2 border-sunken bg-raised text-text no-underline",
-      "transition-colors duration-250 max-md:w-72 md:hover:border-line",
+      "duration-hover transition-colors max-md:w-72 md:hover:border-line",
     ].join(" ")}
   >
     <Cover className="h-47.5 flex-none" />
@@ -42,14 +42,14 @@ export const ProjectCard = ({ index, name, description, url, tags }: ProjectCard
         <span className="truncate font-mono text-caption text-text-meta">{getHost(url)}</span>
         <span
           className={[
-            "inline-flex h-9 items-center gap-2 rounded-pill border-2 border-purple-light px-4 text-small font-medium transition-colors duration-250",
+            "duration-hover inline-flex h-9 items-center gap-2 rounded-pill border-2 border-purple-light px-4 text-small font-medium transition-colors",
             "group-hover/card:border-purple group-hover/card:bg-purple",
           ].join(" ")}
         >
           Open
           <Icon
             name="external"
-            className="size-3.5 transition-transform duration-250 group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5"
+            className="duration-hover size-3.5 transition-transform group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5"
           />
         </span>
       </div>
