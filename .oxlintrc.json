@@ -624,6 +624,13 @@
       }
     },
     {
+      "files": ["components/PostContent.tsx", "components/PostImage.tsx"],
+      "plugins": ["nextjs"],
+      "rules": {
+        "nextjs/no-img-element": "off"
+      }
+    },
+    {
       "files": ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
       "rules": {
         "local/class-matches-file": "off"

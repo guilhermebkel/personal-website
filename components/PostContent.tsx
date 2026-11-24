@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import Image from "next/image";
 import ReactMarkdown, { type ExtraProps } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Link } from "@components/Link.tsx";
@@ -81,15 +80,7 @@ export const PostContent = ({ markdown }: { markdown: string }) => (
             // Why: a screenshot used as a link keeps its link, so the tap follows it and the image is not zoomed.
             return (
               <Link href={href} target="_blank" hasExternalIcon={false}>
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  unoptimized
-                  className="mb-0 h-auto w-full rounded-md"
-                />
+                <img src={image.src} alt={image.alt} className="mb-0 h-auto w-full rounded-md" />
               </Link>
             );
           }
