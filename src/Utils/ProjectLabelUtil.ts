@@ -1,9 +1,17 @@
-const INDEX_OFFSET = 1;
-const NUMBER_WIDTH = 2;
+import type { ProjectKind } from "@/Protocols/ProjectProtocol.ts";
+
+const KIND_TO_LABEL: Record<ProjectKind, string> = {
+  application: "Application",
+  mcp: "MCP server",
+  skill: "Skill",
+  library: "Library",
+  game: "Game",
+  other: "Other",
+};
 
 export class ProjectLabelUtil {
-  static formatIndex(index: number): string {
-    return `P/${String(index + INDEX_OFFSET).padStart(NUMBER_WIDTH, "0")}`;
+  static getKindLabel(kind: ProjectKind): string {
+    return KIND_TO_LABEL[kind];
   }
 
   static getHost(url: string): string {

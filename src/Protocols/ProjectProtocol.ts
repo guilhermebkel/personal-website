@@ -5,7 +5,6 @@ export type Project = {
   description: string;
   url: string;
   kind: ProjectKind;
-  tags: string[];
   cover?: string;
   order?: number;
   updatedAt: string;

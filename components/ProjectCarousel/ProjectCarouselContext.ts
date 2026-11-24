@@ -1,10 +1,11 @@
 import { createContext, useContext, type RefObject } from "react";
+import type { ProjectKind } from "@/Protocols/ProjectProtocol.ts";
 
 export type CarouselProject = {
   name: string;
   description: string;
   url: string;
-  tags: string[];
+  kind: ProjectKind;
   cover?: string;
 };
 

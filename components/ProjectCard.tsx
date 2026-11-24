@@ -2,19 +2,19 @@ import { Icon } from "@components/Icon.tsx";
 import { Tag } from "@components/Tag.tsx";
 import { Cover } from "@components/Cover.tsx";
 import { ProjectLabelUtil } from "@/Utils/ProjectLabelUtil.ts";
+import type { ProjectKind } from "@/Protocols/ProjectProtocol.ts";
 
 type ProjectCardProps = {
-  index: number;
   name: string;
   description: string;
   url: string;
-  tags: string[];
+  kind: ProjectKind;
   cover?: string;
 };
 
 const getHost = (url: string) => new URL(url).host;
 
-export const ProjectCard = ({ index, name, description, url, tags, cover }: ProjectCardProps) => (
+export const ProjectCard = ({ name, description, url, kind, cover }: ProjectCardProps) => (
   <a
     href={url}
     target="_blank"
@@ -28,18 +28,11 @@ export const ProjectCard = ({ index, name, description, url, tags, cover }: Proj
       <Cover seed={name} image={cover} className="h-47.5 rounded-md max-md:h-37.5" />
     </div>
     <div className="flex min-w-0 flex-1 flex-col px-7 py-6 max-md:px-5 max-md:py-5">
-      <span className="font-mono text-caption tracking-wide text-text-meta">{ProjectLabelUtil.formatIndex(index)}</span>
+      <div>
+        <Tag label={ProjectLabelUtil.getKindLabel(kind)} variant="project" />
+      </div>
       <h3 className="m-0 mt-3.5 text-title font-medium wrap-anywhere">{name}</h3>
       <p className="m-0 mt-3 text-small leading-5.5 text-text-soft md:text-body md:leading-5.5">{description}</p>
-      {tags.length > 0 && (
-        <ul className="m-0 mt-4 flex list-none flex-wrap gap-2 p-0">
-          {tags.map((tag) => (
-            <li key={tag}>
-              <Tag label={tag} variant="project" />
-            </li>
-          ))}
-        </ul>
-      )}
       <div className="mt-auto flex items-center justify-between gap-3 pt-5">
         <span className="truncate font-mono text-caption text-text-meta">{getHost(url)}</span>
         <span
