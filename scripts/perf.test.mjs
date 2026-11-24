@@ -13,12 +13,38 @@ describe("findBudgetFailures()", () => {
     });
   });
 
-  describe("a mobile page whose performance score is 0.94", () => {
+  describe("a mobile page whose performance score is 0.89", () => {
     it("names the category, the score and the budget", () => {
-      const scores = { ...PASSING_SCORES, performance: 0.94 };
+      const scores = { ...PASSING_SCORES, performance: 0.89 };
 
       expect(findBudgetFailures({ scores, timings: PASSING_TIMINGS, route: "/", profile: "mobile" })).toStrictEqual([
-        "/ (mobile) performance 0.94 < 0.95",
+        "/ (mobile) performance 0.89 < 0.9",
+      ]);
+    });
+  });
+
+  describe("a mobile page whose performance score is 0.9", () => {
+    it("passes, because the budget is inclusive", () => {
+      const scores = { ...PASSING_SCORES, performance: 0.9 };
+
+      expect(findBudgetFailures({ scores, timings: PASSING_TIMINGS, route: "/", profile: "mobile" })).toStrictEqual([]);
+    });
+  });
+
+  describe("a mobile page whose blocking time is 300 ms", () => {
+    it("passes, because the budget is inclusive", () => {
+      const timings = { ...PASSING_TIMINGS, "total-blocking-time": 300 };
+
+      expect(findBudgetFailures({ scores: PASSING_SCORES, route: "/", profile: "mobile", timings })).toStrictEqual([]);
+    });
+  });
+
+  describe("a mobile page whose blocking time is 310 ms", () => {
+    it("names the audit and the limit", () => {
+      const timings = { ...PASSING_TIMINGS, "total-blocking-time": 310 };
+
+      expect(findBudgetFailures({ scores: PASSING_SCORES, route: "/", profile: "mobile", timings })).toStrictEqual([
+        "/ (mobile) total-blocking-time 310 > 300",
       ]);
     });
   });
