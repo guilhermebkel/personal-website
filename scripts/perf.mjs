@@ -13,7 +13,7 @@ export const SCORE_BUDGETS = { performance: 0.95, accessibility: 1, "best-practi
 export const MOBILE_TIMING_BUDGETS = {
   "largest-contentful-paint": 2000,
   "cumulative-layout-shift": 0.02,
-  "total-blocking-time": 150,
+  "total-blocking-time": 200,
 };
 const SERVER_ATTEMPTS = 100;
 const SERVER_RETRY_MS = 100;

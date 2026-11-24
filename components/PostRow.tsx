@@ -9,9 +9,10 @@ type PostRowProps = {
   readingMinutes: number;
   title: string;
   summary: string;
+  cover?: string;
 };
 
-export const PostRow = ({ href, ...info }: PostRowProps) => (
+export const PostRow = ({ href, cover, ...info }: PostRowProps) => (
   // Why: the home lists the latest posts as rows (cover, text, a round arrow); the blog page uses cards.
   <NextLink
     href={href}
@@ -20,7 +21,7 @@ export const PostRow = ({ href, ...info }: PostRowProps) => (
       "max-md:mx-0 max-md:flex-col max-md:items-start max-md:px-0",
     ].join(" ")}
   >
-    <Cover seed={href} className="h-31.5 w-56 flex-none rounded-md max-md:h-37.5 max-md:w-full" />
+    <Cover seed={href} image={cover} className="h-31.5 w-56 flex-none rounded-md max-md:h-37.5 max-md:w-full" />
     <div className="min-w-0 flex-1">
       <PostInfo {...info} headingLevel="h3" />
     </div>

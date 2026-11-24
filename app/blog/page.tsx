@@ -4,7 +4,18 @@ import { PostBrowser } from "@components/PostBrowser/index.tsx";
 import { SectionTitle } from "@components/SectionTitle.tsx";
 import { ContentFactory } from "@/Factories/ContentFactory.ts";
 
-export const metadata: Metadata = { title: "Posts" };
+export const metadata: Metadata = {
+  title: "Posts",
+  description: "Notes on what I build, break and rebuild: every post I have written, newest first.",
+  alternates: { canonical: "/blog/" },
+  openGraph: {
+    title: "Posts",
+    description: "Notes on what I build, break and rebuild: every post I have written, newest first.",
+    url: "https://guilherr.me/blog/",
+    type: "website",
+  },
+  twitter: { card: "summary", title: "Posts" },
+};
 
 const BlogPage = async () => {
   const posts = await ContentFactory.createPostService().listPosts();

@@ -12,11 +12,12 @@ import { ContoursIcon } from "@components/Icons/ContoursIcon.tsx";
 import { Footer } from "@components/Footer.tsx";
 import { Navbar } from "@components/Navbar/index.tsx";
 import { SkipLink } from "@components/SkipLink.tsx";
+import { SiteUtil } from "@/Utils/SiteUtil.ts";
 
 export const metadata: Metadata = {
   title: { default: "Guilherme Mota", template: "%s · Guilherme Mota" },
-  description: "Notes on what I build, break and rebuild.",
-  metadataBase: new URL("https://guilherr.me"),
+  description: SiteUtil.DESCRIPTION,
+  metadataBase: new URL(SiteUtil.URL),
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
@@ -27,7 +28,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         <Navbar />
         <div className="relative isolate overflow-x-clip">
           <ContoursIcon />
-          <main id="main" tabIndex={-1} className="pt-navbar outline-none">
+          <main id="main" tabIndex={-1} className="mx-auto w-full max-w-content pt-navbar outline-none">
             {children}
           </main>
           <Footer />

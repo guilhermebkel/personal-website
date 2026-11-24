@@ -6,6 +6,9 @@ import { PAGE_X } from "@styles/LayoutClasses.ts";
 import { PostCard } from "@components/PostCard.tsx";
 import { PostContent } from "@components/PostContent.tsx";
 import { PostInfo } from "@components/PostInfo.tsx";
+import { JsonLd } from "@components/JsonLd.tsx";
+import { JsonLdUtil } from "@/Utils/JsonLdUtil.ts";
+import { SiteUtil } from "@/Utils/SiteUtil.ts";
 import { PostSignature } from "@components/PostSignature.tsx";
 import { PostSummaryBox } from "@components/PostSummaryBox.tsx";
 import { PostToc } from "@components/PostToc.tsx";
@@ -27,7 +30,20 @@ export const generateStaticParams = async () => {
 export const generateMetadata = async ({ params }: PostPageProps): Promise<Metadata> => {
   const { slug } = await params;
   const post = await ContentFactory.createPostService().readPost(slug);
-  return { title: post.title, description: post.summary };
+  const path = `/blog/${slug}/`;
+  return {
+    title: post.title,
+    description: post.summary,
+    alternates: { canonical: path },
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      url: SiteUtil.buildUrl(path),
+      type: "article",
+      publishedTime: post.date,
+    },
+    twitter: { card: "summary", title: post.title, description: post.summary },
+  };
 };
 
 const MORE_POSTS = 2;
@@ -40,6 +56,7 @@ const PostPage = async ({ params }: PostPageProps) => {
   const others = (await service.listPosts()).filter((other) => other.slug !== slug).slice(0, MORE_POSTS);
   return (
     <article className={`pt-12 pb-24 ${PAGE_X}`}>
+      <JsonLd data={JsonLdUtil.buildBlogPosting(post, `/blog/${slug}/`)} />
       <Reveal>
         <Link
           href="/blog/"
@@ -61,7 +78,7 @@ const PostPage = async ({ params }: PostPageProps) => {
         />
       </div>
       <Reveal delay={MotionUtil.getStaggerDelay(COVER_STEP)} className="mt-12">
-        <Cover seed={slug} className="h-105 rounded-lg max-md:h-50" />
+        <Cover seed={slug} image={post.cover} className="h-105 rounded-lg max-md:h-50" />
       </Reveal>
       <Reveal className="mt-16 flex items-start gap-24">
         <PostToc headings={HeadingSlugUtil.listH2(post.body)} />
@@ -88,6 +105,7 @@ const PostPage = async ({ params }: PostPageProps) => {
                   title={other.title}
                   summary={other.summary}
                   tags={other.tags}
+                  cover={other.cover}
                 />
               </Reveal>
             ))}

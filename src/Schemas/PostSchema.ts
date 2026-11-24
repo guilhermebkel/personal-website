@@ -13,4 +13,5 @@ export const PostFrontMatterSchema = z.object({
   date: PostDateSchema,
   summary: z.string().min(1),
   tags: z.array(z.string().min(1)).default([]),
+  cover: z.string().startsWith("/").optional(),
 });

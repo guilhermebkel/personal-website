@@ -11,12 +11,30 @@ import { QuoteCarousel } from "@components/QuoteCarousel/index.tsx";
 import { SectionTitle } from "@components/SectionTitle.tsx";
 import { SocialBar } from "@components/SocialBar.tsx";
 import { Spotlight } from "@components/Spotlight.tsx";
+import NextLink from "next/link";
+import type { Metadata } from "next";
 import { ContentFactory } from "@/Factories/ContentFactory.ts";
+import { JsonLd } from "@components/JsonLd.tsx";
+import { JsonLdUtil } from "@/Utils/JsonLdUtil.ts";
+import { SiteUtil } from "@/Utils/SiteUtil.ts";
 import { ContactUtil } from "@/Utils/ContactUtil.ts";
 import { MotionUtil } from "@/Utils/MotionUtil.ts";
 import { QuoteUtil } from "@/Utils/QuoteUtil.ts";
 
 const LATEST_POSTS = 4;
+
+export const metadata: Metadata = {
+  title: { absolute: SiteUtil.NAME },
+  description: SiteUtil.DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: SiteUtil.NAME,
+    description: SiteUtil.DESCRIPTION,
+    url: SiteUtil.buildUrl("/"),
+    type: "website",
+  },
+  twitter: { card: "summary", title: SiteUtil.NAME, description: SiteUtil.DESCRIPTION },
+};
 
 // Why: the hero plays in order, as in the prototype: the label, the name written, the text, the buttons, the social bar (milliseconds).
 const FIRST_NAME_DELAY = 150;
@@ -30,8 +48,12 @@ const Hero = () => (
   <section
     id="intro"
     aria-labelledby="intro-title"
-    className={`relative flex min-h-[calc(100dvh-var(--spacing-navbar))] scroll-mt-navbar flex-col justify-between pb-9 hero-glow max-md:pb-6 ${PAGE_X}`}
+    className={`relative flex min-h-[calc(100dvh-var(--spacing-navbar))] scroll-mt-navbar flex-col justify-between pb-9 max-md:pb-6 ${PAGE_X}`}
   >
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 hero-glow"
+    />
     <HeroLogoIcon className="mx-auto mt-5 hidden w-50 flex-none max-md:block" />
     <div className="flex flex-1 items-center justify-between gap-10 max-md:mt-5 max-md:items-start lg:items-start">
       <div className="max-w-155 lg:pt-28">
@@ -72,7 +94,7 @@ const Hero = () => (
           <Link href="/blog/">Read the posts</Link>
         </Reveal>
       </div>
-      <HeroLogoIcon className="mt-10 mr-35 hidden h-auto w-100 flex-none self-start lg:block" />
+      <HeroLogoIcon className="mt-10 hidden h-auto w-100 flex-none self-start lg:block" />
     </div>
     <Reveal delay={SOCIAL_DELAY} className="flex justify-center">
       <SocialBar />
@@ -91,6 +113,7 @@ const HomePage = async () => {
   }));
   return (
     <div className="flex flex-col gap-28 pb-28">
+      <JsonLd data={JsonLdUtil.buildPerson()} />
       <Hero />
       {carouselProjects.length > 0 && <ProjectCarousel projects={carouselProjects} />}
       <section id="posts" aria-labelledby="posts-title" className={`scroll-mt-navbar ${PAGE_X}`}>
@@ -100,14 +123,14 @@ const HomePage = async () => {
           title="What I've been writing"
           action={
             <Button asChild variant="primary" className="h-12 max-md:hidden">
-              <Link href="/blog/">
+              <NextLink href="/blog/">
                 See all posts
                 <Icon name="external" />
-              </Link>
+              </NextLink>
             </Button>
           }
         />
-        <div className="mt-10 flex flex-col border-t-2 border-sunken">
+        <div className="mt-10 flex flex-col">
           {posts.map((post, index) => (
             <Reveal key={post.slug} delay={MotionUtil.getStaggerDelay(index)}>
               <PostRow
@@ -116,6 +139,7 @@ const HomePage = async () => {
                 readingMinutes={post.readingMinutes}
                 title={post.title}
                 summary={post.summary}
+                cover={post.cover}
               />
             </Reveal>
           ))}

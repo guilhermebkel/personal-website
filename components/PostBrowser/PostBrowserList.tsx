@@ -20,6 +20,7 @@ export const PostBrowserList = () => {
               title={post.title}
               summary={post.summary}
               tags={post.tags}
+              cover={post.cover}
             />
           </Reveal>
         ))}
@@ -36,6 +37,7 @@ export const PostBrowserList = () => {
             readingMinutes={post.readingMinutes}
             title={post.title}
             summary={post.summary}
+            cover={post.cover}
           />
         </Reveal>
       ))}

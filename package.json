@@ -24,7 +24,7 @@
     "ensure-playwright": "node scripts/ensure-playwright.mjs",
     "lint-staged": "lint-staged",
     "check:changed": "node scripts/check-changed.mjs",
-    "check": "pnpm ensure-deps && pnpm typecheck && pnpm lint && pnpm quality && pnpm test && pnpm build && pnpm lint:html && pnpm check:links && pnpm check:budgets && pnpm perf && pnpm test:e2e",
+    "check": "pnpm ensure-deps && pnpm typecheck && pnpm lint && pnpm quality && pnpm test && pnpm build && pnpm lint:html && pnpm check:links && pnpm check:seo && pnpm check:budgets && pnpm perf && pnpm test:e2e",
     "test:e2e": "pnpm ensure-playwright && playwright test",
     "design:tokens": "node scripts/build-design-tokens.mjs",
     "visual:component": "node scripts/visual-component.mjs",
@@ -32,6 +32,7 @@
     "prototype:compare": "node scripts/prototype-compare.mjs",
     "lint:html": "html-validate \"out/**/*.html\"",
     "check:links": "node scripts/check-links.mjs",
+    "check:seo": "node scripts/check-seo.mjs",
     "check:budgets": "node scripts/check-budgets.mjs",
     "perf": "node scripts/perf.mjs"
   },
