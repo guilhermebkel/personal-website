@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: { default: "Guilherme Mota", template: "%s · Guilherme Mota" },
   description: SiteUtil.DESCRIPTION,
   metadataBase: new URL(SiteUtil.URL),
+  alternates: SiteUtil.FEED_ALTERNATES,
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {

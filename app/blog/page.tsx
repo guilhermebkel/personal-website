@@ -3,11 +3,12 @@ import { PAGE_X } from "@styles/LayoutClasses.ts";
 import { PostBrowser } from "@components/PostBrowser/index.tsx";
 import { SectionTitle } from "@components/SectionTitle.tsx";
 import { ContentFactory } from "@/Factories/ContentFactory.ts";
+import { SiteUtil } from "@/Utils/SiteUtil.ts";
 
 export const metadata: Metadata = {
   title: "Posts",
   description: "Notes on what I build, break and rebuild: every post I have written, newest first.",
-  alternates: { canonical: "/blog/" },
+  alternates: { canonical: "/blog/", ...SiteUtil.FEED_ALTERNATES },
   openGraph: {
     title: "Posts",
     description: "Notes on what I build, break and rebuild: every post I have written, newest first.",
