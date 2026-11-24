@@ -26,8 +26,12 @@ test("a post taller than the window shows its body", { tag: NEEDS_BROWSER }, asy
   // Why: the body is one block that starts hidden and is revealed when seen; a long post is much taller than the window, so this runs with the entrance animations on (no reduced motion) to catch a body that never appears.
   await page.goto("/blog/how-to-install-rancher-inside-aws-eks/");
 
-  const heading = page.getByRole("heading", { level: 2, name: "Creating the IAM Roles" });
-  const body = page.locator("[data-visible]").filter({ has: heading });
+  // Why: the first section heading of the post, not a named one, so rewriting the post's sections does not break this test.
+  const body = page
+    .locator("[data-visible]")
+    .filter({ has: page.getByRole("heading", { level: 2 }) })
+    .first();
+  const heading = body.getByRole("heading", { level: 2 }).first();
 
   await heading.scrollIntoViewIfNeeded();
 
