@@ -11,6 +11,7 @@ import { QuoteCarousel } from "@components/QuoteCarousel/index.tsx";
 import { SectionTitle } from "@components/SectionTitle.tsx";
 import { SocialBar } from "@components/SocialBar.tsx";
 import { Spotlight } from "@components/Spotlight.tsx";
+import NextLink from "next/link";
 import type { Metadata } from "next";
 import { ContentFactory } from "@/Factories/ContentFactory.ts";
 import { JsonLd } from "@components/JsonLd.tsx";
@@ -122,10 +123,10 @@ const HomePage = async () => {
           title="What I've been writing"
           action={
             <Button asChild variant="primary" className="h-12 max-md:hidden">
-              <Link href="/blog/">
+              <NextLink href="/blog/">
                 See all posts
                 <Icon name="external" />
-              </Link>
+              </NextLink>
             </Button>
           }
         />
