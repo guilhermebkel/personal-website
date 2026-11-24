@@ -24,8 +24,8 @@ export const ProjectCard = ({ index, name, description, url, tags }: ProjectCard
       "duration-hover transition-colors max-md:w-72 md:hover:border-line",
     ].join(" ")}
   >
-    <Cover className="h-47.5 flex-none" />
-    <div className="flex min-w-0 flex-1 flex-col px-7 py-6">
+    <Cover seed={name} className="h-47.5 flex-none max-md:h-37.5" />
+    <div className="flex min-w-0 flex-1 flex-col px-7 py-6 max-md:px-5 max-md:py-5">
       <span className="font-mono text-caption tracking-wide text-text-meta">{`P/${String(index + 1).padStart(NUMBER_WIDTH, "0")}`}</span>
       <h3 className="m-0 mt-3.5 text-title font-medium wrap-anywhere">{name}</h3>
       <p className="m-0 mt-3 text-small leading-5.5 text-text-soft md:text-body md:leading-5.5">{description}</p>
@@ -49,7 +49,7 @@ export const ProjectCard = ({ index, name, description, url, tags }: ProjectCard
           Open
           <Icon
             name="external"
-            className="duration-hover size-3.5 transition-transform group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5"
+            className="duration-hover size-3.5 transition-transform group-hover/card:translate-x-0.75 group-hover/card:-translate-y-0.75"
           />
         </span>
       </div>

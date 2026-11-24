@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Button } from "@components/Button.tsx";
 import { ContactLink } from "@components/ContactLink.tsx";
+import { Link } from "@components/Link.tsx";
 import { HeroLogoIcon } from "@components/Icons/HeroLogoIcon.tsx";
 import { Icon } from "@components/Icon.tsx";
 import { PAGE_X } from "@styles/LayoutClasses.ts";
@@ -68,9 +68,7 @@ const Hero = () => (
           <Button asChild variant="primary">
             <a href="#projects">See projects</a>
           </Button>
-          <Link href="/blog/" className="text-body text-text no-underline">
-            Read the posts
-          </Link>
+          <Link href="/blog/">Read the posts</Link>
         </Reveal>
       </div>
       <HeroLogoIcon className="mr-24 hidden h-auto w-100 flex-none lg:block" />

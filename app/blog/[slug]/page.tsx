@@ -61,7 +61,7 @@ const PostPage = async ({ params }: PostPageProps) => {
         />
       </div>
       <Reveal delay={MotionUtil.getStaggerDelay(COVER_STEP)} className="mt-12">
-        <Cover className="h-105 rounded-lg max-md:h-50" />
+        <Cover seed={slug} className="h-105 rounded-lg max-md:h-50" />
       </Reveal>
       <Reveal className="mt-16 flex items-start gap-24">
         <PostToc headings={HeadingSlugUtil.listH2(post.body)} />

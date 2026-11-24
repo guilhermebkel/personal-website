@@ -12,7 +12,7 @@ type IconButtonProps = {
   ariaControls?: string;
 };
 
-const SIZE_AND_TOUCH = "size-6 max-md:size-11 inline-flex items-center justify-center";
+const SIZE_AND_TOUCH = "size-6 max-md:size-11 max-md:py-0 max-md:-my-0 inline-flex items-center justify-center";
 const ICON_SIZE = "size-6";
 
 const renderIcon = (icon: IconName): ReactNode => <Icon name={icon} className={ICON_SIZE} />;

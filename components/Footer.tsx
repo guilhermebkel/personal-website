@@ -14,7 +14,7 @@ export const Footer = () => {
       </div>
       <NextLink
         href="#main"
-        className="inline-flex items-center gap-2 text-small text-text-soft no-underline hover:text-text"
+        className="inline-flex items-center gap-2 text-small text-text-soft no-underline hover:text-text max-md:-my-3 max-md:py-3"
       >
         Back to top
         <Icon name="up" />
