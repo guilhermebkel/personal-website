@@ -17,6 +17,12 @@ const MINI_TOKENS = {
   },
   radius: { tokens: [{ name: "sm", value: "8px" }] },
   layout: { tokens: [{ name: "navbar", type: "spacing", value: "64px" }] },
+  motion: {
+    duration: { tokens: [{ name: "hover", value: "250ms" }] },
+    delay: { tokens: [{ name: "signature", value: "300ms" }] },
+    ease: { tokens: [{ name: "out", value: "cubic-bezier(0.23, 1, 0.32, 1)" }] },
+    stagger: { step: "100ms", wrap: 6 },
+  },
 };
 
 describe("buildTokensCss()", () => {
@@ -29,6 +35,9 @@ describe("buildTokensCss()", () => {
     expect(css).toContain("--text-body--line-height: 24px;");
     expect(css).toContain("--radius-sm: 8px;");
     expect(css).toContain("--spacing-navbar: 64px;");
+    expect(css).toContain("--duration-hover: 250ms;");
+    expect(css).toContain("--delay-signature: 300ms;");
+    expect(css).toContain("--ease-out: cubic-bezier(0.23, 1, 0.32, 1);");
   });
 
   it("resets the default scales so only our names exist", () => {

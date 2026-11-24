@@ -34,7 +34,7 @@ export const PostBrowserViews = () => {
           }}
           className={[
             "inline-flex h-8.5 w-9.5 cursor-pointer items-center justify-center rounded-pill border-0 bg-transparent p-0 text-text-muted",
-            "transition-colors duration-250 aria-pressed:bg-purple aria-pressed:text-text",
+            "duration-hover transition-colors aria-pressed:bg-purple aria-pressed:text-text",
           ].join(" ")}
         >
           <Icon name={option.icon} className="size-4.5" />

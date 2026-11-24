@@ -8,6 +8,7 @@ import {
   findOutlineRemovals,
   findRawColorDeclarations,
   findMotionClassViolations,
+  findMotionLiterals,
   findMotionViolations,
 } from "./globals-css-check.mjs";
 
@@ -154,6 +155,13 @@ describe("motion rules", () => {
     );
     expect(violations).toStrictEqual([]);
   });
+
+  it("writes no literal duration, delay or easing in a component or in globals.css", () => {
+    const violations = SOURCE_FOLDERS.flatMap((folder) => listSourceFiles(folder)).flatMap((file) =>
+      findMotionLiterals(readFileSync(file, "utf8")).map((found) => `${file}: ${found}`),
+    );
+    expect(violations).toStrictEqual([]);
+  });
 });
 
 describe("findMotionViolations()", () => {
@@ -202,5 +210,27 @@ describe("findMotionClassViolations()", () => {
     "transition-transform",
   ])("allows %s", (classes) => {
     expect(findMotionClassViolations(`<div className="${classes}" />`)).toStrictEqual([]);
+  });
+});
+
+describe("findMotionLiterals()", () => {
+  it.each([
+    'className="duration-250"',
+    'className="delay-300"',
+    'className="ease-[cubic-bezier(.2,1,.3,1)]"',
+    'className="[animation-delay:300ms]"',
+    "animation: rise 0.5s ease-out both;",
+    "transition: opacity 250ms ease;",
+  ])("lists %s", (source) => {
+    expect(findMotionLiterals(source)).toHaveLength(1);
+  });
+
+  it.each([
+    'className="duration-hover ease-out"',
+    'className="[animation-delay:var(--delay-signature)]"',
+    "--animate-rise: rise var(--duration-rise) var(--ease-out) both;",
+    "transition-property: opacity; transition-duration: var(--duration-hover);",
+  ])("accepts %s", (source) => {
+    expect(findMotionLiterals(source)).toStrictEqual([]);
   });
 });

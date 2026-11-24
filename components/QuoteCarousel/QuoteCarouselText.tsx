@@ -17,7 +17,7 @@ export const QuoteCarouselText = ({ quote, isActive }: QuoteCarouselTextProps) =
         {isMarked(line, quote.highlights) ? (
           <span
             data-active={isActive}
-            className={`marker-fill transition-[background-size] duration-700 ease-out ${MARKER_HIDDEN} motion-reduce:transition-none`}
+            className={`duration-marker marker-fill transition-[background-size] ease-out ${MARKER_HIDDEN} motion-reduce:transition-none`}
           >
             {line}
           </span>

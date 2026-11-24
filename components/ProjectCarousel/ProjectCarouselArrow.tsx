@@ -16,7 +16,7 @@ export const ProjectCarouselArrow = ({ direction }: ProjectCarouselArrowProps) =
       onClick={isBack ? scrollBack : scrollForward}
       className={[
         "inline-flex size-12 cursor-pointer items-center justify-center rounded-full border-2 border-purple-light bg-transparent p-0 text-text",
-        "transition-colors duration-250 disabled:cursor-default disabled:border-border-strong disabled:text-line disabled:hover:bg-transparent md:hover:bg-purple",
+        "duration-hover transition-colors disabled:cursor-default disabled:border-border-strong disabled:text-line disabled:hover:bg-transparent md:hover:bg-purple",
       ].join(" ")}
     >
       <Icon name={direction} className="size-5" />
