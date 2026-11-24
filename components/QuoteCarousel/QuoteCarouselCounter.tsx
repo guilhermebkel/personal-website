@@ -16,7 +16,7 @@ export const QuoteCarouselCounter = ({ index }: { index: number }) => {
       type="button"
       aria-current={isActive}
       onClick={onSelect}
-      className="w-16 cursor-pointer border-0 bg-transparent p-0 text-left"
+      className="w-16 cursor-pointer border-0 bg-transparent p-0 text-left max-md:-my-3 max-md:py-3"
     >
       <span className={`block font-mono text-caption tracking-wide ${isActive ? "text-text" : "text-text-meta"}`}>
         <span className="sr-only">Quote </span>

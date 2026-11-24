@@ -3,6 +3,7 @@ import { NEEDS_BROWSER } from "./tags.ts";
 
 // Why: these run after the page settles by design: the quote carousel's autoplay bar fills and restarts until the reader stops it. Reduced motion stops them (the first test below).
 const LOOPING_ANIMATIONS = ["quote-progress"];
+const MAX_RESET_DELAY_SECONDS = 0.01;
 
 const readRunningAnimationNames = (page: import("@playwright/test").Page) =>
   page.evaluate(() =>
@@ -20,6 +21,16 @@ test.describe("motion with reduced motion on", () => {
     await page.goto("/");
 
     await expect.poll(() => readRunningAnimationNames(page)).toStrictEqual([]);
+  });
+
+  test("the hero buttons enter without their stagger delay", { tag: NEEDS_BROWSER }, async ({ page }) => {
+    await page.goto("/");
+
+    const delay = await page
+      .locator('a[href="#projects"]')
+      .evaluate((link) => getComputedStyle(link.closest("[data-visible]") ?? link).animationDelay);
+    // Why: the reset gives the instant duration (10 ms at most); a stagger delay is 100 ms or more.
+    expect(Number.parseFloat(delay)).toBeLessThanOrEqual(MAX_RESET_DELAY_SECONDS);
   });
 
   test("the hero name is already in its final state", { tag: NEEDS_BROWSER }, async ({ page }) => {

@@ -1,5 +1,6 @@
 export const LINK_CLASS = [
-  "relative isolate inline-flex items-center gap-1 overflow-hidden pr-2 text-body text-text no-underline",
+  // Why: on a phone the box grows 12 px above and below, with a negative margin of the same size, so the target is 44 px tall and the text does not move.
+  "relative isolate inline-flex items-center gap-1 overflow-hidden pr-2 text-body text-text no-underline max-md:-my-3 max-md:py-3",
   "before:absolute before:inset-x-0 before:bottom-0 before:-z-10 before:h-3.5 before:origin-left before:scale-x-0",
   "before:bg-purple before:marker-shape before:transition-transform before:duration-300 before:ease-out",
   "md:hover:before:scale-x-100 md:active:before:scale-x-100 aria-[current=page]:before:scale-x-100",

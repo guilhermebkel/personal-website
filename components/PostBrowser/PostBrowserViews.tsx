@@ -33,7 +33,7 @@ export const PostBrowserViews = () => {
             setView(option.view);
           }}
           className={[
-            "inline-flex h-8.5 w-9.5 cursor-pointer items-center justify-center rounded-pill border-0 bg-transparent p-0 text-text-muted",
+            "inline-flex h-8.5 w-9.5 cursor-pointer items-center justify-center rounded-pill border-0 bg-transparent p-0 text-text-meta",
             "duration-hover transition-colors aria-pressed:bg-purple aria-pressed:text-text",
           ].join(" ")}
         >

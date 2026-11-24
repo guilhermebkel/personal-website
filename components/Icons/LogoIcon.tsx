@@ -8,7 +8,7 @@ const ACCENT_PATH =
 export const LogoIcon = ({ className }: LogoIconProps) => {
   // Why: the logo is our own mark (design/logo/logo.svg); the icon library does not have it. The body takes the text color so it also works on the white mobile menu.
   return (
-    <svg viewBox="0 0 312 470" fill="none" aria-hidden="true" className={className}>
+    <svg viewBox="-6 -6 324 482" fill="none" aria-hidden="true" className={className}>
       <path d={BODY_PATH} fill="currentColor" />
       <path d={ACCENT_PATH} className="fill-purple" />
     </svg>

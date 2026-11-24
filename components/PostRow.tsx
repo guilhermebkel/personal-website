@@ -20,7 +20,7 @@ export const PostRow = ({ href, ...info }: PostRowProps) => (
       "max-md:mx-0 max-md:flex-col max-md:items-start max-md:px-0",
     ].join(" ")}
   >
-    <Cover className="h-31.5 w-56 flex-none rounded-md max-md:h-40 max-md:w-full" />
+    <Cover seed={href} className="h-31.5 w-56 flex-none rounded-md max-md:h-37.5 max-md:w-full" />
     <div className="min-w-0 flex-1">
       <PostInfo {...info} headingLevel="h3" />
     </div>
@@ -33,7 +33,7 @@ export const PostRow = ({ href, ...info }: PostRowProps) => (
     >
       <Icon
         name="external"
-        className="duration-hover size-5 transition-transform group-hover/card:translate-x-0.5 group-hover/card:-translate-y-0.5"
+        className="duration-hover size-5 transition-transform group-hover/card:translate-x-0.75 group-hover/card:-translate-y-0.75"
       />
     </span>
   </NextLink>

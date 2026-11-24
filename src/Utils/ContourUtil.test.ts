@@ -19,3 +19,18 @@ describe("ContourUtil.buildPaths()", () => {
     expect(paths).toHaveLength(15);
   });
 });
+
+describe("ContourUtil.buildCoverLines()", () => {
+  it("draws every line once", () => {
+    const lines = ContourUtil.buildCoverLines({ width: 400, height: 190, lineCount: 9 }, 0);
+
+    expect(lines).toHaveLength(9);
+  });
+
+  it("draws different lines for different phases and the same lines for the same phase", () => {
+    const tile = { width: 400, height: 190, lineCount: 9 };
+
+    expect(ContourUtil.buildCoverLines(tile, 1)).toStrictEqual(ContourUtil.buildCoverLines(tile, 1));
+    expect(ContourUtil.buildCoverLines(tile, 1)).not.toStrictEqual(ContourUtil.buildCoverLines(tile, 2));
+  });
+});
