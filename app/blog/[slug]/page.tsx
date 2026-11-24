@@ -11,6 +11,7 @@ import { JsonLdUtil } from "@/Utils/JsonLdUtil.ts";
 import { SiteUtil } from "@/Utils/SiteUtil.ts";
 import { PostSignature } from "@components/PostSignature.tsx";
 import { PostSummaryBox } from "@components/PostSummaryBox.tsx";
+import { PostSectionBar } from "@components/PostSectionBar.tsx";
 import { PostToc } from "@components/PostToc.tsx";
 import { Reveal } from "@components/Reveal.tsx";
 import { ContentFactory } from "@/Factories/ContentFactory.ts";
@@ -86,6 +87,7 @@ const PostPage = async ({ params }: PostPageProps) => {
       <Reveal threshold={0} className="mt-16 flex items-start gap-24">
         <PostToc headings={HeadingSlugUtil.listH2(post.body)} />
         <div className="min-w-0">
+          <PostSectionBar headings={HeadingSlugUtil.listH2(post.body)} />
           <PostContent markdown={post.body} />
         </div>
       </Reveal>

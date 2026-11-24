@@ -20,6 +20,11 @@ Body in Markdown. Start sections at `##`; the page title is the `h1`.
 
 `PostFrontMatterSchema` (`src/Schemas/PostSchema.ts`) checks the front-matter. A post that fails it fails the build. The reading time is computed from the body. A `cover` that names a file missing under `public/` fails the build. To draw one, run `node scripts/render-cover.mjs "<title>" <topic> public/covers/<slug>.svg`.
 
+Images and notes:
+
+- `![alt](/posts/x.png "Caption")`: an image alone in its paragraph becomes a figure with the title as its caption; without a title it has no caption. On desktop a figure is wider than the text column. An image inside a sentence renders inline, with no caption.
+- `text[^1]` and `[^1]: The note.` (GFM footnotes): the note is listed at the end under "Notes". Links to a note stay in the same tab.
+
 A post written by the AI pipeline is a pull request with one new file. Only the owner merges it.
 
 ## Projects
