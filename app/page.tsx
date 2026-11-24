@@ -96,7 +96,7 @@ const Hero = () => (
       </div>
       <HeroLogoIcon className="mt-10 hidden h-auto w-100 flex-none self-start lg:block" />
     </div>
-    <Reveal delay={SOCIAL_DELAY} className="flex justify-center">
+    <Reveal delay={SOCIAL_DELAY} isImmediate className="flex justify-center max-md:mt-10 max-md:justify-start">
       <SocialBar />
     </Reveal>
   </section>
