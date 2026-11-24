@@ -5,6 +5,7 @@ The visual side of guilherr.me. The approved prototype and the design system liv
 ## Files
 
 - `logo/`: the new logo (`logo.svg`, from the approved prototype). The same paths are in `components/Icons/LogoIcon.tsx`, and `app/icon.svg` is the favicon.
+- `png/`: `social-preview.png` (1280×640), the image at the top of the README and the one to upload as the repository's social preview in the GitHub settings.
 - `system/`: the design system in code. Token source (`tokens.json`), the generated Tailwind theme (`tokens.css`), the one file to import (`theme.css`), how it works (`DESIGN.md`) and the component index (`README.md`).
 
 There is no `art/` or `prototype/` folder yet. When a prototype or an image is saved here as a reference, it goes in `prototype/` (reference only, never imported by the app) and this guide gets a line.
