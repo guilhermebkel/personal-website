@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { CoverArtIcon } from "@components/Icons/CoverArtIcon.tsx";
 
 type CoverProps = {
@@ -18,7 +17,7 @@ export const Cover = ({ className, seed, image }: CoverProps) => {
       {image === undefined ? (
         <CoverArtIcon seed={seed} />
       ) : (
-        <Image src={image} alt="" fill unoptimized sizes="100vw" className="object-cover" />
+        <img src={image} alt="" className="size-full object-cover" />
       )}
     </div>
   );
