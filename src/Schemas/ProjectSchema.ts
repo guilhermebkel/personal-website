@@ -15,7 +15,6 @@ export const ProjectSchema = z.object({
   description: z.string().min(1),
   url: z.url(),
   kind: z.enum(PROJECT_KINDS),
-  tags: z.array(z.string().min(1)).default([]),
   // Why: the cover is a path under public/, like the cover of a post.
   cover: z.string().startsWith("/").optional(),
   // Why: the owner picks the order of the Projects section; a project without it comes after the ordered ones.

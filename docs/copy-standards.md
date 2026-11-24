@@ -8,6 +8,7 @@ How to write what a visitor reads: pages, buttons, links, `aria-label`, page tit
 - **Plain and direct.** One idea per sentence, sentence case, no filler, no hype. Say what the thing is.
 - **A little dry.** The 404 says "Nothing here. I probably moved it." A joke is allowed where nothing is at stake; an error or a form never jokes.
 - **No claims.** The site exposes work; it does not sell it. No "world-class", "passionate" or "innovative".
+- **Project descriptions are the exception to the first person.** They are in the third person and say two things: what the project is, and what it gives whoever uses it ("A tool that reads … It shows … so you …"). The card already shows the name, so the text never repeats it. The rule above still holds: state only the result the project's README supports.
 
 ## Words
 

@@ -109,7 +109,7 @@ const HomePage = async () => {
     name: project.name,
     description: project.description,
     url: project.url,
-    tags: project.tags,
+    kind: project.kind,
     cover: project.cover,
   }));
   return (

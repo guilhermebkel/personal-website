@@ -1,9 +1,8 @@
 {
   "name": "TO com Evidência",
-  "description": "A web app that helps occupational therapists work through a practical case: it lays out hypotheses and the studies that support or contradict each one. The AI organizes; the therapist decides.",
+  "description": "A web app for occupational therapists. It turns a case from practice into hypotheses and the studies that support or contradict each one, so the therapist reaches the scientific literature and decides with evidence.",
   "url": "https://tocomevidencia.guilherr.me/",
   "kind": "application",
-  "tags": [],
   "cover": "/projects/tocomevidencia.png",
   "order": 2,
   "updatedAt": "2026-11-24T00:00:00.000Z"
