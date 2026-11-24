@@ -126,3 +126,4 @@ Curve paths, from the `Curvas` board, for reference:
 - Cover wave: the purple line of `CoverArtIcon` (one of nine seeded phases).
 - Project cover ring: a circle of radius 53 px and an inner ring of 27 px (`CoverArtIcon`).
 - Quote underline: the purple stroke under the quote's last line (`Spotlight`).
+- 2026-11-24: wave 5, the design system artifact (#13). The artifact `guilherr.me design system` (Design System type, https://claude.ai/artifact/Nba6G8xrog5wVKNWqdTR72) holds the tokens (`tokens.json` in the list shape the page reads; the motion family is not on it), the brand book (`project/README.md`), the logo as an asset group, and a preview and a guideline for each of the ten components in the list above. The previews use the token values; they were rendered and checked by eye, not compared pixel by pixel with the site (that comparison is the open part of the issue). Published version: `1795514576-9254`.
