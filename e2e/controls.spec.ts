@@ -9,13 +9,13 @@ test.describe("the carousels and the blog controls on a desktop", () => {
   test.use({ viewport: screenNameToViewport.desktop });
 
   test(
-    "the project arrows are buttons, both disabled when the one project fits",
+    "the project arrows are buttons, with only the next one enabled at the start of a list that overflows",
     { tag: NEEDS_BROWSER },
     async ({ page }) => {
       await page.goto("/");
 
       await expect(page.getByRole("button", { name: "Previous projects" })).toBeDisabled();
-      await expect(page.getByRole("button", { name: "Next projects" })).toBeDisabled();
+      await expect(page.getByRole("button", { name: "Next projects" })).toBeEnabled();
     },
   );
 
