@@ -25,12 +25,15 @@ test("the projects link lands the section just below the navbar", { tag: NEEDS_B
   await page.goto("/#projects");
 
   // Why: the section's scroll margin is the navbar height, so its top edge sits right under the bar.
-  const { top, scrollMargin } = await page.locator("#projects").evaluate((section) => ({
-    top: section.getBoundingClientRect().top,
-    scrollMargin: parseFloat(getComputedStyle(section).scrollMarginTop),
-  }));
+  const section = page.locator("#projects");
+  const scrollMargin = await section.evaluate((element) => parseFloat(getComputedStyle(element).scrollMarginTop));
   expect(scrollMargin).toBe(NAVBAR_PX);
-  expect(Math.abs(top - scrollMargin)).toBeLessThan(ANCHOR_TOLERANCE_PX);
+  // Why: the page scrolls smoothly to the anchor, so the position is read once the scroll has settled, not in the middle of it.
+  await expect
+    .poll(async () =>
+      Math.abs((await section.evaluate((element) => element.getBoundingClientRect().top)) - scrollMargin),
+    )
+    .toBeLessThan(ANCHOR_TOLERANCE_PX);
 });
 
 test("each home section is a named region", { tag: NEEDS_BROWSER }, async ({ page }) => {

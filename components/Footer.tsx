@@ -1,5 +1,4 @@
-import NextLink from "next/link";
-import { Icon } from "@components/Icon.tsx";
+import { BackToTop } from "@components/BackToTop.tsx";
 import { LogoIcon } from "@components/Icons/LogoIcon.tsx";
 import { PAGE_X } from "@styles/LayoutClasses.ts";
 
@@ -12,13 +11,7 @@ export const Footer = () => {
         <LogoIcon className="h-8 w-auto text-text-soft" />
         <span className="font-mono text-caption text-text-meta">© 2026 Guilherme Mota</span>
       </div>
-      <NextLink
-        href="#main"
-        className="inline-flex items-center gap-2 text-small text-text-soft no-underline hover:text-text max-md:-my-3 max-md:py-3"
-      >
-        Back to top
-        <Icon name="up" />
-      </NextLink>
+      <BackToTop />
     </footer>
   );
 };
