@@ -24,7 +24,7 @@ A post written by the AI pipeline is a pull request with one new file. Only the 
 
 ## Projects
 
-`content/projects/<name>.json`, checked by `ProjectSchema` (`src/Schemas/ProjectSchema.ts`). A project is added, removed or reordered by a pull request that changes these files (and the cover image); there is no cron (ADR 0007). The owner usually does it through the Claude skill `gerenciar-projetos-do-site-pessoal`, which lists the public repositories, proposes the fields, checks the page and opens the pull request.
+`content/projects/<name>.json`, checked by `ProjectSchema` (`src/Schemas/ProjectSchema.ts`). A project is added, removed or reordered by a pull request that changes these files (and the cover image); there is no cron (ADR 0008). The owner usually does it through the Claude skill `gerenciar-projetos-do-site-pessoal`, which lists the public repositories, proposes the fields, checks the page and opens the pull request.
 
 ```json
 {

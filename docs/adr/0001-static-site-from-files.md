@@ -3,7 +3,7 @@
 ## Decision
 
 - Next.js App Router with `output: "export"`: `pnpm build` writes the site to `out/` and nothing runs on the server at request time.
-- Posts are Markdown files in `content/posts/`; projects are JSON files in `content/projects/`, changed through pull requests (ADR 0007). Both are checked by Zod schemas at build.
+- Posts are Markdown files in `content/posts/`; projects are JSON files in `content/projects/`, changed through pull requests (ADR 0008). Both are checked by Zod schemas at build.
 - No database, no login, no comments service in the first version. The AI writes draft posts outside the app and opens pull requests; the owner merges.
 - The site text is English, as in the approved prototype. Code and docs are English too.
 
