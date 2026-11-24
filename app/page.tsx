@@ -125,7 +125,7 @@ const HomePage = async () => {
             </Button>
           }
         />
-        <div className="mt-10 flex flex-col border-t-2 border-sunken">
+        <div className="mt-10 flex flex-col">
           {posts.map((post, index) => (
             <Reveal key={post.slug} delay={MotionUtil.getStaggerDelay(index)}>
               <PostRow

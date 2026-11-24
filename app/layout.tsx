@@ -28,7 +28,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         <Navbar />
         <div className="relative isolate overflow-x-clip">
           <ContoursIcon />
-          <main id="main" tabIndex={-1} className="pt-navbar outline-none">
+          <main id="main" tabIndex={-1} className="mx-auto w-full max-w-content pt-navbar outline-none">
             {children}
           </main>
           <Footer />
