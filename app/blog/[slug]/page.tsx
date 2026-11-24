@@ -34,7 +34,7 @@ export const generateMetadata = async ({ params }: PostPageProps): Promise<Metad
   return {
     title: post.title,
     description: post.summary,
-    alternates: { canonical: path },
+    alternates: { canonical: path, ...SiteUtil.FEED_ALTERNATES },
     openGraph: {
       title: post.title,
       description: post.summary,
@@ -42,7 +42,7 @@ export const generateMetadata = async ({ params }: PostPageProps): Promise<Metad
       type: "article",
       publishedTime: post.date,
     },
-    twitter: { card: "summary", title: post.title, description: post.summary },
+    twitter: { card: "summary_large_image", title: post.title, description: post.summary },
   };
 };
 

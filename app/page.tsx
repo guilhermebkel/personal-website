@@ -26,14 +26,14 @@ const LATEST_POSTS = 4;
 export const metadata: Metadata = {
   title: { absolute: SiteUtil.NAME },
   description: SiteUtil.DESCRIPTION,
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/", ...SiteUtil.FEED_ALTERNATES },
   openGraph: {
     title: SiteUtil.NAME,
     description: SiteUtil.DESCRIPTION,
     url: SiteUtil.buildUrl("/"),
     type: "website",
   },
-  twitter: { card: "summary", title: SiteUtil.NAME, description: SiteUtil.DESCRIPTION },
+  twitter: { card: "summary_large_image", title: SiteUtil.NAME, description: SiteUtil.DESCRIPTION },
 };
 
 // Why: the hero plays in order, as in the prototype: the label, the name written, the text, the buttons, the social bar (milliseconds).

@@ -8,4 +8,7 @@ export class SiteUtil {
   static buildUrl(path: string): string {
     return `${SiteUtil.URL}${path}`;
   }
+
+  // Why: Next replaces the whole alternates object of a page, so every page repeats the feed link instead of inheriting it from the layout.
+  static readonly FEED_ALTERNATES = { types: { "application/atom+xml": SiteUtil.buildUrl("/feed.xml") } };
 }
