@@ -13,8 +13,8 @@ const PROSE_CLASS = [
   "[&_pre]:mb-6 [&_pre]:overflow-x-auto [&_pre]:rounded-sm [&_pre]:border-2 [&_pre]:border-sunken [&_pre]:bg-control [&_pre]:px-6 [&_pre]:py-5",
   "[&_pre]:font-mono [&_pre]:text-small [&_pre]:text-text-soft",
   "[&_:not(pre)>code]:font-mono [&_:not(pre)>code]:text-small [&_:not(pre)>code]:text-text",
-  "[&_blockquote]:mb-6 [&_blockquote]:rounded-lg [&_blockquote]:border-2 [&_blockquote]:border-sunken [&_blockquote]:bg-raised [&_blockquote]:px-7 [&_blockquote]:py-6",
-  "[&_img]:mb-6 [&_img]:rounded-md [&_figcaption]:mt-3 [&_figcaption]:font-mono [&_figcaption]:text-caption [&_figcaption]:text-text-meta",
+  "[&_blockquote]:mb-6 [&_blockquote]:rounded-lg [&_blockquote]:border-2 [&_blockquote]:border-sunken [&_blockquote]:bg-raised [&_blockquote]:mx-0 [&_blockquote]:px-7 [&_blockquote]:py-6 max-md:[&_blockquote]:px-5 max-md:[&_blockquote]:py-5 [&_blockquote>p:last-child]:mb-0",
+  "[&_img]:mb-6 [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-md [&_figcaption]:mt-3 [&_figcaption]:font-mono [&_figcaption]:text-caption [&_figcaption]:text-text-meta",
 ].join(" ");
 
 const getText = (children: ReactNode): string => (typeof children === "string" ? children : "");
