@@ -47,8 +47,12 @@ const Hero = () => (
   <section
     id="intro"
     aria-labelledby="intro-title"
-    className={`relative flex min-h-[calc(100dvh-var(--spacing-navbar))] scroll-mt-navbar flex-col justify-between pb-9 hero-glow max-md:pb-6 ${PAGE_X}`}
+    className={`relative flex min-h-[calc(100dvh-var(--spacing-navbar))] scroll-mt-navbar flex-col justify-between pb-9 max-md:pb-6 ${PAGE_X}`}
   >
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 hero-glow"
+    />
     <HeroLogoIcon className="mx-auto mt-5 hidden w-50 flex-none max-md:block" />
     <div className="flex flex-1 items-center justify-between gap-10 max-md:mt-5 max-md:items-start lg:items-start">
       <div className="max-w-155 lg:pt-28">
@@ -89,7 +93,7 @@ const Hero = () => (
           <Link href="/blog/">Read the posts</Link>
         </Reveal>
       </div>
-      <HeroLogoIcon className="mt-10 mr-35 hidden h-auto w-100 flex-none self-start lg:block" />
+      <HeroLogoIcon className="mt-10 hidden h-auto w-100 flex-none self-start lg:block" />
     </div>
     <Reveal delay={SOCIAL_DELAY} className="flex justify-center">
       <SocialBar />
