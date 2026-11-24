@@ -49,7 +49,8 @@ const PostPage = async ({ params }: PostPageProps) => {
           All posts
         </Link>
       </Reveal>
-      <Reveal isAboveFold delay={MotionUtil.getStaggerDelay(1)} className="mt-9">
+      {/* Why: the title is the largest element on a phone, so it is shown at once: an entrance that starts hidden moves its paint to after the first frame of the animation (Lighthouse LCP 3.3 s; 0.8 s without it). */}
+      <div className="mt-9">
         <PostInfo
           date={post.date}
           readingMinutes={post.readingMinutes}
@@ -58,7 +59,7 @@ const PostPage = async ({ params }: PostPageProps) => {
           headingLevel="h1"
           isLarge
         />
-      </Reveal>
+      </div>
       <Reveal delay={MotionUtil.getStaggerDelay(COVER_STEP)} className="mt-12">
         <Cover className="h-105 rounded-lg max-md:h-50" />
       </Reveal>
