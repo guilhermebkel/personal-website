@@ -9,7 +9,7 @@ Something Guilherme built or wrote and the site exposes: a project or a post.
 _Avoid_: portfolio item, case
 
 **Project**:
-A GitHub repository shown in the Projects section. Its data is a JSON file in `content/projects/`, written by the projects cron.
+A GitHub repository shown in the Projects section. Its data is a JSON file in `content/projects/` (name, description, URL, kind, tags, optional cover and order), changed through a pull request.
 _Avoid_: repo card
 
 **Post**:
