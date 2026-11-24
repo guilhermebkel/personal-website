@@ -82,7 +82,6 @@ jobs:
       - run: pnpm build
       - run: pnpm lint:html
       - run: pnpm check:links
-      - run: pnpm check:budgets
       - run: pnpm test:e2e
 
   # Why: Lighthouse runs against the same out/ the e2e job serves; it has its own job so a slow run does not hold the others.
@@ -106,4 +105,6 @@ jobs:
       - if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: pnpm exec playwright install-deps chromium
       - run: pnpm build
+      # Why: the budgets are performance budgets, so they run with the Lighthouse run; a failing budget does not hide the e2e results of build-e2e.
+      - run: pnpm check:budgets
       - run: pnpm perf
