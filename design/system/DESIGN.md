@@ -83,7 +83,7 @@ Anatomy and sizes of the components the screens are made of. Each one is the boa
 | `PostRow`      | cover 224×126 radius 16, `PostInfo`, round go 48 px                                             | padding 28/24, radius 24, side margin −24; stacked on mobile with a 150 px cover | home (Posts)                       |
 | `PostCard`     | cover 200 px radius 16, `PostInfo`                                                              | padding 16, margin −16, radius 24; 150 px cover on mobile                        | Blog, Post ("Keep reading")        |
 | `PostInfo`     | date line mono 12 `text-meta` (`18 Nov 2026 · 6 min read`), title, summary `text-summary`, tags | title mt 10, summary mt 8, tags mt 14 gap 8                                      | PostRow, PostCard, Post            |
-| `ProjectCard`  | cover 190 px (150 mobile), body `P/01` mono 12, name 24/30, description, tags, host + `Open`    | width 384 (310 mobile), body 24/28 (20 mobile), radius 24, border 2px `sunken`   | Projetos                           |
+| `ProjectCard`  | cover 190 px (150 mobile), body kind chip, name 24/30, description, host + `Open`               | width 384 (310 mobile), body 24/28 (20 mobile), radius 24, border 2px `sunken`   | Projetos                           |
 | `Cover`        | tonal block, 9 terrain lines from the path (one purple), ring pair                              | scales to 1.03 on card hover (500 ms), still under reduced motion                | every card, the post header        |
 | `Footer`       | logo 32 px, © mono 12 `text-meta`, "Back to top" 14                                             | height 96, padding 120 (20 mobile), `graphite-deep`, top border 1px `sunken`     | every page                         |
 
@@ -96,7 +96,7 @@ Decided by the owner on 2026-11-24:
 - Logo corners: radius 8 is the soft corner of the mark. The paths of `design/logo/logo.svg` already have it (no vertex turns more than 11 degrees between samples), so the geometry did not change.
 - Favicon and app icons are accepted: `app/favicon.ico` (32 px), `app/apple-icon.png` (180 px), `public/icon-192.png` and `public/icon-512.png`, with `app/manifest.ts`. They are drawn by `scripts/build-icons.mjs` from the logo paths and the `graphite`, `text-strong` and `purple` tokens.
 - Type sizes without a token (28/34 row title, 22/28 mobile titles, 15/22 card summary and project description) use the nearest tokens (`title`, `small`, `body`).
-- Project tags follow the ProjectCard board (12/16).
+- The project kind chip follows the ProjectCard board (12/16).
 
 Closed in the same wave:
 

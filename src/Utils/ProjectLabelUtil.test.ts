@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { ProjectLabelUtil } from "@/Utils/ProjectLabelUtil.ts";
 
-describe("ProjectLabelUtil.formatIndex()", () => {
-  it("numbers the first project P/01", () => {
-    expect(ProjectLabelUtil.formatIndex(0)).toBe("P/01");
+describe("ProjectLabelUtil.getKindLabel()", () => {
+  it("names an MCP project 'MCP server'", () => {
+    expect(ProjectLabelUtil.getKindLabel("mcp")).toBe("MCP server");
   });
 
-  it("keeps two digits from ten on", () => {
-    expect(ProjectLabelUtil.formatIndex(9)).toBe("P/10");
+  it("capitalizes the other kinds", () => {
+    expect(ProjectLabelUtil.getKindLabel("application")).toBe("Application");
   });
 });
 

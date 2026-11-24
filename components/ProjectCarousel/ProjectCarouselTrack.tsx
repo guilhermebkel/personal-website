@@ -16,7 +16,7 @@ export const ProjectCarouselTrack = () => {
     >
       {projects.map((project, index) => (
         <Reveal key={project.name} as="li" delay={MotionUtil.getStaggerDelay(index)} className="flex snap-start">
-          <ProjectCard index={index} {...project} />
+          <ProjectCard {...project} />
         </Reveal>
       ))}
     </ul>

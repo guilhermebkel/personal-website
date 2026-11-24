@@ -81,13 +81,13 @@ describe("ProjectService.listProjects()", () => {
     expect(names).toStrictEqual(["b", "a", "c"]);
   });
 
-  it("gives a project without tags an empty list", async () => {
+  it("ignores a leftover tags key in a project file", async () => {
     const directory = await createDirectory();
-    await writeProject(directory, "a.json", "a", JANUARY);
+    await writeProject(directory, "a.json", "a", JANUARY, { tags: ["TypeScript"] });
 
     const projects = await listProjects(directory);
 
-    expect(projects[0]?.tags).toStrictEqual([]);
+    expect(projects[0]).not.toHaveProperty("tags");
   });
 
   it("fails when a project file has an invalid url", async () => {
