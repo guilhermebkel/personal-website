@@ -10,7 +10,7 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
 - `design/`: the design as code (`design/README.md`); `design/system/` has the tokens (`tokens.json`, generated `tokens.css`) and `DESIGN.md`. `design/prototype/` holds the approved prototype boards (`*.dc.html`, `canvas.json`) as reference only; the site imports nothing from it.
 - `src/`: logic with no UI. Every file in a mapped folder ends its name with the folder's name, singular (`PostService.ts`). Layers, low to high: `Protocols` (types only) < `Schemas` (Zod) < `Utils` (static helpers) < `Services` (dependencies through the constructor) < `Factories` (wiring) < `app/`.
 - `content/posts/`: one Markdown file per post, with front-matter checked by `PostSchema`.
-- `content/projects/`: one JSON file per project, written by the projects cron and checked by `ProjectSchema`.
+- `content/projects/`: one JSON file per project, changed through pull requests and checked by `ProjectSchema` (`docs/content.md`).
 - `e2e/`: Playwright tests. Unit tests sit next to the file they test (`*.test.ts`).
 - `scripts/`: harness scripts (`lint`, `check-changed`, `ensure-*`) and their tests.
 

@@ -9,11 +9,12 @@ type ProjectCardProps = {
   description: string;
   url: string;
   tags: string[];
+  cover?: string;
 };
 
 const getHost = (url: string) => new URL(url).host;
 
-export const ProjectCard = ({ index, name, description, url, tags }: ProjectCardProps) => (
+export const ProjectCard = ({ index, name, description, url, tags, cover }: ProjectCardProps) => (
   <a
     href={url}
     target="_blank"
@@ -24,7 +25,7 @@ export const ProjectCard = ({ index, name, description, url, tags }: ProjectCard
     ].join(" ")}
   >
     <div className="flex-none p-3">
-      <Cover seed={name} className="h-47.5 rounded-md max-md:h-37.5" />
+      <Cover seed={name} image={cover} className="h-47.5 rounded-md max-md:h-37.5" />
     </div>
     <div className="flex min-w-0 flex-1 flex-col px-7 py-6 max-md:px-5 max-md:py-5">
       <span className="font-mono text-caption tracking-wide text-text-meta">{ProjectLabelUtil.formatIndex(index)}</span>

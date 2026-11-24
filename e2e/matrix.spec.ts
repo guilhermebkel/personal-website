@@ -1,6 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import { NEEDS_BROWSER } from "./tags.ts";
+import { stubThirdParties } from "./thirdParties.ts";
 import { screenNameToViewport } from "./viewports.ts";
 
 // Why: every route a visitor can reach, including the 404 that renders for a missing path.
@@ -51,6 +52,7 @@ for (const [viewportName, viewport] of Object.entries(screenNameToViewport)) {
         });
 
         test("logs no console error and no failed request", { tag: NEEDS_BROWSER }, async ({ page }) => {
+          await stubThirdParties(page);
           const consoleErrors: { text: string; url: string }[] = [];
           const problems: string[] = [];
           page.on("console", (message) => {

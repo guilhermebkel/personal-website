@@ -1,6 +1,6 @@
 # guilherr.me
 
-Personal site of Guilherme Mota: a home, a blog and a 404, in one dark theme. It is a static Next.js site: posts are Markdown files and projects are JSON files written by a cron that reads GitHub.
+Personal site of Guilherme Mota: a home, a blog and a 404, in one dark theme. It is a static Next.js site: posts are Markdown files and projects are JSON files; both change through pull requests.
 
 ## Development
 

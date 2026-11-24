@@ -8,6 +8,6 @@ export class ContentFactory {
   }
 
   static createProjectService(): ProjectService {
-    return new ProjectService(join(process.cwd(), "content", "projects"));
+    return new ProjectService(join(process.cwd(), "content", "projects"), join(process.cwd(), "public"));
   }
 }

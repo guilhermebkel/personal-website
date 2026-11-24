@@ -109,7 +109,8 @@ const HomePage = async () => {
     name: project.name,
     description: project.description,
     url: project.url,
-    tags: project.language === null ? [] : [project.language],
+    tags: project.tags,
+    cover: project.cover,
   }));
   return (
     <div className="flex flex-col gap-28 pb-28">
