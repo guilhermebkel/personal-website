@@ -98,10 +98,17 @@ Decided by the owner on 2026-11-24:
 - Type sizes without a token (28/34 row title, 22/28 mobile titles, 15/22 card summary and project description) use the nearest tokens (`title`, `small`, `body`).
 - Project tags follow the ProjectCard board (12/16).
 
+Closed in the same wave:
+
+- Reduced motion: the hero blocks enter at once. The stagger delay is set to 0 by the reduced-motion rule in `app/globals.css`, and `e2e/motion.spec.ts` checks it.
+- Focus ring: the ring is outside the control, so the ground it has to pass against is the page (`graphite`, 5.27:1) or a card (`raised`, 4.98:1); both pairs are in `contrast-pairs.json` with the `ui` role (3:1).
+- The date line reads `18 Nov 2026`: `DateUtil.formatDayMonthYear()` writes the month names from a fixed list, so it does not depend on the browser language.
+- Clipped ring: the project carousel is a scroll container, and it cut the top of the focus ring of a card. The track now has 4 px of room above the cards (`pt-1`, with `mt-9` so the spacing does not change), and `e2e/controls.spec.ts` checks it.
+- Tab icon: the favicon (`app/icon.svg`) carries the graphite ground, because on a light browser UI the bare mark's light body disappeared. At 16 px it is legible on both grounds.
+
 Still open:
 
 - The ring pair of `Cover` stays at the centre; the boards move it per card.
-- Under reduced motion the hero blocks still wait out their stagger delay before they show (the entrance is instant, the delay is not); the AC of #11 asks for the final state at once.
 
 ## Decisions log
 

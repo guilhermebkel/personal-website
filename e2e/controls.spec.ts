@@ -3,6 +3,7 @@ import { NEEDS_BROWSER } from "./tags.ts";
 import { screenNameToViewport } from "./viewports.ts";
 
 const PRESSED = "aria-pressed";
+const RING_EXTENT = 4;
 
 test.describe("the carousels and the blog controls on a desktop", () => {
   test.use({ viewport: screenNameToViewport.desktop });
@@ -17,6 +18,33 @@ test.describe("the carousels and the blog controls on a desktop", () => {
       await expect(page.getByRole("button", { name: "Next projects" })).toBeDisabled();
     },
   );
+
+  test("the focus ring of a project card is not cut by the carousel", { tag: NEEDS_BROWSER }, async ({ page }) => {
+    // Why: the card rises 18px when it first shows; reduced motion ends that at once, so the box is read where it rests.
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+    const card = page.locator("#projects a").first();
+
+    await card.focus();
+    await page.keyboard.press("Shift+Tab");
+    await page.keyboard.press("Tab");
+
+    const readBoxes = (element: HTMLElement) => {
+      const link = element.getBoundingClientRect();
+      const track = element.closest("ul")?.getBoundingClientRect();
+      return { link: { y: link.y, height: link.height }, track: track && { y: track.y, height: track.height } };
+    };
+    const isInsideTrack = async () => {
+      const { link, track } = await card.evaluate(readBoxes);
+      if (track === undefined) {
+        return false;
+      }
+      // Why: the 2px ring sits 2px outside the card, so the track needs 4px on each side of the card for it to show.
+      return link.y - RING_EXTENT >= track.y && link.y + link.height + RING_EXTENT <= track.y + track.height;
+    };
+    // Why: the card is read where it rests; the scroll that focus starts and the card's entrance settle within a few frames, so the test polls until the box is still.
+    await expect.poll(isInsideTrack).toBe(true);
+  });
 
   test(
     "a quote counter is a button, and Enter makes its quote the current one",

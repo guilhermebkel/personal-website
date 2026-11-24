@@ -146,6 +146,7 @@
     *::before,
     *::after {
       animation-duration: var(--duration-instant) !important;
+      animation-delay: var(--duration-instant) !important;
       animation-iteration-count: 1 !important;
       transition-duration: var(--duration-instant) !important;
       scroll-behavior: auto !important;

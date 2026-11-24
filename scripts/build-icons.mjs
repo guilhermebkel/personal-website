@@ -17,6 +17,7 @@ const APP_SIZES = [
   { file: "app/apple-icon.png", size: 180 },
 ];
 const FAVICON_SIZE = 32;
+const ICON_SVG_SIZE = 512;
 
 export const readTokenColor = (tokens, name) => {
   const token = tokens.color.tokens.find((candidate) => candidate.name === name);
@@ -109,6 +110,8 @@ export const writeIcons = async ({ root, executablePath }) => {
     const faviconSvg = buildIconSvg({ logoSvg, ...colors, size: FAVICON_SIZE });
     const favicon = await renderPng(browser, faviconSvg, FAVICON_SIZE);
     writeFileSync(join(root, "app/favicon.ico"), buildIcoFile(favicon, FAVICON_SIZE));
+    // Why: the browser tab icon is the same mark on the graphite ground, because on a light browser UI the light body of the bare mark disappears.
+    writeFileSync(join(root, "app/icon.svg"), buildIconSvg({ logoSvg, ...colors, size: ICON_SVG_SIZE }));
   } finally {
     await browser.close();
   }
