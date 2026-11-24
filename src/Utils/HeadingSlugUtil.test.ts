@@ -18,3 +18,10 @@ describe("HeadingSlugUtil.listH2()", () => {
     ]);
   });
 });
+
+describe("HeadingSlugUtil.buildNumber()", () => {
+  it("numbers the sections from 01 in two digits", () => {
+    expect(HeadingSlugUtil.buildNumber(0)).toBe("01");
+    expect(HeadingSlugUtil.buildNumber(9)).toBe("10");
+  });
+});
