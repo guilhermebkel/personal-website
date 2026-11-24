@@ -1,3 +1,4 @@
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { buildRoute, checkPage, checkSitemap } from "./check-seo.mjs";
 
@@ -51,8 +52,8 @@ describe("checkPage()", () => {
 
 describe("buildRoute()", () => {
   it("maps the built index files to their routes", () => {
-    expect(buildRoute("/home/user/personal-website/out/index.html")).toBe("/");
-    expect(buildRoute("/home/user/personal-website/out/blog/hello/index.html")).toBe("/blog/hello/");
+    expect(buildRoute(join(process.cwd(), "out", "index.html"))).toBe("/");
+    expect(buildRoute(join(process.cwd(), "out", "blog", "hello", "index.html"))).toBe("/blog/hello/");
   });
 });
 
