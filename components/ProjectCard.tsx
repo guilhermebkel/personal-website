@@ -23,7 +23,7 @@ export const ProjectCard = ({ index, name, description, url, tags }: ProjectCard
       "duration-hover transition-colors max-md:w-72 md:hover:border-line",
     ].join(" ")}
   >
-    <Cover seed={name} className="h-47.5 flex-none max-md:h-37.5" />
+    <Cover seed={name} className="h-47.5 flex-none rounded-md max-md:h-37.5" />
     <div className="flex min-w-0 flex-1 flex-col px-7 py-6 max-md:px-5 max-md:py-5">
       <span className="font-mono text-caption tracking-wide text-text-meta">{ProjectLabelUtil.formatIndex(index)}</span>
       <h3 className="m-0 mt-3.5 text-title font-medium wrap-anywhere">{name}</h3>

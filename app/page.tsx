@@ -116,6 +116,7 @@ const HomePage = async () => {
                 readingMinutes={post.readingMinutes}
                 title={post.title}
                 summary={post.summary}
+                cover={post.cover}
               />
             </Reveal>
           ))}

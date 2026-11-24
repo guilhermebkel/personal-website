@@ -1,11 +1,13 @@
+import Image from "next/image";
 import { CoverArtIcon } from "@components/Icons/CoverArtIcon.tsx";
 
 type CoverProps = {
   className: string;
   seed: string;
+  image?: string;
 };
 
-export const Cover = ({ className, seed }: CoverProps) => {
+export const Cover = ({ className, seed, image }: CoverProps) => {
   // Why: the height changes by place (a card 200px, a row 126px, the post 420px), so the caller sets it with a spacing class.
   // Why: the card around it zooms the cover on hover through the group name; reduced motion keeps it still.
   return (
@@ -13,7 +15,11 @@ export const Cover = ({ className, seed }: CoverProps) => {
       aria-hidden="true"
       className={`duration-zoom relative overflow-hidden bg-cover transition-transform group-hover/card:scale-[1.03] motion-reduce:transform-none ${className}`}
     >
-      <CoverArtIcon seed={seed} />
+      {image === undefined ? (
+        <CoverArtIcon seed={seed} />
+      ) : (
+        <Image src={image} alt="" fill unoptimized sizes="100vw" className="object-cover" />
+      )}
     </div>
   );
 };
