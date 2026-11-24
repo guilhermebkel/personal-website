@@ -77,6 +77,9 @@ const PostPage = async ({ params }: PostPageProps) => {
           isLarge
         />
       </div>
+      <div className="mt-10">
+        <PostSummaryBox summary={post.summary} />
+      </div>
       <Reveal delay={MotionUtil.getStaggerDelay(COVER_STEP)} className="mt-12">
         <Cover seed={slug} image={post.cover} className="h-105 rounded-lg max-md:h-50" />
       </Reveal>
@@ -84,7 +87,6 @@ const PostPage = async ({ params }: PostPageProps) => {
         <PostToc headings={HeadingSlugUtil.listH2(post.body)} />
         <div className="min-w-0">
           <PostContent markdown={post.body} />
-          <PostSummaryBox summary={post.summary} />
         </div>
       </Reveal>
       <div className="mt-20">

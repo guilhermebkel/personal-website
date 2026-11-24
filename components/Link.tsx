@@ -22,7 +22,8 @@ const getRel = (linkTarget: string | undefined) => {
 export const Link = ({ href, className, target, children, hasExternalIcon = true, ...props }: LinkProps) => {
   // Why: a link that leaves the site carries the arrow (docs/ui-ux-standards.md); a bare icon link names its target another way and turns it off.
   const classes = ClassNameUtil.merge(LINK_CLASS, className);
-  if (href.startsWith("/")) {
+  // Why: a link that opens a new tab is a plain anchor, because Next's link always stays in this tab.
+  if (href.startsWith("/") && target === undefined) {
     return (
       <NextLink href={href} className={classes} {...props}>
         {children}

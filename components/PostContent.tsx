@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { Link } from "@components/Link.tsx";
 import { HeadingSlugUtil } from "@/Utils/HeadingSlugUtil.ts";
 
 const PROSE_CLASS = [
@@ -23,7 +24,14 @@ export const PostContent = ({ markdown }: { markdown: string }) => (
   <div className={PROSE_CLASS}>
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
-      components={{ h2: ({ children }) => <h2 id={HeadingSlugUtil.buildId(getText(children))}>{children}</h2> }}
+      components={{
+        h2: ({ children }) => <h2 id={HeadingSlugUtil.buildId(getText(children))}>{children}</h2>,
+        a: ({ href = "#", children }) => (
+          <Link href={href} target="_blank">
+            {children}
+          </Link>
+        ),
+      }}
     >
       {markdown}
     </ReactMarkdown>
