@@ -1,6 +1,6 @@
 {
   "name": "harness-ledger",
-  "description": "Reads the sessions your coding agent already saves and lists every piece of its harness, with what it costs you and the evidence from your own sessions.",
+  "description": "A tool that reads the sessions your coding agent already saves and names the harness piece behind each problem. It shows what each piece costs and whether a fix worked, so you tune your agent with evidence.",
   "url": "https://harnessledger.guilherr.me/",
   "kind": "application",
   "tags": [],

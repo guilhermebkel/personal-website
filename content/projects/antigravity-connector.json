@@ -1,6 +1,6 @@
 {
   "name": "antigravity-connector",
-  "description": "Use your Google AI Pro subscription as an OpenAI-compatible API and as MCP tools, from one Docker container on your own server.",
+  "description": "A server that exposes a Google AI Pro subscription as an OpenAI-compatible API and as MCP tools. It lets you use your Gemini subscription in other apps and agents, not only in Google's own, from one Docker container on your own server.",
   "url": "https://antigravity-connector.guilherr.me/",
   "kind": "mcp",
   "tags": [],

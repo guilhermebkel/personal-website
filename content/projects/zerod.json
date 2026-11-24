@@ -1,6 +1,6 @@
 {
   "name": "Zerod",
-  "description": "A card game for up to 12 friends, in the browser. Open a room, send the code and be the first to empty your hand. Nickname only, no accounts.",
+  "description": "A card game for up to 12 friends, played in the browser. It mixes easy rules with house rules and a rule card, so a group gets a fun, different match in seconds, with no accounts or installs.",
   "url": "https://zerod.guilherr.me",
   "kind": "game",
   "tags": [],
