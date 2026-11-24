@@ -1,7 +1,7 @@
 ---
 title: Hello, world
 date: 2026-11-23
-summary: A placeholder post that proves the blog pipeline end to end.
+summary: A placeholder post that proves the blog pipeline works end to end, from a Markdown file to a static page.
 tags: [meta]
 ---
 

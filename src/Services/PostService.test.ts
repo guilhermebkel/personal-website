@@ -93,4 +93,10 @@ describe("PostService.readPost()", () => {
     );
     await expect(new PostService(directory, directory).readPost("hello")).rejects.toThrow(/cover file not found/u);
   });
+
+  it("fails with a schema message when a post has no summary", async () => {
+    const directory = await createDirectory();
+    await writeInto(directory, "nosummary.md", "---\ntitle: No summary\ndate: 2026-01-01\n---\nBody.\n");
+    await expect(new PostService(directory, directory).readPost("nosummary")).rejects.toThrow(/summary/u);
+  });
 });

@@ -11,12 +11,29 @@ import { QuoteCarousel } from "@components/QuoteCarousel/index.tsx";
 import { SectionTitle } from "@components/SectionTitle.tsx";
 import { SocialBar } from "@components/SocialBar.tsx";
 import { Spotlight } from "@components/Spotlight.tsx";
+import type { Metadata } from "next";
 import { ContentFactory } from "@/Factories/ContentFactory.ts";
+import { JsonLd } from "@components/JsonLd.tsx";
+import { JsonLdUtil } from "@/Utils/JsonLdUtil.ts";
+import { SiteUtil } from "@/Utils/SiteUtil.ts";
 import { ContactUtil } from "@/Utils/ContactUtil.ts";
 import { MotionUtil } from "@/Utils/MotionUtil.ts";
 import { QuoteUtil } from "@/Utils/QuoteUtil.ts";
 
 const LATEST_POSTS = 4;
+
+export const metadata: Metadata = {
+  title: { absolute: SiteUtil.NAME },
+  description: SiteUtil.DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: SiteUtil.NAME,
+    description: SiteUtil.DESCRIPTION,
+    url: SiteUtil.buildUrl("/"),
+    type: "website",
+  },
+  twitter: { card: "summary", title: SiteUtil.NAME, description: SiteUtil.DESCRIPTION },
+};
 
 // Why: the hero plays in order, as in the prototype: the label, the name written, the text, the buttons, the social bar (milliseconds).
 const FIRST_NAME_DELAY = 150;
@@ -91,6 +108,7 @@ const HomePage = async () => {
   }));
   return (
     <div className="flex flex-col gap-28 pb-28">
+      <JsonLd data={JsonLdUtil.buildPerson()} />
       <Hero />
       {carouselProjects.length > 0 && <ProjectCarousel projects={carouselProjects} />}
       <section id="posts" aria-labelledby="posts-title" className={`scroll-mt-navbar ${PAGE_X}`}>

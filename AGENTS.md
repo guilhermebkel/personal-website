@@ -54,6 +54,7 @@ Static personal site of Guilherme Mota: a home in five sections (intro, projects
 | Writing or moving docs under `docs/`          | `docs/docs-standards.md`                                                           | —                              |
 | Before committing                             | `docs/code-standards.md` ("Before committing"), `.github/PULL_REQUEST_TEMPLATE.md` | `pnpm check:changed`           |
 | Full verification (CI gate)                   | `.github/PULL_REQUEST_TEMPLATE.md`                                                 | `pnpm check`                   |
+| SEO, metadata or a site file                  | `docs/seo-standards.md`                                                            | `pnpm build`, `pnpm check:seo` |
 | Changing the harness                          | `docs/harness-standards.md`                                                        | `pnpm check:changed`           |
 | A decision with a cost                        | `docs/adr/`                                                                        | —                              |
 
