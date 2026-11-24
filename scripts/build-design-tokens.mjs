@@ -1,8 +1,11 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
+import { buildContrastMarkdown, buildContrastRows } from "./contrast-report.mjs";
 
 const SOURCE = fileURLToPath(new URL("../design/system/tokens.json", import.meta.url));
 const TARGET = fileURLToPath(new URL("../design/system/tokens.css", import.meta.url));
+const PAIRS = fileURLToPath(new URL("../design/system/contrast-pairs.json", import.meta.url));
+const CONTRAST = fileURLToPath(new URL("../design/system/CONTRAST.md", import.meta.url));
 
 const formatComment = (usage) => (usage === undefined ? "" : `  /* ${usage.replaceAll("*/", "* /")} */`);
 
@@ -49,4 +52,7 @@ export const buildTokensCss = (tokens) => {
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const tokens = JSON.parse(readFileSync(SOURCE, "utf8"));
   writeFileSync(TARGET, buildTokensCss(tokens));
+  const pairs = JSON.parse(readFileSync(PAIRS, "utf8"));
+  const rows = buildContrastRows({ tokens, pairs });
+  writeFileSync(CONTRAST, buildContrastMarkdown(rows));
 }

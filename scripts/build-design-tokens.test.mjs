@@ -1,9 +1,12 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { buildTokensCss } from "./build-design-tokens.mjs";
+import { buildContrastMarkdown, buildContrastRows } from "./contrast-report.mjs";
 
 const SOURCE = new URL("../design/system/tokens.json", import.meta.url);
 const GENERATED = new URL("../design/system/tokens.css", import.meta.url);
+const PAIRS = new URL("../design/system/contrast-pairs.json", import.meta.url);
+const CONTRAST = new URL("../design/system/CONTRAST.md", import.meta.url);
 const PURPLE = "#5328fe";
 
 const MINI_TOKENS = {
@@ -41,5 +44,15 @@ describe("buildTokensCss()", () => {
     const generated = readFileSync(GENERATED, "utf8");
 
     expect(generated).toBe(buildTokensCss(tokens));
+  });
+
+  it("keeps CONTRAST.md in step with the color pairs", () => {
+    const tokens = JSON.parse(readFileSync(SOURCE, "utf8"));
+    const pairs = JSON.parse(readFileSync(PAIRS, "utf8"));
+    const generated = readFileSync(CONTRAST, "utf8");
+
+    const rows = buildContrastRows({ tokens, pairs });
+
+    expect(generated).toBe(buildContrastMarkdown(rows));
   });
 });

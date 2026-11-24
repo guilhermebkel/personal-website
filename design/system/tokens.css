@@ -9,7 +9,7 @@
   --color-graphite: #1b1b1e;  /* Page ground. */
   --color-graphite-deep: #131315;  /* Footer band and the deepest ground. */
   --color-purple: #5328fe;  /* Brand color: primary action fill, marker highlight. */
-  --color-purple-light: #9479ff;  /* Links, labels and the focus ring on graphite (passes 4.5:1). */
+  --color-purple-light: #9479ff;  /* Links, labels and the focus ring on graphite (5.27:1). */
   --color-surface: #282828;  /* Cards and raised areas. */
   --color-panel: #252525;  /* Large panels (black-color-1 in the prototype). */
   --color-sunken: #2c2c2c;  /* Hover fill of a raised area; inset areas. */
@@ -22,12 +22,12 @@
   --color-raised: #202024;  /* Hover fill of a post card (prototype). */
   --color-cover: #232327;  /* Ground of a post cover and of a figure. */
   --color-control: #151515;  /* Fill of fields. */
-  --color-line: #5b5b5b;  /* Solid hairline between posts and around code blocks and cards (decorative, 2.69:1 on graphite). */
+  --color-line: #5b5b5b;  /* Solid hairline between posts and around code blocks and cards (2.53:1 on graphite, below the 3:1 of a control border; see CONTRAST.md). */
   --color-text-disabled: #6b6b6b;  /* Text and border of a disabled button or link (disabled text is exempt from 4.5:1). */
   --color-pressed: #d7d7d7;  /* Button fill while pressed; the label on it is graphite. */
   --color-menu: #f3f3f3;  /* Fill of the open mobile menu. */
   --color-menu-line: #e4e4e7;  /* Rule between the items of the mobile menu. */
-  --color-text-inverted: #252525;  /* Text on the inverted fill (15.33:1). */
+  --color-text-inverted: #252525;  /* Text on the inverted fill (13.81:1 on the menu fill). */
   --color-text-meta: #8c8c93;  /* Mono metadata, captions, hosts and counters (the boards' #8C8C93; 5.14:1 on graphite, 4.69:1 on cover). */
   --color-text-summary: #afafb5;  /* Post summary text (the boards' #AFAFB5; 7.87:1 on graphite). */
   --color-text-strong: #f2f2f2;  /* Contact link text and the hero G (the boards' #F2F2F2; 15.35:1 on graphite). Kept apart from text so the prototype's two whites stay two. */
