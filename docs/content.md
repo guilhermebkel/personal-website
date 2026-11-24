@@ -8,11 +8,11 @@ Posts and projects are files in the repository; the build reads them and writes 
 
 ```md
 ---
-title: Hello, world
+title: My first post
 date: 2026-11-23
 summary: One sentence the list and the metadata show.
 tags: [meta]
-cover: /covers/hello-world.svg # optional; a file under public/
+cover: /covers/my-first-post.svg # optional; a file under public/
 ---
 
 Body in Markdown. Start sections at `##`; the page title is the `h1`.

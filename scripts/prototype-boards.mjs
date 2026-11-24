@@ -6,7 +6,7 @@ const DESKTOP = 1440;
 const MOBILE = 390;
 const ROOT_ROUTE = "/";
 const MAIN_TARGET = "main";
-const HELLO_POST_ROUTE = "/blog/hello-world/";
+const POST_ROUTE = "/blog/how-to-install-rancher-inside-aws-eks/";
 const NOT_FOUND_ROUTE = "/404/";
 const SECTION_IDS = { intro: "#intro", projects: "#projects", posts: "#posts", quotes: "#quotes", contact: "#contact" };
 
@@ -25,9 +25,9 @@ export const BOARD_MAPPING = {
   ContatoMobile: { route: ROOT_ROUTE, width: MOBILE, target: SECTION_IDS.contact },
   Blog: { route: "/blog/", width: DESKTOP, target: MAIN_TARGET },
   BlogMobile: { route: "/blog/", width: MOBILE, target: MAIN_TARGET },
-  Post: { route: HELLO_POST_ROUTE, width: DESKTOP, target: MAIN_TARGET },
-  PostMobile: { route: HELLO_POST_ROUTE, width: MOBILE, target: MAIN_TARGET },
-  Assinatura: { route: HELLO_POST_ROUTE, width: DESKTOP, target: "p:text-is('Written by') >> xpath=.." },
+  Post: { route: POST_ROUTE, width: DESKTOP, target: MAIN_TARGET },
+  PostMobile: { route: POST_ROUTE, width: MOBILE, target: MAIN_TARGET },
+  Assinatura: { route: POST_ROUTE, width: DESKTOP, target: "p:text-is('Written by') >> xpath=.." },
   MenuMobile: { route: ROOT_ROUTE, width: MOBILE, target: "page", openMenu: true },
   NotFound: { route: NOT_FOUND_ROUTE, width: DESKTOP, target: MAIN_TARGET },
   NotFoundMobile: { route: NOT_FOUND_ROUTE, width: MOBILE, target: MAIN_TARGET },

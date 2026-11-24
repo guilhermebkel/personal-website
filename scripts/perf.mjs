@@ -6,7 +6,7 @@ import lighthouse from "lighthouse";
 import desktopConfig from "lighthouse/core/config/desktop-config.js";
 
 export const PERF_PORT = 3102;
-export const PERF_ROUTES = ["/", "/blog/", "/blog/hello-world/"];
+export const PERF_ROUTES = ["/", "/blog/", "/blog/how-to-install-rancher-inside-aws-eks/"];
 // Why: the scores are Lighthouse's 0 to 1 category scores; accessibility is 1 because a lower score is a finding, not a budget.
 export const SCORE_BUDGETS = { performance: 0.95, accessibility: 1, "best-practices": 0.95, seo: 0.95 };
 // Why: the timings are read on the phone profile only, where the page is slowest; they are in the units Lighthouse reports (ms, unitless CLS).
