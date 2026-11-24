@@ -5,6 +5,7 @@ export type CarouselProject = {
   description: string;
   url: string;
   tags: string[];
+  cover?: string;
 };
 
 export type ProjectCarouselState = {

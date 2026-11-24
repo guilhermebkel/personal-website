@@ -24,4 +24,27 @@ A post written by the AI pipeline is a pull request with one new file. Only the 
 
 ## Projects
 
-`content/projects/<name>.json`, written by the projects cron, checked by `ProjectSchema`. Nobody edits these files by hand. If the cron cannot read GitHub it writes nothing and the last valid files stay.
+`content/projects/<name>.json`, checked by `ProjectSchema` (`src/Schemas/ProjectSchema.ts`). A project is added, removed or reordered by a pull request that changes these files (and the cover image); there is no cron (ADR 0007). The owner usually does it through the Claude skill `gerenciar-projetos-do-site-pessoal`, which lists the public repositories, proposes the fields, checks the page and opens the pull request.
+
+```json
+{
+  "name": "Zerod",
+  "description": "One or two plain sentences.",
+  "url": "https://zerod.guilherr.me",
+  "kind": "game",
+  "tags": ["TypeScript", "Three.js"],
+  "cover": "/projects/zerod.png",
+  "order": 1,
+  "updatedAt": "2026-11-23T00:00:00.000Z"
+}
+```
+
+| Field   | Rule                                                                                                                                                                                                                    |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `kind`  | One of `application`, `mcp`, `skill`, `library`, `game`, `other`. Data for the owner and the skill; the card does not draw it.                                                                                          |
+| `tags`  | Up to three stack tags shown on the card; empty is fine. Reuse the spelling of the other projects.                                                                                                                      |
+| `cover` | Optional path of a file under `public/` (`/projects/<name>.png`, about 1200 px wide, up to 250 KB; the card crops it with `object-cover`). A missing file fails the build. Without it the card draws the generated art. |
+| `order` | Optional positive integer. The Projects section lists lower numbers first; projects without `order` come after the ordered ones, most recently updated first.                                                           |
+| `url`   | The project's own site when it has one, otherwise its GitHub address. Only public repositories.                                                                                                                         |
+
+A file that fails the schema fails the build.

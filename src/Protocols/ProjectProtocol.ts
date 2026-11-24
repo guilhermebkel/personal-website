@@ -1,7 +1,12 @@
+export type ProjectKind = "application" | "mcp" | "skill" | "library" | "game" | "other";
+
 export type Project = {
   name: string;
   description: string;
   url: string;
-  language: string | null;
+  kind: ProjectKind;
+  tags: string[];
+  cover?: string;
+  order?: number;
   updatedAt: string;
 };

@@ -44,7 +44,7 @@ The theme resets Tailwind's default colors, text sizes and radii (`--color-*: in
 ## Open questions
 
 - Geist Mono is provisional, taken from the prototype.
-- `content/projects/zerod.json` is a mock until the projects cron writes the real ones.
+- `content/projects/zerod.json` is a mock until the owner adds the real projects (`docs/content.md`).
 - Decided: no `Comments` component and no preloader.
 - Prototype differences kept over the first design system: nav items Projects / Posts / About, tag as a bordered pill (`border-strong`), card hover fill `raised`, cover ground `cover`, post prose 18/30. New tokens: `line`, `text-disabled`, `pressed`, `inverted`, `text-inverted`, `raised`, `cover`, type `prose`.
 - The prototype is the source of truth: components follow its boards (Intro, Projects, Posts, Quotes, Contact, Blog, Post, mobile menu, 404). Removed from the first design system because the prototype does not use them: `Trace`, `Summary`, `Quote`.
