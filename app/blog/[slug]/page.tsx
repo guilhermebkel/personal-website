@@ -49,7 +49,7 @@ const PostPage = async ({ params }: PostPageProps) => {
           All posts
         </Link>
       </Reveal>
-      <Reveal delay={MotionUtil.getStaggerDelay(1)} className="mt-9">
+      <Reveal isAboveFold delay={MotionUtil.getStaggerDelay(1)} className="mt-9">
         <PostInfo
           date={post.date}
           readingMinutes={post.readingMinutes}

@@ -19,12 +19,12 @@
   --color-text-soft: #d7d7d7;  /* Secondary text. */
   --color-text-muted: #aaaaaa;  /* Metadata and captions. */
   --color-border: rgba(255, 255, 255, 0.2);  /* Default hairline. */
-  --color-border-strong: #3a3a40;  /* Control borders. */
+  --color-border-strong: #6e6e74;  /* Control borders: the buttons, fields and links a reader presses (3:1 or more on graphite; see CONTRAST.md). */
   --color-contour: rgba(255, 255, 255, 0.04);  /* Faint outline of large areas. */
   --color-raised: #202024;  /* Hover fill of a post card (prototype). */
   --color-cover: #232327;  /* Ground of a post cover and of a figure. */
   --color-control: #151515;  /* Fill of fields. */
-  --color-line: #5b5b5b;  /* Solid hairline between posts and around code blocks and cards (2.53:1 on graphite, below the 3:1 of a control border; see CONTRAST.md). */
+  --color-line: #5b5b5b;  /* Hairlines of containers: the borders of tags, the social bar and a card on hover, and the rules between posts and around code. They frame content and are not controls, so they are decorative (2.53:1 on graphite; see CONTRAST.md). */
   --color-text-disabled: #6b6b6b;  /* Text and border of a disabled button or link (disabled text is exempt from 4.5:1). */
   --color-pressed: #d7d7d7;  /* Button fill while pressed; the label on it is graphite. */
   --color-menu: #f3f3f3;  /* Fill of the open mobile menu. */

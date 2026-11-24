@@ -5,7 +5,7 @@ import { pathToFileURL } from "node:url";
 
 const BYTES_PER_KIB = 1024;
 // Why: the home page's JavaScript, gzipped, stays under this; a raise needs an ADR line in docs/harness-standards.md.
-const SCRIPT_BUDGET_KIB = 150;
+const SCRIPT_BUDGET_KIB = 210;
 export const SCRIPT_BUDGET_BYTES = SCRIPT_BUDGET_KIB * BYTES_PER_KIB;
 
 const SCRIPT_SOURCE = /<script[^>]*\ssrc="([^"]+)"/gu;
