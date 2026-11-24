@@ -8,7 +8,7 @@ import { PostImage } from "@components/PostImage.tsx";
 import { HeadingSlugUtil } from "@/Utils/HeadingSlugUtil.ts";
 
 const PROSE_CLASS = [
-  "w-full max-w-prose text-text-soft",
+  "w-full max-w-measure text-text-soft",
   "[&_p]:mb-6 [&_p]:text-prose",
   "[&_h2]:mt-14 [&_h2]:mb-5 [&_h2]:scroll-mt-24 [&_h2]:text-subheading [&_h2]:font-medium [&_h2]:tracking-title [&_h2]:text-text max-md:[&_h2]:mt-10 max-md:[&_h2]:text-title max-lg:[&_h2]:scroll-mt-32",
   "[&_h3]:mt-10 [&_h3]:mb-4 [&_h3]:text-title [&_h3]:font-medium [&_h3]:text-text max-md:[&_h3]:text-lead",

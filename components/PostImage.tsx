@@ -22,7 +22,7 @@ export const PostImage = ({ src, alt }: { src: string; alt: string }) => {
       >
         <Image src={src} alt={alt} {...RESPONSIVE} className="mb-0! h-auto w-full rounded-md" />
       </button>
-      <dialog ref={dialogRef} className="m-0 size-full max-h-none max-w-none border-0 bg-scrim p-0">
+      <dialog ref={dialogRef} className="m-0 size-full max-h-none max-w-none border-0 bg-graphite-deep p-0">
         <button
           type="button"
           aria-label="Close image"

@@ -82,7 +82,7 @@
 
   --spacing-navbar: 64px;  /* Height of the top bar. */
   --container-content: 1366px;  /* Maximum content width. */
-  --container-prose: 40rem;  /* Measure of a post's running text: 60 to 75 characters per line at the prose size on desktop. */
+  --container-measure: 40rem;  /* Measure of a post's running text: 60 to 75 characters per line at the prose size on desktop. */
   --container-figure: 50rem;  /* Width of a post figure on desktop: wider than the text column, into the free space beside it. */
 
   --duration-instant: 0.01ms;  /* The duration the reduced-motion reset gives every animation, so it ends at once and keeps its final state. */

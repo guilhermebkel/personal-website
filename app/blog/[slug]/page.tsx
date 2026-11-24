@@ -86,7 +86,7 @@ const PostPage = async ({ params }: PostPageProps) => {
       </Reveal>
       <Reveal threshold={0} className="mt-16 flex items-start gap-24">
         <PostToc headings={HeadingSlugUtil.listH2(post.body)} />
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <PostSectionBar headings={HeadingSlugUtil.listH2(post.body)} />
           <PostContent markdown={post.body} />
         </div>

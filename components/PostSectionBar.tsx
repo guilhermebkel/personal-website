@@ -59,7 +59,7 @@ export const PostSectionBar = ({ headings }: { headings: Heading[] }) => {
         onClick={() => {
           setIsOpen(!isOpen);
         }}
-        className="flex w-full items-center gap-3 border-0 border-b-2 border-sunken bg-graphite py-3 text-left"
+        className="flex w-full items-center gap-3 border-0 border-b-2 border-sunken bg-graphite py-3 text-left font-sans"
       >
         <span className="font-mono text-caption text-text-meta">{HeadingSlugUtil.buildNumber(activeIndex)}</span>
         <span className="min-w-0 flex-1 truncate text-small text-text">{active.text}</span>
