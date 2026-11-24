@@ -8,8 +8,8 @@ type QuoteCarouselSlideProps = {
 };
 
 export const QuoteCarouselSlide = ({ quote, isActive, isBefore }: QuoteCarouselSlideProps) => {
-  // Why: a quote waits 18px below, rises into place, and leaves 14px upward, as in the prototype (Quotes).
-  const position = isBefore ? "-translate-y-3.5" : "translate-y-4.5";
+  // Why: the quote that comes in rises from 18px below; the one that leaves only fades, so the two never move in opposite directions while they swap.
+  const position = isBefore ? "" : "translate-y-4.5";
   return (
     <div
       aria-hidden={!isActive}

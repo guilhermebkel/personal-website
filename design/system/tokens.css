@@ -93,7 +93,7 @@
   --duration-write: 1000ms;  /* The hero name and the signature being written. */
   --duration-shake: 700ms;  /* The logo shake on hover. */
   --duration-draw: 1600ms;  /* A trace line being drawn. */
-  --duration-progress: 4000ms;  /* The quote autoplay bar: one quote, then the next. */
+  --duration-progress: 8000ms;  /* The quote autoplay bar: one quote, then the next. 8 s, so a quote can be read before it changes. */
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);  /* The one easing of the prototype: entrances, hovers and the drawn lines. */
   --ease-inout: cubic-bezier(0.45, 0, 0.2, 1);  /* The second easing of the prototype, used by the quote board. */
