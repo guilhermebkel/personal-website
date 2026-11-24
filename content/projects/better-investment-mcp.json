@@ -1,0 +1,10 @@
+{
+  "name": "better-investment-mcp",
+  "description": "An MCP server that gives AI agents Brazilian market data (prices, dividends, fundamentals, filings, FII reports) through one read-only SQL tool.",
+  "url": "https://better-investment-mcp.guilherr.me/",
+  "kind": "mcp",
+  "tags": [],
+  "cover": "/projects/better-investment-mcp.png",
+  "order": 4,
+  "updatedAt": "2026-11-24T00:00:00.000Z"
+}

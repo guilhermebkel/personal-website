@@ -1,0 +1,10 @@
+{
+  "name": "better-caprover-mcp",
+  "description": "An unofficial MCP server that lets an AI agent deploy, configure and read logs on CapRover, read-only by default.",
+  "url": "https://better-caprover-mcp.guilherr.me/",
+  "kind": "mcp",
+  "tags": [],
+  "cover": "/projects/better-caprover-mcp.png",
+  "order": 6,
+  "updatedAt": "2026-11-24T00:00:00.000Z"
+}
