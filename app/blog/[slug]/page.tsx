@@ -42,8 +42,15 @@ export const generateMetadata = async ({ params }: PostPageProps): Promise<Metad
       url: SiteUtil.buildUrl(path),
       type: "article",
       publishedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
+      images: [SiteUtil.buildPostImageUrl(slug)],
     },
-    twitter: { card: "summary_large_image", title: post.title, description: post.summary },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.summary,
+      images: [SiteUtil.buildPostImageUrl(slug)],
+    },
   };
 };
 
@@ -71,6 +78,7 @@ const PostPage = async ({ params }: PostPageProps) => {
       <div className="mt-9">
         <PostInfo
           date={post.date}
+          updated={post.updated}
           readingMinutes={post.readingMinutes}
           title={post.title}
           tags={post.tags}

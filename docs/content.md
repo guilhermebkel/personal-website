@@ -10,6 +10,7 @@ Posts and projects are files in the repository; the build reads them and writes 
 ---
 title: My first post
 date: 2026-11-23
+updated: 2026-11-24 # optional; set it when the content changed after publishing, not for a typo
 summary: One sentence the list and the metadata show.
 tags: [meta]
 cover: /covers/my-first-post.svg # optional; a file under public/
@@ -17,6 +18,8 @@ cover: /covers/my-first-post.svg # optional; a file under public/
 
 Body in Markdown. Start sections at `##`; the page title is the `h1`.
 ```
+
+`updated` is optional. When it is set, the page shows `Updated <date>` after the published date, and the structured data, the feed and the sitemap use it as the last change; `updated` earlier than `date` fails the build.
 
 `PostFrontMatterSchema` (`src/Schemas/PostSchema.ts`) checks the front-matter. A post that fails it fails the build. The reading time is computed from the body. A `cover` that names a file missing under `public/` fails the build. To draw one, run `node scripts/render-cover.mjs "<title>" <topic> public/covers/<slug>.svg`.
 

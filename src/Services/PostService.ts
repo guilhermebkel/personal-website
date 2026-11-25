@@ -26,7 +26,13 @@ export class PostService {
     const source = await readFile(join(this.postsDirectory, `${slug}${POST_EXTENSION}`), "utf8");
     const parsed = matter(source);
     // Why: a post with a bad front-matter must fail the build, not render half-empty.
-    const frontMatter = PostFrontMatterSchema.parse(parsed.data);
+    const parsedFrontMatter = PostFrontMatterSchema.safeParse(parsed.data);
+    // Why: the build error names the post, because a schema message alone does not say which of the posts it is.
+    if (!parsedFrontMatter.success) {
+      const reasons = parsedFrontMatter.error.issues.map((issue) => `${issue.path.join(".")}: ${issue.message}`);
+      throw new Error(`post "${slug}": ${reasons.join("; ")}`);
+    }
+    const frontMatter = parsedFrontMatter.data;
     // Why: the cover is a path under public/, checked here so a missing image fails the build instead of showing a broken picture.
     if (frontMatter.cover !== undefined) {
       await access(join(this.publicDirectory, frontMatter.cover)).catch(() => {

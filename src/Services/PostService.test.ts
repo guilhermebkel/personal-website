@@ -4,8 +4,13 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { PostService } from "@/Services/PostService.ts";
 
+const SUMMARY = "A summary.";
+const UPDATED = "2026-11-24";
+const OLD_DATE = "2026-01-01";
+const PUBLISHED = "2021-03-21";
+
 const buildPost = (title: string, date: string) => {
-  return `---\ntitle: ${title}\ndate: ${date}\nsummary: A summary.\ntags: [notes]\n---\nBody of ${title}.\n`;
+  return `---\ntitle: ${title}\ndate: ${date}\nsummary: ${SUMMARY}\ntags: [notes]\n---\nBody of ${title}.\n`;
 };
 
 const createDirectory = async () => {
@@ -21,7 +26,7 @@ const writeInto = async (directory: string, name: string, content: string) => {
 describe("PostService.listPosts()", () => {
   it("lists the newest post first", async () => {
     const directory = await createDirectory();
-    await writeInto(directory, "old.md", buildPost("Old", "2026-01-01"));
+    await writeInto(directory, "old.md", buildPost("Old", OLD_DATE));
     await writeInto(directory, "new.md", buildPost("New", "2026-06-01"));
 
     const posts = await new PostService(directory, directory).listPosts();
@@ -79,7 +84,7 @@ describe("PostService.readPost()", () => {
 
   it("leaves the cover empty when the post has none", async () => {
     const directory = await createDirectory();
-    await writeInto(directory, "hello.md", buildPost("Hello", "2026-01-01"));
+    await writeInto(directory, "hello.md", buildPost("Hello", OLD_DATE));
     const post = await new PostService(directory, directory).readPost("hello");
     expect(post.cover).toBeUndefined();
   });
@@ -98,5 +103,44 @@ describe("PostService.readPost()", () => {
     const directory = await createDirectory();
     await writeInto(directory, "nosummary.md", "---\ntitle: No summary\ndate: 2026-01-01\n---\nBody.\n");
     await expect(new PostService(directory, directory).readPost("nosummary")).rejects.toThrow(/summary/u);
+  });
+
+  it("reads an updated date that is later than the publication, quoted or not", async () => {
+    const directory = await createDirectory();
+    await writeInto(
+      directory,
+      "rewritten.md",
+      `---\ntitle: Rewritten\ndate: ${PUBLISHED}\nupdated: "${UPDATED}"\nsummary: A summary.\n---\nBody.\n`,
+    );
+    await writeInto(
+      directory,
+      "unquoted.md",
+      `---\ntitle: Unquoted\ndate: ${PUBLISHED}\nupdated: ${UPDATED}\nsummary: A summary.\n---\nBody.\n`,
+    );
+
+    const service = new PostService(directory, directory);
+
+    expect((await service.readPost("rewritten")).updated).toBe(UPDATED);
+    expect((await service.readPost("unquoted")).updated).toBe(UPDATED);
+  });
+
+  it("leaves updated undefined when the post has none", async () => {
+    const directory = await createDirectory();
+    await writeInto(directory, "plain.md", buildPost("Plain", OLD_DATE));
+
+    expect((await new PostService(directory, directory).readPost("plain")).updated).toBeUndefined();
+  });
+
+  it("fails the build, naming the post, when updated is earlier than date", async () => {
+    const directory = await createDirectory();
+    await writeInto(
+      directory,
+      "backwards.md",
+      `---\ntitle: Backwards\ndate: 2026-06-01\nupdated: 2026-01-01\nsummary: A summary.\n---\nBody.\n`,
+    );
+
+    await expect(new PostService(directory, directory).readPost("backwards")).rejects.toThrow(
+      /post "backwards".*updated must not be earlier than date/u,
+    );
   });
 });

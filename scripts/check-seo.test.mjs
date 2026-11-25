@@ -1,12 +1,19 @@
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { buildRoute, checkFeed, checkPage, checkSitemap, readPngSize } from "./check-seo.mjs";
+import { buildRoute, checkFeed, checkPage, checkRobots, checkSitemap, readPngSize } from "./check-seo.mjs";
 
 const POST_ROUTE = "/blog/hello/";
 const POST_URL = "https://guilherr.me/blog/hello/";
 const GOOD_TITLE = "Hello, world · Guilherme Mota";
 const GOOD_DESCRIPTION = "A description that is long enough to pass the rule of the standards, with words to spare.";
-const POST_LD = '<script type="application/ld+json">{"@type":"BlogPosting"}</script>';
+const OG_IMAGE_URL = "https://guilherr.me/blog/hello/opengraph-image?abc";
+const PERSON_ID = "https://guilherr.me/#person";
+const POST_LD = `<script type="application/ld+json">${JSON.stringify({
+  "@type": "BlogPosting",
+  image: OG_IMAGE_URL,
+  author: { "@type": "Person", "@id": PERSON_ID },
+})}</script>`;
+const buildRobots = (body) => `# comment\n${body}\nSitemap: https://guilherr.me/sitemap.xml\n`;
 const SHORT_TITLE = "Short";
 const SHORT_DESCRIPTION = "Too short.";
 const OTHER_URL = "https://guilherr.me/other/";
@@ -64,20 +71,20 @@ describe("checkPage()", () => {
   it("reports a post without BlogPosting JSON-LD", () => {
     const problems = checkPage(POST_ROUTE, buildPage());
     expect(problems).toStrictEqual([
-      "json-ld: a post needs a BlogPosting",
       "json-ld: no script of type application/ld+json",
+      "json-ld: a post needs a BlogPosting",
     ]);
   });
 
   it("reports a post without a share image", () => {
     const problems = checkPage(POST_ROUTE, buildPage({ extra: POST_LD, head: FEED_LINK }));
-    expect(problems).toStrictEqual(["og:image: 0 found, expected one"]);
+    expect(problems).toContain("og:image: 0 found, expected one");
   });
 
   it("reports a share image that is not an absolute URL on the site", () => {
     const relative = '<meta property="og:image" content="/blog/hello/opengraph-image"/>';
     const problems = checkPage(POST_ROUTE, buildPage({ extra: POST_LD, head: `${FEED_LINK}${relative}` }));
-    expect(problems).toStrictEqual(["og:image: must be an absolute https URL on the site"]);
+    expect(problems).toContain("og:image: must be an absolute https URL on the site");
   });
 
   it("reports a page that does not link the feed", () => {
@@ -151,5 +158,67 @@ describe("checkFeed()", () => {
   it("reports entries that are not newest first", () => {
     const feed = buildFeed(buildEntry(OLDER, OLDER_DATE) + buildEntry(NEWER, NEWER_DATE));
     expect(checkFeed(feed, ROUTES)).toStrictEqual(["feed: entries must be newest first"]);
+  });
+});
+
+describe("checkPage() structured data", () => {
+  it("reports a BlogPosting whose author has no @id of the home Person", () => {
+    const ld = `<script type="application/ld+json">${JSON.stringify({
+      "@type": "BlogPosting",
+      image: OG_IMAGE_URL,
+      author: { "@type": "Person", name: "Someone" },
+    })}</script>`;
+    const problems = checkPage(POST_ROUTE, buildPage({ extra: ld }));
+    expect(problems).toStrictEqual([`json-ld: the BlogPosting author needs @id ${PERSON_ID}`]);
+  });
+
+  it("reports a BlogPosting whose image is not the page's og:image", () => {
+    const ld = `<script type="application/ld+json">${JSON.stringify({
+      "@type": "BlogPosting",
+      image: "https://guilherr.me/other.png",
+      author: { "@id": PERSON_ID },
+    })}</script>`;
+    const problems = checkPage(POST_ROUTE, buildPage({ extra: ld }));
+    expect(problems).toStrictEqual(["json-ld: the BlogPosting image must be the og:image of the page"]);
+  });
+
+  it("reports a script that is not valid JSON", () => {
+    const ld = '<script type="application/ld+json">{not json}</script>';
+    const problems = checkPage(POST_ROUTE, buildPage({ extra: `${ld}${POST_LD}` }));
+    expect(problems).toStrictEqual(["json-ld: a script is not valid JSON"]);
+  });
+
+  it("reports the home when its Person has no @id", () => {
+    const ld = '<script type="application/ld+json">{"@type":"Person","name":"Guilherme Mota"}</script>';
+    const problems = checkPage("/", buildPage({ extra: ld }));
+    expect(problems).toStrictEqual([`json-ld: the home Person needs @id ${PERSON_ID}`]);
+  });
+});
+
+describe("checkRobots()", () => {
+  it("passes a file that allows every crawler and names the sitemap", () => {
+    const robots = buildRobots("User-agent: *\nAllow: /\n\nUser-agent: GPTBot\nAllow: /");
+    expect(checkRobots(robots)).toStrictEqual([]);
+  });
+
+  it("passes an empty Disallow, which allows everything", () => {
+    const robots = buildRobots("User-agent: *\nDisallow:");
+    expect(checkRobots(robots)).toStrictEqual([]);
+  });
+
+  it("reports a Disallow for every crawler", () => {
+    const robots = buildRobots("User-agent: *\nDisallow: /");
+    expect(checkRobots(robots)).toStrictEqual(["robots: * is disallowed from /"]);
+  });
+
+  it("reports a Disallow for one of the listed agents, and ignores agents not listed", () => {
+    const robots = buildRobots("User-agent: GPTBot\nDisallow: /\n\nUser-agent: Bytespider\nDisallow: /");
+    expect(checkRobots(robots)).toStrictEqual(["robots: gptbot is disallowed from /"]);
+  });
+
+  it("reports a file without the sitemap line", () => {
+    expect(checkRobots("User-agent: *\nAllow: /\n")).toStrictEqual([
+      "robots: the sitemap line https://guilherr.me/sitemap.xml is missing",
+    ]);
   });
 });

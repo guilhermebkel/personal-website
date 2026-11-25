@@ -2,10 +2,14 @@ import { describe, expect, it } from "vitest";
 import type { Post } from "@/Protocols/PostProtocol.ts";
 import { AtomFeedUtil } from "@/Utils/AtomFeedUtil.ts";
 
+const PUBLISHED = "2026-11-23";
+const NEWER = "2026-11-24";
+const TITLE = "Hello, world";
+
 const buildPost = (overrides: Partial<Post> = {}): Post => ({
   slug: "hello",
-  title: "Hello, world",
-  date: "2026-11-23",
+  title: TITLE,
+  date: PUBLISHED,
   summary: "A short summary.",
   tags: [],
   readingMinutes: 1,
@@ -16,7 +20,7 @@ const buildPost = (overrides: Partial<Post> = {}): Post => ({
 describe("AtomFeedUtil.buildFeed()", () => {
   it("writes an Atom feed with one entry per post, in the order given", () => {
     const feed = AtomFeedUtil.buildFeed([
-      buildPost({ slug: "new", date: "2026-11-24" }),
+      buildPost({ slug: "new", date: NEWER }),
       buildPost({ slug: "old", date: "2026-11-01" }),
     ]);
     expect(feed.startsWith('<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom">')).toBe(
@@ -35,8 +39,8 @@ describe("AtomFeedUtil.buildFeed()", () => {
   });
 
   it("uses the newest post for the feed's updated time", () => {
-    const feed = AtomFeedUtil.buildFeed([buildPost({ date: "2026-11-24" })]);
-    expect(feed).toContain("<updated>2026-11-24T00:00:00Z</updated>");
+    const feed = AtomFeedUtil.buildFeed([buildPost({ date: NEWER })]);
+    expect(feed).toContain(`<updated>${NEWER}T00:00:00Z</updated>`);
   });
 
   it("escapes &, <, > and quotes in the text so the XML stays valid", () => {
@@ -50,5 +54,22 @@ describe("AtomFeedUtil.buildFeed()", () => {
     expect(feed).not.toContain("<entry>");
     expect(feed).toContain("<updated>1970-01-01T00:00:00Z</updated>");
     expect(feed.endsWith("</feed>")).toBe(true);
+  });
+
+  it("gives an entry the update as its updated time and keeps the publication date as published", () => {
+    const feed = AtomFeedUtil.buildFeed([buildPost({ date: "2021-03-21", updated: NEWER })]);
+
+    expect(feed).toContain("<published>2021-03-21T00:00:00Z</published>");
+    expect(feed).toContain(`<updated>${NEWER}T00:00:00Z</updated>`);
+  });
+
+  it("uses the most recent update of any post for the feed's updated time", () => {
+    const feed = AtomFeedUtil.buildFeed([
+      buildPost({ slug: "new", date: PUBLISHED }),
+      buildPost({ slug: "rewritten", date: "2021-03-21", updated: "2026-11-25" }),
+    ]);
+
+    const header = feed.split("<entry>")[0];
+    expect(header).toContain("<updated>2026-11-25T00:00:00Z</updated>");
   });
 });

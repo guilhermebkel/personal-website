@@ -27,7 +27,6 @@ const OG_URL_PATTERN = /<meta property="og:url" content="([^"]*)"/gu;
 const H1_PATTERN = /<h1[\s>]/gu;
 const LANG_PATTERN = /<html[^>]*\blang="[^"]+"/u;
 const NOINDEX_PATTERN = /<meta name="robots" content="[^"]*noindex/u;
-const JSON_LD_PATTERN = /<script type="application\/ld\+json">/gu;
 const LOC_PATTERN = /<loc>([^<]*)<\/loc>/gu;
 const OG_IMAGE_PATTERN = /<meta property="og:image" content="([^"]*)"/gu;
 const FEED_LINK_PATTERN = /<link rel="alternate" type="application\/atom\+xml" href="([^"]*)"/gu;
@@ -45,6 +44,30 @@ const PNG_SIGNATURE_BYTES = 8;
 const PNG_WIDTH_OFFSET = 16;
 const PNG_HEIGHT_OFFSET = 20;
 const QUERY_SEPARATOR = "?";
+const ROBOTS_FILE = "robots.txt";
+const JSON_LD_BLOCK_PATTERN = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/gu;
+const COMMENT_MARK = "#";
+// Why: the owner's Person has this @id, and every post's author refers to it (src/Utils/JsonLdUtil.ts); a post without it is two anonymous people to a crawler.
+const PERSON_ID = `${SITE}/#person`;
+const SITEMAP_URL = `${SITE}/sitemap.xml`;
+// Why: search and AI training crawlers are allowed on purpose (decided 2026-11-25, #78); the agents here are the ones docs/seo-standards.md ("AI search") lists. A Disallow for any of them, or for every crawler (*), fails the build.
+const ROBOTS_AGENTS = [
+  "*",
+  "googlebot",
+  "bingbot",
+  "oai-searchbot",
+  "chatgpt-user",
+  "gptbot",
+  "claude-searchbot",
+  "claude-user",
+  "claudebot",
+  "perplexitybot",
+  "perplexity-user",
+  "google-extended",
+  "applebot",
+  "applebot-extended",
+  "ccbot",
+];
 
 const listHtml = (directory) =>
   readdirSync(directory).flatMap((name) => {
@@ -127,20 +150,103 @@ const checkCanonical = (html) => {
   return [];
 };
 
+const parseJsonLd = (block) => {
+  try {
+    return JSON.parse(block);
+  } catch {
+    return undefined;
+  }
+};
+
+const checkBlogPosting = (objects, html) => {
+  const posting = objects.find((object) => object["@type"] === "BlogPosting");
+  if (posting === undefined) {
+    return ["json-ld: a post needs a BlogPosting"];
+  }
+  const [ogImage] = matchAll(OG_IMAGE_PATTERN, html);
+  const problems = [];
+  if (typeof posting.image !== "string" || posting.image !== ogImage) {
+    problems.push("json-ld: the BlogPosting image must be the og:image of the page");
+  }
+  if (posting.author?.["@id"] !== PERSON_ID) {
+    problems.push(`json-ld: the BlogPosting author needs @id ${PERSON_ID}`);
+  }
+  return problems;
+};
+
+const checkHomePerson = (person) => {
+  // Why: the home's Person is the entity every post's author points to, so it must carry the shared @id.
+  if (person === undefined) {
+    return ["json-ld: the home needs a Person"];
+  }
+  if (person["@id"] !== PERSON_ID) {
+    return [`json-ld: the home Person needs @id ${PERSON_ID}`];
+  }
+  return [];
+};
+
 const checkJsonLd = (route, html) => {
   const isPost = isPostRoute(route);
   const problems = [];
-  if (route === HOME && !html.includes('"@type":"Person"')) {
-    problems.push("json-ld: the home needs a Person");
-  }
-  if (isPost && !html.includes('"@type":"BlogPosting"')) {
-    problems.push("json-ld: a post needs a BlogPosting");
-  }
-  const scripts = matchAll(JSON_LD_PATTERN, html);
-  if (scripts.length === 0 && (route === HOME || isPost)) {
+  const blocks = matchAll(JSON_LD_BLOCK_PATTERN, html);
+  if (blocks.length === 0 && (route === HOME || isPost)) {
     problems.push("json-ld: no script of type application/ld+json");
   }
+  const values = blocks.map(parseJsonLd);
+  if (values.some((value) => value === undefined)) {
+    problems.push("json-ld: a script is not valid JSON");
+  }
+  const objects = values.filter((value) => value !== undefined);
+  if (route === HOME) {
+    const person = objects.find((object) => object["@type"] === "Person");
+    problems.push(...checkHomePerson(person));
+  }
+  if (isPost) {
+    problems.push(...checkBlogPosting(objects, html));
+  }
   return problems;
+};
+
+const KIND_OF_FIELD = { "user-agent": "agent", disallow: "disallow", sitemap: "sitemap" };
+const ROBOTS_START = { agents: [], readingRules: false, hasSitemap: false, problems: [] };
+
+const parseRobotsLine = (rawLine) => {
+  // Why: a robots.txt line is "field: value", with a comment after "#"; a line without a colon says nothing.
+  const line = rawLine.split(COMMENT_MARK)[0].trim();
+  const separator = line.indexOf(":");
+  if (separator === -1) {
+    return [];
+  }
+  const field = line.slice(0, separator).trim().toLowerCase();
+  return [{ kind: KIND_OF_FIELD[field] ?? "other", value: line.slice(separator + 1).trim() }];
+};
+
+const buildDisallowProblems = (agents, path) =>
+  agents.filter((agent) => ROBOTS_AGENTS.includes(agent)).map((agent) => `robots: ${agent} is disallowed from ${path}`);
+
+// Why: a group is its User-agent lines and the rules after them; a User-agent line after a rule starts the next group.
+const ROBOTS_STEP = {
+  agent: (state, value) => ({
+    ...state,
+    agents: state.readingRules ? [value.toLowerCase()] : [...state.agents, value.toLowerCase()],
+    readingRules: false,
+  }),
+  disallow: (state, value) => ({
+    ...state,
+    readingRules: true,
+    problems: value === "" ? state.problems : [...state.problems, ...buildDisallowProblems(state.agents, value)],
+  }),
+  sitemap: (state, value) => ({ ...state, readingRules: true, hasSitemap: state.hasSitemap || value === SITEMAP_URL }),
+  other: (state) => ({ ...state, readingRules: true }),
+};
+
+export const checkRobots = (robotsTxt) => {
+  const lines = robotsTxt.split("\n").flatMap(parseRobotsLine);
+  const state = lines.reduce((current, { kind, value }) => ROBOTS_STEP[kind](current, value), ROBOTS_START);
+  if (state.hasSitemap) {
+    return state.problems;
+  }
+  return [...state.problems, `robots: the sitemap line ${SITEMAP_URL} is missing`];
 };
 
 const checkShareImage = (route, html) => {
@@ -253,12 +359,14 @@ export const checkSite = () => {
     const problems = [...checkPage(routes[index], html), ...checkShareImageFile(routes[index], html)];
     return problems.map((problem) => `${routes[index]}: ${problem}`);
   });
+  const robotsText = readFileSync(join(OUT, ROBOTS_FILE), "utf8");
+  const robotsProblems = checkRobots(robotsText);
   const sitemapXml = readFileSync(join(OUT, SITEMAP_FILE), "utf8");
   const postRoutes = routes.filter(isPostRoute);
   const feedPath = join(OUT, FEED_FILE);
   const feedXml = readFileSync(feedPath, "utf8");
   const feedProblems = checkFeed(feedXml, postRoutes).map((problem) => `${FEED_FILE}: ${problem}`);
-  return [...pageProblems, ...checkSitemap(sitemapXml, routes), ...feedProblems];
+  return [...pageProblems, ...robotsProblems, ...checkSitemap(sitemapXml, routes), ...feedProblems];
 };
 
 const isMain = () =>

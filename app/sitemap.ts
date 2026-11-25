@@ -8,7 +8,7 @@ const readSitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const posts = await ContentFactory.createPostService().listPosts();
   const postEntries = posts.map((post) => ({
     url: SiteUtil.buildUrl(`/blog/${post.slug}/`),
-    lastModified: post.date,
+    lastModified: post.updated ?? post.date,
   }));
   return [{ url: SiteUtil.buildUrl("/") }, { url: SiteUtil.buildUrl("/blog/") }, ...postEntries];
 };
