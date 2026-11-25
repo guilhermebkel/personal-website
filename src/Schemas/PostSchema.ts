@@ -8,10 +8,17 @@ const PostDateSchema = z.union([
   z.iso.date(),
 ]);
 
-export const PostFrontMatterSchema = z.object({
-  title: z.string().min(1),
-  date: PostDateSchema,
-  summary: z.string().min(1),
-  tags: z.array(z.string().min(1)).default([]),
-  cover: z.string().startsWith("/").optional(),
-});
+export const PostFrontMatterSchema = z
+  .object({
+    title: z.string().min(1),
+    date: PostDateSchema,
+    // Why: `updated` is set when the content changed after publishing, so readers, search engines and the feed see the change; a typo fix does not need it.
+    updated: PostDateSchema.optional(),
+    summary: z.string().min(1),
+    tags: z.array(z.string().min(1)).default([]),
+    cover: z.string().startsWith("/").optional(),
+  })
+  .refine((post) => post.updated === undefined || post.updated >= post.date, {
+    message: "updated must not be earlier than date",
+    path: ["updated"],
+  });

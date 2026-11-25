@@ -26,8 +26,11 @@ export class AtomFeedUtil {
   static buildFeed(posts: Post[]): string {
     // Why: the posts arrive newest first from PostService, so the feed keeps that order and its first entry is the latest post.
     // Why: Atom needs an updated time on the feed; an empty blog still has a valid one, fixed so the file does not change between builds.
-    const newest = posts[0];
-    const updated = newest === undefined ? EMPTY_UPDATED : buildRfc3339(newest.date);
+    // Why: the feed's own updated time is the most recent change of any post, so a rewrite of an older post moves it too.
+    const latest = posts
+      .map((post) => post.updated ?? post.date)
+      .reduce<string | undefined>((newest, date) => (newest === undefined || date > newest ? date : newest), undefined);
+    const updated = latest === undefined ? EMPTY_UPDATED : buildRfc3339(latest);
     const entries = posts.map((post) => AtomFeedUtil.buildEntry(post)).join("");
     return [
       '<?xml version="1.0" encoding="utf-8"?>',
@@ -47,13 +50,14 @@ export class AtomFeedUtil {
   static buildEntry(post: Post): string {
     const url = SiteUtil.buildUrl(`/blog/${post.slug}/`);
     const published = buildRfc3339(post.date);
+    const updated = buildRfc3339(post.updated ?? post.date);
     return [
       "<entry>",
       `<title>${escapeXml(post.title)}</title>`,
       `<link rel="alternate" href="${url}"/>`,
       `<id>${url}</id>`,
       `<published>${published}</published>`,
-      `<updated>${published}</updated>`,
+      `<updated>${updated}</updated>`,
       `<summary>${escapeXml(post.summary)}</summary>`,
       `<author><name>${escapeXml(SiteUtil.NAME)}</name></author>`,
       "</entry>",

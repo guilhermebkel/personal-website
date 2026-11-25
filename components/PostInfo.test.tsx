@@ -37,4 +37,18 @@ describe("PostInfo", () => {
     expect(markup).not.toContain("truncate");
     expect(markup).not.toContain("line-clamp");
   });
+
+  it("shows the updated date after the published one when the post has one", () => {
+    const markup = renderToStaticMarkup(
+      <PostInfo date="2021-03-21" updated="2026-11-24" readingMinutes={10} title="Title" headingLevel="h1" isLarge />,
+    );
+
+    expect(markup).toContain("21 Mar 2021 · Updated 24 Nov 2026 · 10 min read");
+  });
+
+  it("shows only the published date when the post has no update", () => {
+    const markup = renderToStaticMarkup(<PostInfo date="2021-03-21" readingMinutes={10} title="Title" />);
+
+    expect(markup).not.toContain("Updated");
+  });
 });
