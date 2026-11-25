@@ -120,21 +120,43 @@ const renderDiagram = async ({
   }
 };
 
-const renderAll = async () => {
-  await rm(join(PUBLIC_DIRECTORY, "diagrams"), { recursive: true, force: true });
-  const posts = [];
+const DIAGRAMS_DIRECTORY = join(PUBLIC_DIRECTORY, "diagrams");
+const CHECK_FLAG = "--check";
+
+export const planDiagrams = (diagrams, existingFiles) => {
+  // Why: the SVGs are committed, so a build draws only the diagrams whose file is missing and removes the ones no post uses any more.
+  const pathToDiagram = new Map();
+  for (const entry of diagrams) {
+    pathToDiagram.set(MermaidUtil.buildPublicPath(entry.slug, entry.diagram.source), entry);
+  }
+  const missing = [...pathToDiagram].filter(([path]) => !existingFiles.has(path)).map(([, entry]) => entry);
+  const stale = [...existingFiles].filter((path) => !pathToDiagram.has(path));
+  return { missing, stale };
+};
+
+const listExistingFiles = async () => {
+  if (!existsSync(DIAGRAMS_DIRECTORY)) {
+    return new Set();
+  }
+  const files = await readdir(DIAGRAMS_DIRECTORY, { recursive: true });
+  const svgFiles = files.filter((file) => file.endsWith(".svg"));
+  return new Set(svgFiles.map((file) => `/diagrams/${file.split("\\").join("/")}`));
+};
+
+const listDiagrams = async () => {
+  const diagrams = [];
   for (const file of await listPostFiles()) {
     const slug = file.slice(0, -POST_EXTENSION.length);
     const markdown = await readFile(join(POSTS_DIRECTORY, file), "utf8");
     for (const diagram of MermaidUtil.listDiagrams(markdown)) {
-      posts.push({ slug, diagram });
+      diagrams.push({ slug, diagram });
     }
   }
-  if (posts.length === 0) {
-    process.stdout.write("render-diagrams: no Mermaid block in the posts.\n");
-    return;
-  }
-  // Why: the browser that draws the diagrams is the one the end-to-end tests use; it is installed only when a post needs it.
+  return diagrams;
+};
+
+const renderMissing = async (missing) => {
+  // Why: the browser that draws the diagrams is the one the end-to-end tests use; it is installed only when a diagram must be drawn, so a host without it (Vercel) builds from the committed files.
   if (!existsSync(chromium.executablePath())) {
     spawnSync("pnpm", ["ensure-playwright"], { stdio: "inherit" });
   }
@@ -146,7 +168,7 @@ const renderAll = async () => {
   const systemTemp = tmpdir();
   const workDirectory = await mkdtemp(join(systemTemp, "diagrams-"));
   try {
-    for (const [index, { slug, diagram }] of posts.entries()) {
+    for (const [index, { slug, diagram }] of missing.entries()) {
       await renderDiagram({
         run,
         puppeteerConfig,
@@ -162,13 +184,36 @@ const renderAll = async () => {
   } finally {
     await rm(workDirectory, { recursive: true, force: true });
   }
-  process.stdout.write(`render-diagrams: ${posts.length} diagram(s) rendered.\n`);
+};
+
+const renderAll = async ({ isCheck }) => {
+  const diagrams = await listDiagrams();
+  const existingFiles = await listExistingFiles();
+  const { missing, stale } = planDiagrams(diagrams, existingFiles);
+  if (isCheck) {
+    if (missing.length > 0 || stale.length > 0) {
+      throw new Error(
+        `render-diagrams: ${missing.length} diagram(s) not drawn and ${stale.length} unused file(s) in public/diagrams; run pnpm diagrams and commit public/diagrams`,
+      );
+    }
+    process.stdout.write(`render-diagrams: ${diagrams.length} diagram(s), every file committed.\n`);
+    return;
+  }
+  for (const path of stale) {
+    await rm(join(PUBLIC_DIRECTORY, path), { force: true });
+  }
+  if (missing.length > 0) {
+    await renderMissing(missing);
+  }
+  process.stdout.write(
+    `render-diagrams: ${missing.length} drawn, ${diagrams.length - missing.length} already committed, ${stale.length} removed.\n`,
+  );
 };
 
 const isMain = () => process.argv[1] !== undefined && import.meta.url === pathToFileURL(process.argv[1]).href;
 
 if (isMain()) {
-  renderAll().catch((error) => {
+  renderAll({ isCheck: process.argv.includes(CHECK_FLAG) }).catch((error) => {
     process.stderr.write(`${error.message}\n`);
     process.exit(1);
   });
