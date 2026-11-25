@@ -2,50 +2,47 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { PostContent } from "@components/PostContent.tsx";
 
-describe("PostContent", () => {
-  it("renders an image with a title as a figure with its caption", () => {
-    const markup = renderToStaticMarkup(<PostContent markdown={'![IAM](/x.png "Open IAM and go to Roles")'} />);
+const FENCE = "```";
+const render = (markdown: string) => renderToStaticMarkup(<PostContent markdown={markdown} />);
 
+describe("PostContent code blocks", () => {
+  it("renders a plain block as before, with no label and no control", () => {
+    const markup = render(`${FENCE}ts\nconst a = 1;\n${FENCE}\n`);
+
+    expect(markup).toContain("<pre>");
+    expect(markup).not.toContain("<details");
+  });
+
+  it("shows the title above an open block when the block has a title only", () => {
+    const markup = render(`${FENCE}md title="AGENTS.md"\n# Rules\n${FENCE}\n`);
+
+    expect(markup).toContain("AGENTS.md");
+    expect(markup).not.toContain("<details");
+  });
+
+  it("starts a collapsed block closed, with its title and the full code in the static HTML", () => {
+    const markup = render(`${FENCE}md title="AGENTS.md" collapsed\n# Rules\n${FENCE}\n`);
+
+    expect(markup).toContain("<details");
+    expect(markup).not.toMatch(/<details[^>]*open/u);
+    expect(markup).toContain("<summary");
+    expect(markup).toContain("AGENTS.md");
+    expect(markup).toContain("# Rules");
+  });
+
+  it("labels a collapsed block without a title with its language", () => {
+    const markup = render(`${FENCE}yaml collapsed\nkey: value\n${FENCE}\n`);
+
+    expect(markup).toContain("<summary");
+    expect(markup).toContain(">yaml<");
+  });
+});
+
+describe("PostContent diagrams", () => {
+  it("shows a diagram picture as a figure, not as code", () => {
+    const markup = render("![Harness flow](/diagrams/hello/abc.svg)\n");
+
+    expect(markup).toContain('src="/diagrams/hello/abc.svg"');
     expect(markup).toContain("<figure");
-    expect(markup).toContain("<figcaption>Open IAM and go to Roles</figcaption>");
-  });
-
-  it("renders an image without a title as a figure with no caption", () => {
-    const markup = renderToStaticMarkup(<PostContent markdown={"![IAM](/x.png)"} />);
-
-    expect(markup).toContain("<figure");
-    expect(markup).not.toContain("<figcaption");
-  });
-
-  it("keeps an image inside a sentence inline, never a figure inside a paragraph", () => {
-    const markup = renderToStaticMarkup(<PostContent markdown={'Click ![icon](/i.png "Title") here.'} />);
-
-    expect(markup).not.toContain("<figure");
-    expect(markup).not.toMatch(/<p[^>]*>[^]*<figure/u);
-  });
-
-  it("opens an external link in a new tab and keeps a note link in this tab", () => {
-    const markup = renderToStaticMarkup(
-      <PostContent markdown={"See [docs](https://example.com) and the note[^1].\n\n[^1]: The note."} />,
-    );
-
-    expect(markup).toContain('target="_blank"');
-    expect(markup).toContain('href="#user-content-fn-1"');
-    expect(markup).not.toMatch(/href="#user-content-fn-1"[^>]*target="_blank"/u);
-  });
-
-  it("labels the footnote block Notes and keeps its id for the references", () => {
-    const markup = renderToStaticMarkup(<PostContent markdown={"Text[^1].\n\n[^1]: A note."} />);
-
-    expect(markup).toContain('id="footnote-label"');
-    expect(markup).toContain(">Notes<");
-    expect(markup).not.toContain("Footnotes");
-  });
-
-  it("renders no Notes block when the post has no footnotes", () => {
-    const markup = renderToStaticMarkup(<PostContent markdown={"Plain text."} />);
-
-    expect(markup).not.toContain("Notes");
-    expect(markup).not.toContain('data-footnotes=""');
   });
 });

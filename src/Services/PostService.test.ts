@@ -143,4 +143,14 @@ describe("PostService.readPost()", () => {
       /post "backwards".*updated must not be earlier than date/u,
     );
   });
+  it("replaces a mermaid block with the picture the build renders for it", async () => {
+    const directory = await createDirectory();
+    const body = "Intro.\n\n```mermaid\nflowchart LR\n  A --> B\n```\n";
+    await writeInto(directory, "flow.md", `---\ntitle: Flow\ndate: ${PUBLISHED}\nsummary: ${SUMMARY}\n---\n${body}`);
+
+    const post = await new PostService(directory, directory).readPost("flow");
+
+    expect(post.body).not.toContain("```mermaid");
+    expect(post.body).toMatch(/!\[Diagram\]\(\/diagrams\/flow\/[0-9a-f]{16}\.svg\)/u);
+  });
 });
