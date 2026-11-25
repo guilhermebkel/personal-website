@@ -6,10 +6,11 @@ const FENCE = "```";
 const render = (markdown: string) => renderToStaticMarkup(<PostContent markdown={markdown} />);
 
 describe("PostContent code blocks", () => {
-  it("renders a plain block as before, with no label and no control", () => {
+  it("shows the language of a plain block in a header, with no control", () => {
     const markup = render(`${FENCE}ts\nconst a = 1;\n${FENCE}\n`);
 
-    expect(markup).toContain("<pre>");
+    expect(markup).toContain(">ts<");
+    expect(markup).toContain("<pre");
     expect(markup).not.toContain("<details");
   });
 
