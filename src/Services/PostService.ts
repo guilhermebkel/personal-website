@@ -43,7 +43,7 @@ export class PostService {
     return {
       slug,
       ...frontMatter,
-      readingMinutes: ReadingTimeUtil.countMinutes(parsed.content),
+      readingMinutes: ReadingTimeUtil.countPostMinutes(parsed.content),
       body: MermaidUtil.replaceDiagrams(slug, parsed.content),
     };
   }

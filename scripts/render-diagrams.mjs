@@ -21,6 +21,15 @@ const FONT_FILES = [
 ];
 const FONT_DIRECTORY = join(process.cwd(), "node_modules", "@fontsource", "ubuntu", "files");
 const FONT_FAMILY = "Ubuntu";
+const MEASURE_FONT_CSS_FILES = ["latin-400.css", "latin-500.css"];
+
+export const buildMeasureFontCss = () => {
+  // Why: Mermaid sizes each box from the text width in its own page, so that page must load Ubuntu too; measured with a fallback font, the boxes come out narrower than the embedded Ubuntu and the last letters are cut.
+  return MEASURE_FONT_CSS_FILES.map((file) => {
+    const cssPath = join(process.cwd(), "node_modules", "@fontsource", "ubuntu", file);
+    return { cssUrl: pathToFileURL(cssPath), allowParentDirectoryLevel: 0 };
+  });
+};
 
 export const buildFontCss = () => {
   // Why: an SVG shown as a picture cannot load the page's fonts, so the site's Ubuntu (latin, regular and medium) is embedded in the file.
@@ -101,7 +110,7 @@ const renderDiagram = async ({
     await run(source, output, {
       puppeteerConfig,
       quiet: true,
-      parseMMDOptions: { mermaidConfig, backgroundColor },
+      parseMMDOptions: { mermaidConfig, backgroundColor, customFontCSS: buildMeasureFontCss(), fontEmbed: false },
     });
     const svg = await readFile(output, "utf8");
     await writeFile(output, injectFontCss(svg, fontCss));

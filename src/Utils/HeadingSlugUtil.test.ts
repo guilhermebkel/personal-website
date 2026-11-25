@@ -17,6 +17,21 @@ describe("HeadingSlugUtil.listH2()", () => {
       { id: "two", text: "Two" },
     ]);
   });
+
+  it("ignores h2 lines inside code blocks, so a shown file does not add sections", () => {
+    const markdown = '## Pieces\n\n```md title="AGENTS.md" collapsed\n## Layout\n## References\n```\n\n## References';
+
+    expect(HeadingSlugUtil.listH2(markdown)).toStrictEqual([
+      { id: "pieces", text: "Pieces" },
+      { id: "references", text: "References" },
+    ]);
+  });
+
+  it("ignores a longer fence that holds a shorter one inside", () => {
+    const markdown = "````md\n```js\n```\n## Still code\n````\n## After";
+
+    expect(HeadingSlugUtil.listH2(markdown)).toStrictEqual([{ id: "after", text: "After" }]);
+  });
 });
 
 describe("HeadingSlugUtil.buildNumber()", () => {

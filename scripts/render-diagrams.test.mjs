@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { buildMermaidConfig, injectFontCss } from "./render-diagrams.mjs";
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { buildMeasureFontCss, buildMermaidConfig, injectFontCss } from "./render-diagrams.mjs";
 
 const TOKENS = {
   color: {
@@ -49,5 +51,17 @@ describe("injectFontCss()", () => {
 
   it("fails when there is no svg to receive the font", () => {
     expect(() => injectFontCss("<html></html>", "@font-face{}")).toThrow("no <svg> element");
+  });
+});
+
+describe("buildMeasureFontCss()", () => {
+  it("points Mermaid's page at the Ubuntu style sheets, so the boxes are measured in the font they are drawn in", () => {
+    const styleSheets = buildMeasureFontCss();
+
+    expect(styleSheets.length).toBeGreaterThan(0);
+    for (const { cssUrl } of styleSheets) {
+      const cssPath = fileURLToPath(cssUrl);
+      expect(existsSync(cssPath)).toBe(true);
+    }
   });
 });

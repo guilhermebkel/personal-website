@@ -21,7 +21,7 @@ Body in Markdown. Start sections at `##`; the page title is the `h1`.
 
 `updated` is optional. When it is set, the page shows `Updated <date>` after the published date, and the structured data, the feed and the sitemap use it as the last change; `updated` earlier than `date` fails the build.
 
-`PostFrontMatterSchema` (`src/Schemas/PostSchema.ts`) checks the front-matter. A post that fails it fails the build. The reading time is computed from the body. A `cover` that names a file missing under `public/` fails the build. To draw one, run `node scripts/render-cover.mjs "<title>" <topic> public/covers/<slug>.svg`.
+`PostFrontMatterSchema` (`src/Schemas/PostSchema.ts`) checks the front-matter. A post that fails it fails the build. The reading time is computed from the body, leaving out collapsed code blocks and Mermaid diagrams, which a reader opens or looks at rather than reads. The "On this page" index lists the `##` headings of the body, never the ones inside a code block. A `cover` that names a file missing under `public/` fails the build. To draw one, run `node scripts/render-cover.mjs "<title>" <topic> public/covers/<slug>.svg`. It writes the title in two lines of up to 26 characters, in the site's embedded Ubuntu, and fails when the title does not fit, instead of cutting it.
 
 Images and notes:
 

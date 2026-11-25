@@ -1,3 +1,5 @@
+import { CodeFenceUtil } from "@/Utils/CodeFenceUtil.ts";
+
 export type Heading = {
   id: string;
   text: string;
@@ -23,7 +25,8 @@ export class HeadingSlugUtil {
   }
 
   static listH2(markdown: string): Heading[] {
-    const lines = markdown.split("\n");
+    // Why: a "## " line inside a code block is the shown file's heading, not a section of the post.
+    const lines = CodeFenceUtil.listProseLines(markdown);
     const marked = lines.filter((line) => line.startsWith(HEADING_MARK));
     const headings = marked.map((line) => line.slice(HEADING_MARK.length).trim());
     return headings.map((text) => ({ id: HeadingSlugUtil.buildId(text), text }));
