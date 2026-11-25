@@ -41,6 +41,8 @@ export const buildMermaidConfig = (tokens) => {
   };
   return {
     theme: "base",
+    // Why: the neo look adds a light drop shadow to every shape, which reads as a white halo on the dark ground; the classic look is flat, as the site is.
+    look: "classic",
     themeVariables: {
       fontFamily: `${FONT_FAMILY}, sans-serif`,
       primaryColor: readColor("surface"),
