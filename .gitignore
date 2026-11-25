@@ -13,3 +13,6 @@ lint-fixtures-*/
 .env*
 !.env.example
 out/
+
+# Diagrams rendered from the Mermaid blocks of the posts (scripts/render-diagrams.mjs)
+public/diagrams/

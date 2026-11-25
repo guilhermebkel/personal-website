@@ -5,6 +5,7 @@ import { Link } from "@components/Link.tsx";
 import { PostFigure } from "@components/PostFigure.tsx";
 import { PostImage } from "@components/PostImage.tsx";
 import { HeadingSlugUtil } from "@/Utils/HeadingSlugUtil.ts";
+import { InfoStringUtil } from "@/Utils/InfoStringUtil.ts";
 
 const PROSE_CLASS = [
   "w-full max-w-measure text-text-soft",
@@ -25,11 +26,39 @@ const PROSE_CLASS = [
 
 const FOOTNOTE_LABEL_ID = "footnote-label";
 const NOTES_LABEL_CLASS = "mb-4 font-mono text-caption tracking-wide text-text-meta";
+const LABEL_CLASS =
+  "rounded-t-sm border-2 border-b-0 border-sunken bg-control px-6 py-3 font-mono text-small break-all text-text-soft";
+const SUMMARY_CLASS =
+  "flex cursor-pointer items-center justify-between gap-6 px-6 py-3 font-mono text-small text-text-soft list-none [&::-webkit-details-marker]:hidden";
 
 type MarkdownNode = NonNullable<ExtraProps["node"]>;
 type ImageProps = { src: string; alt: string; title: string };
 
 const getText = (children: ReactNode): string => (typeof children === "string" ? children : "");
+
+const TITLE_ATTRIBUTE = "title";
+const COLLAPSED_FLAG = "collapsed";
+const LANGUAGE_PREFIX = "language-";
+const CODE_LABEL = "code";
+
+type CodeElement = Extract<MarkdownNode["children"][number], { type: "element" }>;
+
+const getCodeElement = (node: MarkdownNode | undefined): CodeElement | undefined => {
+  // Why: the code block's options and language are kept on its <code> child by the Markdown tree; the <pre> itself does not carry them.
+  return node?.children.find((child): child is CodeElement => child.type === "element");
+};
+
+const getCodeInfo = (node: MarkdownNode | undefined): string | undefined => {
+  const meta = getCodeElement(node)?.data?.meta;
+  return typeof meta === "string" ? meta : undefined;
+};
+
+const getLanguageLabel = (node: MarkdownNode | undefined): string => {
+  const className = getCodeElement(node)?.properties.className;
+  const classes: unknown[] = Array.isArray(className) ? className : [];
+  const language = classes.find((name): name is string => typeof name === "string" && name.startsWith(LANGUAGE_PREFIX));
+  return language === undefined ? CODE_LABEL : language.slice(LANGUAGE_PREFIX.length);
+};
 
 const getOnlyImage = (node: MarkdownNode | undefined): ImageProps | undefined => {
   // Why: a paragraph or a link holding one image and nothing else is the figure's own case; a Markdown image inside a sentence is not, and renders inline.
@@ -68,6 +97,35 @@ export const PostContent = ({ markdown }: { markdown: string }) => (
             return <p>{children}</p>;
           }
           return <PostFigure src={image.src} alt={image.alt} caption={image.title} />;
+        },
+        pre: ({ node, children }) => {
+          const info = getCodeInfo(node);
+          const title = InfoStringUtil.readQuoted(info, TITLE_ATTRIBUTE);
+          const collapsed = InfoStringUtil.hasFlag(info, COLLAPSED_FLAG);
+          if (title === undefined && !collapsed) {
+            return <pre>{children}</pre>;
+          }
+          const label = title ?? getLanguageLabel(node);
+          if (!collapsed) {
+            // Why: a titled block stays open; the label is shown above it so the reader knows which file the code is.
+            return (
+              <div className="mb-6">
+                <div className={LABEL_CLASS}>{label}</div>
+                <pre className="mb-0! rounded-t-none!">{children}</pre>
+              </div>
+            );
+          }
+          // Why: a collapsed block is a native <details>, so it opens and closes with the keyboard and its content stays in the static HTML without JavaScript.
+          return (
+            <details className="group mb-6 rounded-sm border-2 border-sunken bg-control">
+              <summary className={SUMMARY_CLASS}>
+                <span className="min-w-0 break-all">{label}</span>
+                <span className="shrink-0 text-text-meta group-open:hidden">Show code</span>
+                <span className="hidden shrink-0 text-text-meta group-open:inline">Hide code</span>
+              </summary>
+              <pre className="mb-0! rounded-t-none! border-0!">{children}</pre>
+            </details>
+          );
         },
         img: ({ src, alt }) => <PostImage src={typeof src === "string" ? src : ""} alt={alt ?? ""} />,
         a: ({ href = "#", node, children }) => {

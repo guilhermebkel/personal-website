@@ -1,0 +1,46 @@
+import { describe, expect, it } from "vitest";
+import { buildMermaidConfig, injectFontCss } from "./render-diagrams.mjs";
+
+const TOKENS = {
+  color: {
+    tokens: [
+      { name: "surface", value: "#282828" },
+      { name: "text", value: "#ffffff" },
+      { name: "purple-light", value: "#9479ff" },
+      { name: "raised", value: "#202024" },
+      { name: "panel", value: "#252525" },
+      { name: "text-muted", value: "#aaaaaa" },
+      { name: "text-soft", value: "#d7d7d7" },
+      { name: "graphite", value: "#1b1b1e" },
+      { name: "line", value: "#5b5b5b" },
+    ],
+  },
+};
+
+describe("buildMermaidConfig()", () => {
+  it("takes the diagram colors from the tokens", () => {
+    const { themeVariables } = buildMermaidConfig(TOKENS);
+
+    expect(themeVariables.primaryColor).toBe("#282828");
+    expect(themeVariables.primaryBorderColor).toBe("#9479ff");
+    expect(themeVariables.lineColor).toBe("#aaaaaa");
+  });
+
+  it("fails naming the token when a color the diagrams need is missing", () => {
+    const tokens = { color: { tokens: TOKENS.color.tokens.filter((token) => token.name !== "line") } };
+
+    expect(() => buildMermaidConfig(tokens)).toThrow('no color token named "line"');
+  });
+});
+
+describe("injectFontCss()", () => {
+  it("declares the font at the root of the SVG, after its opening tag", () => {
+    const svg = injectFontCss('<svg id="my-svg" width="100%"><style>#my-svg{}</style></svg>', "@font-face{}");
+
+    expect(svg).toContain('<svg id="my-svg" width="100%"><defs><style>@font-face{}</style></defs>');
+  });
+
+  it("fails when there is no svg to receive the font", () => {
+    expect(() => injectFontCss("<html></html>", "@font-face{}")).toThrow("no <svg> element");
+  });
+});

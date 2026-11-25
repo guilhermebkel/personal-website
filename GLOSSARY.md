@@ -16,6 +16,9 @@ _Avoid_: repo card
 A Markdown file in `content/posts/` shown in the blog. It has front-matter (title, date, summary, tags) and a body.
 _Avoid_: article, entry
 
+**Diagram**:
+A `mermaid` code block in a post, drawn at build time into a picture with the site's colors and font (ADR 0010).
+
 **Draft post**:
 A post written by the AI pipeline and opened as a pull request. It becomes a post only when the owner merges it.
 

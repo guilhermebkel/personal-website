@@ -3,6 +3,7 @@ import { join } from "node:path";
 import matter from "gray-matter";
 import type { Post } from "@/Protocols/PostProtocol.ts";
 import { PostFrontMatterSchema } from "@/Schemas/PostSchema.ts";
+import { MermaidUtil } from "@/Utils/MermaidUtil.ts";
 import { ReadingTimeUtil } from "@/Utils/ReadingTimeUtil.ts";
 
 const POST_EXTENSION = ".md";
@@ -43,7 +44,7 @@ export class PostService {
       slug,
       ...frontMatter,
       readingMinutes: ReadingTimeUtil.countMinutes(parsed.content),
-      body: parsed.content,
+      body: MermaidUtil.replaceDiagrams(slug, parsed.content),
     };
   }
 }
