@@ -26,10 +26,13 @@ const PROSE_CLASS = [
 
 const FOOTNOTE_LABEL_ID = "footnote-label";
 const NOTES_LABEL_CLASS = "mb-4 font-mono text-caption tracking-wide text-text-meta";
-const LABEL_CLASS =
-  "rounded-t-sm border-2 border-b-0 border-sunken bg-control px-6 py-3 font-mono text-small break-all text-text-soft";
-const SUMMARY_CLASS =
-  "flex cursor-pointer items-center justify-between gap-6 px-6 py-3 font-mono text-small text-text-soft list-none [&::-webkit-details-marker]:hidden";
+const CODE_BLOCK_CLASS = "mb-6 overflow-hidden rounded-lg border-2 border-sunken bg-control";
+const CODE_HEADER_CLASS =
+  "flex items-center justify-between gap-6 border-b-2 border-sunken bg-surface px-5 py-2.5 font-mono text-small text-text-soft list-none [&::-webkit-details-marker]:hidden";
+const CODE_BODY_CLASS = "mb-0! rounded-none! border-0! bg-control px-5! py-4! whitespace-pre-wrap";
+const TABLE_WRAP_CLASS = "mb-6 overflow-x-auto rounded-lg border-2 border-sunken";
+const TABLE_HEAD_CLASS = "border-b-2 border-sunken bg-raised px-5 py-3 text-left font-medium text-text";
+const TABLE_CELL_CLASS = "border-t-2 border-sunken px-5 py-3 align-top text-prose text-text-soft";
 
 type MarkdownNode = NonNullable<ExtraProps["node"]>;
 type ImageProps = { src: string; alt: string; title: string };
@@ -107,43 +110,57 @@ export const PostContent = ({ markdown }: { markdown: string }) => (
           }
           const label = title ?? getLanguageLabel(node);
           if (!collapsed) {
-            // Why: a titled block stays open; the label is shown above it so the reader knows which file the code is.
+            // Why: a titled block stays open; its header names the file, as the code blocks of the assistant's own replies do.
             return (
-              <div className="mb-6">
-                <div className={LABEL_CLASS}>{label}</div>
-                <pre className="mb-0! rounded-t-none!">{children}</pre>
+              <div className={CODE_BLOCK_CLASS}>
+                <div className={CODE_HEADER_CLASS}>
+                  <span className="min-w-0 break-all">{label}</span>
+                </div>
+                <pre className={CODE_BODY_CLASS}>{children}</pre>
               </div>
             );
           }
           // Why: a collapsed block is a native <details>, so it opens and closes with the keyboard and its content stays in the static HTML without JavaScript.
           return (
-            <details className="group mb-6 rounded-sm border-2 border-sunken bg-control">
-              <summary className={SUMMARY_CLASS}>
+            <details className={`group ${CODE_BLOCK_CLASS}`}>
+              <summary className={`${CODE_HEADER_CLASS} cursor-pointer`}>
                 <span className="min-w-0 break-all">{label}</span>
                 <span className="shrink-0 text-text-meta group-open:hidden">Show code</span>
                 <span className="hidden shrink-0 text-text-meta group-open:inline">Hide code</span>
               </summary>
-              <pre className="mb-0! rounded-t-none! border-0!">{children}</pre>
+              <pre className={CODE_BODY_CLASS}>{children}</pre>
             </details>
           );
         },
+        table: ({ children }) => (
+          // Why: a wide table scrolls inside its frame, so the page itself never scrolls sideways on a phone.
+          <div className={TABLE_WRAP_CLASS}>
+            <table className="w-full border-collapse">{children}</table>
+          </div>
+        ),
+        th: ({ children }) => <th className={TABLE_HEAD_CLASS}>{children}</th>,
+        td: ({ children }) => <td className={TABLE_CELL_CLASS}>{children}</td>,
         img: ({ src, alt }) => <PostImage src={typeof src === "string" ? src : ""} alt={alt ?? ""} />,
         a: ({ href = "#", node, children }) => {
           // Why: a link to a note on this page stays in this tab; only a link that leaves the page opens a new one.
           if (href.startsWith("#")) {
-            return <Link href={href}>{children}</Link>;
+            return (
+              <Link href={href} plain>
+                {children}
+              </Link>
+            );
           }
           const image = getOnlyImage(node);
           if (image !== undefined) {
             // Why: a screenshot used as a link keeps its link, so the tap follows it and the image is not zoomed.
             return (
-              <Link href={href} target="_blank" hasExternalIcon={false}>
+              <Link href={href} target="_blank" hasExternalIcon={false} plain>
                 <img src={image.src} alt={image.alt} className="mb-0 h-auto w-full rounded-md" />
               </Link>
             );
           }
           return (
-            <Link href={href} target="_blank">
+            <Link href={href} target="_blank" plain>
               {children}
             </Link>
           );
