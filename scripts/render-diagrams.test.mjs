@@ -13,13 +13,16 @@ const TOKENS = {
       { name: "text-soft", value: "#d7d7d7" },
       { name: "graphite", value: "#1b1b1e" },
       { name: "line", value: "#5b5b5b" },
+      { name: "cover", value: "#232327" },
     ],
   },
 };
 
 describe("buildMermaidConfig()", () => {
   it("takes the diagram colors from the tokens", () => {
-    const { themeVariables } = buildMermaidConfig(TOKENS);
+    const {
+      mermaidConfig: { themeVariables },
+    } = buildMermaidConfig(TOKENS);
 
     expect(themeVariables.primaryColor).toBe("#282828");
     expect(themeVariables.primaryBorderColor).toBe("#9479ff");
@@ -30,6 +33,10 @@ describe("buildMermaidConfig()", () => {
     const tokens = { color: { tokens: TOKENS.color.tokens.filter((token) => token.name !== "line") } };
 
     expect(() => buildMermaidConfig(tokens)).toThrow('no color token named "line"');
+  });
+
+  it("draws the diagram on the cover token, the ground of a post figure", () => {
+    expect(buildMermaidConfig(TOKENS).backgroundColor).toBe("#232327");
   });
 });
 

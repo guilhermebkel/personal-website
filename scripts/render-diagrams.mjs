@@ -40,27 +40,30 @@ export const buildMermaidConfig = (tokens) => {
     return colors[name];
   };
   return {
-    theme: "base",
-    // Why: the neo look adds a light drop shadow to every shape, which reads as a white halo on the dark ground; the classic look is flat, as the site is.
-    look: "classic",
-    themeVariables: {
-      fontFamily: `${FONT_FAMILY}, sans-serif`,
-      primaryColor: readColor("surface"),
-      primaryTextColor: readColor("text"),
-      primaryBorderColor: readColor("purple-light"),
-      secondaryColor: readColor("raised"),
-      tertiaryColor: readColor("panel"),
-      mainBkg: readColor("surface"),
-      nodeBorder: readColor("purple-light"),
-      lineColor: readColor("text-muted"),
-      textColor: readColor("text-soft"),
-      clusterBkg: readColor("panel"),
-      clusterBorder: readColor("line"),
-      edgeLabelBackground: readColor("graphite"),
-      titleColor: readColor("text"),
-      noteBkgColor: readColor("surface"),
-      noteTextColor: readColor("text-soft"),
-      noteBorderColor: readColor("line"),
+    backgroundColor: readColor("cover"),
+    mermaidConfig: {
+      theme: "base",
+      // Why: the neo look adds a light drop shadow to every shape, which reads as a white halo on the dark ground; the classic look is flat, as the site is.
+      look: "classic",
+      themeVariables: {
+        fontFamily: `${FONT_FAMILY}, sans-serif`,
+        primaryColor: readColor("surface"),
+        primaryTextColor: readColor("text"),
+        primaryBorderColor: readColor("purple-light"),
+        secondaryColor: readColor("raised"),
+        tertiaryColor: readColor("panel"),
+        mainBkg: readColor("surface"),
+        nodeBorder: readColor("purple-light"),
+        lineColor: readColor("text-muted"),
+        textColor: readColor("text-soft"),
+        clusterBkg: readColor("panel"),
+        clusterBorder: readColor("line"),
+        edgeLabelBackground: readColor("cover"),
+        titleColor: readColor("text"),
+        noteBkgColor: readColor("surface"),
+        noteTextColor: readColor("text-soft"),
+        noteBorderColor: readColor("line"),
+      },
     },
   };
 };
@@ -79,7 +82,17 @@ export const injectFontCss = (svg, fontCss) => {
   return svg.replace(SVG_OPENING_TAG, `${opening[0]}<defs><style>${fontCss}</style></defs>`);
 };
 
-const renderDiagram = async ({ run, puppeteerConfig, mermaidConfig, fontCss, workDirectory, slug, diagram, index }) => {
+const renderDiagram = async ({
+  run,
+  puppeteerConfig,
+  mermaidConfig,
+  backgroundColor,
+  fontCss,
+  workDirectory,
+  slug,
+  diagram,
+  index,
+}) => {
   const source = join(workDirectory, `${slug}-${index}${SOURCE_EXTENSION}`);
   const output = join(PUBLIC_DIRECTORY, MermaidUtil.buildPublicPath(slug, diagram.source));
   await mkdir(dirname(output), { recursive: true });
@@ -88,7 +101,7 @@ const renderDiagram = async ({ run, puppeteerConfig, mermaidConfig, fontCss, wor
     await run(source, output, {
       puppeteerConfig,
       quiet: true,
-      parseMMDOptions: { mermaidConfig, backgroundColor: "transparent" },
+      parseMMDOptions: { mermaidConfig, backgroundColor },
     });
     const svg = await readFile(output, "utf8");
     await writeFile(output, injectFontCss(svg, fontCss));
@@ -119,13 +132,23 @@ const renderAll = async () => {
   const { run } = await import("@mermaid-js/mermaid-cli");
   const tokens = JSON.parse(await readFile(TOKENS_FILE, "utf8"));
   const puppeteerConfig = { executablePath: chromium.executablePath(), args: [NO_SANDBOX_ARG] };
-  const mermaidConfig = buildMermaidConfig(tokens);
+  const { mermaidConfig, backgroundColor } = buildMermaidConfig(tokens);
   const fontCss = buildFontCss();
   const systemTemp = tmpdir();
   const workDirectory = await mkdtemp(join(systemTemp, "diagrams-"));
   try {
     for (const [index, { slug, diagram }] of posts.entries()) {
-      await renderDiagram({ run, puppeteerConfig, mermaidConfig, fontCss, workDirectory, slug, diagram, index });
+      await renderDiagram({
+        run,
+        puppeteerConfig,
+        mermaidConfig,
+        backgroundColor,
+        fontCss,
+        workDirectory,
+        slug,
+        diagram,
+        index,
+      });
     }
   } finally {
     await rm(workDirectory, { recursive: true, force: true });
