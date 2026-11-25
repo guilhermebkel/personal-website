@@ -21,14 +21,14 @@ Body in Markdown. Start sections at `##`; the page title is the `h1`.
 
 `updated` is optional. When it is set, the page shows `Updated <date>` after the published date, and the structured data, the feed and the sitemap use it as the last change; `updated` earlier than `date` fails the build.
 
-`PostFrontMatterSchema` (`src/Schemas/PostSchema.ts`) checks the front-matter. A post that fails it fails the build. The reading time is computed from the body. A `cover` that names a file missing under `public/` fails the build. To draw one, run `node scripts/render-cover.mjs "<title>" <topic> public/covers/<slug>.svg`.
+`PostFrontMatterSchema` (`src/Schemas/PostSchema.ts`) checks the front-matter. A post that fails it fails the build. The reading time is computed from the body, leaving out collapsed code blocks and Mermaid diagrams, which a reader opens or looks at rather than reads. The "On this page" index lists the `##` headings of the body, never the ones inside a code block. A `cover` that names a file missing under `public/` fails the build. To draw one, run `node scripts/render-cover.mjs "<title>" <topic> public/covers/<slug>.svg`. It writes the title in two lines of up to 26 characters, in the site's embedded Ubuntu, and fails when the title does not fit, instead of cutting it.
 
 Images and notes:
 
 - `![alt](/posts/x.png "Caption")`: an image alone in its paragraph becomes a figure with the title as its caption; without a title it has no caption. On desktop a figure is wider than the text column. An image inside a sentence renders inline, with no caption.
 - `text[^1]` and `[^1]: The note.` (GFM footnotes): the note is listed at the end under "Notes". Links to a note stay in the same tab.
 - A code block with `title="..."` shows that label above it, open. A code block with `collapsed` starts closed behind a control that opens it; its label is the `title`, or the language when there is no title. Both can be combined: ` ```md title="AGENTS.md" collapsed `. A plain block renders as before. The control is a native `<details>`, so it works without JavaScript.
-- A ` ```mermaid ` block is a diagram: it is drawn at build time with the site's colors and shows as a figure. `alt="..."` in the info string names it for screen readers (` ```mermaid alt="Release flow" `); without it the alt is "Diagram". A block that does not parse fails the build and names the post. Diagrams are drawn by `scripts/render-diagrams.mjs` before `pnpm dev` and `pnpm build` (ADR 0010); the pictures go to `public/diagrams/`, which git ignores. The diagram uses the site's colors and font.
+- A ` ```mermaid ` block is a diagram: it is drawn at build time with the site's colors and shows as a figure. `alt="..."` in the info string names it for screen readers (` ```mermaid alt="Release flow" `); without it the alt is "Diagram". A block that does not parse fails the build and names the post. Diagrams are drawn by `scripts/render-diagrams.mjs` (ADR 0010) into `public/diagrams/`, which is committed: after adding or changing a diagram, run `pnpm diagrams` and commit the new SVG. `pnpm check:diagrams` fails when one is missing, and the build draws only missing ones, so the host never needs a browser. The diagram uses the site's colors and font.
 
 A post written by the AI pipeline is a pull request with one new file. Only the owner merges it.
 

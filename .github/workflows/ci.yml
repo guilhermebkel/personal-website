@@ -79,6 +79,7 @@ jobs:
           path: .next/cache
           key: next-${{ hashFiles('pnpm-lock.yaml', 'next.config.ts', 'tsconfig.json') }}-${{ hashFiles('app/**', 'components/**', 'src/**', 'content/**') }}
           restore-keys: next-${{ hashFiles('pnpm-lock.yaml', 'next.config.ts', 'tsconfig.json') }}-
+      - run: pnpm check:diagrams
       - run: pnpm build
       - run: pnpm lint:html
       - run: pnpm check:links

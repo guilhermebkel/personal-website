@@ -12,12 +12,14 @@ const TOKENS = {
   },
 };
 
+const TITLE = "Hello world";
+
 describe("render-cover", () => {
   it("draws the cover with the token colors and the title", () => {
-    const svg = buildCoverSvg({ title: "Hello world", topic: "meta", tokens: TOKENS });
+    const svg = buildCoverSvg({ title: TITLE, topic: "meta", tokens: TOKENS });
     expect(svg).toContain('fill="#1b1b1e"');
     expect(svg).toContain('stroke="#5328fe"');
-    expect(svg).toContain("Hello world");
+    expect(svg).toContain(TITLE);
     expect(svg).not.toMatch(/#[0-9a-f]{6}.*#[0-9a-f]{6}.*#zzz/u);
   });
 
@@ -26,10 +28,21 @@ describe("render-cover", () => {
     expect(readPhase("meta")).not.toBe(readPhase("design"));
   });
 
-  it("wraps a long title over at most two lines", () => {
-    const lines = wrapTitle("Giving an agent a read-only window into the Brazilian market in one line");
-    expect(lines.length).toBeLessThanOrEqual(2);
-    expect(lines[0]).toContain("Giving");
+  it("wraps a title by words over two lines, keeping every word", () => {
+    const lines = wrapTitle("Team Harness That Ships Faster and Keeps Quality");
+    expect(lines).toStrictEqual(["Team Harness That Ships", "Faster and Keeps Quality"]);
+  });
+
+  it("fails for a title that needs more than two lines, instead of dropping its last words", () => {
+    expect(() => wrapTitle("Giving an agent a read-only window into the Brazilian market in one line")).toThrow(
+      /needs 4 lines/u,
+    );
+  });
+
+  it("draws the title in the site's embedded font", () => {
+    const svg = buildCoverSvg({ title: TITLE, topic: "meta", tokens: TOKENS });
+    expect(svg).toContain("@font-face");
+    expect(svg).toContain('font-family="Ubuntu, sans-serif"');
   });
 
   it("escapes the title so it cannot break the markup", () => {

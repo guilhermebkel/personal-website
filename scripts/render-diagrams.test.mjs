@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { buildMermaidConfig, injectFontCss } from "./render-diagrams.mjs";
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { MermaidUtil } from "../src/Utils/MermaidUtil.ts";
+import { buildMeasureFontCss, buildMermaidConfig, injectFontCss, planDiagrams } from "./render-diagrams.mjs";
 
 const TOKENS = {
   color: {
@@ -49,5 +52,34 @@ describe("injectFontCss()", () => {
 
   it("fails when there is no svg to receive the font", () => {
     expect(() => injectFontCss("<html></html>", "@font-face{}")).toThrow("no <svg> element");
+  });
+});
+
+describe("buildMeasureFontCss()", () => {
+  it("points Mermaid's page at the Ubuntu style sheets, so the boxes are measured in the font they are drawn in", () => {
+    const styleSheets = buildMeasureFontCss();
+
+    expect(styleSheets.length).toBeGreaterThan(0);
+    for (const { cssUrl } of styleSheets) {
+      const cssPath = fileURLToPath(cssUrl);
+      expect(existsSync(cssPath)).toBe(true);
+    }
+  });
+});
+
+describe("planDiagrams()", () => {
+  const diagram = { slug: "post", diagram: { source: "flowchart TD\n  A --> B\n", alt: "Diagram" } };
+  const committedPath = MermaidUtil.buildPublicPath("post", diagram.diagram.source);
+
+  it("draws nothing when every diagram already has its committed file", () => {
+    expect(planDiagrams([diagram], new Set([committedPath]))).toStrictEqual({ missing: [], stale: [] });
+  });
+
+  it("draws a diagram whose file is missing, as after an edit changes its hash", () => {
+    expect(planDiagrams([diagram], new Set()).missing).toStrictEqual([diagram]);
+  });
+
+  it("lists a file no post uses any more as stale", () => {
+    expect(planDiagrams([], new Set(["/diagrams/old/abc.svg"])).stale).toStrictEqual(["/diagrams/old/abc.svg"]);
   });
 });

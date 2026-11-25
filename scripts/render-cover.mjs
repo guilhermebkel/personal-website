@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
+import { buildFontCss } from "./render-diagrams.mjs";
 
 // Why: a post cover is an SVG drawn from the tokens, so it takes the same colors as the site and never needs an image editor.
 const ROOT = process.cwd();
@@ -10,11 +11,14 @@ const LINE_COUNT = 9;
 const WAVE_AMPLITUDE = 22;
 const WAVE_STEPS = 4;
 const PHASE_DIVISOR = 1000;
-const TITLE_X = 48;
-const TITLE_Y = 300;
+// Why: the cover is cropped to fill each frame (about 2.7:1 on the post, 1.75:1 on a card), so the title sits in the middle area that every crop keeps.
+const TITLE_X = 80;
+const TITLE_Y = 200;
 const TITLE_SIZE = 40;
 const TITLE_LINE_LENGTH = 26;
 const TITLE_MAX_LINES = 2;
+const TITLE_FONT = "Ubuntu, sans-serif";
+const TITLE_WEIGHT = 500;
 const TURNS = 2;
 const TWO_PI = Math.PI * TURNS;
 const HASH_BASE = 31;
@@ -68,7 +72,13 @@ export const wrapTitle = (title) => {
   if (current !== "") {
     lines.push(current);
   }
-  return lines.slice(0, TITLE_MAX_LINES);
+  // Why: a title that does not fit used to lose its last words without a warning, so the cover now fails and asks for a shorter one.
+  if (lines.length > TITLE_MAX_LINES) {
+    throw new Error(
+      `render-cover: the title needs ${lines.length} lines of up to ${TITLE_LINE_LENGTH} characters, and the cover holds ${TITLE_MAX_LINES}`,
+    );
+  }
+  return lines;
 };
 
 const escapeText = (text) => text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
@@ -84,10 +94,12 @@ export const buildCoverSvg = ({ title, topic, tokens }) => {
   });
   const titleLines = wrapTitle(title).map(
     (text, index) =>
-      `<text x="${TITLE_X}" y="${TITLE_Y + index * TITLE_SIZE}" font-size="${TITLE_SIZE}" fill="${escapeText(readTokenColor(tokens, "text-strong"))}">${escapeText(text)}</text>`,
+      `<text x="${TITLE_X}" y="${TITLE_Y + index * TITLE_SIZE}" font-family="${TITLE_FONT}" font-weight="${TITLE_WEIGHT}" font-size="${TITLE_SIZE}" fill="${escapeText(readTokenColor(tokens, "text-strong"))}">${escapeText(text)}</text>`,
   );
   return [
     `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">`,
+    // Why: a cover is shown as a picture, which cannot load the page's fonts, so the site's Ubuntu is embedded in the file.
+    `<defs><style>${buildFontCss()}</style></defs>`,
     `<rect width="${WIDTH}" height="${HEIGHT}" fill="${ground}"/>`,
     ...waves,
     ...titleLines,
