@@ -5,6 +5,8 @@ import { PostContent } from "@components/PostContent.tsx";
 const FENCE = "```";
 const render = (markdown: string) => renderToStaticMarkup(<PostContent markdown={markdown} />);
 
+const BLOCK_COUNT = 2;
+
 describe("PostContent code blocks", () => {
   it("shows the language of a plain block in a header, with no control", () => {
     const markup = render(`${FENCE}ts\nconst a = 1;\n${FENCE}\n`);
@@ -12,6 +14,12 @@ describe("PostContent code blocks", () => {
     expect(markup).toContain(">ts<");
     expect(markup).toContain("<pre");
     expect(markup).not.toContain("<details");
+  });
+
+  it("lets the keyboard focus every code block, since it scrolls sideways", () => {
+    const markup = render(`${FENCE}ts\nconst a = 1;\n${FENCE}\n\n${FENCE}\nplain\n${FENCE}\n`);
+
+    expect(markup.match(/<pre tabindex="0"/gu)).toHaveLength(BLOCK_COUNT);
   });
 
   it("shows the title above an open block when the block has a title only", () => {

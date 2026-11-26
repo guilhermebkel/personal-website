@@ -3,7 +3,7 @@ title: How to Install Rancher inside AWS EKS
 date: 2021-03-21
 summary: A step-by-step guide to installing Rancher inside a running AWS EKS cluster, from the IAM roles to the first login.
 tags: [aws, eks, kubernetes, rancher, devops]
-cover: /posts/how-to-install-rancher-inside-aws-eks/cover.png
+cover: /covers/how-to-install-rancher-inside-aws-eks.svg
 ---
 
 > Note: I wrote this guide in 2021, so the versions below are old (Kubernetes 1.19, cert-manager 1.0.4 and ingress-nginx 0.44). On top of that, the Kubernetes project retired ingress-nginx in March 2026, which means it no longer gets security fixes, so think twice before using it for anything real.

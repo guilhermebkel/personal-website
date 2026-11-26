@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import ReactMarkdown, { type ExtraProps } from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { CodeBody } from "@components/CodeBody.tsx";
 import { Link } from "@components/Link.tsx";
 import { PostFigure } from "@components/PostFigure.tsx";
 import { PostImage } from "@components/PostImage.tsx";
@@ -31,7 +32,7 @@ const NOTES_LABEL_CLASS = "mb-4 font-mono text-caption tracking-wide text-text-m
 const CODE_BLOCK_CLASS = "mb-6 overflow-hidden rounded-lg border-2 border-sunken bg-surface";
 const CODE_HEADER_CLASS =
   "flex items-center justify-between gap-6 border-b-2 border-sunken bg-lift px-5 py-2.5 font-mono text-small text-text-soft list-none [&::-webkit-details-marker]:hidden";
-const CODE_BODY_CLASS = "mb-0! rounded-none! border-0! bg-surface! px-5! py-4! whitespace-pre! overflow-x-auto!";
+
 const TABLE_WRAP_CLASS = "mb-6 overflow-x-auto rounded-lg border-2 border-line bg-surface";
 const TABLE_HEAD_CLASS = "border border-line bg-lift px-5 py-3 text-left font-medium text-text";
 const TABLE_CELL_CLASS = "border border-line px-5 py-3 align-top text-prose text-text-soft";
@@ -112,14 +113,14 @@ export const PostContent = ({ markdown }: { markdown: string }) => (
             // Why: a plain block shows its language in a header, as the assistant's own code blocks do; a block without a language stays bare.
             const language = getLanguageLabel(node);
             if (language === CODE_LABEL) {
-              return <pre className={CODE_BODY_CLASS}>{children}</pre>;
+              return <CodeBody>{children}</CodeBody>;
             }
             return (
               <div className={CODE_BLOCK_CLASS}>
                 <div className={CODE_HEADER_CLASS}>
                   <span className="min-w-0 break-all">{language}</span>
                 </div>
-                <pre className={CODE_BODY_CLASS}>{children}</pre>
+                <CodeBody>{children}</CodeBody>
               </div>
             );
           }
@@ -131,7 +132,7 @@ export const PostContent = ({ markdown }: { markdown: string }) => (
                 <div className={CODE_HEADER_CLASS}>
                   <span className="min-w-0 break-all">{label}</span>
                 </div>
-                <pre className={CODE_BODY_CLASS}>{children}</pre>
+                <CodeBody>{children}</CodeBody>
               </div>
             );
           }
@@ -143,7 +144,7 @@ export const PostContent = ({ markdown }: { markdown: string }) => (
                 <span className="shrink-0 text-text-meta group-open:hidden">Show code</span>
                 <span className="hidden shrink-0 text-text-meta group-open:inline">Hide code</span>
               </summary>
-              <pre className={CODE_BODY_CLASS}>{children}</pre>
+              <CodeBody>{children}</CodeBody>
             </details>
           );
         },
