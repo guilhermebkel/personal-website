@@ -21,7 +21,11 @@ export const PostRow = ({ href, cover, ...info }: PostRowProps) => (
       "max-md:mx-0 max-md:flex-col max-md:items-start max-md:px-0",
     ].join(" ")}
   >
-    <Cover seed={href} image={cover} className="h-31.5 w-56 flex-none rounded-md max-md:h-37.5 max-md:w-full" />
+    <Cover
+      seed={href}
+      image={cover}
+      className="h-31.5 w-56 flex-none rounded-md border-2 border-sunken max-md:h-37.5 max-md:w-full"
+    />
     <div className="min-w-0 flex-1">
       <PostInfo {...info} headingLevel="h3" />
     </div>

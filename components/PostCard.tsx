@@ -17,7 +17,7 @@ export const PostCard = ({ href, cover, ...info }: PostCardProps) => (
     href={href}
     className="group/card duration-hover -m-4 flex min-w-0 flex-col gap-4 rounded-lg p-4 text-text no-underline transition-colors md:hover:bg-raised"
   >
-    <Cover seed={href} image={cover} className="h-50 rounded-md max-md:h-37.5" />
+    <Cover seed={href} image={cover} className="h-50 rounded-md border-2 border-sunken max-md:h-37.5" />
     <PostInfo {...info} headingLevel="h2" />
   </NextLink>
 );
