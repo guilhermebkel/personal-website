@@ -157,11 +157,12 @@ export const PostContent = ({ markdown }: { markdown: string }) => (
         th: ({ children }) => <th className={TABLE_HEAD_CLASS}>{children}</th>,
         td: ({ children }) => <td className={TABLE_CELL_CLASS}>{children}</td>,
         img: ({ src, alt }) => <PostImage src={typeof src === "string" ? src : ""} alt={alt ?? ""} />,
-        a: ({ href = "#", node, children }) => {
+        a: ({ href = "#", node, children, id, "aria-describedby": describedBy, "aria-label": label }) => {
           // Why: a link to a note on this page stays in this tab; only a link that leaves the page opens a new one.
           if (href.startsWith("#")) {
+            // Why: a note's reference carries the id its "back" link points at, and the back link carries its aria-label, so both are kept.
             return (
-              <Link href={href} plain>
+              <Link href={href} id={id} aria-describedby={describedBy} aria-label={label} plain>
                 {children}
               </Link>
             );

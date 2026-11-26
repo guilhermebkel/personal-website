@@ -55,3 +55,23 @@ describe("PostContent diagrams", () => {
     expect(markup).toContain("<figure");
   });
 });
+
+describe("PostContent notes", () => {
+  it("keeps the id of each note reference, so the note's back link has a target", () => {
+    const markup = render("A claim[^1].\n\n[^1]: The note.\n");
+    const backTargets = [...markup.matchAll(/href="#(user-content-fnref-[^"]+)"/gu)].map((match) => match[1]);
+
+    expect(backTargets).toHaveLength(1);
+    for (const target of backTargets) {
+      expect(markup).toContain(`id="${target}"`);
+    }
+  });
+
+  it("keeps the label of the back link for screen readers", () => {
+    const markup = render("A claim[^1].\n\n[^1]: The note.\n");
+
+    expect(markup).toMatch(
+      /href="#user-content-fnref-1"[^>]*aria-label="Back to reference 1"|aria-label="Back to reference 1"[^>]*href="#user-content-fnref-1"/u,
+    );
+  });
+});
