@@ -40,6 +40,12 @@
   --color-purple-ring: rgba(83, 40, 254, 0.8);  /* Purple ring of a post cover (the boards' .8). */
   --color-purple-wash: rgba(83, 40, 254, 0.18);  /* Purple wash inside a post cover (the boards' .18). */
   --color-scrim: rgba(19, 19, 21, 0.45);  /* Backdrop behind the open mobile menu (the boards' graphite at .45). */
+  --color-syntax-keyword: #9479ff;  /* Code highlighting: keywords (the purple light of the brand). */
+  --color-syntax-string: #a6dba0;  /* Code highlighting: strings. */
+  --color-syntax-comment: #8c8c93;  /* Code highlighting: comments (the text-meta gray). */
+  --color-syntax-constant: #f5b971;  /* Code highlighting: numbers and constants. */
+  --color-syntax-function: #7dc4f0;  /* Code highlighting: function and type names. */
+  --color-lift: #333336;  /* Table body and other areas one step above sunken (the lightest dark ground that still reads as a panel). */
   --color-transparent: transparent;
 
   --font-sans: "Ubuntu", sans-serif;

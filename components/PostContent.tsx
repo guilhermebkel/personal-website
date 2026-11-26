@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import { Link } from "@components/Link.tsx";
 import { PostFigure } from "@components/PostFigure.tsx";
 import { PostImage } from "@components/PostImage.tsx";
+import { CodeHighlightUtil } from "@/Utils/CodeHighlightUtil.ts";
 import { HeadingSlugUtil } from "@/Utils/HeadingSlugUtil.ts";
 import { InfoStringUtil } from "@/Utils/InfoStringUtil.ts";
 
@@ -16,7 +17,8 @@ const PROSE_CLASS = [
   "[&_ul]:mb-6 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:mb-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:mb-2 [&_li]:text-prose",
   "[&_pre]:mb-6 [&_pre]:rounded-sm [&_pre]:border-2 [&_pre]:border-sunken [&_pre]:bg-control [&_pre]:px-6 [&_pre]:py-5",
   "[&_pre]:font-mono [&_pre]:text-small [&_pre]:break-words [&_pre]:whitespace-pre-wrap [&_pre]:text-text-soft",
-  "[&_:not(pre)>code]:font-mono [&_:not(pre)>code]:text-small [&_:not(pre)>code]:text-text",
+  "[&_.tok-keyword]:text-syntax-keyword [&_.tok-string]:text-syntax-string [&_.tok-comment]:text-syntax-comment [&_.tok-constant]:text-syntax-constant [&_.tok-function]:text-syntax-function",
+  "[&_:not(pre)>code]:rounded-sm [&_:not(pre)>code]:bg-lift [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-0.5 [&_:not(pre)>code]:box-decoration-clone [&_:not(pre)>code]:font-mono [&_:not(pre)>code]:text-small [&_:not(pre)>code]:text-text",
   "[&_blockquote]:mb-6 [&_blockquote]:rounded-lg [&_blockquote]:border-2 [&_blockquote]:border-sunken [&_blockquote]:bg-raised [&_blockquote]:mx-0 [&_blockquote]:px-7 [&_blockquote]:py-6 max-md:[&_blockquote]:px-5 max-md:[&_blockquote]:py-5 [&_blockquote>p:last-child]:mb-0",
   "[&_img]:mb-6 [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-md [&_figcaption]:mt-3 [&_figcaption]:font-mono [&_figcaption]:text-caption [&_figcaption]:text-text-meta",
   "[&_sup]:text-small [&_sup_a]:text-purple-light [&_sup_a]:no-underline",
@@ -26,10 +28,13 @@ const PROSE_CLASS = [
 
 const FOOTNOTE_LABEL_ID = "footnote-label";
 const NOTES_LABEL_CLASS = "mb-4 font-mono text-caption tracking-wide text-text-meta";
-const LABEL_CLASS =
-  "rounded-t-sm border-2 border-b-0 border-sunken bg-control px-6 py-3 font-mono text-small break-all text-text-soft";
-const SUMMARY_CLASS =
-  "flex cursor-pointer items-center justify-between gap-6 px-6 py-3 font-mono text-small text-text-soft list-none [&::-webkit-details-marker]:hidden";
+const CODE_BLOCK_CLASS = "mb-6 overflow-hidden rounded-lg border-2 border-sunken bg-surface";
+const CODE_HEADER_CLASS =
+  "flex items-center justify-between gap-6 border-b-2 border-sunken bg-lift px-5 py-2.5 font-mono text-small text-text-soft list-none [&::-webkit-details-marker]:hidden";
+const CODE_BODY_CLASS = "mb-0! rounded-none! border-0! bg-surface! px-5! py-4! whitespace-pre! overflow-x-auto!";
+const TABLE_WRAP_CLASS = "mb-6 overflow-x-auto rounded-lg border-2 border-line bg-surface";
+const TABLE_HEAD_CLASS = "border border-line bg-lift px-5 py-3 text-left font-medium text-text";
+const TABLE_CELL_CLASS = "border border-line px-5 py-3 align-top text-prose text-text-soft";
 
 type MarkdownNode = NonNullable<ExtraProps["node"]>;
 type ImageProps = { src: string; alt: string; title: string };
@@ -79,6 +84,7 @@ export const PostContent = ({ markdown }: { markdown: string }) => (
   <div className={PROSE_CLASS}>
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
+      rehypePlugins={[CodeHighlightUtil.buildRehypePlugin]}
       components={{
         h2: ({ node, children }) => {
           // Why: remark names the footnote block's heading "Footnotes" and hides it; the reader sees the mono label "Notes", and the id stays so the references can point at it.
@@ -103,47 +109,73 @@ export const PostContent = ({ markdown }: { markdown: string }) => (
           const title = InfoStringUtil.readQuoted(info, TITLE_ATTRIBUTE);
           const collapsed = InfoStringUtil.hasFlag(info, COLLAPSED_FLAG);
           if (title === undefined && !collapsed) {
-            return <pre>{children}</pre>;
+            // Why: a plain block shows its language in a header, as the assistant's own code blocks do; a block without a language stays bare.
+            const language = getLanguageLabel(node);
+            if (language === CODE_LABEL) {
+              return <pre className={CODE_BODY_CLASS}>{children}</pre>;
+            }
+            return (
+              <div className={CODE_BLOCK_CLASS}>
+                <div className={CODE_HEADER_CLASS}>
+                  <span className="min-w-0 break-all">{language}</span>
+                </div>
+                <pre className={CODE_BODY_CLASS}>{children}</pre>
+              </div>
+            );
           }
           const label = title ?? getLanguageLabel(node);
           if (!collapsed) {
-            // Why: a titled block stays open; the label is shown above it so the reader knows which file the code is.
+            // Why: a titled block stays open; its header names the file, as the code blocks of the assistant's own replies do.
             return (
-              <div className="mb-6">
-                <div className={LABEL_CLASS}>{label}</div>
-                <pre className="mb-0! rounded-t-none!">{children}</pre>
+              <div className={CODE_BLOCK_CLASS}>
+                <div className={CODE_HEADER_CLASS}>
+                  <span className="min-w-0 break-all">{label}</span>
+                </div>
+                <pre className={CODE_BODY_CLASS}>{children}</pre>
               </div>
             );
           }
           // Why: a collapsed block is a native <details>, so it opens and closes with the keyboard and its content stays in the static HTML without JavaScript.
           return (
-            <details className="group mb-6 rounded-sm border-2 border-sunken bg-control">
-              <summary className={SUMMARY_CLASS}>
+            <details className={`group ${CODE_BLOCK_CLASS}`}>
+              <summary className={`${CODE_HEADER_CLASS} cursor-pointer`}>
                 <span className="min-w-0 break-all">{label}</span>
                 <span className="shrink-0 text-text-meta group-open:hidden">Show code</span>
                 <span className="hidden shrink-0 text-text-meta group-open:inline">Hide code</span>
               </summary>
-              <pre className="mb-0! rounded-t-none! border-0!">{children}</pre>
+              <pre className={CODE_BODY_CLASS}>{children}</pre>
             </details>
           );
         },
+        table: ({ children }) => (
+          // Why: a wide table scrolls inside its frame, so the page itself never scrolls sideways on a phone.
+          <div className={TABLE_WRAP_CLASS}>
+            <table className="w-full border-collapse">{children}</table>
+          </div>
+        ),
+        th: ({ children }) => <th className={TABLE_HEAD_CLASS}>{children}</th>,
+        td: ({ children }) => <td className={TABLE_CELL_CLASS}>{children}</td>,
         img: ({ src, alt }) => <PostImage src={typeof src === "string" ? src : ""} alt={alt ?? ""} />,
         a: ({ href = "#", node, children }) => {
           // Why: a link to a note on this page stays in this tab; only a link that leaves the page opens a new one.
           if (href.startsWith("#")) {
-            return <Link href={href}>{children}</Link>;
+            return (
+              <Link href={href} plain>
+                {children}
+              </Link>
+            );
           }
           const image = getOnlyImage(node);
           if (image !== undefined) {
             // Why: a screenshot used as a link keeps its link, so the tap follows it and the image is not zoomed.
             return (
-              <Link href={href} target="_blank" hasExternalIcon={false}>
+              <Link href={href} target="_blank" hasExternalIcon={false} plain>
                 <img src={image.src} alt={image.alt} className="mb-0 h-auto w-full rounded-md" />
               </Link>
             );
           }
           return (
-            <Link href={href} target="_blank">
+            <Link href={href} target="_blank" plain>
               {children}
             </Link>
           );
