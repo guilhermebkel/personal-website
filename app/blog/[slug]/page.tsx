@@ -90,7 +90,7 @@ const PostPage = async ({ params }: PostPageProps) => {
         <PostSummaryBox summary={post.summary} />
       </div>
       <Reveal delay={MotionUtil.getStaggerDelay(COVER_STEP)} className="mt-12">
-        <Cover seed={slug} image={post.cover} className="h-105 rounded-lg max-md:h-50" />
+        <Cover seed={slug} image={post.cover} className="h-105 rounded-lg border-2 border-sunken max-md:h-50" />
       </Reveal>
       <Reveal threshold={0} className="mt-16 flex items-start gap-24">
         <PostToc headings={HeadingSlugUtil.listH2(post.body)} />

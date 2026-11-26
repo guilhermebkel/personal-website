@@ -13,8 +13,9 @@ const CENTER_Y = 190;
 // Why: the post crop (about 2.7:1) and the card crop (about 1.75:1) both keep this area, so every shape is moved inside it.
 const SAFE = { left: 70, right: 730, top: 45, bottom: 335 };
 const PALETTE_TOKENS = ["purple", "purple-light", "cover-blue", "cover-green", "cover-orange"];
-const GROUND_TOKEN = "graphite";
-const CONTOUR_TOKEN = "contour-cover";
+const GROUND_TOKEN = "lift";
+const INK_TOKEN = "graphite";
+const CONTOUR_TOKEN = "contour-cover-lift";
 const ACCENT_LINE_TOKEN = "purple-light";
 const DOT_TOKEN = "text-meta";
 const TEXTURES = ["cover-grid", "cover-hatch", "cover-dots"];
@@ -398,7 +399,7 @@ const renderShape = (shape, { tokens, texture }) => {
 };
 
 const buildTextureDefs = (tokens) => {
-  const ink = readTokenColor(tokens, GROUND_TOKEN);
+  const ink = readTokenColor(tokens, INK_TOKEN);
   return [
     `<pattern id="cover-grid" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0H0V16" fill="none" stroke="${ink}" stroke-opacity=".6" stroke-width="1.2"/></pattern>`,
     `<pattern id="cover-hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><path d="M0 0V10" stroke="${ink}" stroke-opacity=".4" stroke-width="2"/></pattern>`,
