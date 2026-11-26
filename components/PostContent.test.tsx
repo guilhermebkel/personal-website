@@ -70,6 +70,8 @@ describe("PostContent notes", () => {
   it("keeps the label of the back link for screen readers", () => {
     const markup = render("A claim[^1].\n\n[^1]: The note.\n");
 
-    expect(markup).toMatch(/href="#user-content-fnref-1"[^>]*aria-label="Back to reference 1"|aria-label="Back to reference 1"[^>]*href="#user-content-fnref-1"/u);
+    expect(markup).toMatch(
+      /href="#user-content-fnref-1"[^>]*aria-label="Back to reference 1"|aria-label="Back to reference 1"[^>]*href="#user-content-fnref-1"/u,
+    );
   });
 });
