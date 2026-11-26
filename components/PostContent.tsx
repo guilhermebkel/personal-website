@@ -18,7 +18,7 @@ const PROSE_CLASS = [
   "[&_pre]:mb-6 [&_pre]:rounded-sm [&_pre]:border-2 [&_pre]:border-sunken [&_pre]:bg-control [&_pre]:px-6 [&_pre]:py-5",
   "[&_pre]:font-mono [&_pre]:text-small [&_pre]:break-words [&_pre]:whitespace-pre-wrap [&_pre]:text-text-soft",
   "[&_.tok-keyword]:text-syntax-keyword [&_.tok-string]:text-syntax-string [&_.tok-comment]:text-syntax-comment [&_.tok-constant]:text-syntax-constant [&_.tok-function]:text-syntax-function",
-  "[&_:not(pre)>code]:font-mono [&_:not(pre)>code]:text-small [&_:not(pre)>code]:text-text",
+  "[&_:not(pre)>code]:rounded-sm [&_:not(pre)>code]:bg-lift [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-0.5 [&_:not(pre)>code]:box-decoration-clone [&_:not(pre)>code]:font-mono [&_:not(pre)>code]:text-small [&_:not(pre)>code]:text-text",
   "[&_blockquote]:mb-6 [&_blockquote]:rounded-lg [&_blockquote]:border-2 [&_blockquote]:border-sunken [&_blockquote]:bg-raised [&_blockquote]:mx-0 [&_blockquote]:px-7 [&_blockquote]:py-6 max-md:[&_blockquote]:px-5 max-md:[&_blockquote]:py-5 [&_blockquote>p:last-child]:mb-0",
   "[&_img]:mb-6 [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-md [&_figcaption]:mt-3 [&_figcaption]:font-mono [&_figcaption]:text-caption [&_figcaption]:text-text-meta",
   "[&_sup]:text-small [&_sup_a]:text-purple-light [&_sup_a]:no-underline",
