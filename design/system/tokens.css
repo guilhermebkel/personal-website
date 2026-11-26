@@ -45,6 +45,7 @@
   --color-syntax-comment: #8c8c93;  /* Code highlighting: comments (the text-meta gray). */
   --color-syntax-constant: #f5b971;  /* Code highlighting: numbers and constants. */
   --color-syntax-function: #7dc4f0;  /* Code highlighting: function and type names. */
+  --color-lift: #333336;  /* Table body and other areas one step above sunken (the lightest dark ground that still reads as a panel). */
   --color-transparent: transparent;
 
   --font-sans: "Ubuntu", sans-serif;
