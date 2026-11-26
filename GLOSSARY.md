@@ -16,6 +16,10 @@ _Avoid_: repo card
 A Markdown file in `content/posts/` shown in the blog. It has front-matter (title, date, summary, tags) and a body.
 _Avoid_: article, entry
 
+**Post cover**:
+The SVG in `public/covers/` that heads a post and its card: flat overlapping shapes drawn by `scripts/render-cover.mjs` from the post's slug, in one of 12 compositions, never the one of the post before it.
+_Avoid_: thumbnail, banner
+
 **Diagram**:
 A `mermaid` code block in a post, drawn at build time into a picture with the site's colors and font (ADR 0010).
 

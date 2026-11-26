@@ -1,58 +1,74 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { buildCoverSvg, readPhase, wrapTitle } from "./render-cover.mjs";
+import { COMPOSITIONS } from "./cover-compositions.mjs";
+import {
+  buildCover,
+  createRandom,
+  pickComposition,
+  readBounds,
+  readComposition,
+  readTokenColor,
+} from "./render-cover.mjs";
 
-const TOKENS = {
-  color: {
-    tokens: [
-      { name: "graphite", value: "#1b1b1e" },
-      { name: "text-meta", value: "#6f6f78" },
-      { name: "text-strong", value: "#f2f2f2" },
-      { name: "purple", value: "#5328fe" },
-    ],
-  },
-};
+const TOKENS = JSON.parse(readFileSync(new URL("../design/system/tokens.json", import.meta.url), "utf8"));
+const SAMPLE_SIZE = 300;
+const SAFE = { left: 70, right: 730, top: 45, bottom: 335 };
 
-const TITLE = "Hello world";
+const buildSlugs = () => Array.from({ length: SAMPLE_SIZE }, (_, index) => `post-${index}`);
 
 describe("render-cover", () => {
-  it("draws the cover with the token colors and the title", () => {
-    const svg = buildCoverSvg({ title: TITLE, topic: "meta", tokens: TOKENS });
-    expect(svg).toContain('fill="#1b1b1e"');
-    expect(svg).toContain('stroke="#5328fe"');
-    expect(svg).toContain(TITLE);
-    expect(svg).not.toMatch(/#[0-9a-f]{6}.*#[0-9a-f]{6}.*#zzz/u);
+  it("draws the same cover for the same slug", () => {
+    const first = buildCover({ slug: "same-slug", tokens: TOKENS });
+    const second = buildCover({ slug: "same-slug", tokens: TOKENS });
+    expect(first.svg).toBe(second.svg);
   });
 
-  it("gives the same phase to the same topic and another phase to another topic", () => {
-    expect(readPhase("meta")).toBe(readPhase("meta"));
-    expect(readPhase("meta")).not.toBe(readPhase("design"));
+  it("draws another cover for another slug", () => {
+    const first = buildCover({ slug: "one", tokens: TOKENS });
+    const second = buildCover({ slug: "two", tokens: TOKENS });
+    expect(first.svg).not.toBe(second.svg);
   });
 
-  it("wraps a title by words over two lines, keeping every word", () => {
-    const lines = wrapTitle("Team Harness That Ships Faster and Keeps Quality");
-    expect(lines).toStrictEqual(["Team Harness That Ships", "Faster and Keeps Quality"]);
+  it("uses only token colors and writes no text", () => {
+    const { svg } = buildCover({ slug: "colors", tokens: TOKENS });
+    const known = new Set(TOKENS.color.tokens.map((token) => token.value.toLowerCase()));
+    const used = svg.match(/#[0-9a-f]{6}/giu) ?? [];
+    expect(used.every((color) => known.has(color.toLowerCase()))).toBe(true);
+    expect(svg).not.toContain("<text");
   });
 
-  it("fails for a title that needs more than two lines, instead of dropping its last words", () => {
-    expect(() => wrapTitle("Giving an agent a read-only window into the Brazilian market in one line")).toThrow(
-      /needs 4 lines/u,
+  it("keeps every shape inside the safe area", () => {
+    const outside = buildSlugs().flatMap((slug) => {
+      const { shapes } = buildCover({ slug, tokens: TOKENS });
+      return shapes.filter((shape) => {
+        const bounds = readBounds(shape);
+        return (
+          bounds.left < SAFE.left - 1 ||
+          bounds.right > SAFE.right + 1 ||
+          bounds.top < SAFE.top - 1 ||
+          bounds.bottom > SAFE.bottom + 1
+        );
+      });
+    });
+    expect(outside).toHaveLength(0);
+  });
+
+  it("never repeats the composition to avoid", () => {
+    const repeated = COMPOSITIONS.flatMap(({ name }) =>
+      buildSlugs()
+        .slice(0, 20)
+        .filter((slug) => pickComposition({ random: createRandom(slug), avoid: name }).name === name),
     );
+    expect(repeated).toHaveLength(0);
   });
 
-  it("draws the title in the site's embedded font", () => {
-    const svg = buildCoverSvg({ title: TITLE, topic: "meta", tokens: TOKENS });
-    expect(svg).toContain("@font-face");
-    expect(svg).toContain('font-family="Ubuntu, sans-serif"');
+  it("stores the composition in the svg so the next post can avoid it", () => {
+    const { svg, composition } = buildCover({ slug: "stored", tokens: TOKENS });
+    expect(readComposition(svg)).toBe(composition);
   });
 
-  it("escapes the title so it cannot break the markup", () => {
-    const svg = buildCoverSvg({ title: "A <b> & c", topic: "x", tokens: TOKENS });
-    expect(svg).toContain("A &lt;b&gt; &amp; c");
-  });
-
-  it("fails for a missing color token", () => {
-    expect(() => buildCoverSvg({ title: "t", topic: "x", tokens: { color: { tokens: [] } } })).toThrow(
-      /no color token/u,
-    );
+  it("reads a token color and fails for an unknown one", () => {
+    expect(readTokenColor(TOKENS, "graphite")).toMatch(/^#[0-9a-f]{6}$/iu);
+    expect(() => readTokenColor(TOKENS, "nope")).toThrow(/no color token named "nope"/u);
   });
 });

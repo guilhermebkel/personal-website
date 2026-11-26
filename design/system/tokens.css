@@ -46,6 +46,9 @@
   --color-syntax-constant: #f5b971;  /* Code highlighting: numbers and constants. */
   --color-syntax-function: #7dc4f0;  /* Code highlighting: function and type names. */
   --color-lift: #333336;  /* Table body and other areas one step above sunken (the lightest dark ground that still reads as a panel). */
+  --color-cover-green: #a6dba0;  /* Flat shapes of a generated post cover: green. Decoration only, never text. */
+  --color-cover-orange: #f5b971;  /* Flat shapes of a generated post cover: orange. Decoration only, never text. */
+  --color-cover-blue: #7dc4f0;  /* Flat shapes of a generated post cover: blue. Decoration only, never text. */
   --color-transparent: transparent;
 
   --font-sans: "Ubuntu", sans-serif;

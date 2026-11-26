@@ -87,7 +87,7 @@ Anatomy and sizes of the components the screens are made of. Each one is the boa
 | `Cover`        | tonal block, 9 terrain lines from the path (one purple), ring pair                              | scales to 1.03 on card hover (500 ms), still under reduced motion                | every card, the post header        |
 | `Footer`       | logo 32 px, © mono 12 `text-meta`, "Back to top" 14                                             | height 96, padding 120 (20 mobile), `graphite-deep`, top border 1px `sunken`     | every page                         |
 
-The lines of `Cover` come from `ContourUtil.buildCoverLines()` with a phase taken from the seed (`CoverUtil.phaseOf()`), so the same post always has the same lines and two posts differ.
+The lines of `Cover` without a post image come from `ContourUtil.buildCoverLines()` with a phase taken from the seed (`CoverUtil.phaseOf()`), so the same post always has the same lines and two posts differ.
 
 ## Open questions (Wave 3)
 
@@ -118,12 +118,14 @@ Still open:
 - **Colors deliberately left out.** `#c9bdff` (the selected count of the projects filter) and `#9a9aa0` (a caption on the reference board LogoRound) are not on the site. `#000` is the stop of a gradient mask, not a color on screen. `rgba(255,255,255,0.035)`, `rgba(83,40,254,0.22)` and `rgba(83,40,254,0.35)` are two uses each on the hero's edge. They are documented as exceptions in `scripts/prototype-colors.mjs`, and `scripts/prototype-colors.test.mjs` fails on any other color in a board.
 - **The artifact's `ds/guilherr-me/tokens.json` is obsolete.** It is an older snapshot (page background `#151515`, no `graphite`, `raised` or `cover`) and is not copied into the repository. The Design System artifact is synced from this file in its own issue.
 - 2026-11-24: motion tokens. Durations (`hover` 250ms, `zoom` 500ms, `marker` 700ms, and the entrance durations as measured), delays (`signature`, `signature-line`, `trace-mark`, `accent`) and two easings (`out` = the prototype's `cubic-bezier(.23,1,.32,1)`, `inout` = the quote board's `cubic-bezier(.45,0,.2,1)`) are in `tokens.json`. The entrance of `fade-in` and the marker of the quote now use `out`, the prototype's easing, instead of the browser's `ease-out`. The hero delays in `app/page.tsx` stay JavaScript numbers (their order is the spec of the hero) and are not yet tokens.
+- 2026-11-26: generated post covers (#88). The cover generator draws flat overlapping shapes from a slug-seeded random, not the title, and avoids the composition of the previous post. Three tokens added: `cover-green`, `cover-orange`, `cover-blue`. Both existing posts have a generated SVG cover.
 - 2026-11-24: wave 5, the curves. The square shapes of the site were measured against the `Curvas` board. Buttons are pills with the purple sweep from the left, cards are 24 px, project covers 16 px (`rounded-md`), tags and fields keep their radii. Links keep the approved marker: a curved purple shape (`marker-shape`) that sweeps in on hover, as the Intro and Posts boards show. A separate wave underline was not added, because it would replace a shape the owner already approved. The connector with a curved arrowhead is not used on the site: the section separators are straight rules, so the curved connector is recorded as unused rather than added.
 
 Curve paths, from the `Curvas` board, for reference:
 
 - Contour line of the hero: the same wave as the background tile (`hero-glow` and the contour pattern).
 - Cover wave: the purple line of `CoverArtIcon` (one of nine seeded phases).
+- Post cover shapes: `cover-green`, `cover-orange` and `cover-blue`, with `purple` and `purple-light`, drawn by `scripts/render-cover.mjs` as flat shapes over `graphite`. Decoration only, never text.
 - Project cover ring: a circle of radius 53 px and an inner ring of 27 px (`CoverArtIcon`).
 - Quote underline: the purple stroke under the quote's last line (`Spotlight`).
 - 2026-11-24: wave 5, the design system artifact (#13). The artifact `guilherr.me design system` (Design System type, https://claude.ai/artifact/Nba6G8xrog5wVKNWqdTR72) holds the tokens (`tokens.json` in the list shape the page reads; the motion family is not on it), the brand book (`project/README.md`), the logo as an asset group, and a preview and a guideline for each of the ten components in the list above. The previews use the token values; they were rendered and checked by eye, not compared pixel by pixel with the site (that comparison is the open part of the issue). Published version: `1795514576-9254`.
