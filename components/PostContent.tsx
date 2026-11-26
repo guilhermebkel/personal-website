@@ -33,8 +33,8 @@ const CODE_HEADER_CLASS =
   "flex items-center justify-between gap-6 border-b-2 border-sunken bg-surface px-5 py-2.5 font-mono text-small text-text-soft list-none [&::-webkit-details-marker]:hidden";
 const CODE_BODY_CLASS = "mb-0! rounded-none! border-0! bg-control px-5! py-4! whitespace-pre! overflow-x-auto!";
 const TABLE_WRAP_CLASS = "mb-6 overflow-x-auto rounded-lg border-2 border-line bg-surface";
-const TABLE_HEAD_CLASS = "border-b border-line bg-control px-5 py-3 text-left font-medium text-text";
-const TABLE_CELL_CLASS = "border-b border-line px-5 py-3 align-top text-prose text-text-soft";
+const TABLE_HEAD_CLASS = "border border-line px-5 py-3 text-left font-medium text-text";
+const TABLE_CELL_CLASS = "border border-line px-5 py-3 align-top text-prose text-text-soft";
 
 type MarkdownNode = NonNullable<ExtraProps["node"]>;
 type ImageProps = { src: string; alt: string; title: string };
