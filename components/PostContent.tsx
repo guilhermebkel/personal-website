@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import { Link } from "@components/Link.tsx";
 import { PostFigure } from "@components/PostFigure.tsx";
 import { PostImage } from "@components/PostImage.tsx";
+import { CodeHighlightUtil } from "@/Utils/CodeHighlightUtil.ts";
 import { HeadingSlugUtil } from "@/Utils/HeadingSlugUtil.ts";
 import { InfoStringUtil } from "@/Utils/InfoStringUtil.ts";
 
@@ -16,6 +17,7 @@ const PROSE_CLASS = [
   "[&_ul]:mb-6 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:mb-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:mb-2 [&_li]:text-prose",
   "[&_pre]:mb-6 [&_pre]:rounded-sm [&_pre]:border-2 [&_pre]:border-sunken [&_pre]:bg-control [&_pre]:px-6 [&_pre]:py-5",
   "[&_pre]:font-mono [&_pre]:text-small [&_pre]:break-words [&_pre]:whitespace-pre-wrap [&_pre]:text-text-soft",
+  "[&_.tok-keyword]:text-syntax-keyword [&_.tok-string]:text-syntax-string [&_.tok-comment]:text-syntax-comment [&_.tok-constant]:text-syntax-constant [&_.tok-function]:text-syntax-function",
   "[&_:not(pre)>code]:font-mono [&_:not(pre)>code]:text-small [&_:not(pre)>code]:text-text",
   "[&_blockquote]:mb-6 [&_blockquote]:rounded-lg [&_blockquote]:border-2 [&_blockquote]:border-sunken [&_blockquote]:bg-raised [&_blockquote]:mx-0 [&_blockquote]:px-7 [&_blockquote]:py-6 max-md:[&_blockquote]:px-5 max-md:[&_blockquote]:py-5 [&_blockquote>p:last-child]:mb-0",
   "[&_img]:mb-6 [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-md [&_figcaption]:mt-3 [&_figcaption]:font-mono [&_figcaption]:text-caption [&_figcaption]:text-text-meta",
@@ -82,6 +84,7 @@ export const PostContent = ({ markdown }: { markdown: string }) => (
   <div className={PROSE_CLASS}>
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
+      rehypePlugins={[CodeHighlightUtil.buildRehypePlugin]}
       components={{
         h2: ({ node, children }) => {
           // Why: remark names the footnote block's heading "Footnotes" and hides it; the reader sees the mono label "Notes", and the id stays so the references can point at it.
