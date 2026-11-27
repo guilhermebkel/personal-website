@@ -2,6 +2,8 @@
 
 import { useRef } from "react";
 
+const SVG_EXTENSION = ".svg";
+
 export const PostImage = ({ src, alt }: { src: string; alt: string }) => {
   // Why: a screenshot is too small to read on a phone, so a tap opens the same image at full size in the native dialog; Esc, a tap anywhere and the focus return come from the dialog itself, and the page keeps its scroll position.
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -26,9 +28,14 @@ export const PostImage = ({ src, alt }: { src: string; alt: string }) => {
           onClick={() => {
             dialogRef.current?.close();
           }}
-          className="grid size-full cursor-zoom-out place-items-center border-0 bg-transparent p-4"
+          className="block size-full cursor-zoom-out border-0 bg-transparent p-4"
         >
-          <img src={src} alt={alt} className="h-auto max-h-full w-auto max-w-full rounded-md" />
+          {/* Why: the post's image rules (`h-auto`, `max-w-full`) win over plain classes, so the picture is forced to the padded window and fitted inside it, never past the screen. A vector (a diagram) has almost no size of its own and is scaled to fill; a screenshot is only scaled down, never past its own pixels. */}
+          <img
+            src={src}
+            alt={alt}
+            className={`mb-0! size-full! max-w-none! ${src.endsWith(SVG_EXTENSION) ? "object-contain" : "object-scale-down"}`}
+          />
         </button>
       </dialog>
     </>
