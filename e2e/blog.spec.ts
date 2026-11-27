@@ -5,6 +5,7 @@ import { CRITICAL_FLOW, NEEDS_BROWSER } from "./tags.ts";
 const HYDRATION_TIMEOUT_MS = 15_000;
 // Why: 70% of the 844 px phone window, rounded up by one pixel for subpixel layout.
 const MAX_FIGURE_HEIGHT_PX = 591;
+const DESKTOP_WINDOW_HEIGHT_PX = 900;
 
 test("a post opens from the list", { tag: CRITICAL_FLOW }, async ({ page }) => {
   await page.goto("/blog/");
@@ -54,4 +55,22 @@ test("a figure taller than the window scales down to fit it", { tag: NEEDS_BROWS
 
   expect(heights.length).toBeGreaterThan(0);
   expect(heights.filter((height) => height > MAX_FIGURE_HEIGHT_PX)).toStrictEqual([]);
+});
+
+test("an image opened full size fits the window", { tag: NEEDS_BROWSER }, async ({ page }) => {
+  // Why: a diagram has almost no size of its own, so without a limit the full-size view on a desktop grew to thousands of pixels and had to be scrolled.
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/blog/handling-a-request-with-no-scope/");
+
+  await page.locator("figure").getByRole("button").first().click();
+  const dialog = page.locator("dialog[open]");
+  await expect(dialog).toBeVisible();
+  const sizes = await dialog.evaluate((element) => ({
+    scroll: element.scrollHeight - element.clientHeight,
+    image: element.querySelector("img")?.getBoundingClientRect().height ?? 0,
+  }));
+
+  expect(sizes.image).toBeGreaterThan(0);
+  expect(sizes.scroll).toStrictEqual(0);
+  expect(sizes.image).toBeLessThanOrEqual(DESKTOP_WINDOW_HEIGHT_PX);
 });
