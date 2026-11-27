@@ -94,6 +94,7 @@
   --container-content: 1366px;  /* Maximum content width. */
   --container-measure: 40rem;  /* Measure of a post's running text: 60 to 75 characters per line at the prose size on desktop. */
   --container-figure: 50rem;  /* Width of a post figure on desktop: wider than the text column, into the free space beside it. */
+  --spacing-figure-height: 70svh;  /* Maximum height of a post figure: a taller picture, such as a top-down diagram on a phone, scales down to 70% of the window so the reader sees it whole, caption included. */
 
   --duration-instant: 0.01ms;  /* The duration the reduced-motion reset gives every animation, so it ends at once and keeps its final state. */
   --duration-quick: 200ms;  /* The lift of a social icon on hover. */
