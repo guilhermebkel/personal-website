@@ -16,7 +16,8 @@ export const PostImage = ({ src, alt }: { src: string; alt: string }) => {
         }}
         className="block w-full cursor-zoom-in border-0 bg-transparent p-0 text-left"
       >
-        <img src={src} alt={alt} className="mb-0! h-auto w-full rounded-md" />
+        {/* Why: a tall picture, like a top-down diagram on a phone, would grow past the window; it scales down to the figure height and keeps its proportions, and the dialog still opens it at full size. */}
+        <img src={src} alt={alt} className="mb-0! h-auto max-h-figure-height w-full rounded-md object-contain" />
       </button>
       <dialog ref={dialogRef} className="m-0 size-full max-h-none max-w-none border-0 bg-graphite-deep p-0">
         <button
