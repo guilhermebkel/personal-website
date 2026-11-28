@@ -1,0 +1,9 @@
+{
+  "name": "Pebo",
+  "description": "An online 3D foosball game that runs in the browser. It lets friends open a room, share a code and play 1v1, 2v2 or 4v4 with no accounts or installs, so a match starts in seconds and the server keeps it fair.",
+  "url": "https://pebo.guilherr.me",
+  "kind": "game",
+  "cover": "/projects/pebo.png",
+  "order": 4,
+  "updatedAt": "2026-11-28T00:00:00.000Z"
+}
